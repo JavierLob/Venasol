@@ -1,0 +1,60 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3>Registrar Servicio</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás registrar los servicios del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_servicio.php" method="POST" name="form_servicio">
+                <input type="hidden" value="registrar_servicio" name="operacion" id="cam_operacion"/>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Nombre <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del Servicio"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese el nomnbre del servicio a registrar' data-position="bottom" name="nombreser" id="cam_nombreser" >
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Enlace <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Enlace del Servicio"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el enlace del servicio a registrar' data-position="bottom" name="enlaceser" id="cam_enlaceser" >
+                    </div>
+                </div>
+                <div class="row">                
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Módulo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del Servicio"><i class="fa fa-question"></i></span></label>
+                        <select class="form-control" data-step="3" data-intro='Seleccione el módulo al cual pertenece el servicio a registrar' data-position="bottom" name="idmodulo" id="cam_idmodulo" >
+                        <option value=""></option>
+                            <!--LISTADO_MODULOS-->
+                            <option value="{idmodulo}">{nombremod}</option>
+                            <!--LISTADO_MODULOS-->
+                        </select>
+                    </div>
+                     <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Visible <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Indica sí el servicio será visible o no en el menú."><i class="fa fa-question"></i></span></label>
+                        <div class="row">
+                            <div class="btn-group" data-step="4" data-intro='Seleccione sí el servicio será visible o no en el menú.' data-position="bottom" data-toggle="buttons">
+                                <label class="btn btn-success">
+                                <input type="radio" name="visileser" id="visileser1"> Si
+                                </label>
+                                <label class="btn btn-danger">
+                                <input type="radio" name="visileser" id="visileser2"> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="5" data-intro='Para finalizar haga click en guardar para registrar el servicio.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=seguridad/servicio" data-step="6" data-intro='Para salir haga click en regresar para registrar el servicio.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

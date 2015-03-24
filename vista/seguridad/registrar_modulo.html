@@ -1,0 +1,32 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3>Registrar Módulo</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás registrar los módulos del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_modulo.php" method="POST" name="form_rol">
+                <input type="hidden" value="registrar_modulo" name="operacion" id="cam_operacion"/>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Nombre <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del Módulo"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese el nomnbre del módulo a registrar' data-position="right" name="nombremod" id="cam_nombremod" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="2" data-intro='Para finalizar haga click en guardar para registrar el módulo.' data-position="right" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=seguridad/modulo" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

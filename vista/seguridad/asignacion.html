@@ -1,0 +1,40 @@
+<div class="col-lg-12">
+    <div class="main-box">
+        <header class="main-box-header clearfix">
+            <h3>Asignación de módulos y servicios</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="tabs-wrapper">
+                <ul class="nav nav-tabs">
+                    <!--LISTADO_ROLES-->
+                    <li class="{active}"><a href="#tab-{nombrerol}" data-toggle="tab">{nombrerol}</a></li>
+                    <!--LISTADO_ROLES-->
+                </ul>
+                <div class="tab-content">
+                    <!--LISTADO_TABS-->
+                    <div class="tab-pane fade in {active}" id="tab-{nombrerol}">
+                        <p>
+                        <!--LISTADO_MODULOS_{i}-->
+                        <p>{nombremod}</p>
+                        <ul>
+                            <!--LISTADO_SERVICIOS_{j}-->
+                                <li>{nombreser}</li>
+                            <!--LISTADO_SERVICIOS_{j}-->
+                        </ul>
+                        <!--LISTADO_MODULOS_{i}-->
+                            
+                        </p>
+                    </div>
+                    <!--LISTADO_TABS-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <a href="?modulo=seguridad/asignar_modulo" class="btn btn-success "><i class="fa fa-chevron-right"></i> Asignar Módulos</a>
+                    <a href="?modulo=seguridad/asignar_servicio" class="btn btn-success "><i class="fa fa-chevron-right"></i> Asignar Servicios</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
