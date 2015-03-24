@@ -43,8 +43,12 @@
 				while($laRow=$this->proximo($pcsql))
 				{
 					$Fila[$cont]=$laRow;					
-					$Fila[$cont]['estatusser']=($laRow['estatusser'])?'activo':'inactivo';					
-					$Fila[$cont]['estatus_color']=($laRow['estatusser'])?'success':'danger';					
+					$Fila[$cont]['estatus_color']=($laRow['estatusser'])?'success':'danger';
+					$Fila[$cont]['estatusser'] = ($laRow['estatusser']) ? 'Activo' : 'Inactivo';
+					$Fila[$cont]['titulo'] = ($laRow['estatusser']) ? 'Desactivar' : 'Restaurar';
+					$Fila[$cont]['color_boton'] = ($laRow['estatusser']) ? 'danger' : 'warning';
+					$Fila[$cont]['funcion'] = ($laRow['estatusser']) ? 'eliminar' : 'restaurar';
+					$Fila[$cont]['icono'] = ($laRow['estatusser']) ? 'times' : 'refresh';					
 					$cont++;
 				}
 			
@@ -95,11 +99,10 @@
 				
 				if($laRow=$this->proximo($pcsql))
 				{
-					$Fila[0]=$laRow['idservicio'];
-					$Fila[1]=$laRow['nombreser'];
-					$Fila[2]=$laRow['enlaceser'];
-					$Fila[3]=$laRow['idmodulo'];
-					$Fila[4]=$laRow['visibleser'];
+					$Fila=$laRow;
+					$Fila['checked_si']=($laRow['visibleser'])?'checked':'';
+					$Fila['checked_no']=(!$laRow['visibleser'])?'checked':'';
+					
 				}
 			
 			$this->desconectar();

@@ -24,6 +24,28 @@
 				while($laRow=$this->proximo($pcsql))
 				{
 					$Fila[$cont]=$laRow;
+					$Fila[$cont]['estatusmod'] = ($laRow['estatusmod']) ? 'Activo' : 'Inactivo';
+					$Fila[$cont]['titulo'] = ($laRow['estatusmod']) ? 'Desactivar' : 'Restaurar';
+					$Fila[$cont]['color_boton'] = ($laRow['estatusmod']) ? 'danger' : 'warning';
+					$Fila[$cont]['funcion'] = ($laRow['estatusmod']) ? 'eliminar' : 'restaurar';
+					$Fila[$cont]['icono'] = ($laRow['estatusmod']) ? 'times' : 'refresh';
+					$cont++;
+				}
+			
+			$this->desconectar();
+			return $Fila;
+		}
+
+		function consultar_modulos_servicio($idmodulo_servicio)
+		{
+			$this->conectar();
+			$cont=0;
+				$sql="SELECT idmodulo,nombremod,estatusmod FROM tmodulo ";
+				$pcsql=$this->filtro($sql);
+				while($laRow=$this->proximo($pcsql))
+				{
+					$Fila[$cont]=$laRow;
+					$Fila[$cont]['selected'] = ($laRow['idmodulo']==$idmodulo_servicio)?'selected' : '';
 					$cont++;
 				}
 			

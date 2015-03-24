@@ -46,7 +46,7 @@
 				$Fila[$cont]['estatusrol'] = ($laRow['estatusrol']) ? 'Activo' : 'Inactivo';
 				$Fila[$cont]['titulo'] = ($laRow['estatusrol']) ? 'Desactivar' : 'Restaurar';
 				$Fila[$cont]['color_boton'] = ($laRow['estatusrol']) ? 'danger' : 'warning';
-				$Fila[$cont]['funcion'] = ($laRow['estatusrol']) ? 'desactivar' : 'restaurar';
+				$Fila[$cont]['funcion'] = ($laRow['estatusrol']) ? 'eliminar' : 'restaurar';
 				$Fila[$cont]['icono'] = ($laRow['estatusrol']) ? 'times' : 'refresh';
 				$Fila[$cont]['active'] = ($cont==0) ? 'active' : '';
 				$Fila[$cont]['i'] = $cont;
@@ -272,7 +272,7 @@
 			for($i=0;$i<count($this->lcServicio);$i++) 
 			{
 				$idservicio=$this->lcServicio[$i];
-				$orden=$this->lcOrden[$i];
+				$orden=($this->lcOrden[$i])?$this->lcOrden[$i]:0;
 				$sql="INSERT INTO tservicio_trol (idrol,idservicio,orden)VALUES('$this->lcIdRol','$idservicio',$orden)";
 				$lnHecho=$this->ejecutar($sql);
 				if(!$lnHecho)

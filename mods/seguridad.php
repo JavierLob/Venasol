@@ -50,7 +50,7 @@ switch ($vista) {
                 $ObjSistema->consultar_opciones('?modulo=seguridad/consultar_servicio', $opciones['btn_consultar'], '?modulo=seguridad/registrar_servicio', $opciones['btn_registrar'], '?modulo=seguridad/eliminar_servicio', $opciones['btn_eliminar'], '?modulo=seguridad/eliminar_servicio', $opciones['btn_restaurar'],$opciones['operaciones'],$opciones['informacion']);
                 $laservicios = $lobjServicio->consultar_servicios();
 
-                $HTML = $ObjSistema->get_cuerpo('Seguridad,Módulo','#,?modulo=seguridad/modulo','modulo','seguridad');
+                $HTML = $ObjSistema->get_cuerpo('Seguridad,Servicio','#,?modulo=seguridad/servicio','servicio','seguridad');
 
                 $ObjSistema->set_cuerpo($HTML);
                 $diccionario =array('cuerpo' => file_exists("seguridad/template_servicios.html") ? file_get_contents("seguridad/template_servicios.html") : '');
@@ -119,6 +119,38 @@ switch ($vista) {
                         }
 
                 }
+
+        break;
+        case 'registrar_rol':
+        $HTML = $ObjSistema->get_cuerpo('Seguridad,Rol,Registrar rol','#,?modulo=seguridad/rol,#','rol','seguridad');
+
+        $ObjSistema->set_cuerpo($HTML);
+        $diccionario =array('cuerpo' => file_exists("seguridad/registrar_rol.html") ? file_get_contents("seguridad/registrar_rol.html") : '');
+                $HTML = $ObjSistema->render($diccionario);
+        
+        $ObjSistema->set_cuerpo($HTML);
+      
+        break;
+        case 'consultar_servicio':
+        $lobjServicio->set_Servicio($id);
+        $laservicio = $lobjServicio->consultar_servicio();
+        $lamodulos=$lobjModulo->consultar_modulos_servicio($laservicio['idmodulo']);
+
+        $HTML = $ObjSistema->get_cuerpo('Seguridad,Servicio,Consultar servicio','#,?modulo=seguridad/servicio,#','servicio','seguridad');
+
+        $ObjSistema->set_cuerpo($HTML);
+        $diccionario =array('cuerpo' => file_exists("seguridad/consultar_servicio.html") ? file_get_contents("seguridad/consultar_servicio.html") : '');
+        $HTML = $ObjSistema->render($diccionario);        
+        $ObjSistema->set_cuerpo($HTML);
+        
+        $HTML = $ObjSistema->render($laservicio);   
+        $ObjSistema->set_cuerpo($HTML);
+             
+        if($lamodulos)
+            $HTML = $ObjSistema->render_regex('LISTADO_MODULOS', $lamodulos);
+        else
+            $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MODULOS', '');
+        $ObjSistema->set_cuerpo($HTML);
 
         break;
         case 'registrar_rol':

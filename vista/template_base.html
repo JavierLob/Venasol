@@ -215,14 +215,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="myModaldesactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
+		<div class="modal fade" id="myModaleliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title">¿Desea desactivar el {servicio}?</h4>
 					</div>
-					<form name="form_modal_eleminar" method="POST" action="../controlador/control_{servicio}.php" role="form">
+					<form name="form_modal_eliminar" method="POST" action="../controlador/control_{servicio}.php" role="form">
 						<input type="hidden" name="operacion" id="cam_idoperacion" value="eliminar_{servicio}"/>
 						<input type="hidden" name="id{servicio}" id="cam_id{servicio}"/>						
 						<div class="modal-footer">
@@ -288,9 +287,9 @@
 			{
 				window.location.href="?modulo={modulo}/consultar_{servicio}&id="+id;
 			}
-		    function desactivar(id)
+		    function eliminar(id)
 		    {
-			    document.form_modal_desactivar.id{servicio}.value=id;
+			    document.form_modal_eliminar.id{servicio}.value=id;
 
 		  	}
 
