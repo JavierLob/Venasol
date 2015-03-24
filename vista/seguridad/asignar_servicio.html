@@ -20,7 +20,7 @@
                 <div class="row" id="listado_servicios">
                 </div>                
                 <div class="row">
-                    <div class="col-lg-offset-2 col-lg-10">
+                    <div class="col-lg-offset-4 col-lg-10">
                         <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
                         <a href="?modulo=seguridad/asignacion" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
@@ -67,21 +67,4 @@ function validar_orden()
     return true;
 }
 
-function activar_orden(e)
-{
-    orden=document.getElementsByName('orden[]');
-    idservicio=document.getElementsByName('idservicio[]');
-    for(i=0;i<idservicio.length;i++)
-    {
-        if(idservicio[i].value==e.value && idservicio[i].checked==true)
-        {
-            orden[i].disabled=false;
-        }
-
-        if(idservicio[i].value==e.value && idservicio[i].checked==false)
-        {
-            orden[i].disabled=true;
-        }
-    }
-}
 </script>

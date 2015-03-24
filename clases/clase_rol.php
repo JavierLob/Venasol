@@ -161,7 +161,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-				$sql="SELECT tservicio.idservicio,nombreser,enlaceser,visibleser,(SELECT idservicio FROM tservicio_trol WHERE idrol='$this->lcIdRol' AND idservicio=tservicio.idservicio)as checked,(SELECT orden FROM tservicio_trol WHERE idrol='$this->lcIdRol' AND idservicio=tservicio.idservicio)as orden,(SELECT COUNT(*)as cantidad FROM tservicio WHERE estatusser='1')as cantidad FROM tservicio WHERE idmodulo='$this->lcModulo' ORDER BY visibleser DESC";
+				$sql="SELECT tservicio.idservicio,nombreser,enlaceser,visibleser,(SELECT idservicio FROM tservicio_trol WHERE idrol='$this->lcIdRol' AND idservicio=tservicio.idservicio)as checked,(SELECT orden FROM tservicio_trol WHERE idrol='$this->lcIdRol' AND idservicio=tservicio.idservicio)as orden_ser,(SELECT COUNT(*)as cantidad FROM tservicio WHERE estatusser='1')as cantidad FROM tservicio WHERE idmodulo='$this->lcModulo' ORDER BY visibleser DESC";
 				$pcsql=$this->filtro($sql);
 				while($laRow=$this->proximo($pcsql))
 				{
@@ -272,8 +272,8 @@
 			for($i=0;$i<count($this->lcServicio);$i++) 
 			{
 				$idservicio=$this->lcServicio[$i];
-				$Orden=$this->lcOrden[$i];
-				$sql="INSERT INTO tservicio_trol (idrol,idservicio)VALUES('$this->lcIdRol','$idservicio')";
+				$orden=$this->lcOrden[$i];
+				$sql="INSERT INTO tservicio_trol (idrol,idservicio,orden)VALUES('$this->lcIdRol','$idservicio',$orden)";
 				$lnHecho=$this->ejecutar($sql);
 				if(!$lnHecho)
 				{

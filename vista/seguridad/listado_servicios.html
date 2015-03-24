@@ -11,8 +11,8 @@
             <div class="col-lg-4">
                 <div class="pull-left col-lg-5">                                
                     <label>{nombreser}
-                    <div class="onoffswitch">
-                    <input type="checkbox" name="idservicio{j}[]" onclick="activar_orden(this);" class="onoffswitch-checkbox" value="{idservicio}" id="myonoffswitch{idservicio}" {checked}>
+                    <div class="onoffswitch onoffswitch-success">
+                    <input type="checkbox" name="idservicio{j}[]" onclick="activar_orden{j}(this);" class="onoffswitch-checkbox" value="{idservicio}" id="myonoffswitch{idservicio}" {checked}>
                     <label class="onoffswitch-label" for="myonoffswitch{idservicio}">
                     <div class="onoffswitch-inner"></div>
                     <div class="onoffswitch-switch"></div>
@@ -22,9 +22,29 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label>{etiqueta}</label>
-                    <input type="number" class="form-control {hide}" name="orden{j}[]" style="width:70px" min="0" value="{orden}" max="{cantidad}" step="1" {disabled}/>
+                    <input type="number" class="form-control {hide}" name="orden{j}[]" style="width:70px" min="0" value="{orden_ser}" max="{cantidad}" step="1" {disabled}/>
                 </div>
             </div>
+            <script>
+    
+            function activar_orden{j}(e)
+            {
+                orden=document.getElementsByName('orden{j}[]');
+                idservicio=document.getElementsByName('idservicio{j}[]');
+                for(i=0;i<idservicio.length;i++)
+                {
+                    if(idservicio[i].value==e.value && idservicio[i].checked==true)
+                    {
+                        orden[i].disabled=false;
+                    }
+
+                    if(idservicio[i].value==e.value && idservicio[i].checked==false)
+                    {
+                        orden[i].disabled=true;
+                    }
+                }
+            }
+            </script>
             <!--LISTADO_SERVICIOS{j}-->        
         </div>
         <!--LISTADO_TABS-->
