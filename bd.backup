@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.1.14
 -- Dumped by pg_dump version 9.1.14
--- Started on 2015-03-23 21:56:39
+-- Started on 2015-03-24 15:58:52
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -1140,7 +1140,7 @@ SELECT pg_catalog.setval('sidmodelo', 1, false);
 -- Name: sidmodulo; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidmodulo', 2, true);
+SELECT pg_catalog.setval('sidmodulo', 6, true);
 
 
 --
@@ -1167,7 +1167,7 @@ SELECT pg_catalog.setval('sidpregunta', 1, false);
 -- Name: sidproducto; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidproducto', 1, false);
+SELECT pg_catalog.setval('sidproducto', 1, true);
 
 
 --
@@ -1194,7 +1194,7 @@ SELECT pg_catalog.setval('sidrol', 2, true);
 -- Name: sidservicio; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidservicio', 10, true);
+SELECT pg_catalog.setval('sidservicio', 26, true);
 
 
 --
@@ -1212,7 +1212,7 @@ SELECT pg_catalog.setval('sidservicio_mantenimiento', 1, false);
 -- Name: sidtipo_producto; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidtipo_producto', 1, false);
+SELECT pg_catalog.setval('sidtipo_producto', 21, true);
 
 
 --
@@ -1412,6 +1412,9 @@ COPY tmodelo (idmodelo, descripcionmod, tmarca_idmarca, observacionmod, estatusm
 COPY tmodulo (idmodulo, nombremod, estatusmod, icono, "case") FROM stdin;
 1	Seguridad	1	lock	seguridad
 2	Configuración	1	cogs	\N
+3	Producto	1	shopping-cart	producto
+4	Chofer	1	qq	chofer
+5	Precinto	1	tags	precinto
 \.
 
 
@@ -1423,8 +1426,11 @@ COPY tmodulo (idmodulo, nombremod, estatusmod, icono, "case") FROM stdin;
 
 COPY tmodulo_trol (idmodulo, idrol, orden) FROM stdin;
 1	2	2
-1	1	1
-2	1	2
+1	1	4
+2	1	5
+3	1	1
+4	1	2
+5	1	3
 \.
 
 
@@ -1455,6 +1461,7 @@ COPY tpregunta (idpregunta, pregunta, respuesta, tusuario_idusuario) FROM stdin;
 --
 
 COPY tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro) FROM stdin;
+1	PR0001    	ACEITES DE CORTES	ACEITES DE CORTES	lts 	3.33	30000.00	1		1
 \.
 
 
@@ -1491,11 +1498,27 @@ COPY tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodu
 2	Registrar Rol	?modulo=seguridad/registrar_rol	0	1	1
 3	Consultar Rol	?modulo=seguridad/consultar_rol	0	1	1
 4	Desactivar Rol	?modulo=seguridad/eliminar_rol	0	1	1
-5	Asignar módulos/servicios	?modulo=seguridad/asignacion	1	1	1
 7	Registrar servicio	?modulo=seguridad/registrar_servicio		1	1
 8	Servicio	?modulo=seguridad/servicio	1	1	1
 9	Consultar servicio	?modulo=seguridad/consultar_servicio		1	1
 10	Eliminar Servicio	?modulo=seguridad/eliminar_servicio		1	1
+12	Registrar producto	?modulo=producto/registrar_producto		1	3
+5	Asignar módulos/servicios	?modulo=seguridad/asignacion	1	1	1
+11	Producto	?modulo=producto/producto	1	1	3
+14	Eliminar Producto	?modulo=producto/eliminar_producto	0	1	3
+13	Consultar Producto	?modulo=producto/consultar_producto	0	1	3
+15	Tipo de Producto	?modulo=producto/tipo_producto	1	1	3
+16	Registrar Tipo de Producto	?modulo=producto/registrar_tipo_producto	0	1	3
+17	Consultar tipo de producto	?modulo=producto/consultar_tipo_producto	0	1	3
+18	Eliminar Tipo de producto	?modulo=producto/eliminar_tipo_producto	0	1	3
+19	Chofer	?modulo=chofer/chofer	1	1	4
+22	Eliminar Chofer	?modulo=chofer/eliminar_chofer	0	1	4
+21	Consultar Chofer	?modulo=chofer/consultar_chofer	0	1	4
+20	Registrar Chofer	?modulo=chofer/registrar_chofer	0	1	4
+23	Precinto	?modulo=precinto/precinto	1	1	5
+24	Registrar Precinto	?modulo=precinto/registrar_precinto	0	1	5
+25	Consultar Precinto	?modulo=precinto/consultar_precinto	0	1	5
+26	Eliminar Precinto	?modulo=precinto/eliminar_precinto	0	1	5
 \.
 
 
@@ -1535,6 +1558,22 @@ COPY tservicio_trol (idservicio, idrol, orden) FROM stdin;
 7	1	0
 10	1	0
 9	1	0
+15	1	2
+11	1	1
+16	1	0
+18	1	0
+13	1	0
+14	1	0
+17	1	0
+12	1	0
+19	1	1
+22	1	0
+21	1	0
+20	1	0
+23	1	1
+26	1	0
+25	1	0
+24	1	0
 \.
 
 
@@ -1565,6 +1604,12 @@ COPY tsistema (idconfiguracion, introducion, mision, vision, historia, objetivos
 --
 
 COPY ttipo_producto (idtipo_producto, descripciontip, observaciontip, estatustip) FROM stdin;
+1	DESENGRASANTE		1
+18	QUIMICOS	QUIMICOS	1
+19	DESPERDICIOS	DESPERDICIOS	1
+20	MISELANEOS	MISELANEOS	1
+21	VARIOS	VARIOS	1
+17	RESIDUOS	RESIDUOS DE EXPLORACIÓN PETROLERA	1
 \.
 
 
@@ -2241,7 +2286,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-03-23 21:56:40
+-- Completed on 2015-03-24 15:58:53
 
 --
 -- PostgreSQL database dump complete
