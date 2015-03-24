@@ -127,7 +127,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-				$sql="SELECT tservicio_trol.idservicio,nombreser,enlaceser,visibleser,orden FROM tservicio_trol,tservicio WHERE idrol='$this->lcIdRol' AND idmodulo='$IdModulo' AND tservicio_trol.idservicio=tservicio.idservicio $visible ORDER BY orden ASC";
+				$sql="SELECT tservicio_trol.idservicio,nombreser,enlaceser,visibleser,orden FROM tservicio_trol,tservicio WHERE idrol='$this->lcIdRol' AND estatusser='1' AND idmodulo='$IdModulo' AND tservicio_trol.idservicio=tservicio.idservicio $visible ORDER BY orden ASC";
 				$pcsql=$this->filtro($sql);
 				while($laRow=$this->proximo($pcsql))
 				{

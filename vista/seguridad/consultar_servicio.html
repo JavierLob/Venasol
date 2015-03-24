@@ -13,7 +13,8 @@
                 </div>
             </div>
             <form action="../controlador/control_servicio.php" method="POST" name="form_servicio">
-                <input type="hidden" value="edtiar_servicio" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="editar_servicio" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{idservicio}" name="idservicio" id="cam_idservicio"/>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Nombre <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del Servicio"><i class="fa fa-question"></i></span></label>
@@ -39,10 +40,10 @@
                         <div class="row">
                             <div class="btn-group" data-step="4" data-intro='Seleccione sí el servicio será visible o no en el menú.' data-position="bottom" data-toggle="buttons">
                                 <label class="btn btn-success">
-                                <input type="radio" name="visileser" id="visileser1" {checked_si}> Si
+                                <input type="radio" name="visibleser" value="1" id="visileser1" {checked_si}> Si
                                 </label>
                                 <label class="btn btn-danger">
-                                <input type="radio" name="visileser" id="visileser2" {checked_no}> No
+                                <input type="radio" name="visibleser" value="0" id="visileser2" {checked_no}> No
                                 </label>
                             </div>
                         </div>

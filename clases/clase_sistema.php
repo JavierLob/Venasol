@@ -240,11 +240,11 @@
 		        {
 		            if($laServicios[$j]['enlaceser']==$vista1)
 		            {
-		                $opcion1=$informacion='';
+		                $opcion1=$operaciones=$informacion='';
 		            }
 		            if($laServicios[$j]['enlaceser']==$vista2)
 		            {
-		                $opcion2=$operaciones=$informacion='';
+		                $opcion2=$informacion='';
 		            }
 		            if($laServicios[$j]['enlaceser']==$vista3)
 		            {

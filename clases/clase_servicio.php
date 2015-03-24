@@ -43,6 +43,7 @@
 				while($laRow=$this->proximo($pcsql))
 				{
 					$Fila[$cont]=$laRow;					
+					$Fila[$cont]['visibleser']=($laRow['visibleser'])?'Si':'No';
 					$Fila[$cont]['estatus_color']=($laRow['estatusser'])?'success':'danger';
 					$Fila[$cont]['estatusser'] = ($laRow['estatusser']) ? 'Activo' : 'Inactivo';
 					$Fila[$cont]['titulo'] = ($laRow['estatusser']) ? 'Desactivar' : 'Restaurar';
@@ -156,6 +157,7 @@
 		{
 			$this->conectar();
 			$sql="UPDATE tservicio SET nombreser='$this->lcNombre',enlaceser='$this->lcEnlace',visibleser='$this->lcVisible',idmodulo='$this->lcModulo' WHERE idservicio='$this->lcIdServicio' ";
+			echo $sql;
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;

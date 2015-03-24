@@ -18,6 +18,9 @@ switch ($modulo) {
 	case 'seguridad':
 		include_once("../mods/seguridad.php");
 	break;
+	case 'producto':
+		include_once("../mods/producto.php");
+	break;
 	case 'logout':
 		unset($_SESSION['usuario']);
 		unset($_SESSION['nombrerol']);

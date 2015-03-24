@@ -1,0 +1,37 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3>Consultar/Editar Tipo de producto</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás consultar y editar los tipos de producto del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_tipo_producto.php" method="POST" name="form_tipo_producto">
+                <input type="hidden" value="editar_tipo_producto" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{idtipo_producto}" name="idtipo_producto" id="cam_idtipo_producto"/>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Descripción <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Descripción del tipo de producto"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese la descripción del tipo de producto a registrar' data-position="bottom" name="descripciontip" value="{descripciontip}" id="cam_descripciontip" >
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación sobre el tipo de producto"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese una bservación sobre el tipo de producto a registrar' data-position="bottom" name="observaciontip" value="{observaciontip}" id="cam_observaciontip" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="3" data-intro='Para finalizar haga click en guardar para registrar el tipo de producto.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=producto/tipo_producto" data-step="4" data-intro='Para salir haga click en regresar para registrar el tipo de producto.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

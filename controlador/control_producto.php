@@ -1,17 +1,22 @@
 <?php
 	session_start();
-	require_once("../clases/clase_servicio.php");
+	require_once("../clases/clase_producto.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
-	$lobjServicio=new clsServicio;
+	$lobjProducto=new clsProducto;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;
 
-	$lobjServicio->set_Servicio($_POST['idservicio']);
-	$lobjServicio->set_Nombre($_POST['nombreser']);
-	$lobjServicio->set_Enlace($_POST['enlaceser']);
-	$lobjServicio->set_Visible($_POST['visibleser']);
-	$lobjServicio->set_Modulo($_POST['idmodulo']);
+	$lobjProducto->set_Producto($_POST['idproducto']);
+	$lobjProducto->set_Codigo($_POST['idcodigo']);
+	$lobjProducto->set_Descripcioncorta($_POST['descripcioncortapro']);
+	$lobjProducto->set_Descripcionlarga($_POST['descripcionlargapro']);
+	$lobjProducto->set_UnidadMedida($_POST['unidadmedidapro']);
+	$lobjProducto->set_PrecioUnitario($_POST['preciounitariopro']);
+	$lobjProducto->set_Existencia($_POST['existenciapro']);
+	$lobjProducto->set_IdTipoProducto($_POST['ttipo_producto_idtipo_producto']);
+	$lobjProducto->set_Observacion($_POST['observacionpro']);
+	$lobjProducto->set_Estatus($_POST['estatuspro']);
 
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
@@ -19,16 +24,14 @@
 
 	switch ($operacion) 
 	{
-		case 'registrar_servicio':
-			$_SESSION['mensaje']='al registrar un servicio';
+		case 'registrar_producto':
+			$_SESSION['mensaje']='al registrar un producto';
 
-			if($lobjServicio->registrar_servicio())
+			if($lobjProducto->registrar_producto())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
 				$_SESSION['icono_mensaje']='check-circle';
-				//$lobjBitacora->set_Datos($_SERVER['HTTP_REFERER'],$ldFecha,$lcReal_ip,'Registrar','Cargar datos','*','tservicio','','',$_SESSION['usuario'],$operacion); //envia los datos a la clase bitacora
-   				//$lobjBitacora->registrar_bitacora();//registra los datos en la tabla tbitacora.
 			}
 			else
 			{
@@ -36,11 +39,11 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';	
 			}
-			header('location:../vista/?modulo=seguridad/servicio');
+			header('location:../vista/?modulo=producto/producto');
 		break;
-		case 'editar_servicio':
-			$_SESSION['mensaje']='al editar el servicio';
-			if($lobjServicio->editar_servicio())
+		case 'editar_producto':
+			$_SESSION['mensaje']='al editar el producto';
+			if($lobjProducto->editar_producto())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
@@ -53,11 +56,11 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
-			header('location:../vista/?modulo=seguridad/servicio');
+			header('location:../vista/?modulo=producto/producto');
 		break;
-		case 'eliminar_servicio':
-			$_SESSION['mensaje']='al desactivar el servicio';
-			if($lobjServicio->eliminar_servicio())
+		case 'eliminar_producto':
+			$_SESSION['mensaje']='al desactivar el producto';
+			if($lobjProducto->eliminar_producto())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
@@ -69,11 +72,11 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
-			header('location:../vista/?modulo=seguridad/servicio');
+			header('location:../vista/?modulo=producto/producto');
 		break;
-		case 'restaurar_servicio':
-			$_SESSION['mensaje']='al restaurar el servicio';
-			if($lobjServicio->restaurar_servicio())
+		case 'restaurar_producto':
+			$_SESSION['mensaje']='al restaurar el producto';
+			if($lobjProducto->restaurar_producto())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
@@ -86,10 +89,10 @@
 				$_SESSION['icono_mensaje']='times-circle';
 			}
 
-			header('location:../vista/?modulo=seguridad/servicio');
+			header('location:../vista/?modulo=producto/producto');
 		break;
 		default:
-			header('location:../vista/?modulo=seguridad/servicio');
+			header('location:../vista/?modulo=producto/producto');
 		break;
 	}
 

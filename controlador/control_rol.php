@@ -96,7 +96,7 @@
 			else
 			{	
 				$_SESSION['resultado']='Error';
-				$_SESSION['resultado_color']='danger';
+				$_SESSION['resultado_color']='error';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
 			header('location:../vista/?modulo=seguridad/asignar_servicio');			
@@ -125,7 +125,7 @@
 			else
 			{	
 				$_SESSION['resultado']='Error';
-				$_SESSION['resultado_color']='danger';
+				$_SESSION['resultado_color']='error';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
 			header('location:../vista/?modulo=seguridad/asignar_servicio');			

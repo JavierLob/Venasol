@@ -16,13 +16,14 @@
                 <a class="btn btn-success " data-step="1" data-intro='Este botón lo lleva al formulario de registro' data-position="right" id="btn_registrar" href="?modulo=seguridad/registrar_servicio"><i class="fa fa-plus icon-white"></i> Registrar servicio</a>
                 <table class="table table-hover" id="filtro">
                     <thead>
-                        <th>Codigo</th><th>Nombre</th><th>Módulo</th><th>Estatus</th><th class="{operaciones}">Acción</th>
+                        <th>Codigo</th><th>Nombre</th><th>Visible</th><th>Módulo</th><th>Estatus</th><th class="{operaciones}">Acción</th>
                     </thead>
                     <tbody>
                         <!--LISTADO_SERVICIOS-->
                         <tr>
                             <td>{idservicio}</td>
                             <td>{nombreser}</td>
+                            <td>{visibleser}</td>
                             <td>{nombremod}</td>
                             <td><label class="label label-{estatus_color}">{estatusser}</label></td>
                             <td class="{operaciones}">

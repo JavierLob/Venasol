@@ -1,0 +1,183 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3>Registrar Producto</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás registrar los productos del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_producto.php" method="POST" name="form_producto">
+                <input type="hidden" value="registrar_producto" name="operacion" id="cam_operacion"/>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del producto"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese el código del producto a registrar' data-position="bottom" name="idcodigo" id="cam_nombreser" >
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Nombre corto <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre corto del producto"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el nombre corto del producto a registrar' data-position="bottom" name="descripcioncortapro" id="cam_descripcioncortapro" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Nombre largo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre largo del producto"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el nombre largo del producto a registrar' data-position="bottom" name="descripcionlargapro" id="cam_descripcionlargapro" >
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Unidad de medida <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Unidad de medida del producto"><i class="fa fa-question"></i></span></label>
+                        <select class="form-control" data-step="4" data-intro='Seleccione la unidad de medida del producto' data-position="bottom" name="unidadmedidapro" id="cam_unidadmedidapro" >
+                            <option value=""></option>
+                            <option value="lts">Litros</option>
+                            <option value="kg">Kilos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Precio Unitario<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Precio del producto"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="5" data-intro='Ingrese el Precio Unitario del producto a registrar' data-position="bottom" name="preciounitariopro" id="cam_preciounitariopro" >
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Existencia <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Existencia del producto"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="6" data-intro='Ingrese la existencia del producto a registrar' data-position="bottom" name="existenciapro" id="cam_existenciapro" >
+                    </div>
+                </div>
+                <div class="row">                            
+                    <div class="form-group col-xs-6">
+                        <div class="alert alert-danger" style="display:none" id="mensaje_error_registrar">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <i class="fa fa-times fa-fw fa-lg"></i>
+                        <strong>Error </strong>al registrar un Tipo de producto
+                        </div>
+                        <div class="alert alert-success" style="display:none" id="mensaje_exito_registrar">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="fa fa-check fa-fw fa-lg"></i>
+                            <strong>Éxito </strong>al registrar un Tipo de producto.
+                        </div>      
+                        <label for="exampleTooltip">Tipo Producto <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title=" tipo de producto al que pertenece el producto"><i class="fa fa-question"></i></span></label>
+                        <div class="input-group">
+                             <select class="form-control" data-step="7" data-intro='Seleccione el tipo de producto al que pertenece el producto a registrar' data-position="bottom" name="ttipo_producto_idtipo_producto" id="cam_ttipo_producto_idtipo_producto" >
+                            <option value=""></option>
+                                <!--LISTADO_TIPO_PRODUCTO-->
+                                <option value="{idtipo_producto}">{descripciontip}</option>
+                                <!--LISTADO_TIPO_PRODUCTO-->
+                            </select>
+                            <span class="input-group-btn">
+                                <a class="btn btn-success bottom" data-toggle="modal" href="#myModalregistrarTipoProducto"  title="Permite registrar un tipo de producto"><i class="fa fa-plus"></i></a>                        
+                            </span>
+                        </div>                       
+                    </div>
+                     
+                     <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación sobre el producto."><i class="fa fa-question"></i></span></label>
+                        <textarea name="observacionpro"  data-step="8" data-intro='Observación sobre el producto a registrar' data-position="top" id="cam_observacionpro" cols="30" rows="3" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="9" data-intro='Para finalizar haga click en guardar para registrar el producto.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=producto/producto" data-step="10" data-intro='Para salir haga click en regresar para registrar el producto.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalregistrarTipoProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Registrar Tipo Producto</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form_modal_registrar_tipo_producto" role="form">
+                    <input type="hidden" name="operacion" id="cam_idoperacion" value="registrar_tipo_producto"/>
+                    <div class="row">
+                        <div class="alert alert-danger" style="display:none" id="mensaje_error_modal">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="fa fa-times fa-fw fa-lg"></i>
+                            <strong>Error </strong>Debe ingresar una descripción para el tipo de producto a registrar.
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label for="exampleTooltip">Descripción<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Descripción del tipo de producto"><i class="fa fa-question"></i></span></label>
+                            <input type="text" class="form-control" name="descripciontip" id="cam_descripciontip" >
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación del tipo deproducto"><i class="fa fa-question"></i></span></label>
+                            <textarea class="form-control"  name="observaciontip" id="cam_observaciontip"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="registrar_tipo_producto()"><i class="fa fa-check"></i> Registrar</button>
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div> 
+</div>
+<script type="text/javascript">
+      function registrar_tipo_producto(){
+        descripcion=document.getElementById('cam_descripciontip').value;
+        observacion=document.getElementById('cam_observaciontip').value;
+        if(descripcion)
+        {
+          var url="../controlador/control_tipo_producto.php";
+          $.ajax({   
+              type: "POST",
+              url:url,
+              data:{descripciontip:descripcion,observaciontip:observacion,operacion:'registrar_tipo_producto_ajax'},
+              success: function(datos){
+                 if(datos=='1')
+                 {
+                    $("#mensaje_exito_registrar").animate({ height: 'show', opacity: 'show' }, 'slow');
+                     consultar_tipo_producto();
+                     setTimeout(function() {
+                        $("#mensaje_exito_registrar").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+                    }, 3500); 
+                    
+                 } 
+                 else
+                 {
+                     $("#mensaje_error_registrar").animate({ height: 'show', opacity: 'show' }, 'slow');
+                     setTimeout(function() {
+                        $("#mensaje_error_registrar").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+                    }, 3500); 
+                 } 
+               }
+          });
+        }
+        else
+        {
+            $("#mensaje_error_modal").animate({ height: 'show', opacity: 'show' }, 'slow');
+
+            setTimeout(function() {
+                $("#mensaje_error_modal").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+            }, 3500); 
+
+        }
+  }
+
+  function consultar_tipo_producto()
+  {
+
+          var url="../controlador/control_tipo_producto.php";
+          $.ajax({   
+              type: "POST",
+              url:url,
+              data:{operacion:'consultar_tipo_producto'},
+              success: function(datos){
+                  $('#cam_ttipo_producto_idtipo_producto').html(datos);   
+               }
+          });
+  }
+</script>
