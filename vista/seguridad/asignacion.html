@@ -13,17 +13,19 @@
                 <div class="tab-content">
                     <!--LISTADO_TABS-->
                     <div class="tab-pane fade in {active}" id="tab-{nombrerol}">
-                        <p>
-                        <!--LISTADO_MODULOS_{i}-->
-                        <p>{nombremod}</p>
-                        <ul>
-                            <!--LISTADO_SERVICIOS_{j}-->
-                                <li>{nombreser}</li>
-                            <!--LISTADO_SERVICIOS_{j}-->
-                        </ul>
-                        <!--LISTADO_MODULOS_{i}-->
-                            
-                        </p>
+                        <div class="row">
+                            <!--LISTADO_MODULOS_{i}-->                            
+                            <div class="col-lg-6">
+                                <p><i class="fa fa-{iconomod}"></i> {nombremod}</p>
+                                <ul>
+                                    <!--LISTADO_SERVICIOS_{j}-->
+                                        <li>{nombreser}</li>
+                                    <!--LISTADO_SERVICIOS_{j}-->
+                                </ul>
+                                    
+                            </div>
+                            <!--LISTADO_MODULOS_{i}-->
+                        </div>
                     </div>
                     <!--LISTADO_TABS-->
                 </div>

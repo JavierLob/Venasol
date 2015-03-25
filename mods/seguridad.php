@@ -112,7 +112,7 @@ switch ($vista) {
                                 if($laservicios)
                                 $HTML = $ObjSistema->render_regex('LISTADO_SERVICIOS_'.$j, $laservicios);
                                 else
-                                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_SERVICIOS_'.$j, '');
+                                    $HTML = $ObjSistema->reemplazar_vacio('LISTADO_SERVICIOS_'.$j, '<strong>Sin servicios asignados</strong>');
 
                                 $ObjSistema->set_cuerpo($HTML);
 

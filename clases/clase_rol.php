@@ -75,7 +75,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-			$sql="SELECT tmodulo_trol.idmodulo,nombremod,orden FROM tmodulo,tmodulo_trol WHERE tmodulo_trol.idrol='$this->lcIdRol' AND tmodulo_trol.idmodulo=tmodulo.idmodulo";
+			$sql="SELECT tmodulo_trol.idmodulo,icono as iconomod,nombremod,orden FROM tmodulo,tmodulo_trol WHERE tmodulo_trol.idrol='$this->lcIdRol' AND tmodulo_trol.idmodulo=tmodulo.idmodulo";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
@@ -93,7 +93,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-				$sql="SELECT idmodulo,nombremod,estatusmod,(SELECT orden FROM tmodulo_trol WHERE idrol='$this->lcIdRol' AND idmodulo=tmodulo.idmodulo)as orden,(SELECT COUNT(*)as cantidad FROM tmodulo WHERE estatusmod='1')as cantidad FROM tmodulo ";
+				$sql="SELECT idmodulo,nombremod,icono as iconomod,estatusmod,(SELECT orden FROM tmodulo_trol WHERE idrol='$this->lcIdRol' AND idmodulo=tmodulo.idmodulo)as orden,(SELECT COUNT(*)as cantidad FROM tmodulo WHERE estatusmod='1')as cantidad FROM tmodulo ";
 				$pcsql=$this->filtro($sql);
 				while($laRow=$this->proximo($pcsql))
 				{

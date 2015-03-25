@@ -127,7 +127,7 @@
 			$this->conectar();
 				$sql="INSERT INTO tchofer (idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, 
             fechanacimientocho, direccioncho, correocho, 
-            telefonomovilcho, telefonolocalcho, observacioncho, estatuscho)VALUES(UPPER('$this->lcIdCodigo'),UPPER('$this->lcAlias'),UPPER('$this->lcNombre'),UPPER('$this->lcApellido'),UPPER('$this->lnCedulaRif'),'$this->lcFechaNacimiento',UPPER('$this->lcDireccion'),UPPER('$this->lcCorreo'),UPPER('$this->lcTelefonoMovil'),UPPER('$this->lcTelefonoLocal'),UPPER('$this->lcObservacion'),'1')";
+            telefonomovilcho, telefonolocalcho, observacioncho, estatuscho)VALUES(UPPER('$this->lcIdCodigo'),UPPER('$this->lcAlias'),UPPER('$this->lcNombre'),UPPER('$this->lcApellido'),'$this->lnCedulaRif','$this->lcFechaNacimiento',UPPER('$this->lcDireccion'),UPPER('$this->lcCorreo'),UPPER('$this->lcTelefonoMovil'),UPPER('$this->lcTelefonoLocal'),UPPER('$this->lcObservacion'),'1')";
 				$lnHecho=$this->ejecutar($sql);
 			$this->desconectar();
 			return $lnHecho;
@@ -154,8 +154,9 @@
 		function editar_chofer()
 		{
 			$this->conectar();
-			$sql="UPDATE tchofer SET idcodigocho=UPPER('$this->lcIdCodigo'),aliascho	=UPPER('$this->lcAlias'),nombrecho=UPPER('$this->lcNombre'),apellidocho=UPPER('$this->lcApellido'),cedula_rifcho=UPPER('$this->lnCedulaRif'),fechanacimientocho='$this->lcFechaNacimiento',direccioncho=UPPER('$this->lcDireccion'),correocho=UPPER('$this->lcCorreo'),telefonomovilcho='$this->lcTelefonoMovil',telefonolocalcho='$this->lcTelefonoLocal',observacioncho=UPPER('$this->lcObservacion') WHERE idchofer='$this->lnIdChofer' ";
-			$lnHecho=$this->ejecutar($sql);			
+			$sql="UPDATE tchofer SET idcodigocho=UPPER('$this->lcIdCodigo'),aliascho	=UPPER('$this->lcAlias'),nombrecho=UPPER('$this->lcNombre'),apellidocho=UPPER('$this->lcApellido'),cedula_rifcho='$this->lnCedulaRif',fechanacimientocho='$this->lcFechaNacimiento',direccioncho=UPPER('$this->lcDireccion'),correocho=UPPER('$this->lcCorreo'),telefonomovilcho='$this->lcTelefonoMovil',telefonolocalcho='$this->lcTelefonoLocal',observacioncho=UPPER('$this->lcObservacion') WHERE idchofer='$this->lnIdChofer' ";
+			$lnHecho=$this->ejecutar($sql);
+			echo $sql;		
 			$this->desconectar();
 			return $lnHecho;
 		}
