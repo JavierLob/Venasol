@@ -30,7 +30,7 @@
                         </thead>
                         <tbody id="filas">
                             <tr id="fila">
-                                <td  class="col-lg-5"><input type="text" class="form-control" data-step="1" data-intro='Ingrese la descripción del precinto a registrar' data-position="bottom" name="descripcionpre[]"></td>
+                                <td  class="col-lg-5"><input type="text" class="form-control" data-step="1" data-intro='Ingrese la descripción del precinto a registrar' data-position="bottom" name="idcodigopre[]"></td>
                                 <td  class="col-lg-5"><input type="text" class="form-control" data-step="2" data-intro='Ingrese una observación sobre el precinto a registrar' data-position="bottom" name="observacionpre[]"  ></td>
                                 <td  class="col-lg-1"><button class="btn btn-danger" type="button" data-step="4" data-intro='Quitar un precinto' data-position="bottom" onclick="quitar_precinto(this)"><i class="fa fa-minus"></i></button></td>
                             </tr>
@@ -60,7 +60,7 @@
       var col1= document.createElement('td');
       var col2= document.createElement('td');
       var col3= document.createElement('td');
-      col1.innerHTML='<input type="text" class="form-control" name="descripcionpre[]">';
+      col1.innerHTML='<input type="text" class="form-control" name="idcodigopre[]">';
       col2.innerHTML='<input type="text" class="form-control" name="observacionpre[]">';
       col3.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_precinto(this)"><i class="fa fa-minus"></i></button>';
       tr.appendChild(col1);

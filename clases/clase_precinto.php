@@ -51,6 +51,7 @@
 					$Fila[$cont]['color_boton'] = ($laRow['estatuspre']) ? 'danger' : 'warning';
 					$Fila[$cont]['funcion'] = ($laRow['estatuspre']) ? 'eliminar' : 'restaurar';
 					$Fila[$cont]['icono'] = ($laRow['estatuspre']) ? 'times' : 'refresh';					
+					$Fila[$cont]['tfactura_idfactura'] = ($laRow['tfactura_idfactura']) ? $laRow['tfactura_idfactura'] : 'Sin usar';					
 					$cont++;
 				}
 			
@@ -65,7 +66,9 @@
 				$pcsql=$this->filtro($sql);
 				if($laRow=$this->proximo($pcsql))
 				{
-					$Fila=$laRow;									
+					$Fila=$laRow;
+					$Fila['tfactura_idfactura'] = ($laRow['tfactura_idfactura']) ? $laRow['tfactura_idfactura'] : 'Sin usar';					
+
 				}
 			
 			$this->desconectar();
@@ -75,8 +78,20 @@
 		function registrar_precinto()
 		{
 			$this->conectar();
-			$sql="INSERT INTO tprecinto (idcodigopre, tfactura_idfactura,observacionpre, estatuspre)VALUES('$this->lcIdCodigo','$this->lnIdFactura','$this->lcObservacion','1')";
-			$lnHecho=$this->ejecutar($sql);			
+			$this->begin();
+			for($i=0;$i<count($this->lcIdCodigo);$i++) 
+			{
+
+				$sql="INSERT INTO tprecinto (idcodigopre,observacionpre, estatuspre)VALUES('".$this->lcIdCodigo[$i]."','".$this->lcObservacion[$i]."','1')";
+				if(!$lnHecho=$this->ejecutar($sql))
+				{
+					$this->rollback();
+					break;
+				}
+			}
+			if($lnHecho)
+				$this->commit();
+
 			$this->desconectar();
 			return $lnHecho;
 		}
@@ -84,7 +99,7 @@
 		function eliminar_precinto()
 		{
 			$this->conectar();
-			$sql="UPDATE tprecinto SET estatuspro='0' WHERE idprecinto='$this->lnIdPrecinto' ";
+			$sql="UPDATE tprecinto SET estatuspre='0' WHERE idprecinto='$this->lnIdPrecinto' ";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
@@ -93,7 +108,7 @@
 		function restaurar_precinto()
 		{
 			$this->conectar();
-			$sql="UPDATE tprecinto SET estatuspro='1' WHERE idprecinto='$this->lnIdPrecinto' ";
+			$sql="UPDATE tprecinto SET estatuspre='1' WHERE idprecinto='$this->lnIdPrecinto' ";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
@@ -102,7 +117,7 @@
 		function editar_precinto()
 		{
 			$this->conectar();
-			$sql="UPDATE tprecinto SET idcodigopro='$this->lcIdCodigo',tfactura_idfactura='$this->lnIdFactura',observacionpre='$this->lcObservacion' WHERE idprecinto='$this->lnIdPrecinto' ";
+			$sql="UPDATE tprecinto SET idcodigopre='$this->lcIdCodigo',observacionpre='$this->lcObservacion' WHERE idprecinto='$this->lnIdPrecinto' ";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
