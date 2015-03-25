@@ -1,0 +1,81 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3>Registrar precinto</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás registrar los precintos del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_precinto.php" method="POST" name="form_precinto">
+                <input type="hidden" value="registrar_precinto" name="operacion" id="cam_operacion"/>
+                <div class="row">
+                    <table class="table table-hover col-lg-12">
+                        <thead>
+                            <th class="col-lg-5" >
+                                Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del precinto"><i class="fa fa-question"></i></span>
+                            </th>
+                            <th  class="col-lg-5" >
+                                Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación sobre el precinto"><i class="fa fa-question"></i></span>
+                            </th>
+                    
+                            <th  class="col-lg-1" >
+                                <button class="btn btn-success" type="button" data-step="3" data-intro='Agregar un precinto' data-position="bottom" onclick="agregar_precinto()"><i class="fa fa-plus"></i></button>
+                            </th>
+                        </thead>
+                        <tbody id="filas">
+                            <tr id="fila">
+                                <td  class="col-lg-5"><input type="text" class="form-control" data-step="1" data-intro='Ingrese la descripción del precinto a registrar' data-position="bottom" name="descripcionpre[]"></td>
+                                <td  class="col-lg-5"><input type="text" class="form-control" data-step="2" data-intro='Ingrese una observación sobre el precinto a registrar' data-position="bottom" name="observacionpre[]"  ></td>
+                                <td  class="col-lg-1"><button class="btn btn-danger" type="button" data-step="4" data-intro='Quitar un precinto' data-position="bottom" onclick="quitar_precinto(this)"><i class="fa fa-minus"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" name="contador" id="cam_contador" value="0" />
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-4 col-lg-10">
+                        <button type="submit" data-step="5" data-intro='Para finalizar haga click en guardar para registrar el precinto.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=precinto/precinto" data-step="6" data-intro='Para salir haga click en regresar para registrar el precinto.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function agregar_precinto()
+{
+    cam_contador=document.getElementById("cam_contador");
+    contador=cam_contador.value;
+    contador++;
+
+      var filas = document.getElementById('filas');
+      var tr= document.createElement('tr');
+      var col1= document.createElement('td');
+      var col2= document.createElement('td');
+      var col3= document.createElement('td');
+      col1.innerHTML='<input type="text" class="form-control" name="descripcionpre[]">';
+      col2.innerHTML='<input type="text" class="form-control" name="observacionpre[]">';
+      col3.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_precinto(this)"><i class="fa fa-minus"></i></button>';
+      tr.appendChild(col1);
+      tr.appendChild(col2);
+      tr.appendChild(col3);
+      filas.appendChild(tr);
+      cam_contador.value=contador;
+
+}
+function quitar_precinto(e)
+{
+
+    var filas = document.getElementById("filas");          
+    var td = e.parentNode;
+    var tr = td.parentNode;
+    filas.removeChild(tr);
+}
+</script>

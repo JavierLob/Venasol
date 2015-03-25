@@ -21,6 +21,9 @@ switch ($modulo) {
 	case 'producto':
 		include_once("../mods/producto.php");
 	break;
+	case 'precinto':
+		include_once("../mods/precinto.php");
+	break;
 	case 'logout':
 		unset($_SESSION['usuario']);
 		unset($_SESSION['nombrerol']);
