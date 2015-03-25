@@ -27,6 +27,9 @@ switch ($modulo) {
 	case 'chofer':
 		include_once("../mods/chofer.php");
 	break;
+	case 'cliente':
+		include_once("../mods/cliente.php");
+	break;
 	case 'logout':
 		unset($_SESSION['usuario']);
 		unset($_SESSION['nombrerol']);

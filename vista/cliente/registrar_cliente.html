@@ -1,0 +1,73 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-{icono}"></i> {Funcion} Tipo de producto</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás {funcion} los tipos de producto del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_cliente.php" method="POST" name="form_cliente">
+                <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{idcliente}" name="idcliente" id="cam_idcliente"/>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="exampleTooltip">Rif <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Rif del cliente"><i class="fa fa-question"></i></span></label>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="inicial_rif">{inicial_rif}</span> <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li class="rif_cli" data-value="V"><a href="#">V</a></li>
+                                  <li class="rif_cli" data-value="E"><a href="#">E</a></li>
+                                  <li class="rif_cli" data-value="J"><a href="#">J</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese el Rif del cliente a {funcion}' data-position="bottom" name="rifcli" id="cam_rifcli" value="{rifcli}">
+                        </div><!-- /input-group -->
+                    </div>
+                    <div class="form-group col-sm-8 col-xs-12">
+                        <label for="exampleTooltip">Razón Social <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Razón Social del cliente"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese la razon social del cliente a {funcion}' data-position="bottom" name="razonsocial" id="cam_razonsocial" value="{razonsocial}" >
+                    </div>
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <label for="exampleTooltip">Dirección <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Dirección del cliente"><i class="fa fa-question"></i></span></label>
+                        <textarea class="form-control" data-step="3" data-intro='Ingrese la dirección del cliente a {funcion}' data-position="bottom" name="direccioncli" id="cam_direccioncli">{direccioncli}</textarea>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Nro. Teléfono <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico del cliente"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el número de telefono del cliente a {funcion}' data-position="bottom" name="telefonounocli" id="cam_telefonounocli" value="{telefonounocli}" >
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Correo Electrónico <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correo electrónico del cliente"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="6" data-intro='Ingrese el correo electrónico del cliente a {funcion}' data-position="bottom" name="correounocli" id="cam_correounocli" value="{correounocli}" >
+                    </div>
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación o información adicional del cliente"><i class="fa fa-question"></i></span></label>
+                        <textarea class="form-control" data-step="7" data-intro='Ingrese la alguna información adicional del cliente a {funcion}' data-position="bottom" name="observacioncli" id="cam_observacioncli">{observacioncli}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="8" data-intro='Para finalizar haga click en guardar para {funcion} el cliente.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=cliente/cliente" data-step="9" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $(".rif_cli").click(function(){
+            var valor = $(this).attr("data-value");
+            $("#inicial_rif").html(valor);
+            $("#cam_rifcli").val(valor);
+        });
+    });
+</script>
