@@ -1,0 +1,81 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3>Registrar chofer</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás registrar los choferes del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_chofer.php" method="POST" name="form_chofer">
+                <input type="hidden" value="registrar_chofer" name="operacion" id="cam_operacion"/>
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                        <label for="exampleTooltip">Nº CI/RIF <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Cédula o Rif del chofer"><i class="fa fa-question"></i></span></label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <select name="nacionalidadcho">
+                                        <option value="V">V</option>
+                                        <option value="E">E</option>
+                                        <option value="J">J</option>
+                                        <option value="N">N</option>
+                                </select>
+                            </div>
+                           <input type="text" class="form-control" name="cedula_rifcho" id="exmaplePrependButton">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label for="exampleTooltip">Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del chofer"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese el Código del chofer a registrar' data-position="bottom" name="aliascho" id="cam_aliascho" >
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Alias <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Alias/apodo del chofer"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese el alias/apodo del chofer a registrar' data-position="bottom" name="aliascho" id="cam_aliascho" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Nombre <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del chofer"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom" name="nombrecho" id="camnombrecho" >
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Apellido <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Apellido del chofer"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el apellido del chofer a registrar' data-position="bottom" name="nombrecho" id="camnombrecho" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Fecha de nacimiento <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del chofer"><i class="fa fa-question"></i></span></label>
+                        <div class="input-group input-append date" id="cam_fechanacimientocho" data-date="01-01-1991"  data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom"  name="fechanacimientocho" >
+                        </div>
+                        <span class="help-block">format mm-dd-yyyy</span>
+
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Apellido <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Apellido del chofer"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el apellido del chofer a registrar' data-position="bottom" name="nombrecho" id="camnombrecho" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="5" data-intro='Para finalizar haga click en guardar para registrar el chofer.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=seguridad/chofer" data-step="6" data-intro='Para salir haga click en regresar para registrar el chofer.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+    $('#cam_fechanacimientocho').datepicker();
+
+});
+</script>

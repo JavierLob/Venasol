@@ -98,12 +98,12 @@
 				while($laRow=$this->proximo($pcsql))
 				{
 					$Fila[$cont]=$laRow;					
-					$Fila[$cont]['estatus_color']=($laRow['estatuspre'])?'success':'danger';
-					$Fila[$cont]['estatuspre'] = ($laRow['estatuspre']) ? 'Activo' : 'Inactivo';
-					$Fila[$cont]['titulo'] = ($laRow['estatuspre']) ? 'Desactivar' : 'Restaurar';
-					$Fila[$cont]['color_boton'] = ($laRow['estatuspre']) ? 'danger' : 'warning';
-					$Fila[$cont]['funcion'] = ($laRow['estatuspre']) ? 'eliminar' : 'restaurar';
-					$Fila[$cont]['icono'] = ($laRow['estatuspre']) ? 'times' : 'refresh';					
+					$Fila[$cont]['estatus_color']=($laRow['estatuscho'])?'success':'danger';
+					$Fila[$cont]['estatuscho'] = ($laRow['estatuscho']) ? 'Activo' : 'Inactivo';
+					$Fila[$cont]['titulo'] = ($laRow['estatuscho']) ? 'Desactivar' : 'Restaurar';
+					$Fila[$cont]['color_boton'] = ($laRow['estatuscho']) ? 'danger' : 'warning';
+					$Fila[$cont]['funcion'] = ($laRow['estatuscho']) ? 'eliminar' : 'restaurar';
+					$Fila[$cont]['icono'] = ($laRow['estatuscho']) ? 'times' : 'refresh';					
 					$cont++;
 				}
 			
