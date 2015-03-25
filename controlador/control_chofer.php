@@ -8,10 +8,18 @@
 	$lobjUtil=new clsUtil;
 
 	$lobjChofer->set_Chofer($_POST['idchofer']);
-	$lobjChofer->set_Codigo($_POST['idcodigopre']);
-	$lobjChofer->set_Factura($_POST['tfactura_idfactura']);
-	$lobjChofer->set_Observacion($_POST['observacionpre']);
-	$lobjChofer->set_Estatus($_POST['estatuspre']);
+	$lobjChofer->set_Codigo($_POST['idcodigocho']);
+	$lobjChofer->set_Alias($_POST['aliascho']);
+	$lobjChofer->set_Nombre($_POST['nombrecho']);
+	$lobjChofer->set_Apellido($_POST['apellidocho']);
+	$lobjChofer->set_CedulaRif($_POST['cedula_rifcho']);
+	$lobjChofer->set_FechaNacimiento($_POST['fechanacimientocho']);
+	$lobjChofer->set_Direccion($_POST['direccioncho']);
+	$lobjChofer->set_Correo($_POST['correocho']);
+	$lobjChofer->set_TelefonoMovil($_POST['telefonomovilcho']);
+	$lobjChofer->set_TelefonoLocal($_POST['telefonolocalcho']);
+	$lobjChofer->set_Observacion($_POST['observacioncho']);
+	$lobjChofer->set_Estatus($_POST['estatuscho']);
 
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
@@ -20,7 +28,7 @@
 	switch ($operacion) 
 	{
 		case 'registrar_chofer':
-			$_SESSION['mensaje']='al registrar un tipo producto';
+			$_SESSION['mensaje']='al registrar un tipo chofer';
 
 			if($lobjChofer->registrar_chofer())
 			{

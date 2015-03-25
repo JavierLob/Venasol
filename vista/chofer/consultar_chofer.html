@@ -1,25 +1,26 @@
 <div class="col-lg-12">
     <div class="main-box">    
         <header class="main-box-header clearfix">
-            <h3>Registrar chofer</h3>
+            <h3>Consultar/Editar chofer</h3>
         </header>
         <div class="main-box-body clearfix">
             <div class="row">
                 <div class="alert alert-info">
                     <ul>
-                        <li>En este módulo podrás registrar los choferes del sistema.</li>
+                        <li>En este módulo podrás consultar y editar los choferes del sistema.</li>
                         <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
                     </ul>
                 </div>
             </div>
             <form action="../controlador/control_chofer.php" method="POST" name="form_chofer">
-                <input type="hidden" value="registrar_chofer" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="editar_chofer" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{idchofer}" name="idchofer" id="cam_idchofer"/>
                 <div class="row">
                     <div class="form-group col-sm-6 col-lg-3">
                         <label for="exampleTooltip">Rif <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Rif del cliente"><i class="fa fa-question"></i></span></label>
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="inicial_rif"></span> <span class="caret"></span></button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="inicial_rif"></span>{inicial_rif}<span class="caret"></span></button>
                                 <ul class="dropdown-menu" role="menu">
                                   <li class="rif_cli" data-value="V"><a href="#">V</a></li>
                                   <li class="rif_cli" data-value="E"><a href="#">E</a></li>
@@ -27,26 +28,26 @@
                                   <li class="rif_cli" data-value="N"><a href="#">N</a></li>
                                 </ul>
                             </div><!-- /btn-group -->
-                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese el Rif del cliente a registrar' data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="">
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese el Rif del cliente a registrar' data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="{cedula_rif}">
                         </div><!-- /input-group -->
                     </div>
                     <div class="form-group col-sm-6 col-lg-3">
                         <label for="exampleTooltip">Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del chofer"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el Código del chofer a registrar' data-position="bottom" name="idcodigocho" id="cam_idcodigocho" >
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el Código del chofer a registrar' data-position="bottom" name="idcodigocho" id="cam_idcodigocho" value="{idcodigocho}">
                     </div>
                     <div class="form-group col-sm-12 col-lg-6">
                         <label for="exampleTooltip">Alias <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Alias/apodo del chofer"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el alias/apodo del chofer a registrar' data-position="bottom" name="aliascho" id="cam_aliascho" >
+                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el alias/apodo del chofer a registrar' data-position="bottom" name="aliascho" id="cam_aliascho" value="{aliascho}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Nombre <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del chofer"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom" name="nombrecho" id="cam_nombrecho" >
+                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom" name="nombrecho" id="cam_nombrecho" value="{nombrecho}">
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Apellido <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Apellido del chofer"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="5" data-intro='Ingrese el apellido del chofer a registrar' data-position="bottom" name="apellidocho" id="cam_apellidocho" >
+                        <input type="text" class="form-control" data-step="5" data-intro='Ingrese el apellido del chofer a registrar' data-position="bottom" name="apellidocho" id="cam_apellidocho" value="{apellidocho}">
                     </div>
                 </div>
                 <div class="row">
@@ -54,13 +55,13 @@
                         <label for="exampleTooltip">Fecha de nacimiento <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del chofer"><i class="fa fa-question"></i></span></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="date" class="form-control" data-step="6" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom"  name="fechanacimientocho" id="cam_fechanacimientocho"  >
+                            <input type="date" class="form-control" data-step="6" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom"  name="fechanacimientocho" id="cam_fechanacimientocho"  value="{fechanacimientocho}">
                         </div>
 
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Dirección <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Dirección del chofer"><i class="fa fa-question"></i></span></label>
-                        <textarea class="form-control" data-step="7" data-intro='Ingrese la dirección del chofer a registrar' data-position="bottom" name="direccioncho" id="cam_direccioncho" ></textarea>
+                        <textarea class="form-control" data-step="7" data-intro='Ingrese la dirección del chofer a registrar' data-position="bottom" name="direccioncho" id="cam_direccioncho" >{direccioncho}</textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -68,25 +69,25 @@
                         <label for="exampleTooltip">Nº Teléfono movil <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nº Teléfono del chofer"><i class="fa fa-question"></i></span></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
-                            <input type="text" class="form-control" data-step="8" data-intro='Ingrese el Nº Teléfono del chofer a registrar' data-position="bottom" name="telefonomovilcho" id="cam_telefonomovilcho" >
+                            <input type="text" class="form-control" data-step="8" data-intro='Ingrese el Nº Teléfono del chofer a registrar' data-position="bottom" name="telefonomovilcho" id="cam_telefonomovilcho" value="{telefonomovilcho}">
                         </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Nº Teléfono Local <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nº Teléfono Local del chofer"><i class="fa fa-question"></i></span></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            <input type="text" class="form-control" data-step="9" data-intro='Ingrese el Nº Teléfono Local del chofer a registrar' data-position="bottom" name="telefonolocalcho" id="cam_telefonolocalcho" >
+                            <input type="text" class="form-control" data-step="9" data-intro='Ingrese el Nº Teléfono Local del chofer a registrar' data-position="bottom" name="telefonolocalcho" id="cam_telefonolocalcho" value="{telefonolocalcho}">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Correo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correo del chofer"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="10" data-intro='Ingrese el Correo del chofer a registrar' data-position="bottom" name="correocho" id="cam_correocho" >
+                        <input type="text" class="form-control" data-step="10" data-intro='Ingrese el Correo del chofer a registrar' data-position="bottom" name="correocho" id="cam_correocho" value="{correocho}">
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Dirección del chofer"><i class="fa fa-question"></i></span></label>
-                        <textarea class="form-control" data-step="11" data-intro='Puede ingresar una Observación del chofer a registrar' data-position="bottom" name="observacioncho" id="cam_observacioncho" ></textarea>
+                        <textarea class="form-control" data-step="11" data-intro='Puede ingresar una Observación del chofer a registrar' data-position="bottom" name="observacioncho" id="cam_observacioncho" >{observacioncho}</textarea>
                     </div>
                 </div>
                 <div class="row">

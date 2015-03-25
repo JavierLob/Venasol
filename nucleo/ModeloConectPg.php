@@ -96,7 +96,11 @@
 /*-----------------------------------
 * Funcion Fecha Real (Convierte una fecha 'Y/m/d' a formato normal 'd/m/Y')
 *-----------------------------------*/
-  		
+	protected function fecha_bd($pcFecha)
+  	{
+  	 	return $fecha=date("Y-m-d",strtotime($pcFecha));
+  	}
+
 	protected function fechareal($fecha){
 	$now="now()";
 	if(strlen($fecha)==10)

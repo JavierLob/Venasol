@@ -9,7 +9,6 @@
 		private $lcNombre;
 		private $lcApellido;
 		private $lnCedulaRif;
-		private $lcNacionalidad;
 		private $lcFechaNacimiento;
 		private $lcDireccion;
 		private $lcCorreo;
@@ -48,14 +47,10 @@
 			$this->lnCedulaRif=$pc;
 		}
 
-		function set_Nacionalidad($pc)
-		{
-			$this->lcNacionalidad=$pc;
-		}
 
 		function set_FechaNacimiento($pc)
 		{
-			$this->lcFechaNacimiento=$pc;
+			$this->lcFechaNacimiento=$this->fecha_bd($pc);
 		}
 
 		function set_Direccion($pc)
@@ -114,11 +109,13 @@
 		function consultar_chofer()
 		{
 			$this->conectar();
-				$sql="SELECT idchofer,idcodigopro, observacionpre FROM tchofer WHERE idchofer='$this->lnIdChofer' ";
+				$sql="SELECT *,RTRIM(idcodigocho,' ')as idcodigocho FROM tchofer WHERE idchofer='$this->lnIdChofer' ";
 				$pcsql=$this->filtro($sql);
 				if($laRow=$this->proximo($pcsql))
 				{
 					$Fila=$laRow;
+					$Fila['inicial_rif']=substr($Fila['cedula_rifcho'],0,1);
+					$Fila['cedula_rif']=substr($Fila['cedula_rifcho'],1,strlen($Fila['cedula_rifcho']));
 				}
 			
 			$this->desconectar();
@@ -128,11 +125,10 @@
 		function registrar_chofer()
 		{
 			$this->conectar();
-				$sql="INSERT INTO tchofer (idcodigocho, aliascho, nombrecho, apellidocho, ceula_rifcho, 
-            nacionalidadcho, fechanacimientocho, direccioncho, correocho, 
-            telefonomovilcho, telefonolocalcho, observacioncho, estatuscho)VALUES('$this->lcIdCodigo','$this->lcAlias','$this->lcNombre','$this->lcApellido','$this->lnCedulaRif','$this->lcNacionalidad','$this->lcFechaNacimiento','$this->lcDireccion','$this->lcCorreo','$this->lcTelefonoMovil','$this->lcTelefonoLocal','$this->lcObservacion','1')";
+				$sql="INSERT INTO tchofer (idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, 
+            fechanacimientocho, direccioncho, correocho, 
+            telefonomovilcho, telefonolocalcho, observacioncho, estatuscho)VALUES(UPPER('$this->lcIdCodigo'),UPPER('$this->lcAlias'),UPPER('$this->lcNombre'),UPPER('$this->lcApellido'),UPPER('$this->lnCedulaRif'),'$this->lcFechaNacimiento',UPPER('$this->lcDireccion'),UPPER('$this->lcCorreo'),UPPER('$this->lcTelefonoMovil'),UPPER('$this->lcTelefonoLocal'),UPPER('$this->lcObservacion'),'1')";
 				$lnHecho=$this->ejecutar($sql);
-
 			$this->desconectar();
 			return $lnHecho;
 		}
@@ -158,7 +154,7 @@
 		function editar_chofer()
 		{
 			$this->conectar();
-			$sql="UPDATE tchofer SET idcodigocho='$this->lcIdCodigo',aliaspro='$this->lcAlias',nombrecho='$this->lcNombre',apellidocho='$this->lcApellido',ceula_rifcho='$this->lnCedulaRif',nacionalidadcho='$this->lcNacionalidad',fechanacimientocho='$this->lcFechaNacimiento',direccioncho='$this->lcDireccion',correocho='$this->lcCorreo',telefonomovilcho='$this->lcTelefonoMovil',telefonolocalcho='$this->lcTelefonoLocal',observacioncho='$this->lcObservacion' WHERE idchofer='$this->lnIdChofer' ";
+			$sql="UPDATE tchofer SET idcodigocho=UPPER('$this->lcIdCodigo'),aliascho	=UPPER('$this->lcAlias'),nombrecho=UPPER('$this->lcNombre'),apellidocho=UPPER('$this->lcApellido'),cedula_rifcho=UPPER('$this->lnCedulaRif'),fechanacimientocho='$this->lcFechaNacimiento',direccioncho=UPPER('$this->lcDireccion'),correocho=UPPER('$this->lcCorreo'),telefonomovilcho='$this->lcTelefonoMovil',telefonolocalcho='$this->lcTelefonoLocal',observacioncho=UPPER('$this->lcObservacion') WHERE idchofer='$this->lnIdChofer' ";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;

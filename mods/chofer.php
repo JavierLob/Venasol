@@ -15,8 +15,8 @@ switch ($vista) {
 		$HTML = $ObjSistema->render($diccionario);
         
         $ObjSistema->set_cuerpo($HTML);
-        if($lachoferes)
-        	$HTML = $ObjSistema->render_regex('LISTADO_CHOFERES', $lachoferes);
+        if($lachofers)
+        	$HTML = $ObjSistema->render_regex('LISTADO_CHOFERES', $lachofers);
         else
         	$HTML = $ObjSistema->reemplazar_vacio('LISTADO_CHOFERES', '');
 
