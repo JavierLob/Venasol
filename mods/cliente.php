@@ -38,7 +38,9 @@ switch ($vista) {
                             'razonsocial'=>'',
                             'direccioncli'=>'',
                             'correounocli'=>'',
+                            'correodoscli'=>'',
                             'telefonounocli'=>'',
+                            'telefonodoscli'=>'',
                             'observacioncli'=>'',
                             'estatuscli'=>''
                             );

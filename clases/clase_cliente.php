@@ -50,15 +50,15 @@
 		function set_Correo($pc, $pcd='', $pct='')
 		{
 			$this->lcCorreouno=$pc;
-			$this->lcCorreodos=$pcd;
-			$this->lcCorreotres=$pct;
+			$this->lcCorreodos=trim($pcd);
+			$this->lcCorreotres=trim($pct);
 		}
 
 		function set_Telefono($pc='', $pcd='', $pct='')
 		{
 			$this->lnTelefonouno=$pc;
-			$this->lnTelefonodos=$pcd;
-			$this->lnTelefonotres=$pct;
+			$this->lnTelefonodos=trim($pcd);
+			$this->lnTelefonotres=trim($pct);
 		}
 
 		function set_Observacion($pc)
