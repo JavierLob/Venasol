@@ -103,12 +103,13 @@
         	$lobjrol = new clsrol;
         	$lobjrol->set_Rol($_SESSION['idrol']);
         	$modulos = $lobjrol->consultar_modulos_menu();
-        	$activo_home = true;
+        	$activo_home = false;
+        	$servicio_activo = false;
         	$activar_home = '';
         	for($i=0; $i < count($modulos); $i++)
         	{
         		$open = ($this->CapturarModulo() == $modulos[$i]['case']) ? 'class="active"' : '';
-        		$activo_home = (($this->CapturarModulo() == $modulos[$i]['case']) && ($activo_home==true)) ? false : true;
+        		$activo_home = (($this->CapturarModulo() == $modulos[$i]['case']) && ($activo_home==false)) ? true : false;
         		$MENU .= '<li '.$open.'>';
         		$icono = ($modulos[$i]['icono']) ? $modulos[$i]['icono'] : 'folder';
         		$nombre = $modulos[$i]['nombremod'];
@@ -127,6 +128,7 @@
         			$division_parametro_uri = explode('?', $_SERVER['REQUEST_URI']);
         			$division_parametro_url = explode('?', $url);
         			$active = ($division_parametro_uri[1] == $division_parametro_url[1]) ? 'class="active"' : '';
+        			$servicio_activo = (($division_parametro_uri[1] == $division_parametro_url[1])  && ($servicio_activo==false))? true : false;
         			$MENU.='<li>
 								<a '.$active.' href="'.$url.'">
 								'.$nombre_ser.'
@@ -136,7 +138,7 @@
 				$MENU.= (count($servicios) > 0) ? '</ul>':'';
         		$MENU .= '</li>';
         	}
-        	if($activo_home)
+        	if(($activo_home)||(!$servicio_activo))
         	  	$activar_home = 'class="active"';
 			return array('menu'=>$MENU, 'active_home'=>$activar_home);
 		}

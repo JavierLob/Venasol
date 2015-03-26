@@ -1,0 +1,30 @@
+<table class="table table-hover">
+<thead>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Observación</th>
+    <th>Estatus</th>
+    <th>Acción</th>
+</thead>
+<tbody id="">
+    <!--LISTADO_MODELOS-->
+    <tr>
+        <td>{idmodelo}</td>
+        <td>{descripcionmod}</td>
+        <td>{observacionmod}</td>
+        <td><label class="label label-{estatus_color}">{estatusmod}</label></td>
+        <td class="{operaciones}">
+            <a class="btn btn-info {btn_consultar}" href="#" title="Editar" onclick="editar_modelo('{idmodelo}', '{descripcionmod}', '{observacionmod}')"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-{color_boton} {btn_{funcion}}" data-step="3" data-intro='Este botón le permite {funcion} a un modelo' data-position="left" data-toggle="modal" href="#myModal{funcion}" title="{titulo}" onclick="{funcion}('{idmodelo}')" ><i class="fa fa-{icono}"></i></a> 
+        </td>
+    </tr>
+    <!--LISTADO_MODELOS-->
+</tbody>
+<tfoot>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Observación</th>
+    <th>Estatus</th>
+    <th>Acción</th>
+</tfoot>
+</table>
