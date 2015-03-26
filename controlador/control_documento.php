@@ -1,17 +1,19 @@
 <?php
 	session_start();
-	require_once("../clases/clase_precinto.php");
+	require_once("../clases/clase_documento.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
-	$lobjPrecinto=new clsPrecinto;
+	$lobjDocumento=new clsDocumento;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;
 
-	$lobjPrecinto->set_Precinto($_POST['idprecinto']);
-	$lobjPrecinto->set_Codigo($_POST['idcodigopre']);
-	$lobjPrecinto->set_Factura($_POST['tfactura_idfactura']);
-	$lobjPrecinto->set_Observacion($_POST['observacionpre']);
-	$lobjPrecinto->set_Estatus($_POST['estatuspre']);
+	$lobjDocumento->set_Documento($_POST['iddocumento']);
+	$lobjDocumento->set_Descripcion($_POST['descripciondoc']);
+	$lobjDocumento->set_Vence($_POST['vencedoc']);
+	$lobjDocumento->set_Duracion($_POST['duraciondoc']);
+	$lobjDocumento->set_Observacion($_POST['observaciondoc']);
+	$lobjDocumento->set_Estatus($_POST['estatusdoc']);
+	$lobjDocumento->set_Chofer($_POST['idchofer']);
 
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
@@ -19,10 +21,10 @@
 
 	switch ($operacion) 
 	{
-		case 'registrar_precinto':
-			$_SESSION['mensaje']='al registrar un tipo producto';
+		case 'registrar_documento':
+			$_SESSION['mensaje']='al registrar un documento';
 
-			if($lobjPrecinto->registrar_precinto())
+			if($lobjDocumento->registrar_documento())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
@@ -34,25 +36,15 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';	
 			}
-			header('location:../vista/?modulo=precinto/precinto');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
-		case 'registrar_precinto_ajax':
-			if($lobjPrecinto->registrar_precinto())
-			{
-				echo '1';
-			}
-			else
-			{
-				echo '0';
-			}
-		break;
-		case 'consultar_precinto':
-			if($laprecintos=$lobjPrecinto->consultar_precintos())
+		case 'consultar_documento':
+			if($ladocumentos=$lobjDocumento->consultar_documentos())
 			{
 				$option='<option value=""></option>';
-				for($i=0;$i<count($laprecintos);$i++)
+				for($i=0;$i<count($ladocumentos);$i++)
 				{
-					$option.='<option value="'.$laprecintos[$i]['idprecinto'].'">'.$laprecintos[$i]['idcodigopre'].'</option>';
+					$option.='<option value="'.$ladocumentos[$i]['iddocumento'].'" data-vence="'.$ladocumentos[$i]['vencedoc'].'">'.$ladocumentos[$i]['descripciondoc'].'</option>';
 				}	
 			}
 			else
@@ -61,9 +53,9 @@
 			}
 			echo $option;
 		break;
-		case 'editar_precinto':
-			$_SESSION['mensaje']='al editar el precinto';
-			if($lobjPrecinto->editar_precinto())
+		case 'editar_documento':
+			$_SESSION['mensaje']='al editar el documento';
+			if($lobjDocumento->editar_documento())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
@@ -76,11 +68,11 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
-			header('location:../vista/?modulo=precinto/precinto');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
-		case 'eliminar_precinto':
-			$_SESSION['mensaje']='al desactivar el precinto';
-			if($lobjPrecinto->eliminar_precinto())
+		case 'eliminar_documento':
+			$_SESSION['mensaje']='al desactivar el documento';
+			if($lobjDocumento->eliminar_documento())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
@@ -92,11 +84,11 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
-			header('location:../vista/?modulo=precinto/precinto');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
-		case 'restaurar_precinto':
-			$_SESSION['mensaje']='al restaurar el precinto';
-			if($lobjPrecinto->restaurar_precinto())
+		case 'restaurar_documento':
+			$_SESSION['mensaje']='al restaurar el documento';
+			if($lobjDocumento->restaurar_documento())
 			{
 				$_SESSION['resultado']='Éxito';
 				$_SESSION['resultado_color']='success';
@@ -109,10 +101,10 @@
 				$_SESSION['icono_mensaje']='times-circle';
 			}
 
-			header('location:../vista/?modulo=precinto/precinto');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
 		default:
-			header('location:../vista/?modulo=precinto/precinto');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
 	}
 

@@ -58,7 +58,11 @@
                     </div>
                     <div class="form-group col-sm-6 col-lg-6 col-xs-12">
                         <label for="exampleTooltip">Unidad de Medida <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Unidad de Medida del accesorio"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="7" data-intro='Ingrese la Unidad de medida del accesorio a {funcion}' data-position="bottom" name="unidadmedidaacc" id="cam_unidadmedidaacc" value="{unidadmedidaacc}" >
+                        <select class="form-control" data-step="7" data-intro='Ingrese la Unidad de medida del accesorio a {funcion}' data-position="bottom" name="unidadmedidaacc" id="cam_unidadmedidaacc" >
+                            <option value=""></option>
+                            <option value="lts" {selected_lts}>Litros</option>
+                            <option value="kg" {selected_kg}>Kilos</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">

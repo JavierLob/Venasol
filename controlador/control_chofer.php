@@ -21,20 +21,55 @@
 	$lobjChofer->set_Observacion($_POST['observacioncho']);
 	$lobjChofer->set_Estatus($_POST['estatuscho']);
 
+	$lobjChofer->set_Documento($_POST['iddocumento']);
+	$lobjChofer->set_FechaEmision($_POST['fechaemisiondoc']);
+	$lobjChofer->set_FechaVencimiento($_POST['fechavencimientodoc']);
+	$lobjChofer->set_Directorio($_POST['directoriodoc']);
+
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
 	$operacion=$_POST['operacion'];
+
+	$iddocumento=$_POST['iddocumento'];
+	$directoriodoc=$_FILES['directoriodoc'];
+	$destino = '../media/img/documentos'; 
+	$copiado=true;
 
 	switch ($operacion) 
 	{
 		case 'registrar_chofer':
 			$_SESSION['mensaje']='al registrar un tipo chofer';
-
-			if($lobjChofer->registrar_chofer())
+			
+			for($i=0;$i<count($iddocumento);$i++)
 			{
-				$_SESSION['resultado']='Éxito';
-				$_SESSION['resultado_color']='success';
-				$_SESSION['icono_mensaje']='check-circle';
+				$tamano = $directoriodoc['size'][$i];
+				$type=$directoriodoc['type'][$i];
+ 
+				$piesas=explode("/",$type);
+				$final=explode("e",$piesas[1]);			
+
+				$directoriodoc_post[$i]=$_POST['cedula_rifcho']."_".$iddocumento[$i].".".$final[0].$final[1];
+				if(($tamano <= 2000000)and($type=='image/jpeg')) 
+ 					if(!$copiado=copy($directoriodoc['tmp_name'][$i], $destino.'/'.$directoriodoc_post[$i]))
+ 						break;
+
+ 			}
+ 			if($copiado)
+ 			{
+				$lobjChofer->set_Directorio($directoriodoc_post);
+
+				if($lobjChofer->registrar_chofer())
+				{
+					$_SESSION['resultado']='Éxito';
+					$_SESSION['resultado_color']='success';
+					$_SESSION['icono_mensaje']='check-circle';
+				}
+				else
+				{
+					$_SESSION['resultado']='Error';
+					$_SESSION['resultado_color']='danger';
+					$_SESSION['icono_mensaje']='times-circle';	
+				}
 			}
 			else
 			{
@@ -61,15 +96,39 @@
 		break;
 		case 'editar_chofer':
 			$_SESSION['mensaje']='al editar el chofer';
-			if($lobjChofer->editar_chofer())
+			for($i=0;$i<count($iddocumento);$i++)
 			{
-				$_SESSION['resultado']='Éxito';
-				$_SESSION['resultado_color']='success';
-				$_SESSION['icono_mensaje']='check-circle';
-				
+				$tamano = $directoriodoc['size'][$i];
+				$type=$directoriodoc['type'][$i];
+ 
+				$piesas=explode("/",$type);
+				$final=explode("e",$piesas[1]);			
+
+				$directoriodoc_post[$i]=$_POST['cedula_rifcho']."_".$iddocumento[$i].".".$final[0].$final[1];
+				if(($tamano <= 2000000)and($type=='image/jpeg')) 
+ 					if(!$copiado=copy($directoriodoc['tmp_name'][$i], $destino.'/'.$directoriodoc_post[$i]))
+ 						break;
+
+ 			}
+ 			if($copiado)
+ 			{
+ 				$lobjChofer->set_Directorio($directoriodoc_post);
+				if($lobjChofer->editar_chofer())
+				{
+					$_SESSION['resultado']='Éxito';
+					$_SESSION['resultado_color']='success';
+					$_SESSION['icono_mensaje']='check-circle';
+					
+				}
+				else
+				{	
+					$_SESSION['resultado']='Error';
+					$_SESSION['resultado_color']='danger';
+					$_SESSION['icono_mensaje']='times-circle';
+				}
 			}
 			else
-			{	
+			{
 				$_SESSION['resultado']='Error';
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';

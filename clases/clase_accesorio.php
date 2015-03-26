@@ -93,7 +93,7 @@
 		function consultar_accesorio()
 		{
 			$this->conectar();
-			$sql="SELECT taccesorio.*, tmodelo.descripcionmod, tmarca.descripcionmar, tmarca.idmarca
+			$sql="SELECT taccesorio.*,RTRIM(unidadmedidaacc,' ')as unidadmedidaacc, tmodelo.descripcionmod, tmarca.descripcionmar, tmarca.idmarca
 					FROM taccesorio, tmodelo, tmarca
 					WHERE taccesorio.idaccesorio = '$this->lnIdAccesorio' 
 					AND tmodelo.idmodelo = tmodelo_idmodelo
@@ -102,6 +102,8 @@
 			if($laRow=$this->proximo($pcsql))
 			{
 				$Fila=$laRow;
+				$Fila['selected_kg']=($laRow['unidadmedidaacc']=='kg')?'selected':'';										
+				$Fila['selected_lts']=($laRow['unidadmedidaacc']=='lts')?'selected':'';
 			}
 			$this->desconectar();
 			return $Fila;
