@@ -1,0 +1,51 @@
+<div class="col-lg-12">
+    <div class="main-box">
+        <header class="main-box-header clearfix">
+            <h3>Accesorios</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info {informacion}">
+                    <ul>
+                        <li>En este módulo podrás registrar, consultar, modificar, desactivar y restaurar los accesorios del sistema.</li>
+                        <li >Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning " type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_accesorio.php" method="POST" name="form_accesorio">
+                <a class="btn btn-success " data-step="1" data-intro='Este botón lo lleva al formulario de registro' data-position="right" id="btn_registrar" href="?modulo=vehiculo/registrar_accesorio"><i class="fa fa-plus icon-white"></i> Registrar accesorios</a>
+                <table class="table table-hover" id="filtro">
+                    <thead>
+                        <th>Codigo</th><th>Placa</th><th>Capacidad</th><th>Marca</th><th>Modelo</th><th>Estatus</th><th class="{operaciones}">Acción</th>
+                    </thead>
+                    <tbody>
+                        <!--LISTADO_ACCESORIOS-->
+                        <tr>
+                            <td>{idaccesorio}</td>
+                            <td>{placaacc}</td>
+                            <td>{capacidadacc}{unidadmedidaacc}</td>
+                            <td>{descripcionmar}</td>
+                            <td>{descripcionmod}</td>
+                            <td><label class="label label-{estatus_color}">{estatusacc}</label></td>
+                            <td class="{operaciones}">
+                                <a class="btn btn-info {btn_consultar}" data-step="2" data-intro='Este botón lo lleva al formulario de consulta y edición' data-position="left" href="#" title="Consultar" onclick="buscar('{idaccesorio}')"><i class="fa fa-search"></i></a> 
+                                <a class="btn btn-{color_boton} {btn_{funcion}}" data-step="3" data-intro='Este botón le permite {funcion} un producto' data-position="left" data-toggle="modal" href="#myModal{funcion}" title="{titulo}" onclick="{funcion}('{idaccesorio}')" ><i class="fa fa-{icono}"></i></a> 
+                            </td>
+                        </tr>
+                        <!--LISTADO_ACCESORIOS-->
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        oTable = $('#filtro').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "iDisplayLength": 5                    
+        });
+    } );
+
+</script> 

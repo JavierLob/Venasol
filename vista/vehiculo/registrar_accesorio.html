@@ -1,0 +1,95 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-{icono}"></i> {Funcion} Accesorios</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás {funcion} los accesorios del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_accesorio.php" method="POST" name="form_accesorio">
+                <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{idaccesorio}" name="idaccesorio" id="cam_idaccesorio"/>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="exampleTooltip">Placa <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Placa del accesorio"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese la placa del accesorio a {funcion}' data-position="bottom" name="placaacc" id="cam_placaacc" value="{placaacc}" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Año <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Año del accesorio"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el año del accesorio a {funcion}' data-position="bottom" name="anoacc" id="cam_anoacc" value="{anoacc}" >
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Color<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Color del accesorio"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el color del accesorio a {funcion}' data-position="bottom" name="coloracc" id="cam_coloracc" value="{coloracc}" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Marca <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Marca del accesorio"><i class="fa fa-question"></i></span></label>
+                        <select id="idmarca" data-step="4" data-intro='Seleccione la marca del accesorio a {funcion}' data-position="bottom" name="idmarca" class="form-control">
+                            <option value="">Seleccione una marca</option>
+                            <!--LISTADO_MARCAS-->
+                                <option value="{idmarca}" {selected_marca}>{descripcionmar}</option>
+                            <!--LISTADO_MARCAS-->
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Modelo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Modelo del accesorio"><i class="fa fa-question"></i></span></label>
+                        <select id="idmodelo" data-step="5" data-intro='Seleccione el modelo del accesorio a {funcion}' data-position="bottom" name="idmodelo" class="form-control">
+                            <option value="">Seleccione un modelo</option>
+                            <!--LISTADO_MODELOS-->
+                                <option value="{idmodelo}" {selected_modelo}>{descripcionmod}</option>
+                            <!--LISTADO_MODELOS-->
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6 col-lg-6 col-xs-12">
+                        <label for="exampleTooltip">Capacidad <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Capacidad del accesorio"><i class="fa fa-question"></i></span></label>
+                            <input type="text" class="form-control" data-step="6" data-intro='Ingrese la Capacidad del accesorio a {funcion}' data-position="bottom" name="capacidadacc" id="cam_capacidadacc" value="{capacidadacc}">
+                    </div>
+                    <div class="form-group col-sm-6 col-lg-6 col-xs-12">
+                        <label for="exampleTooltip">Unidad de Medida <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Unidad de Medida del accesorio"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="7" data-intro='Ingrese la Unidad de medida del accesorio a {funcion}' data-position="bottom" name="unidadmedidaacc" id="cam_unidadmedidaacc" value="{unidadmedidaacc}" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación o información adicional del accesorio"><i class="fa fa-question"></i></span></label>
+                        <textarea class="form-control" data-step="8" data-intro='Ingrese la alguna información adicional del accesorio a {funcion}' data-position="bottom" name="observacionacc" id="cam_observacionacc">{observacionacc}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="9" data-intro='Para finalizar haga click en guardar para {funcion} el accesorio.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=vehiculo/accesorio" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#idmarca").change(function(){
+            var url="../controlador/control_modelo.php";
+              $.ajax({   
+                  type: "POST",
+                  url:url,
+                  data:{operacion:'consultar_modelo', idmarca: $(this).val()},
+                  success: function(datos){
+                      $('#idmodelo').html(datos);   
+                   }
+              });
+        });
+    });
+</script>

@@ -46,7 +46,7 @@
 		case 'consultar_modelo':
 			if($lamodelos=$lobjModelo->consultar_modelos_marca())
 			{
-				$option='<option value="">Seleccione una opción</option>';
+				$option='<option value="">Seleccione un modelo</option>';
 				for($i=0;$i<count($lamodelos);$i++)
 				{
 					$option.='<option value="'.$lamodelos[$i]['idmodelo'].'">'.$lamodelos[$i]['descripcionmod'].'</option>';
