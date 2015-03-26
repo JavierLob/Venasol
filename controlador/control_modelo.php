@@ -43,13 +43,13 @@
 			}
 			header('location:../vista/?modulo=vehiculo/marca');
 		break;
-		case 'consultar_marca':
-			if($lamarcas=$lobjMarca->consultar_marcas())
+		case 'consultar_modelo':
+			if($lamodelos=$lobjModelo->consultar_modelos_marca())
 			{
-				$option='<option value=""></option>';
-				for($i=0;$i<count($lamarcas);$i++)
+				$option='<option value="">Seleccione una opción</option>';
+				for($i=0;$i<count($lamodelos);$i++)
 				{
-					$option.='<option value="'.$lamarcas[$i]['idmarca'].'">'.$lamarcas[$i]['descripcionmar'].'</option>';
+					$option.='<option value="'.$lamodelos[$i]['idmodelo'].'">'.$lamodelos[$i]['descripcionmod'].'</option>';
 				}	
 			}
 			else

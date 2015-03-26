@@ -1,0 +1,89 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-{icono}"></i> {Funcion} Vehiculos</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás {funcion} los vehiculos del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_vehiculo.php" method="POST" name="form_vehiculo">
+                <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{idvehiculo}" name="idvehiculo" id="cam_idvehiculo"/>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-xs-12">
+                        <label for="exampleTooltip">Alias <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Alias del vehiculo"><i class="fa fa-question"></i></span></label>
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese el Alias del vehiculo a {funcion}' data-position="bottom" name="aliasveh" id="cam_aliasveh" value="{aliasveh}">
+                    </div>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="exampleTooltip">Placa <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Placa del vehiculo"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese la placa del vehiculo a {funcion}' data-position="bottom" name="placaveh" id="cam_placaveh" value="{placaveh}" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Año <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Año del vehiculo"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el año del vehiculo a {funcion}' data-position="bottom" name="anoveh" id="cam_anoveh" value="{anoveh}" >
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Color<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Color del vehiculo"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el color del vehiculo a {funcion}' data-position="bottom" name="colorveh" id="cam_colorveh" value="{colorveh}" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Marca <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico alterno del vehiculo"><i class="fa fa-question"></i></span></label>
+                        <select id="idmarca" name="idmarca" class="form-control">
+                            <option value="">Seleccione una marca</option>
+                            <!--LISTADO_MARCAS-->
+                                <option value="{idmarca}" {selected_marca}>{descripcionmar}</option>
+                            <!--LISTADO_MARCAS-->
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Modelo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correo electrónico del vehiculo"><i class="fa fa-question"></i></span></label>
+                        <select id="idmodelo" name="idmodelo" class="form-control">
+                            <option value="">Seleccione un modelo</option>
+                            <!--LISTADO_MODELOS-->
+                                <option value="{idmodelo}" {selected_modelo}>{descripcionmod}</option>
+                            <!--LISTADO_MODELOS-->
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación o información adicional del vehiculo"><i class="fa fa-question"></i></span></label>
+                        <textarea class="form-control" data-step="8" data-intro='Ingrese la alguna información adicional del vehiculo a {funcion}' data-position="bottom" name="observacionveh" id="cam_observacionveh">{observacionveh}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="9" data-intro='Para finalizar haga click en guardar para {funcion} el vehiculo.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=vehiculo/vehiculo" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#idmarca").change(function(){
+            var url="../controlador/control_modelo.php";
+              $.ajax({   
+                  type: "POST",
+                  url:url,
+                  data:{operacion:'consultar_modelo', idmarca: $(this).val()},
+                  success: function(datos){
+                      $('#idmodelo').html(datos);   
+                   }
+              });
+        });
+    });
+</script>

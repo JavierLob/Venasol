@@ -1,0 +1,51 @@
+<div class="col-lg-12">
+    <div class="main-box">
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-truck"></i> Vehiculos</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info {informacion}">
+                    <ul>
+                        <li>En este módulo podrás registrar, consultar, modificar, desactivar y restaurar los vehiculos del sistema.</li>
+                        <li >Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning " type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_vehiculo.php" method="POST" name="form_vehiculo">
+                <a class="btn btn-success " data-step="1" data-intro='Este botón lo lleva al formulario de registro' data-position="right" id="btn_registrar" href="?modulo=vehiculo/registrar_vehiculo"><i class="fa fa-plus icon-white"></i> Registrar vehiculos</a>
+                <table class="table table-hover" id="filtro">
+                    <thead>
+                        <th>Codigo</th><th>Alias</th><th>Placa</th><th>Modelo</th><th>Marca</th><th>Estatus</th><th class="{operaciones}">Acción</th>
+                    </thead>
+                    <tbody>
+                        <!--LISTADO_VEHICULOS-->
+                        <tr>
+                            <td>{idvehiculo}</td>
+                            <td>{aliasveh}</td>
+                            <td>{placaveh}</td>
+                            <td>{descripcionmod}</td>
+                            <td>{descripcionmar}</td>
+                            <td><label class="label label-{estatus_color}">{estatusveh}</label></td>
+                            <td class="{operaciones}">
+                                <a class="btn btn-info {btn_consultar}" data-step="2" data-intro='Este botón lo lleva al formulario de consulta y edición' data-position="left" href="#" title="Consultar" onclick="buscar('{idvehiculo}')"><i class="fa fa-search"></i></a> 
+                                <a class="btn btn-{color_boton} {btn_{funcion}}" data-step="3" data-intro='Este botón le permite {funcion} un producto' data-position="left" data-toggle="modal" href="#myModal{funcion}" title="{titulo}" onclick="{funcion}('{idvehiculo}')" ><i class="fa fa-{icono}"></i></a> 
+                            </td>
+                        </tr>
+                        <!--LISTADO_VEHICULOS-->
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        oTable = $('#filtro').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "iDisplayLength": 5                    
+        });
+    } );
+
+</script> 
