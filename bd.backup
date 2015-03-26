@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.1.14
 -- Dumped by pg_dump version 9.1.14
--- Started on 2015-03-25 03:00:14
+-- Started on 2015-03-26 06:21:21
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -538,7 +538,7 @@ CREATE TABLE tchofer_documento (
     tchofer_idchofer bigint NOT NULL,
     tdocumento_iddocumento bigint NOT NULL,
     fechaemisiondoc date NOT NULL,
-    fechavencimientodoc date NOT NULL,
+    fechavencimientodoc date,
     directoriodoc character varying(255),
     estatusdoc character(1) NOT NULL
 );
@@ -1049,7 +1049,7 @@ SELECT pg_catalog.setval('sidacceso', 13, true);
 -- Name: sidaccesorio; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidaccesorio', 1, false);
+SELECT pg_catalog.setval('sidaccesorio', 1, true);
 
 
 --
@@ -1076,7 +1076,7 @@ SELECT pg_catalog.setval('sidbitacora', 15, true);
 -- Name: sidchofer; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidchofer', 2, true);
+SELECT pg_catalog.setval('sidchofer', 22, true);
 
 
 --
@@ -1112,7 +1112,7 @@ SELECT pg_catalog.setval('sidconfiguracion', 1, true);
 -- Name: siddocumento; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('siddocumento', 1, false);
+SELECT pg_catalog.setval('siddocumento', 3, true);
 
 
 --
@@ -1139,7 +1139,7 @@ SELECT pg_catalog.setval('sidmantenimiento', 1, false);
 -- Name: sidmarca; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidmarca', 1, false);
+SELECT pg_catalog.setval('sidmarca', 1, true);
 
 
 --
@@ -1148,7 +1148,7 @@ SELECT pg_catalog.setval('sidmarca', 1, false);
 -- Name: sidmodelo; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidmodelo', 1, false);
+SELECT pg_catalog.setval('sidmodelo', 1, true);
 
 
 --
@@ -1157,7 +1157,7 @@ SELECT pg_catalog.setval('sidmodelo', 1, false);
 -- Name: sidmodulo; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidmodulo', 7, true);
+SELECT pg_catalog.setval('sidmodulo', 8, true);
 
 
 --
@@ -1211,7 +1211,7 @@ SELECT pg_catalog.setval('sidrol', 2, true);
 -- Name: sidservicio; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidservicio', 30, true);
+SELECT pg_catalog.setval('sidservicio', 50, true);
 
 
 --
@@ -1268,6 +1268,7 @@ INSERT INTO tacceso (idacceso, idusuario, exitoacc, ipacc, estatusacc, fechaacc,
 -- Data for Name: taccesorio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO taccesorio (idaccesorio, idcodigoacc, tmodelo_idmodelo, placaacc, coloracc, anoacc, capacidadacc, unidadmedidaacc, observacionacc, estatusacc) VALUES (1, '          ', 1, '00-234A  ', '\x4e6567726f', '2003', 30000.00, 'kg  ', '', '1');
 
 
 --
@@ -1307,8 +1308,10 @@ INSERT INTO tbitacora (idbitacora, direccionbit, fechahorabit, valoranteriorbit,
 -- Data for Name: tchofer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (1, 'CH0001    ', 'LOBO', 'JAVIER', 'MARTÍN', '21561768  ', '1991-09-25', 'URB. HCDA. SAN JOSÉ', 'RECUPERA.JAVIER@GMAIL.COM', '0412 942-8301', '04129428301  ', '', '1');
-INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (2, 'CH0002    ', 'CABEZON', 'JORGE', 'CASTILLO', '10123456  ', '1970-10-23', 'VILLA ARAURE 1, #6244', 'JORGE.CASTILLO@GMAIL.COM', '0424 324-5235', '             ', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (2, 'CH0002    ', 'CABEZON', 'JORGE', 'CASTILLO', 'V10123456 ', '1970-10-23', 'VILLA ARAURE 1, #6244', 'JORGE.CASTILLO@GMAIL.COM', '0424 324-5235', '             ', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (1, 'CH0001    ', 'LOBO', 'JAVIER', 'MARTÍN', 'V21561768 ', '1991-09-25', 'URB. HCDA. SAN JOSÉ', 'RECUPERA.JAVIER@GMAIL.COM', '0412 942-8301', '0412 942-8301', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (22, 'CH0004    ', 'JULIAN', 'AMILCAR', 'MORALES', 'V20541154 ', '1991-09-17', 'URB AGUA CLARA', 'AMILCARJMORALES@GMAIL.COM', '0424 124-1251', '0255 435-3463', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (21, 'CH0003    ', 'JANE', 'NANCY', 'LOBO', 'V10135484 ', '1970-02-25', 'URB. HCDA. SAN JOSÉ', 'LOBO2570@HOTMAIL.COM', '0426 324-2362', '0255 125-1251', '', '1');
 
 
 --
@@ -1317,6 +1320,10 @@ INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, ce
 -- Data for Name: tchofer_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO tchofer_documento (tchofer_idchofer, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (22, 2, '2012-06-20', '2022-06-20', 'V20541154_2.jpg', '1');
+INSERT INTO tchofer_documento (tchofer_idchofer, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (22, 3, '2014-08-28', '2016-08-28', 'V20541154_3.jpg', '1');
+INSERT INTO tchofer_documento (tchofer_idchofer, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (21, 3, '2014-06-18', '2016-06-19', 'V10135484_3.jpg', '1');
+INSERT INTO tchofer_documento (tchofer_idchofer, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (21, 2, '2007-01-13', '2017-01-13', 'V10135484_2.jpg', '1');
 
 
 --
@@ -1343,6 +1350,8 @@ INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, 
 -- Data for Name: tdocumento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO tdocumento (iddocumento, descripciondoc, vencedoc, duraciondoc, observaciondoc, estatusdoc) VALUES (2, 'Licencia de conducir', '1', 10, '', '1');
+INSERT INTO tdocumento (iddocumento, descripciondoc, vencedoc, duraciondoc, observaciondoc, estatusdoc) VALUES (3, 'Certificado Médico', '0', 2, '', '1');
 
 
 --
@@ -1383,6 +1392,7 @@ INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, 
 -- Data for Name: tmarca; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO tmarca (idmarca, descripcionmar, observacionmar, estatusmar) VALUES (1, 'FORD', '', '1');
 
 
 --
@@ -1391,6 +1401,7 @@ INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, 
 -- Data for Name: tmodelo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO tmodelo (idmodelo, descripcionmod, tmarca_idmarca, observacionmod, estatusmod) VALUES (1, 'F-750', 1, '', '1');
 
 
 --
@@ -1405,6 +1416,7 @@ INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (3, 
 INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (4, 'Chofer', '1', 'qq', 'chofer');
 INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (5, 'Precinto', '1', 'tags', 'precinto');
 INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (7, 'Cliente', '1', 'suitcase', 'cliente');
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (8, 'Vehiculo', '1', 'truck', 'vehiculo');
 
 
 --
@@ -1414,12 +1426,13 @@ INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (7, 
 --
 
 INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (1, 2, 2);
-INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (1, 1, 5);
-INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (2, 1, 6);
+INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (1, 1, 6);
+INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (2, 1, 7);
 INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (3, 1, 1);
 INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (4, 1, 2);
-INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (5, 1, 3);
-INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (7, 1, 4);
+INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (5, 1, 4);
+INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (7, 1, 5);
+INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (8, 1, 3);
 
 
 --
@@ -1476,10 +1489,25 @@ INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser,
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (2, 'Registrar Rol', '?modulo=seguridad/registrar_rol', '0', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (3, 'Consultar Rol', '?modulo=seguridad/consultar_rol', '0', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (4, 'Desactivar Rol', '?modulo=seguridad/eliminar_rol', '0', '1', 1);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (41, 'Consultar Modelo', '?modulo=vehiculo/consultar_modelo', '0', '1', 8);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (7, 'Registrar servicio', '?modulo=seguridad/registrar_servicio', '', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (8, 'Servicio', '?modulo=seguridad/servicio', '1', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (9, 'Consultar servicio', '?modulo=seguridad/consultar_servicio', '', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (10, 'Eliminar Servicio', '?modulo=seguridad/eliminar_servicio', '', '1', 1);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (40, 'Registrar Modelo', '?modulo=vehiculo/registrar_modelo', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (39, 'Modelo', '?modulo=vehiculo/modelo', '1', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (38, 'Eliminar Marca', '?modulo=vehiculo/eliminar_marca', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (37, 'Consultar Marca', '?modulo=vehiculo/consultar_marca', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (36, 'Registrar Marca', '?modulo=vehiculo/registrar_marca', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (35, 'Marca', '?modulo=vehiculo/marca', '1', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (43, 'Accesorio', '?modulo=vehiculo/accesorio', '1', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (44, 'Registrar accesorio', '?modulo=vehiculo/registrar_accesorio', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (45, 'Consultar Accesorio', '?modulo=vehiculo/consultar_accesorio', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (46, 'Eliminar Accesorio', '?modulo=vehiculo/eliminar_accesorio', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (47, 'Documento', '?modulo=chofer/documento', '1', '1', 4);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (48, 'Registrar Documento', '?modulo=chofer/registrar_documento', '0', '1', 4);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (49, 'Consultar Documento', '?modulo=chofer/consultar_documento', '0', '1', 4);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (50, 'Eliminar Documento', '?modulo=chofer/eliminar_documento', '0', '1', 4);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (12, 'Registrar producto', '?modulo=producto/registrar_producto', '', '1', 3);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (5, 'Asignar módulos/servicios', '?modulo=seguridad/asignacion', '1', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (11, 'Producto', '?modulo=producto/producto', '1', '1', 3);
@@ -1501,6 +1529,11 @@ INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser,
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (28, 'Registrar Cliente', '?modulo=cliente/registrar_cliente', '0', '1', 7);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (29, 'Consultar cliente', '?modulo=cliente/consultar_cliente', '0', '1', 7);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (30, 'Eliminar Cliente', '?modulo=cliente/eliminar_cliente', '0', '1', 7);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (32, 'Registrar Vehiculo', '?modulo=vehiculo/registrar_vehiculo', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (33, 'Consultar Vehículo', '?modulo=vehiculo/consultar_vehiculo', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (31, 'Vehículo', '?modulo=vehiculo/vehiculo', '1', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (34, 'Eliminar Vehículo', '?modulo=vehiculo/eliminar_vehiculo', '0', '1', 8);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (42, 'Eliminar Modelo', '?modulo=vehiculo/eliminar_modelo', '0', '1', 8);
 
 
 --
@@ -1542,10 +1575,14 @@ INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (17, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (18, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (14, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (12, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (47, 1, 2);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (19, 1, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (49, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (50, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (20, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (22, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (21, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (20, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (48, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (23, 1, 1);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (24, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (25, 1, 0);
@@ -1554,6 +1591,22 @@ INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (27, 1, 1);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (28, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (29, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (30, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (35, 1, 4);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (31, 1, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (43, 1, 2);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (39, 1, 3);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (36, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (44, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (45, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (46, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (32, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (33, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (34, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (41, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (42, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (40, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (38, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (37, 1, 0);
 
 
 --
@@ -2255,7 +2308,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-03-25 03:00:15
+-- Completed on 2015-03-26 06:21:26
 
 --
 -- PostgreSQL database dump complete
