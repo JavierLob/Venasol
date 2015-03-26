@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Año <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Año del vehiculo"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el año del vehiculo a {funcion}' data-position="bottom" name="anoveh" id="cam_anoveh" value="{anoveh}" >
+                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el año del vehiculo a {funcion}' data-position="bottom" name="anoveh" id="cam_anoveh" value="{anoveh}" >
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Color<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Color del vehiculo"><i class="fa fa-question"></i></span></label>
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Marca <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico alterno del vehiculo"><i class="fa fa-question"></i></span></label>
-                        <select id="idmarca" name="idmarca" class="form-control">
+                        <select id="idmarca" name="idmarca" class="form-control" data-step="5" data-intro='Seleccione la marca del vehiculo a {funcion}' data-position="bottom">
                             <option value="">Seleccione una marca</option>
                             <!--LISTADO_MARCAS-->
                                 <option value="{idmarca}" {selected_marca}>{descripcionmar}</option>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Modelo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correo electrónico del vehiculo"><i class="fa fa-question"></i></span></label>
-                        <select id="idmodelo" name="idmodelo" class="form-control">
+                        <select id="idmodelo" name="idmodelo" class="form-control" data-step="5" data-intro='Seleccione el modelo del vehiculo a {funcion}' data-position="bottom">
                             <option value="">Seleccione un modelo</option>
                             <!--LISTADO_MODELOS-->
                                 <option value="{idmodelo}" {selected_modelo}>{descripcionmod}</option>
@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="form-group col-sm-12 col-xs-12">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación o información adicional del vehiculo"><i class="fa fa-question"></i></span></label>
-                        <textarea class="form-control" data-step="8" data-intro='Ingrese la alguna información adicional del vehiculo a {funcion}' data-position="bottom" name="observacionveh" id="cam_observacionveh">{observacionveh}</textarea>
+                        <textarea class="form-control" data-step="6" data-intro='Ingrese alguna información adicional del vehiculo a {funcion}' data-position="bottom" name="observacionveh" id="cam_observacionveh">{observacionveh}</textarea>
                     </div>
                 </div>
                 <div class="row">
