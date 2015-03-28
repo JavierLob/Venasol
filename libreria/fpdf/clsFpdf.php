@@ -20,7 +20,6 @@
 Contacto: 0243-671-82-44 venasol@hotmail.com",0,"J");
 			
 			//Salto de línea
-			$this->Ln();
 		}
 
 		//Pie de página
@@ -29,12 +28,12 @@ Contacto: 0243-671-82-44 venasol@hotmail.com",0,"J");
 			//Posición: a 2 cm del final
 			$this->SetY(-20);
 			//Arial italic 8
-			$this->SetFont("Arial","I",8);
+			$this->SetFont("Arial","I",6);
 			//Dirección
-			$this->Cell(0,7,utf8_decode("Fecha de impresión ".date('d-m-Y h:i a')." - Region Central COPIA COLOR: SIN DERECHO A CREDITO FISCAL"),0,1,"C");
-			$this->Cell(0,7,"ESTA FORMA LIBRE VA SIN TACHADURAS NI ENMIENDADURA",0,1,"C");
+			$this->Cell(0,4,utf8_decode("Fecha de impresión ".date('d-m-Y h:i a')." - Region Central COPIA COLOR: SIN DERECHO A CREDITO FISCAL"),0,1,"C");
+			$this->Cell(0,4,"ESTA FORMA LIBRE VA SIN TACHADURAS NI ENMIENDADURA",0,1,"C");
 			//Número de página
-			$this->Cell(0,7,utf8_decode("Página ").$this->PageNo()."/{nb}",0,0,"C");
+			$this->Cell(0,4,utf8_decode("Página ").$this->PageNo()."/{nb}",0,0,"C");
 		}
 	}
 ?>
