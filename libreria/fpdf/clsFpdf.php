@@ -17,7 +17,7 @@
 			$this->Ln(16);
 
 			$this->MultiCell(80,6,"Calle E, Zona Industrial San Vicente II, Edo. Aragua
-Contacto: 0243-671-82-44 venasol@hotmail.com",0,"C");
+Contacto: 0243-671-82-44 venasol@hotmail.com",0,"J");
 			
 			//Salto de línea
 			$this->Ln();
