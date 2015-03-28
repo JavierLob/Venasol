@@ -4,9 +4,6 @@
 	
 	class clsFpdf extends FPDF
 	{
-		public $codigo;
-		//Cabecera de página
-		//
 		
 		function set_orientacion($orientacion='p')
 		{
@@ -15,37 +12,27 @@
 
 		public function Header()
 		{
-			//Logo
-			$this->Image('../media/images/cintillo-caidv.jpg',10,10,200,15);
-			$this->Ln(2);
-			$this->Image('../media/images/CAIDV.jpg',10,30,60,18);
+			$this->Image('../media/img/logo-black.jpg',10,10,100,15);
+			$this->SetFont("Arial","",8);
+			$this->Ln(16);
 
-			//Arial bold 15
-			$this->SetFont("Arial","B",15);
-			//Título
+			$this->MultiCell(80,6,"Calle E, Zona Industrial San Vicente II, Edo. Aragua
+Contacto: 0243-671-82-44 venasol@hotmail.com",0,"C");
 			
-			//Arial bold 8
-			$this->SetFont("Arial","B",8);
-			//Fecha
-			$lcFecha=date("d/m/Y  h:m a");
-			$this->Cell(0,50,$lcFecha,0,0,"R");
-			$this->Ln(4);
-			$this->Cell(0,50,'Usuario: '.$_SESSION['usuario'],0,0,"R");
 			//Salto de línea
-			$this->Ln(30);
+			$this->Ln();
 		}
 
 		//Pie de página
 		public function Footer()
 		{
 			//Posición: a 2 cm del final
-			$this->SetY(-30);
+			$this->SetY(-20);
 			//Arial italic 8
 			$this->SetFont("Arial","I",8);
 			//Dirección
-			$this->Cell(0,7,$this->codigo,0,1,"C");
-
-			$this->Cell(0,7,"Acarigua Estado Portuguesa",0,1,"C");
+			$this->Cell(0,7,utf8_decode("Fecha de impresión ".date('d-m-Y h:i a')." - Region Central COPIA COLOR: SIN DERECHO A CREDITO FISCAL"),0,1,"C");
+			$this->Cell(0,7,"ESTA FORMA LIBRE VA SIN TACHADURAS NI ENMIENDADURA",0,1,"C");
 			//Número de página
 			$this->Cell(0,7,utf8_decode("Página ").$this->PageNo()."/{nb}",0,0,"C");
 		}
