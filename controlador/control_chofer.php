@@ -3,9 +3,11 @@
 	require_once("../clases/clase_chofer.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
+    require_once('../libreria/UUID.php');
 	$lobjChofer=new clsChofer;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;
+	$lobjUUID=new UUID;
 
 	$lobjChofer->set_Chofer($_POST['idchofer']);
 	$lobjChofer->set_Codigo($_POST['idcodigocho']);
@@ -32,6 +34,7 @@
 
 	$iddocumento=$_POST['iddocumento'];
 	$directoriodoc=$_FILES['directoriodoc'];
+	$directoriodoc_post=$_POST['directorio_o'];
 	$destino = '../media/img/documentos'; 
 	$copiado=true;
 
@@ -48,7 +51,7 @@
 				$piesas=explode("/",$type);
 				$final=explode("e",$piesas[1]);			
 
-				$directoriodoc_post[$i]=$_POST['cedula_rifcho']."_".$iddocumento[$i].".".$final[0].$final[1];
+				$directoriodoc_post[$i]=$_POST['cedula_rifcho']."_".$iddocumento[$i]."_".$lobjUUID->v4().".".$final[0].$final[1];
 				if(($tamano <= 2000000)and($type=='image/jpeg')) 
  					if(!$copiado=copy($directoriodoc['tmp_name'][$i], $destino.'/'.$directoriodoc_post[$i]))
  						break;
@@ -103,11 +106,15 @@
  
 				$piesas=explode("/",$type);
 				$final=explode("e",$piesas[1]);			
+				
+				if($directoriodoc['tmp_name'][$i])
+				{
+					$directoriodoc_post[$i]=$_POST['cedula_rifcho']."_".$iddocumento[$i]."_".$lobjUUID->v4().".".$final[0].$final[1];
+					if(($tamano <= 2000000)and($type=='image/jpeg')) 
+	 					if(!$copiado=copy($directoriodoc['tmp_name'][$i], $destino.'/'.$directoriodoc_post[$i]))
+	 						break;
+ 				}
 
-				$directoriodoc_post[$i]=$_POST['cedula_rifcho']."_".$iddocumento[$i].".".$final[0].$final[1];
-				if(($tamano <= 2000000)and($type=='image/jpeg')) 
- 					if(!$copiado=copy($directoriodoc['tmp_name'][$i], $destino.'/'.$directoriodoc_post[$i]))
- 						break;
 
  			}
  			if($copiado)
