@@ -44,10 +44,10 @@
 		case 'consultar_accesorio':
 			if($laaccesorios=$lobjAccesorio->consultar_accesorios())
 			{
-				$option='<option value=""></option>';
+				$option='<option value="">Seleccione un accesorio</option>';
 				for($i=0;$i<count($laaccesorios);$i++)
 				{
-					$option.='<option value="'.$laaccesorios[$i]['idaccesorio'].'">'.$laaccesorios[$i]['aliasveh'].'</option>';
+					$option.='<option value="'.$laaccesorios[$i]['idaccesorio'].'">'.$laaccesorios[$i]['placaacc'].' '.$laaccesorios[$i]['coloracc'].' '.$laaccesorios[$i]['capacidadacc'].''.$laaccesorios[$i]['unidadmedidaacc'].'</option>';
 				}	
 			}
 			else

@@ -1,3 +1,4 @@
+  <link rel="stylesheet" href="../media/css/libs/chosen.css">
 <style type="text/css">
     .sugerencias{
         width:100%;
@@ -26,7 +27,7 @@
                     </ul>
                 </div>
             </div>
-            <form action="../controlador/control_factura.php" method="POST" name="form_Factura" id="form_factura">
+            <form action="../controlador/control_factura.php" method="POST" name="form_factura" id="form_factura">
                 <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
                 <input type="hidden" value="{idcliente}" name="idcliente" id="cam_idcliente"/>
                 <div class="row">
@@ -46,11 +47,19 @@
                         <label style="font-weight: bold;" for="exampleTooltip">Correo Electrónico <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico alterno del cliente"><i class="fa fa-question"></i></span></label>
                             <p class="form-control-static">{correounocli}</p>
                     </div>
-                    <div class="form-group col-sm-12 col-xs-12">
+                    <div class="form-group col-sm-9 col-xs-12">
                         <label style="font-weight: bold;" for="exampleTooltip">Dirección <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Dirección del cliente"><i class="fa fa-question"></i></span></label>
                             <p class="form-control-static">{direccioncli}</p>
                     </div>
-                    
+                    <div class="form-group col-sm-3 col-xs-12">
+                        <label style="font-weight: bold;" for="exampleTooltip">Iva <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Seleccione el IVA a aplicar"><i class="fa fa-question"></i></span></label>
+                        <select name="select_iva" id="select_iva" class="form-control">
+                            <option value="0.12">12 %</option>
+                            <option value="0.08">8 %</option>
+                            <option value="0.06">6 %</option>
+                            <option value="0">0 %</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="row">
                     <table class="table table-striped" id="tabla_productos">
@@ -109,11 +118,15 @@
                     <div class="controls">
                         <div class="input-group">
                             <div class="input-group-addon">
-                                <span><i class="fa fa-search"></i></span>
+                                <span><i class="fa fa-qq"></i></span>
                             </div><!-- /addon-group -->
-                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                            <select name="chofer" id="chofer" class="form-control chosen-select"  data-placeholder="Seleccione un chofer...">
+                                <option value=""></option>
+                                <!--LISTADO_CHOFER-->
+                                <option value="{idchofer}">{aliascho} - {nombrecho} {apellidocho} {cedula_rifcho}</option>
+                                <!--LISTADO_CHOFER-->
+                            </select>
                         </div>
-                        <div class="sugerencias hide"></div>
                     </div>
                 </div>
             </div>
@@ -123,11 +136,15 @@
                     <div class="controls">
                         <div class="input-group">
                             <div class="input-group-addon">
-                                <span><i class="fa fa-search"></i></span>
+                                <span><i class="fa fa-truck"></i></span>
                             </div><!-- /addon-group -->
-                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                            <select name="vehiculo" id="vehiculo" class="form-control chosen-select" data-placeholder="Seleccione un vehiculo...">
+                                <option value=""></option>
+                                <!--LISTADO_VEHICULO-->
+                                <option value="{idvehiculo}">{aliasveh} - {placaveh} {anoveh} {colorveh} {descripcionmod}</option>
+                                <!--LISTADO_VEHICULO-->
+                            </select>
                         </div>
-                        <div class="sugerencias hide"></div>
                     </div>
                 </div>
                 <div class="form-group col-sm-6 col-xs-12">
@@ -135,11 +152,12 @@
                     <div class="controls">
                         <div class="input-group">
                             <div class="input-group-addon">
-                                <span><i class="fa fa-search"></i></span>
+                                <span><i class="fa fa-briefcase"></i></span>
                             </div><!-- /addon-group -->
-                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                            <select name="accesorio" id="accesorio" class="form-control">
+                                <option value="">Seleccione una carga...</option>
+                            </select>
                         </div>
-                        <div class="sugerencias hide"></div>
                     </div>
                 </div>
             </div>
@@ -149,21 +167,50 @@
                     <div class="controls">
                         <div class="input-group">
                             <div class="input-group-addon">
-                                <span><i class="fa fa-search"></i></span>
+                                <span><i class="fa fa-tag"></i></span>
                             </div><!-- /addon-group -->
-                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                            <select name="precintos[]" id="precintos" multiple class="form-control chosen-select"  data-placeholder="Seleccione uno o mas precintos..." >
+                                <!--LISTADO_PRECINTOS-->
+                                <option value="{idprecinto}">{idcodigopre}</option>
+                                <!--LISTADO_PRECINTOS-->
+                            </select>
                         </div>
-                        <div class="sugerencias hide"></div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12 col-xs-12">
+                    <label for="buscar_cliente">Notas: <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Escriba alguna nota o observación acerca de la factura"><i class="fa fa-question"></i></span></label>
+                    <div class="controls">
+                        <textarea name="observacion" id="observacion" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button id="facturar" type="button" data-step="9" data-intro='Para finalizar haga click en guardar para facturar.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Facturar</button>
+                    <a href="?modulo=cliente/cliente" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                 </div>
             </div>
         </div>
     </div>
     </form>
 </div>
-
+<script src="../media/js/chosen.jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(document).ready(function($){
+
+         var config = {
+          '.chosen-select'           : {},
+          '.chosen-select-deselect'  : {allow_single_deselect:true},
+          '.chosen-select-no-single' : {disable_search_threshold:10},
+          '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+          '.chosen-select-width'     : {width:"95%"}
+        }
+        for (var selector in config) {
+          $(selector).chosen(config[selector]);
+        }
+
         $("#buscar_producto").keypress(function(){          
         $('.sugerencias').fadeIn('slow').html('Cargando...');              
             var url="../controlador/control_producto.php";
@@ -184,6 +231,25 @@
                 });
         });
 
+        $("#facturar").click(function(){          
+            var valores = $('#form_factura').serialize();
+            var url="../controlador/control_factura.php";
+                $.ajax({   
+                    type: "POST",
+                    url:url,
+                    data:valores,
+                    datatype: 'JSON',
+                    success: function(datos){
+                        if(datos.mensaje=='1')
+                            mensaje = 'Se ha facturado exitosamente...';
+                        else
+                            mensaje = 'Error, al facturar intente nuevamente...';
+
+                        console.log(datos);
+                    }
+                });
+        });
+
         $('.solo-numeros').keyup(function (){
             this.value = (this.value + '').replace(/[^0-9+.]/g, '');
         });
@@ -194,6 +260,20 @@
             var total = (precio * cantidad);
             total = number_format(total , 2, '.');
             $("#total_p").val(parseFloat(total));
+        });
+
+        $("#select_iva").change(function(){ totales(); });
+
+        $("#vehiculo").change(function(){
+            var url="../controlador/control_accesorio.php";
+            $.ajax({   
+                type: "POST",
+                url:url,
+                data:{operacion:'consultar_accesorio', idvehiculo: $(this).val()},
+                success: function(datos){
+                    $('#accesorio').html(datos);
+                }
+            });
         });
 
         $("#add").click(function(){
@@ -248,14 +328,15 @@ function totales()
         total_cantidad = (parseFloat($(element).val()) + total_cantidad);
     })
 
-    $("#sub_total").val(number_format(sub_total, 2, ','));
-    $("#cantidad_total").val(number_format(total_cantidad, 2, ','));
+    $("#sub_total").val(number_format(sub_total, 2, '.'));
+    $("#cantidad_total").val(number_format(total_cantidad, 2, '.'));
 
-    var iva = (sub_total * 0.12);
+    var porcentaje = parseFloat($("#select_iva").val());
+    var iva = (sub_total * porcentaje);
     var total_total = (parseFloat(iva) + sub_total);
 
-    $("#iva").val(number_format(iva, 2, ','));
-    $("#total_total").val(number_format(total_total, 2, ','));
+    $("#iva").val(number_format(iva, 2, '.'));
+    $("#total_total").val(number_format(total_total, 2, '.'));
 }
 
 function mostrar_nada()

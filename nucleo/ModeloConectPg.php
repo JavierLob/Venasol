@@ -2,7 +2,7 @@
 	abstract class clsModelo_pg{ 									//Declarar clase Abstracta Modelo
 	private  $db_host 	= 'localhost';									//Nombre del Host
 	private  $db_usuario 	= 'postgres';										//Nombre del Usuario
-	private  $db_password = '123456';											//Password de la BD.
+	private  $db_password = 'amilcar';											//Password de la BD.
 	private  $db_num_db	 ='';
 	protected $db_nombre= 'bd_venasol';				//Nombre de la Base de Datos.
 	protected $query;													//Variable del Query
@@ -73,24 +73,27 @@
 * Funcion Begin 
 *-----------------------------------*/
   	
-	protected function begin(){
-		pg_query($this->arCon, "BEGIN WORK");
+	public function begin(){
+		$this->conectar();
+		pg_query($this->arCon, "BEGIN");
 	}
 	
 /*-----------------------------------
 * Funcion Commit 
 *-----------------------------------*/
   		
-	protected function commit(){
+	public function commit(){
 		pg_query($this->arCon,"COMMIT");
+		$this->desconectar();
 	}
 		
 /*-----------------------------------
 * Funcion Rollback 
 *-----------------------------------*/
   	
-	protected function rollback(){
+	public function rollback(){
 		pg_query($this->arCon,"ROLLBACK");
+		$this->desconectar();
 	}
 				
 /*-----------------------------------

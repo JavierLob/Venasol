@@ -107,7 +107,7 @@
 				$sql="INSERT INTO tvehiculo(
 					            idcodigoveh, aliasveh, placaveh, anoveh, colorveh, 
 					            tmodelo_idmodelo, observacionveh, estatusveh)
-					    VALUES ('$this->lcCodigo', '$this->lcAlias', '$this->lcPlaca', '$this->lcAno', '$this->lcColor', '$this->lnModelo', 
+					    VALUES ('$this->lcCodigo', UPPER('$this->lcAlias'), upper('$this->lcPlaca'), '$this->lcAno', '$this->lcColor', '$this->lnModelo', 
 					            '$this->lcObservacion', '$this->lcEstatus');";
 				$lnHecho=$this->ejecutar($sql);
 
@@ -137,7 +137,7 @@
 		{
 			$this->conectar();
 			$sql="UPDATE tvehiculo
-				   SET idcodigoveh='$this->lcCodigo', aliasveh='$this->lcAlias', placaveh='$this->lcPlaca', anoveh='$this->lcAno', 
+				   SET idcodigoveh='$this->lcCodigo', aliasveh=upper('$this->lcAlias'), placaveh=upper('$this->lcPlaca'), anoveh='$this->lcAno', 
 				       colorveh='$this->lcColor', tmodelo_idmodelo='$this->lnModelo', observacionveh='$this->lcObservacion'
 				 WHERE idvehiculo = '$this->lnIdVehiculo';";
 			echo $sql;
