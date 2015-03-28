@@ -105,6 +105,17 @@
 
 			header('location:../vista/?modulo=cliente/cliente');
 		break;
+		case 'buscar_cliente':
+			$criterio_busqueda = htmlentities($_POST['criterio']);
+			if($listado_clientes=$lobjCliente->consultar_clientes_like($criterio_busqueda))
+			{
+				print($listado_clientes);
+			}
+			else
+			{
+				print('<a>No se han encontrado clientes con esa descripción...</a>');
+			}
+		break;
 		default:
 			header('location:../vista/?modulo=cliente/cliente');
 		break;

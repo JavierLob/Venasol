@@ -87,6 +87,21 @@
 			return $Fila;
 		}
 
+		function consultar_productos_like($criterio = '')
+		{
+			$this->conectar();
+			$cont=0;
+			$sql="SELECT * FROM tproducto WHERE idcodigopro LIKE '%$criterio%' OR UPPER(descripcioncortapro) LIKE UPPER('%$descripcioncortapro%') OR UPPER(descripcionlargapro) LIKE UPPER('%$descripcionlargapro%');";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila.='<a class="suggest-element" data-value="'.$laRow['idproducto'].'" data-precio="'.$laRow['preciounitariopro'].'" data-descripcion="'.$laRow['descripcioncortapro'].'">'.$laRow['descripcioncortapro'].' '.$laRow['preciounitariopro'].'</a><br>';
+			}
+			
+			$this->desconectar();
+			return $Fila;
+		}
+
 		function consultar_producto()
 		{
 			$this->conectar();

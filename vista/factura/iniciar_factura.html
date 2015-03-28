@@ -1,0 +1,92 @@
+<style type="text/css">
+	.sugerencias{
+        width:100%;
+        height:150px;
+        overflow: auto;
+    }
+    .suggest-element{
+        margin-left:5px;
+        margin-top:5px;
+        width:350px;
+        cursor:pointer;
+    }
+</style>
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-shopping-cart"></i> Iniciar Facturación</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás realizar la facturación.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="./?modulo=factura/iniciar_factura" method="POST" name="form_cliente" id="form_cliente">
+                <input type="hidden" value="iniciar_factura" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="" name="idcliente" id="cam_idcliente"/>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <label for="buscar_cliente">Buscar Cliente <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Buscar cliente"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span><i class="fa fa-search"></i></span>
+                                </div><!-- /addon-group -->
+                                <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                            </div>
+                            <div class="sugerencias hide"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="button" data-step="9" data-intro='Para finalizar haga click en guardar para {funcion} el cliente.' data-position="top" class="btn btn-success"><i class="fa fa-shopping-cart"></i> Iniciar Facturación</button>
+                        <a href="./" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#buscar_cliente").keypress(function(){
+        $('.sugerencias').fadeIn('slow').html('Cargando...');              
+            var url="../controlador/control_cliente.php";
+              	$.ajax({   
+					type: "POST",
+					url:url,
+					data:{operacion:'buscar_cliente', criterio: $("#buscar_cliente").val()},
+					success: function(datos){
+                        $('.sugerencias').removeClass('hide');
+						$('.sugerencias').html(datos);  
+						$(".suggest-element").click(function(){
+							$("#cam_idcliente").val($(this).attr('data-value'));
+							$("#buscar_cliente").val($(this).attr('data-descripcion'));
+                            $('.sugerencias').fadeOut('fast');
+						}) ;
+					}
+              	});
+        });
+
+        $(".btn-success").click(function(){
+        	var idcliente = $("#cam_idcliente").val();
+        	if(idcliente != ''){
+        		$("#form_cliente").submit();
+        	}
+        	else
+        	{
+        		$("#mensaje_advertencia").html('Por favor busque un cliente, para iniciar la facturación...');
+        		$("#ok_advertencia").attr('data-dismiss', 'modal');
+        		$("#myModalAlert").modal('show');
+        	}
+
+        	//return false;
+        }); 
+    });
+</script>

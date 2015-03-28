@@ -154,5 +154,20 @@
 			$this->desconectar();
 			return $lnHecho;
 		}
+
+		function consultar_clientes_like($criterio = '')
+		{
+			$this->conectar();
+			$cont=0;
+			$sql="SELECT * FROM tcliente WHERE rifcli LIKE '%$criterio%' OR UPPER(razonsocial) LIKE UPPER('%$criterio%');";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila.='<a class="suggest-element" data-value="'.$laRow['idcliente'].'" data-descripcion="'.$laRow['razonsocial'].' '.$laRow['rifcli'].'">'.$laRow['razonsocial'].' '.$laRow['rifcli'].'</a><br>';
+			}
+			
+			$this->desconectar();
+			return $Fila;
+		}
 	}
 ?>

@@ -91,6 +91,17 @@
 
 			header('location:../vista/?modulo=producto/producto');
 		break;
+		case 'buscar_producto':
+			$criterio_busqueda = htmlentities($_POST['criterio']);
+			if($listado_productos=$lobjProducto->consultar_productos_like($criterio_busqueda))
+			{
+				print($listado_productos);
+			}
+			else
+			{
+				print('<a class="suggest-element">No se han encontrado clientes con esa descripción...</a>');
+			}
+		break;
 		default:
 			header('location:../vista/?modulo=producto/producto');
 		break;

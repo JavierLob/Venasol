@@ -1,0 +1,341 @@
+<style type="text/css">
+    .sugerencias{
+        width:100%;
+        height:150px;
+        overflow: auto;
+    }
+    .suggest-element{
+        margin-left:5px;
+        margin-top:5px;
+        width:350px;
+        cursor:pointer;
+        font-size: 13px;
+    }
+</style>
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-shopping-cart"></i> Facturación</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás realizar la facturación de los clientes del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_factura.php" method="POST" name="form_Factura" id="form_factura">
+                <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{idcliente}" name="idcliente" id="cam_idcliente"/>
+                <div class="row">
+                    <div class="form-group col-sm-3 col-xs-12">
+                        <label style="font-weight: bold;" for="exampleTooltip">Rif <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Rif del cliente"><i class="fa fa-question"></i></span></label>
+                          <p class="form-control-static">{rifcli}</p>
+                    </div>
+                    <div class="form-group col-sm-3 col-xs-12">
+                        <label style="font-weight: bold;" for="exampleTooltip">Razón Social <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Razón Social del cliente"><i class="fa fa-question"></i></span></label>
+                            <p class="form-control-static">{razonsocial}</p>
+                    </div>
+                    <div class="form-group col-sm-3 col-xs-12">
+                        <label style="font-weight: bold;" for="exampleTooltip">Nro. Teléfono <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico del cliente"><i class="fa fa-question"></i></span></label>
+                            <p class="form-control-static">{telefonounocli}</p>
+                    </div>
+                    <div class="form-group col-sm-3 col-xs-12">
+                        <label style="font-weight: bold;" for="exampleTooltip">Correo Electrónico <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico alterno del cliente"><i class="fa fa-question"></i></span></label>
+                            <p class="form-control-static">{correounocli}</p>
+                    </div>
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <label style="font-weight: bold;" for="exampleTooltip">Dirección <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Dirección del cliente"><i class="fa fa-question"></i></span></label>
+                            <p class="form-control-static">{direccioncli}</p>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <table class="table table-striped" id="tabla_productos">
+                        <thead>
+                            <th class="col-xs-5">Producto</th>
+                            <th class="col-xs-2">Precio Unitario</th>
+                            <th class="col-xs-2">Cantidad</th>
+                            <th class="col-xs-2">Total</th>
+                            <th class="col-xs-1">Acción</th>
+                        </thead>
+                        <tr>
+                            <td><input type="text" class="form-control" name="buscar_producto" id="buscar_producto" value="" placeholder="Escriba una descripción del producto a buscar" />
+                            <div class="sugerencias hide">
+                            </td>
+                            <td>
+                                <input type="hidden" name="codigo_producto" id="codigo_producto" value="">
+                                <input type="number" class="form-control" name="precio_u" id="precio_u" value="" placeholder="0.00" />
+                            </td>
+                            <td>
+                                <input type="number" class="form-control solo-numeros" name="cantidad" id="cantidad" value="" placeholder="0.00" />
+                            </td>
+                            <td>
+                                <input readOnly type="text" class="form-control" name="total_p" id="total_p" value="" placeholder="0.00" />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success" id="add" name="add"><i class="fa fa-plus"></i></button>
+                            </td>
+                        </tr>
+                        <tr id="blanco">
+                            <td colspan="5">No existen productos cargados...</td>
+                        </tr>
+                        <tfoot>
+                            <th colspan="2">Total: (Iva+Sub-Total)</th>
+                            <th><input readOnly type="text" class="form-control" name="iva" id="iva" value="" placeholder="0.00" /></th>
+                            <th><input readOnly type="text" class="form-control" name="total_total" id="total_total" value="" placeholder="0.00" /></th>
+                            <th></th>
+                        </tfoot>
+                        <tfoot>
+                            <th colspan="2">Sub-Totales:</th>
+                            <th><input readOnly type="text" class="form-control" name="cantidad_total" id="cantidad_total" value="" placeholder="0.00" /></th>
+                            <th><input readOnly type="text" class="form-control" name="sub_total" id="sub_total" value="" placeholder="0.00" /></th>
+                            <th>Acción</th>
+                        </tfoot>
+                        
+                    </table>
+                </div>
+                
+        </div>
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-truck"></i> Datos del transporte</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="form-group col-sm-12 col-xs-12">
+                    <label for="buscar_cliente">Chofer <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Buscar cliente"><i class="fa fa-question"></i></span></label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span><i class="fa fa-search"></i></span>
+                            </div><!-- /addon-group -->
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                        </div>
+                        <div class="sugerencias hide"></div>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                <div class="form-group col-sm-6 col-xs-12">
+                    <label for="buscar_cliente">Vehiculo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Buscar cliente"><i class="fa fa-question"></i></span></label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span><i class="fa fa-search"></i></span>
+                            </div><!-- /addon-group -->
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                        </div>
+                        <div class="sugerencias hide"></div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6 col-xs-12">
+                    <label for="buscar_cliente">Carga <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Buscar cliente"><i class="fa fa-question"></i></span></label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span><i class="fa fa-search"></i></span>
+                            </div><!-- /addon-group -->
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                        </div>
+                        <div class="sugerencias hide"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12 col-xs-12">
+                    <label for="buscar_cliente">Precintos <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Buscar cliente"><i class="fa fa-question"></i></span></label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span><i class="fa fa-search"></i></span>
+                            </div><!-- /addon-group -->
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la palabra clave a buscar del cliente' data-position="bottom" name="buscar_cliente" id="buscar_cliente" value="" placeholder="Por favor ingrese el Rif o Nombre de un cliente...">
+                        </div>
+                        <div class="sugerencias hide"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#buscar_producto").keypress(function(){          
+        $('.sugerencias').fadeIn('slow').html('Cargando...');              
+            var url="../controlador/control_producto.php";
+                $.ajax({   
+                    type: "POST",
+                    url:url,
+                    data:{operacion:'buscar_producto', criterio: $("#buscar_producto").val()},
+                    success: function(datos){
+                        $('.sugerencias').removeClass('hide');
+                        $('.sugerencias').html(datos);  
+                        $(".suggest-element").click(function(){
+                            $("#codigo_producto").val($(this).attr('data-value'));
+                            $("#buscar_producto").val($(this).attr('data-descripcion'));
+                            $("#precio_u").val($(this).attr('data-precio'));
+                            $('.sugerencias').fadeOut('fast');
+                        }) ;
+                    }
+                });
+        });
+
+        $('.solo-numeros').keyup(function (){
+            this.value = (this.value + '').replace(/[^0-9+.]/g, '');
+        });
+
+        $("#cantidad").keyup(function(){
+            var precio = parseFloat($("#precio_u").val());
+            var cantidad = parseFloat($(this).val());
+            var total = (precio * cantidad);
+            total = number_format(total , 2, '.');
+            $("#total_p").val(parseFloat(total));
+        });
+
+        $("#add").click(function(){
+            var id_producto = $("#codigo_producto").val();
+            var descripcion_pro = $("#buscar_producto").val();
+            var precio_u = $("#precio_u").val();
+            var cantidad = $("#cantidad").val();
+            var total_p = $("#total_p").val();
+            if((id_producto!='') && (descripcion_pro!='') && (precio_u!='') && (cantidad!='') && (total_p!=''))
+            {
+                $("#codigo_producto").val('');
+                $("#buscar_producto").val('');
+                $("#precio_u").val('');
+                $("#cantidad").val('');
+                $("#total_p").val('');
+                var tds=$("#tabla_productos tr:first td").length;
+                // Obtenemos el total de columnas (tr) del id "tabla"
+                var trs=$("#tabla_productos tr").length;
+                var nuevaFila="<tr id='col_"+trs+"'>";
+                    // añadimos las columnas
+                    nuevaFila+='<td><input readOnly name="descripcion_producto[]" id="descripcion_producto'+trs+'" type="text" class="form-control " value="'+descripcion_pro+'" placeholder="Escriba letras o números"></td>';
+                    nuevaFila+='<td><input readOnly name="precio_producto[]" id="precio_producto'+trs+'" type="text" class="form-control " value="'+precio_u+'" placeholder="Escriba letras o números"></td>';
+                    nuevaFila+='<td><input readOnly name="cantidad_producto[]" id="cantidad_producto'+trs+'" type="text" class="form-control cantidad" value="'+cantidad+'" placeholder="Escriba letras o números"></td>';
+                    nuevaFila+='<td><input readOnly name="total_producto[]" id="total_producto'+trs+'" type="text" class="form-control total" value="'+total_p+'" placeholder="Escriba letras o números">';
+                    nuevaFila+='<input name="idproducto[]" id="idproducto'+trs+'" type="hidden" value="'+id_producto+'"></td>';
+                    nuevaFila+='<td><button type="button"  class="btn btn-danger btn-sm" onclick="quitar('+trs+')" data-toggle="tooltip" data-placement="top" title="¡Haga click para quitar este documento!"><i class="fa fa-minus"></i></button></td>';
+                // Añadimos una columna con el numero total de columnas.
+                // Añadimos uno al total, ya que cuando cargamos los valores para la
+                // columna, todavia no esta añadida
+                nuevaFila+="</tr>";
+                $("#tabla_productos").append(nuevaFila);
+                mostrar_nada();
+            }
+            else
+            {
+                $("#mensaje_advertencia").html('Por favor debe ingresar un producto y su cantidad para poder agregar la linea...');
+                $("#ok_advertencia").attr('data-dismiss', 'modal');
+                $("#myModalAlert").modal('show');
+            }
+        });
+        
+    });
+
+function totales()
+{
+    var sub_total = 0;
+    var total_cantidad = 0;
+    $(".total").each(function(index, element){
+        sub_total = (parseFloat($(element).val()) + sub_total);
+    })
+    $(".cantidad").each(function(index, element){
+        total_cantidad = (parseFloat($(element).val()) + total_cantidad);
+    })
+
+    $("#sub_total").val(number_format(sub_total, 2, ','));
+    $("#cantidad_total").val(number_format(total_cantidad, 2, ','));
+
+    var iva = (sub_total * 0.12);
+    var total_total = (parseFloat(iva) + sub_total);
+
+    $("#iva").val(number_format(iva, 2, ','));
+    $("#total_total").val(number_format(total_total, 2, ','));
+}
+
+function mostrar_nada()
+{
+    var trs=$("#tabla_productos tr").length;
+    if(trs>=1)
+        $("#blanco").hide();
+    else
+        $("#blanco").show();
+
+    totales();
+}
+
+function quitar(valor){
+    $("#col_"+valor).remove();
+    mostrar_nada();
+}
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+    //  discuss at: http://phpjs.org/functions/number_format/
+    // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // improved by: davook
+    // improved by: Brett Zamir (http://brett-zamir.me)
+    // improved by: Brett Zamir (http://brett-zamir.me)
+    // improved by: Theriault
+    // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // bugfixed by: Michael White (http://getsprink.com)
+    // bugfixed by: Benjamin Lupton
+    // bugfixed by: Allan Jensen (http://www.winternet.no)
+    // bugfixed by: Howard Yeend
+    // bugfixed by: Diogo Resende
+    // bugfixed by: Rival
+    // bugfixed by: Brett Zamir (http://brett-zamir.me)
+    //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    //  revised by: Luke Smith (http://lucassmith.name)
+    //    input by: Kheang Hok Chin (http://www.distantia.ca/)
+    //    input by: Jay Klehr
+    //    input by: Amir Habibi (http://www.residence-mixte.com/)
+    //    input by: Amirouche
+    //   example 1: number_format(1234.56);
+    //   returns 1: '1,235'
+    //   example 2: number_format(1234.56, 2, ',', ' ');
+    //   returns 2: '1 234,56'
+    //   example 3: number_format(1234.5678, 2, '.', '');
+    //   returns 3: '1234.57'
+    //   example 4: number_format(67, 2, ',', '.');
+    //   returns 4: '67,00'
+    //   example 5: number_format(1000);
+    //   returns 5: '1,000'
+    //   example 6: number_format(67.311, 2);
+    //   returns 6: '67.31'
+    //   example 7: number_format(1000.55, 1);
+    //   returns 7: '1,000.6'
+    //   example 8: number_format(67000, 5, ',', '.');
+    //   returns 8: '67.000,00000'
+    //   example 9: number_format(0.9, 0);
+    //   returns 9: '1'
+    //  example 10: number_format('1.20', 2);
+    //  returns 10: '1.20'
+    //  example 11: number_format('1.20', 4);
+    //  returns 11: '1.2000'
+    //  example 12: number_format('1.2000', 3);
+    //  returns 12: '1.200'
+    //  example 13: number_format('1 000,50', 2, '.', ' ');
+    //  returns 13: '100 050.00'
+    //  example 14: number_format(1e-8, 8, '.', '');
+    //  returns 14: '0.00000001'
+
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    var n = !isFinite(+number) ? 0 : +number, prec = !isFinite(+decimals) ? 0 : Math.abs(decimals), sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep, dec = (typeof dec_point === 'undefined') ? '.' : dec_point, s = '', toFixedFix = function(n, prec) { var k = Math.pow(10, prec); return '' + (Math.round(n * k) / k).toFixed(prec); };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+</script>
