@@ -19,32 +19,32 @@ $lobjPdf->Ln();
 
 $lobjPdf->SetTextColor(50,50,50);
 $lobjPdf->SetFillColor(200,200,200);
-$lobjPdf->Cell(160,6,utf8_decode("DATOS DEL CLIENTE"),1,0,"C",true);
+$lobjPdf->Cell(160,6,utf8_decode("DATOS DEL CLIENTE"),"B",0,"C",true);
 $lobjPdf->SetFillColor(240,240,240);
-$lobjPdf->Cell(40,6,utf8_decode("Nº DE CONTROL"),1,1,"C",true);
+$lobjPdf->Cell(40,6,utf8_decode("Nº DE CONTROL"),"B",1,"C",true);
 $lobjPdf->SetFillColor(240,240,240);
 $lobjPdf->Cell(40,6,utf8_decode("Cliente: "),0,0,"L");
 $lobjPdf->SetFont("arial","",12);
 $lobjPdf->Cell(120,6,utf8_decode($laFactura['razonsocialcli']),0,0,"L");
 $lobjPdf->SetFont("arial","B",12);
 $lobjPdf->SetTextColor(220,50,50);
-$lobjPdf->Cell(40,6,utf8_decode($laFactura['idfactura']),1,1,"C");
+$lobjPdf->Cell(40,6,utf8_decode($laFactura['idfactura']),"L",1,"C");
 $lobjPdf->SetTextColor(50,50,50);
 
 $lobjPdf->Cell(40,6,utf8_decode("RIF: "),0,0,"L");
 $lobjPdf->SetFont("arial","",12);
 $lobjPdf->Cell(120,6,utf8_decode($laFactura['rifcli']),0,0,"L");
 $lobjPdf->SetFont("arial","B",12);
-$lobjPdf->Cell(40,6,utf8_decode("FECHA: "),1,1,"C");
+$lobjPdf->Cell(40,6,utf8_decode("FECHA: "),"L",1,"C",true);
 
 $lobjPdf->Cell(40,6,utf8_decode("Dirección: "),0,0,"L");
 $lobjPdf->SetFont("arial","",12);
 $lobjPdf->Cell(120,6,utf8_decode($laFactura['rifcli']),0,0,"L");
-$lobjPdf->Cell(40,6,utf8_decode($laFactura['fechafac']),1,1,"L");
+$lobjPdf->Cell(40,6,utf8_decode($laFactura['fechafac']),"L",1,"L");
 
 $lobjPdf->SetFillColor(200,200,200);
 $lobjPdf->SetFont("arial","B",12);
-$lobjPdf->Cell(200,6,utf8_decode("DATOS CHOFER"),1,1,"C",true);
+$lobjPdf->Cell(200,6,utf8_decode("DATOS CHOFER"),"B",1,"C",true);
 
 $lobjPdf->SetFillColor(240,240,240);
 $lobjPdf->Cell(40,6,utf8_decode("Nombre: "),0,0,"L");
@@ -58,7 +58,7 @@ $lobjPdf->Cell(160,6,utf8_decode($laFactura['cedula_rifcho']),0,1,"L");
 
 $lobjPdf->SetFillColor(200,200,200);
 $lobjPdf->SetFont("arial","B",12);
-$lobjPdf->Cell(200,6,utf8_decode("DATOS VEHÍCULO"),1,1,"C",true);
+$lobjPdf->Cell(200,6,utf8_decode("DATOS VEHÍCULO"),"B",1,"C",true);
 
 $lobjPdf->SetFillColor(240,240,240);
 $lobjPdf->Cell(40,6,utf8_decode("Placa: "),0,0,"L");
@@ -86,7 +86,7 @@ $lobjPdf->SetFont("arial","B",12);
 
 
 $lobjPdf->SetFillColor(200,200,200);
-$lobjPdf->Cell(200,6,utf8_decode("DATOS ACCESORIO"),1,1,"C",true);
+$lobjPdf->Cell(200,6,utf8_decode("DATOS ACCESORIO"),"B",1,"C",true);
 
 $lobjPdf->SetFillColor(240,240,240);
 $lobjPdf->Cell(40,6,utf8_decode("Placa: "),0,0,"L");
@@ -121,13 +121,13 @@ $lobjPdf->MultiCell(160,6,utf8_decode($laFactura['codigopre']),0,"L");
 
 $lobjPdf->SetFillColor(200,200,200);
 $lobjPdf->SetFont("arial","B",12);
-$lobjPdf->Cell(40,6,utf8_decode("CANTIDAD"),1,0,"C",true);
-$lobjPdf->Cell(80,6,utf8_decode("DESCRIPCIÓN"),1,0,"C",true);
-$lobjPdf->Cell(40,6,utf8_decode("PRECIO"),1,0,"C",true);
-$lobjPdf->Cell(40,6,utf8_decode("TOTAL"),1,1,"C",true);
+$lobjPdf->Cell(40,6,utf8_decode("CANTIDAD"),"B",0,"C",true);
+$lobjPdf->Cell(80,6,utf8_decode("DESCRIPCIÓN"),"B",0,"C",true);
+$lobjPdf->Cell(40,6,utf8_decode("PRECIO"),"B",0,"C",true);
+$lobjPdf->Cell(40,6,utf8_decode("TOTAL"),"B",1,"C",true);
 
 $lobjPdf->SetFont("arial","",12);
-for($i=0;$i<count($laFactura['precio']);$i++)
+for($i=0;$i<3;$i++)
 {
 	$subTotal=$laFactura['cantidad'][$i]*$laFactura['precio'][$i];
 	$Total=$Total+$subTotal;
@@ -143,19 +143,19 @@ $lobjPdf->SetX(130);
 $lobjPdf->SetFont("arial","B",12);
 $lobjPdf->Cell(40,6,utf8_decode("SUB-TOTAL: "),1,0,"L",true);
 $lobjPdf->SetFont("arial","",12);
-$lobjPdf->Cell(40,6,utf8_decode($Total),1,1,"L");
+$lobjPdf->Cell(40,6,utf8_decode($Total),1,1,"C");
 
 $lobjPdf->SetX(130);
 $lobjPdf->SetFont("arial","B",12);
 $lobjPdf->Cell(40,6,utf8_decode("IVA (12%): "),1,0,"L",true);
 $lobjPdf->SetFont("arial","",12);
-$lobjPdf->Cell(40,6,utf8_decode($Total*0.12),1,1,"L");
+$lobjPdf->Cell(40,6,utf8_decode($Total*0.12),1,1,"C");
 $lobjPdf->SetFont("arial","B",12);
 
 $lobjPdf->SetX(130);
 $lobjPdf->Cell(40,6,utf8_decode("TOTAL: "),1,0,"L",true);
 $lobjPdf->SetFont("arial","",12);
-$lobjPdf->Cell(40,6,utf8_decode($Total*1.12),1,1,"L");
+$lobjPdf->Cell(40,6,utf8_decode($Total*1.12),1,1,"C");
 
 $lobjPdf->Ln(5);
 $lobjPdf->SetTextColor(10,10,10);
