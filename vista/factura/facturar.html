@@ -196,6 +196,24 @@
     </div>
     </form>
 </div>
+
+<div class="modal fade" id="myModalExito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">¡Mensaje!</h4>
+            </div>                  
+            <div class="modal-body">
+                <p id="mensaje_exito"></p>
+            </div>                  
+            <div class="modal-footer">
+                <a id="ok_exito" class="btn btn-success"><i class="fa fa-check"></i> Aceptar</a>
+
+                <a class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Cancelar</a>
+            </div>
+        </div> 
+    </div> 
+</div>
 <script src="../media/js/chosen.jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(document).ready(function($){
@@ -238,17 +256,24 @@
                     type: "POST",
                     url:url,
                     data:valores,
-                    datatype: 'JSON',
+                    dataType : 'json',
                     success: function(datos){
-                        if(datos.mensaje=='1')
-                            mensaje = 'Se ha facturado exitosamente...';
-                        else
-                            mensaje = 'Error, al facturar intente nuevamente...';
-
+                        if(datos.mensaje==1){
+                            mensaje = 'Se ha facturado exitosamente. Proceda a imprimir la factura... <b>Nro. Factura:</b>'+datos.nro_factura;
+                            $("#ok_exito").attr('onclick', 'imprimir('+datos.nro_factura+');');
+                            $("#ok_exito").html('<i class="fa fa-print"></i> Imprimir');
+                        }
+                        else{
+                            mensaje = 'Error al facturar intente nuevamente...';
+                            $("#ok_exito").attr('data-dismiss', 'modal');
+                        }
                         console.log(datos);
+                        $("#mensaje_exito").html(mensaje);
+                        $("#myModalExito").modal('show');
                     }
                 });
         });
+
 
         $('.solo-numeros').keyup(function (){
             this.value = (this.value + '').replace(/[^0-9+.]/g, '');
@@ -337,6 +362,11 @@ function totales()
 
     $("#iva").val(number_format(iva, 2, '.'));
     $("#total_total").val(number_format(total_total, 2, '.'));
+}
+
+function imprimir(id)
+{
+    alert('printed!!!');
 }
 
 function mostrar_nada()
