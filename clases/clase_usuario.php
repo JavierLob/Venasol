@@ -9,11 +9,35 @@
 		private $lnIdRol;
 		private $lnIdPersona;
 		private $lcNombre;
+		private $lnIdUsuarioGoogle;
+		private $lcCorreo;
+		private $lcProfile;
+		private $lcProfileImage;
 
 
 		function set_Usuario($pcUsuario)
 		{
 			$this->lcUsuario=$pcUsuario;
+		}
+
+		function set_Profile($pcProfile)
+		{
+			$this->lcProfile=$pcProfile;
+		}
+
+		function set_ProfileImage($pcProfileImage)
+		{
+			$this->lcProfileImage=$pcProfileImage;
+		}
+
+		function set_Correo($pcCorreo)
+		{
+			$this->lcCorreo=$pcCorreo;
+		}
+
+		function set_IdUsuarioGoogle($pcIdUsuarioGoogle)
+		{
+			$this->lnIdUsuarioGoogle=$pcIdUsuarioGoogle;
 		}
 
 		function set_Clave($pcClave)
@@ -116,6 +140,20 @@
 			return $Fila;
 		}
 
+		function consultar_usuario_google()
+		{
+			$this->conectar();
+			$sql="SELECT COUNT(google_id) as usercount FROM tgoogle_users WHERE google_id='$this->lnIdUsuarioGoogle'";
+			$pcsql=$this->filtro($sql);
+			if($laRow=$this->proximo($pcsql))
+			{
+				$Fila=($laRow['usercount']=='0')?false:true;
+			}
+			$this->desconectar();
+			return $Fila;
+		}
+
+
 		function consultar_datos_usuario()
 		{
 			$this->conectar();
@@ -198,8 +236,18 @@
 		function insertar_clave()
 		{
 			$this->conectar();
-			$sql=" INSERT INTO tclave(clavecla, fechainiciocla, fechafincla, estatuscla, tusuario_idusuario) 
+			$sql="INSERT INTO tclave(clavecla, fechainiciocla, fechafincla, estatuscla, tusuario_idusuario) 
 			VALUES (sha1((SELECT clavepredeterminada FROM tsistema)),now(), ADDDATE(NOW(), (SELECT tiempocaducida FROM tsistema)),'1','$this->lcUsuario');";
+			$lnHecho=$this->ejecutar($sql);	
+			$this->desconectar();	
+			return $lnHecho;
+		}
+
+		function registrar_usuario_google()
+		{
+			$this->conectar();
+			$sql=" INSERT INTO tgoogle_users (google_id, google_name, google_email, google_link, google_picture_link) 
+		VALUES ('$this->lnIdUsuarioGoogle', '$this->lcUsuario','$this->lcCorreo','$this->lcProfile','$this->lcProfileImage')";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();	
 			return $lnHecho;

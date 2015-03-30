@@ -1,26 +1,21 @@
 <?php
 
 ########## Google Settings.. Client ID, Client Secret from https://cloud.google.com/console #############
-$google_client_id 		= '145882205996-rmrh1fho17bmsavq0kmues8fcan45trr.apps.googleusercontent.com';
-$google_client_secret 	= 'G08M-QLEJD05IfmUAx6J6Jib';
-$google_redirect_url 	= 'http://localhost:8080/venasol/admin/admin/vista/intranet.php'; //path to your script
-$google_developer_key 	= '145882205996-rmrh1fho17bmsavq0kmues8fcan45trr@developer.gserviceaccount.com';
-
-########## MySql details (Replace with yours) #############
-$db_username = "postgres"; //Database Username
-$db_password = "123456"; //Database Password
-$hostname = "localhost:5432"; //Mysql Hostname
-$db_name = 'bd_venasol'; //Database Name
-###################################################################
+$google_client_id 		= '145882205996-igvkgql18ejjflh8vmh8uuv16mkbemff.apps.googleusercontent.com';
+$google_client_secret 	= 'JCv6Foxxa_QlSjTPmaJsQXTa';
+$google_redirect_url 	= 'http://localhost:8080/venasol/vista/'; //path to your script
+$google_developer_key 	= '145882205996-igvkgql18ejjflh8vmh8uuv16mkbemff.apps.googleusercontent.com';
 
 //include google api files
 require_once 'src/Google_Client.php';
 require_once 'src/contrib/Google_Oauth2Service.php';
+require_once '../clases/clase_usuario.php';
 
 //start session
 session_start();
 
 $gClient = new Google_Client();
+$lobjUsuario = new clsUsuario();
 $gClient->setApplicationName('Acceso a VENASOL C.A.');
 $gClient->setClientId($google_client_id);
 $gClient->setClientSecret($google_client_secret);
@@ -90,38 +85,30 @@ if(isset($authUrl)) //user is not logged in, show login button
 else // user logged in 
 {
    /* connect to database using mysqli */
-	$pgsql = pg_connect("user=".$db_username." "."password=".$db_password." "."dbname=".$db_name);
-
+	$lobjUsuario->set_IdUsuarioGoogle($user_id);		
+	$lobjUsuario->set_Usuario($user_name);		
+	$lobjUsuario->set_Correo($email);		
+	$lobjUsuario->set_Profile($profile_url);		
+	$lobjUsuario->set_ProfileImage($profile_image_url);		
+   	$user_exist=$lobjUsuario->consultar_usuario_google();
 	
 	/*if ($mysqli->connect_error) {
 		die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
 	}*/
 	
 	//compare user id in our database
-	$result=pg_query($pgsql,"SELECT COUNT(google_id) as usercount FROM tgoogle_users WHERE google_id=$user_id") OR die ('Ejecucion Invalida');
-	$user_exist=pg_fetch_array($result);
 
 	if($user_exist)
 	{
 		echo 'Bienvenido de regreso '.$user_name.'!';
 	}else{ 
 		//user is new
-		echo 'Hola '.$user_name.', Gracias por registrarte!';
-		$result=pg_query($pgsql,"INSERT INTO tgoogle_users (google_id, google_name, google_email, google_link, google_picture_link) 
-		VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url')") OR die ('Ejecucion Invalida');
-		
-		//$mysqli->query("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) 
-		//VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url')");
+   		$result=$lobjUsuario->registrar_usuario_google();
 	}
 
 	
-	//echo '<br /><a href="'.$profile_url.'" target="_blank"><img src="'.$profile_image_url.'?sz=100" /></a>';
-	//echo '<br /><a class="logout" href="?reset=1">Logout</a>';
 	
-	//list all user details
-	//echo '<pre>'; 
-	print_r($user);
-	//echo '</pre>';	
+	//header("location: ../vista/?modulo=inicio");
 }
  
 //echo '</body></html>';
