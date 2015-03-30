@@ -14,7 +14,7 @@
 <div class="col-lg-12">
     <div class="main-box">    
         <header class="main-box-header clearfix">
-            <h3><i class="fa fa-shopping-cart"></i> Iniciar Facturación</h3>
+            <h3><i class="fa fa-file-text-o"></i> Iniciar Facturación</h3>
         </header>
         <div class="main-box-body clearfix">
             <div class="row">
@@ -44,17 +44,50 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="button" data-step="9" data-intro='Para finalizar haga click en guardar para {funcion} el cliente.' data-position="top" class="btn btn-success"><i class="fa fa-shopping-cart"></i> Iniciar Facturación</button>
-                        <a href="./" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                        <button type="button" data-step="2" data-intro='Para iniciar una facturación haga click en iniciar facturación.' data-position="top" class="btn btn-success" id="iniciar_factura"><i class="fa fa-shopping-cart"></i> Iniciar Facturación</button>
+                        <a href="./" data-step="3" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
             </form>
+            <div class="row">
+                 <table class="table table-hover" id="filtro">
+                    <thead>
+                        <th>Nº</th><th>Fecha</th><th>Cliente</th><th>Chofer</th><th>IVA</th><th>Total</th><th>Estatus</th><th class="{operaciones}">Acción</th>
+                    </thead>
+                    <tbody>
+                        <!--LISTADO_FACTURAS-->
+                        <tr>
+                            <td>{idfactura}</td>
+                            <td>{fechafac}</td>
+                            <td>{razonsocial}</td>
+                            <td>{nombrecho} {apellidocho}</td>
+                            <td>{ivafac}</td>
+                            <td>{totalfac}</td>
+                            <td><label class="label label-{estatus_color}">{estatusfac}</label></td>
+                            <td>
+                                <a class="btn btn-success" data-step="3" data-intro='Este botón le permitirá imprimir esta factura' data-position="left" target="_blank" title="Impirmir" href="../reporte/factura.php?id={idfactura}"><i class="fa fa-file-text-o"></i></a>
+                            </td>
+                            <!--<td class="{operaciones}">
+                                <a class="btn btn-info {btn_consultar}" data-step="2" data-intro='Este botón lo lleva al formulario de consulta y edición' data-position="left" href="#" title="Consultar" onclick="buscar('{idtipo_producto}')"><i class="fa fa-search"></i></a> 
+                                <a class="btn btn-{color_boton} {btn_{funcion}}" data-step="3" data-intro='Este botón le permite {funcion} un tipo de producto' data-position="left" data-toggle="modal" href="#myModal{funcion}" title="{titulo}" onclick="{funcion}('{idtipo_producto}')" ><i class="fa fa-{icono}"></i></a> 
+                            </td>-->
+                        </tr>
+                        <!--LISTADO_FACTURAS-->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
     jQuery(document).ready(function($){
+        oTable = $('#filtro').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "iDisplayLength": 5                    
+        });
+
         $("#buscar_cliente").keypress(function(){
         $('.sugerencias').fadeIn('slow').html('Cargando...');              
             var url="../controlador/control_cliente.php";
@@ -74,7 +107,7 @@
               	});
         });
 
-        $(".btn-success").click(function(){
+        $("#iniciar_factura").click(function(){
         	var idcliente = $("#cam_idcliente").val();
         	if(idcliente != ''){
         		$("#form_cliente").submit();

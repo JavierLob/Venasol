@@ -1,14 +1,5 @@
 <?php
-	/*
-	idfactura bigint NOT NULL DEFAULT nextval('sidfactura'::regclass),
-  tvehiculo_idvehiculo bigint NOT NULL,
-  taccesorio_idaccesorio bigint NOT NULL,
-  tcliente_idcliente bigint NOT NULL,
-  tchofer_idchofer bigint NOT NULL,
-  ivafac numeric(10,2) NOT NULL,
-  totalfac numeric(10,2) NOT NULL,
-  observacionfac character varying(255),
-  estatusfac character(1) NOT NULL,*/
+
 	require_once('../nucleo/ModeloConectPg.php');
 	class clsFactura extends clsModelo_pg
 	{
@@ -68,24 +59,68 @@
 		}
 
 
-		function consultar_clientes()
+		function consultar_facturas()
 		{
 			$this->conectar();
 			$cont=0;
-			$sql="SELECT * FROM tcliente;";
+			$sql="SELECT * FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;;";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
 				$Fila[$cont]=$laRow;					
-				$Fila[$cont]['estatus_color']=($laRow['estatuscli'])?'success':'danger';
-				$Fila[$cont]['estatuscli'] = ($laRow['estatuscli']) ? 'Activo' : 'Inactivo';
-				$Fila[$cont]['titulo'] = ($laRow['estatuscli']) ? 'Desactivar' : 'Restaurar';
-				$Fila[$cont]['color_boton'] = ($laRow['estatuscli']) ? 'danger' : 'warning';
-				$Fila[$cont]['funcion'] = ($laRow['estatuscli']) ? 'eliminar' : 'restaurar';
-				$Fila[$cont]['icono'] = ($laRow['estatuscli']) ? 'times' : 'refresh';					
+				$Fila[$cont]['estatus_color']=($laRow['estatusfac'])?'success':'danger';
+				$Fila[$cont]['estatusfac'] = ($laRow['estatusfac']) ? 'Activo' : 'Inactivo';
+				$Fila[$cont]['titulo'] = ($laRow['estatusfac']) ? 'Desactivar' : 'Restaurar';
+				$Fila[$cont]['color_boton'] = ($laRow['estatusfac']) ? 'danger' : 'warning';
+				$Fila[$cont]['funcion'] = ($laRow['estatusfac']) ? 'eliminar' : 'restaurar';
+				$Fila[$cont]['icono'] = ($laRow['estatusfac']) ? 'times' : 'refresh';					
 				$cont++;
 			}
 			
+			$this->desconectar();
+			return $Fila;
+		}
+
+		function consultar_factura()
+		{
+			$this->conectar();
+			$sql="SELECT *,TO_CHAR(fechafac, 'dd-mm-YYYY - HH12:MM') as fechafac,(SELECT descripcionmod FROM tmodelo,tvehiculo WHERE tvehiculo_idvehiculo=idvehiculo AND tmodelo_idmodelo=idmodelo) as modeloveh,(SELECT descripcionmod FROM tmodelo,taccesorio WHERE taccesorio_idaccesorio=idaccesorio AND tmodelo_idmodelo=idmodelo) as modeloacc,(SELECT descripcionmar FROM tmodelo,taccesorio,tmarca WHERE taccesorio_idaccesorio=idaccesorio AND tmodelo_idmodelo=idmodelo AND tmarca_idmarca=idmarca) as marcaacc,(SELECT descripcionmar FROM tmodelo,tvehiculo,tmarca WHERE tvehiculo_idvehiculo=idvehiculo AND tmodelo_idmodelo=idmodelo AND tmarca_idmarca=idmarca) as marcaveh FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE idfactura='$this->lnIdFactura' AND tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila=$laRow;			
+			}
+			
+			$this->desconectar();
+			return $Fila;
+		}
+
+		function consultar_productos_factura()
+		{
+			$this->conectar();
+			$cont=0;
+			$sql="SELECT * FROM tfactura_producto,tproducto WHERE tfactura_idfactura='$this->lnIdFactura' AND tproducto_idproducto=idproducto";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila[$cont]=$laRow;
+				$cont++;			
+			}
+			
+			$this->desconectar();
+			return $Fila;
+		}
+
+		function consultar_precintos_factura()
+		{
+			$this->conectar();
+			$sql="SELECT * FROM tprecinto WHERE tfactura_idfactura='$this->lnIdFactura'";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila['codigopre'].=$laRow['idcodigopre'].',';
+			}
+			$Fila['codigopre']=substr($Fila['codigopre'],0,strlen($Fila['codigopre'])-1);
 			$this->desconectar();
 			return $Fila;
 		}
@@ -123,19 +158,19 @@
 			return $lnHecho;
 		}
 
-		function eliminar_cliente()
+		function eliminar_factura()
 		{
 			$this->conectar();
-			$sql="UPDATE tcliente SET estatuscli='0' WHERE idcliente='$this->lnIdCliente';";
+			$sql="UPDATE tfactura SET estatusfac='0' WHERE idfactura='$this->lnIdFactura';";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
 		}
 
-		function restaurar_cliente()
+		function restaurar_factura()
 		{
 			$this->conectar();
-			$sql="UPDATE tcliente SET estatuscli='1' WHERE idcliente='$this->lnIdCliente';";
+			$sql="UPDATE tfactura SET estatusfac='1' WHERE idfactura='$this->lnIdFactura';";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
@@ -152,10 +187,10 @@
 		}
 
 
-		function editar_cliente()
+		function editar_factura()
 		{
 			$this->conectar();
-			$sql="UPDATE tcliente
+			$sql="UPDATE tfactura
 				   	 SET idcodigocli='$this->lcCodigoCliente', rifcli='$this->lcRif', razonsocial=UPPER('$this->lcNombre'), 
 				         direccioncli=UPPER('$this->lcDireccion'), correounocli='$this->lcCorreouno', correodoscli='$this->lcCorreodos', correotrescli='$this->lcCorreotres', 
 				         telefonounocli='$this->lnTelefonouno', telefonodoscli='$this->lnTelefonodos', telefonotrescli='$this->lnTelefonotres', observacioncli='$this->lcObservacion'

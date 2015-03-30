@@ -16,7 +16,7 @@
 <div class="col-lg-12">
     <div class="main-box">    
         <header class="main-box-header clearfix">
-            <h3><i class="fa fa-shopping-cart"></i> Facturación</h3>
+            <h3><i class="fa fa-file-text-o"></i> Facturación</h3>
         </header>
         <div class="main-box-body clearfix">
             <div class="row">
@@ -72,7 +72,7 @@
                         </thead>
                         <tr>
                             <td><input type="text" class="form-control" name="buscar_producto" id="buscar_producto" value="" placeholder="Escriba una descripción del producto a buscar" />
-                            <div class="sugerencias hide">
+                                <div class=""></div>
                             </td>
                             <td>
                                 <input type="hidden" name="codigo_producto" id="codigo_producto" value="">
@@ -87,6 +87,9 @@
                             <td>
                                 <button type="button" class="btn btn-success" id="add" name="add"><i class="fa fa-plus"></i></button>
                             </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="sugerencias hide"></td>
                         </tr>
                         <tr id="blanco">
                             <td colspan="5">No existen productos cargados...</td>
@@ -166,14 +169,16 @@
                     <label for="buscar_cliente">Precintos <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Buscar cliente"><i class="fa fa-question"></i></span></label>
                     <div class="controls">
                         <div class="input-group">
-                            <div class="input-group-addon">
-                                <span><i class="fa fa-tag"></i></span>
-                            </div><!-- /addon-group -->
+                            <span class="input-group-addon"> <i class="fa fa-tags"></i></span>
                             <select name="precintos[]" id="precintos" multiple class="form-control chosen-select"  data-placeholder="Seleccione uno o mas precintos..." >
                                 <!--LISTADO_PRECINTOS-->
                                 <option value="{idprecinto}">{idcodigopre}</option>
                                 <!--LISTADO_PRECINTOS-->
                             </select>
+                            <span class="input-group-btn">
+
+                                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" href="#myModalregistrarPrecintos"><i class="fa fa-plus"></i></span>
+                            </span><!-- /addon-group -->
                         </div>
                     </div>
                 </div>
@@ -189,7 +194,7 @@
             <div class="row">
                 <div class="col-lg-offset-2 col-lg-10">
                     <button id="facturar" type="button" data-step="9" data-intro='Para finalizar haga click en guardar para facturar.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Facturar</button>
-                    <a href="?modulo=cliente/cliente" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    <a href="?modulo=factura/factura" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                 </div>
             </div>
         </div>
@@ -207,9 +212,45 @@
                 <p id="mensaje_exito"></p>
             </div>                  
             <div class="modal-footer">
-                <a id="ok_exito" class="btn btn-success"><i class="fa fa-check"></i> Aceptar</a>
+                <a id="ok_exito" target="_blank" class="btn btn-success"><i class="fa fa-check"></i> Aceptar</a>
 
                 <a class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Cancelar</a>
+            </div>
+        </div> 
+    </div> 
+</div>
+<div class="modal fade" id="myModalregistrarPrecintos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Registrar Precinto</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form_modal_registrar__precinto" role="form">
+                    <input type="hidden" name="operacion" id="cam_idoperacion" value="registrar_precinto"/>
+                    <div class="row">
+                        <div class="alert alert-danger" style="display:none" id="mensaje_error_modal">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="fa fa-times fa-fw fa-lg"></i>
+                            <strong>Error </strong>al registrar el precinto.
+                        </div>
+                        <div class="alert alert-success" style="display:none" id="mensaje_exito_modal">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="fa fa-check fa-fw fa-lg"></i>
+                            <strong>Éxito </strong>al registrar el precinto.
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label for="exampleTooltip">Código<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del precinto"><i class="fa fa-question"></i></span></label>
+                            <input type="text" class="form-control" name="idcodigopre" id="cam_idcodigopre" >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="registrar_precinto()"><i class="fa fa-check"></i> Registrar</button>
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div> 
     </div> 
@@ -218,16 +259,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function($){
 
-         var config = {
-          '.chosen-select'           : {},
-          '.chosen-select-deselect'  : {allow_single_deselect:true},
-          '.chosen-select-no-single' : {disable_search_threshold:10},
-          '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-          '.chosen-select-width'     : {width:"95%"}
-        }
-        for (var selector in config) {
-          $(selector).chosen(config[selector]);
-        }
+        inicializar_chocen();
 
         $("#buscar_producto").keypress(function(){          
         $('.sugerencias').fadeIn('slow').html('Cargando...');              
@@ -260,8 +292,10 @@
                     success: function(datos){
                         if(datos.mensaje==1){
                             mensaje = 'Se ha facturado exitosamente. Proceda a imprimir la factura... <b>Nro. Factura:</b>'+datos.nro_factura;
-                            $("#ok_exito").attr('onclick', 'imprimir('+datos.nro_factura+');');
                             $("#ok_exito").html('<i class="fa fa-print"></i> Imprimir');
+                            $("#ok_exito").attr('href', ' ../reporte/factura.php?id='+datos.nro_factura);
+
+                           
                         }
                         else{
                             mensaje = 'Error al facturar intente nuevamente...';
@@ -341,6 +375,20 @@
         });
         
     });
+
+ function inicializar_chocen()
+{
+      var config = {
+  '.chosen-select'           : {},
+  '.chosen-select-deselect'  : {allow_single_deselect:true},
+  '.chosen-select-no-single' : {disable_search_threshold:10},
+  '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+  '.chosen-select-width'     : {width:"95%"}
+}
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+}
 
 function totales()
 {
@@ -449,4 +497,59 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     }
     return s.join(dec);
 }
+      function registrar_precinto(){
+        idcodigopre=document.getElementById('cam_idcodigopre').value;
+        if(idcodigopre)
+        {
+          var url="../controlador/control_precinto.php";
+          $.ajax({   
+              type: "POST",
+              url:url,
+              data:{idcodigopre:idcodigopre,operacion:'registrar_precinto_ajax'},
+              success: function(datos){
+                 if(datos=='1')
+                 {
+                    $("#mensaje_exito_modal").animate({ height: 'show', opacity: 'show' }, 'slow');
+                     consultar_precinto();
+                     setTimeout(function() {
+                        $("#mensaje_exito_modal").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+                    }, 3500); 
+                    
+                 } 
+                 else
+                 {
+                     $("#mensaje_error_modal").animate({ height: 'show', opacity: 'show' }, 'slow');
+                     setTimeout(function() {
+                        $("#mensaje_error_modal").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+                    }, 3500); 
+                 } 
+               }
+          });
+        }
+        else
+        {
+            $("#mensaje_error_modal").animate({ height: 'show', opacity: 'show' }, 'slow');
+
+            setTimeout(function() {
+                $("#mensaje_error_modal").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+            }, 3500); 
+
+        }
+  }
+
+  function consultar_precinto()
+  {
+
+          var url="../controlador/control_precinto.php";
+          $.ajax({   
+              type: "POST",
+              url:url,
+              data:{operacion:'consultar_precinto'},
+              success: function(datos){
+                  $('#precintos').html(datos);  
+                $(".chosen-select").val('').trigger("chosen:updated");
+
+               }
+          });
+  }
 </script>

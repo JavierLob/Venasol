@@ -96,6 +96,17 @@
 			return $lnHecho;
 		}
 
+		function registrar_precinto_ajax()
+		{
+			$this->conectar();
+
+			$sql="INSERT INTO tprecinto (idcodigopre,observacionpre, estatuspre)VALUES('$this->lcIdCodigo','$this->lcObservacion','1')";
+			$lnHecho=$this->ejecutar($sql);
+
+			$this->desconectar();
+			return $lnHecho;
+		}
+
 		function eliminar_precinto()
 		{
 			$this->conectar();

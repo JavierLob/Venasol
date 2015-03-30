@@ -37,7 +37,7 @@
 			header('location:../vista/?modulo=precinto/precinto');
 		break;
 		case 'registrar_precinto_ajax':
-			if($lobjPrecinto->registrar_precinto())
+			if($lobjPrecinto->registrar_precinto_ajax())
 			{
 				echo '1';
 			}
@@ -47,7 +47,7 @@
 			}
 		break;
 		case 'consultar_precinto':
-			if($laprecintos=$lobjPrecinto->consultar_precintos())
+			if($laprecintos=$lobjPrecinto->consultar_precintos_activos())
 			{
 				$option='<option value=""></option>';
 				for($i=0;$i<count($laprecintos);$i++)

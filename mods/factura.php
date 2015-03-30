@@ -4,10 +4,12 @@ require_once('../clases/clase_cliente.php');
 require_once('../clases/clase_chofer.php');
 require_once('../clases/clase_vehiculo.php');
 require_once('../clases/clase_precinto.php');
+require_once('../clases/clase_factura.php');
 $lobjCliente = new clsCliente;
 $lobjChofer = new clsChofer;
 $lobjVehiculo = new clsVehiculo;
 $lobjPrecinto = new clsPrecinto;
+$lobjFactura = new clsFactura;
 switch ($vista) {
         case 'iniciar_factura':
             if($_POST['operacion']=='iniciar_factura')
@@ -63,10 +65,20 @@ switch ($vista) {
             }
         break;
 	    default:
-		    $HTML = $ObjSistema->get_cuerpo('factura,iniciar factura','#,?modulo=factura/inicio','factura','factura');
+            $lafacturas = $lobjFactura->consultar_facturas();
+		    
+            $HTML = $ObjSistema->get_cuerpo('factura,iniciar factura','#,?modulo=factura/inicio','factura','factura');
             $ObjSistema->set_cuerpo($HTML);
             $diccionario =array('cuerpo' => file_exists("factura/iniciar_factura.html") ? file_get_contents("factura/iniciar_factura.html") : '');
             $HTML = $ObjSistema->render($diccionario);
+
+             $ObjSistema->set_cuerpo($HTML);
+                if($lafacturas)
+                    $HTML = $ObjSistema->render_regex('LISTADO_FACTURAS', $lafacturas);
+                else
+                    $HTML = $ObjSistema->reemplazar_vacio('LISTADO_FACTURAS', '');
+             $ObjSistema->set_cuerpo($HTML);
+            
 		break;
 }
 
