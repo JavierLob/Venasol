@@ -41,16 +41,24 @@
 								</div>
 							</header>
 							<div id="login-box-inner">
-								<form role="form" action="../controlador/control_usuario.php" method="POST">
+								<form role="form" id="form_login" action="../controlador/control_usuario.php" method="POST">
 									<input type="hidden" name="operacion" value="iniciar_sesion" />
 									<input type="hidden" name="entrar" value="1">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-										<input name="usuario" class="form-control" type="text" placeholder="Usuario">
+									<div class="form-group">
+										<div class="controls">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-user"></i></span>
+												<input name="usuario" class="form-control" type="text" placeholder="Usuario" data-rule-required="true" data-msg-required="Por favor introduzca el usuario...">
+											</div>
+										</div>
 									</div>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-key"></i></span>
-										<input name="clave" type="password" class="form-control" placeholder="Contraseña">
+									<div class="form-group">
+										<div class="controls">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-key"></i></span>
+												<input name="clave" type="password" class="form-control" placeholder="Contraseña" data-rule-required="true" data-msg-required="Por favor introduzca la contraseña...">
+											</div>
+										</div>
 									</div>
 									<!--<div id="remember-me-wrapper">
 										<div class="row">
@@ -108,11 +116,42 @@
 <script src="../media/js/demo-skin-changer.js"></script>  
 <script src="../media/js/bootstrap.js"></script>
 <script src="../media/js/jquery.nanoscroller.min.js"></script>
+<script src="../media/js/jquery.validate.min.js"></script>
  
  
 <script src="../media/js/scripts.js"></script>
  <script type="text/javascript">
  {msj}
+
+ $("#form_login").validate({
+        errorElement: 'label', //default input error message container
+        errorClass: 'help-inline', // default input error message class
+        focusInvalid: true, // do not focus the last invalid input
+        
+        invalidHandler: function (event, validator) { //display error alert on form submit   
+            $('.alert-danger').fadeIn('fast');
+        },
+
+        highlight: function (element) { // hightlight error inputs
+            $(element)
+                .closest('.form-group').addClass('has-error'); // set error class to the control group
+            $('.btn-success').attr('disabled',true);
+        },
+
+        success: function (label) {
+            label.closest('.form-group').removeClass('has-error');
+            label.remove();
+            $('.btn-success').attr('disabled',false);
+        },
+
+        errorPlacement: function (error, element) {
+            error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
+        },
+
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
  </script>
 </body>
 </html>
