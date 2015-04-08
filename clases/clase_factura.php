@@ -99,11 +99,13 @@
 		{
 			$this->conectar();
 			$cont=0;
-			$sql="SELECT * FROM tfactura_producto,tproducto WHERE tfactura_idfactura='$this->lnIdFactura' AND tproducto_idproducto=idproducto";
+			$sql="SELECT *, (preciopro * cantidadpro) total_pro FROM tfactura_producto,tproducto WHERE tfactura_idfactura='$this->lnIdFactura' AND tproducto_idproducto=idproducto";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
 				$Fila[$cont]=$laRow;
+				$Fila[$cont]['nro']=($cont + 6);
+				$Fila[$cont]['total_pro']=number_format($laRow['total_pro'], 2, '.', '');
 				$cont++;			
 			}
 			
@@ -121,6 +123,21 @@
 				$Fila['codigopre'].=$laRow['idcodigopre'].',';
 			}
 			$Fila['codigopre']=substr($Fila['codigopre'],0,strlen($Fila['codigopre'])-1);
+			$this->desconectar();
+			return $Fila;
+		}
+
+		function consultar_precintos_factura_b()
+		{
+			$cont=0;
+			$this->conectar();
+			$sql="SELECT * FROM tprecinto WHERE tfactura_idfactura='$this->lnIdFactura'";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila[$cont]=$laRow;
+				$cont++;
+			}
 			$this->desconectar();
 			return $Fila;
 		}

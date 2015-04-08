@@ -16,7 +16,7 @@
 <div class="col-lg-12">
     <div class="main-box">    
         <header class="main-box-header clearfix">
-            <h3><i class="fa fa-file-text-o"></i> Facturación</h3>
+            <h3><i class="fa fa-file-text-o"></i> Modificar Factura</h3>
         </header>
         <div class="main-box-body clearfix">
             <div class="row">
@@ -30,6 +30,7 @@
             <form action="../controlador/control_factura.php" method="POST" name="form_factura" id="form_factura">
                 <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
                 <input type="hidden" value="{idcliente}" name="idcliente" id="cam_idcliente"/>
+                <input type="hidden" value="{idfactura}" name="idfactura" id="cam_idfactura"/>
                 <div class="row" data-step="1" data-intro='Aquí encontraras toda la información relacionada con el cliente que seleccionaste para facturar.' data-position="top">
                     <div class="form-group col-sm-3 col-xs-12">
                         <label style="font-weight: bold;" for="exampleTooltip">Rif <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Rif del cliente"><i class="fa fa-question"></i></span></label>
@@ -54,10 +55,10 @@
                     <div class="form-group col-sm-3 col-xs-12" data-step="2" data-intro='Selecciona el IVA que se le aplicará a la factura a realizar.' data-position="top">
                         <label style="font-weight: bold;" for="exampleTooltip">Iva <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Seleccione el IVA a aplicar"><i class="fa fa-question"></i></span></label>
                         <select name="select_iva" id="select_iva" class="form-control">
-                            <option value="0.12">12 %</option>
-                            <option value="0.08">8 %</option>
-                            <option value="0.06">6 %</option>
-                            <option value="0">0 %</option>
+                            <option {0.12} value="0.12">12 %</option>
+                            <option {0.08} value="0.08">8 %</option>
+                            <option {0.06} value="0.06">6 %</option>
+                            <option {0} value="0">0 %</option>
                         </select>
                     </div>
                 </div>
@@ -91,13 +92,30 @@
                         <tr>
                             <td colspan="5" class="sugerencias hide"></td>
                         </tr>
-                        <tr id="blanco">
-                            <td colspan="5">No existen productos cargados...</td>
+                        <!--LISTADO_PRODUCTOS-->
+                        <tr id="col_{nro}">
+                            <td>
+                                <input readonly="" name="descripcion_producto[]" id="descripcion_producto{nro}" type="text" class="form-control " value="{descripcioncortapro}" placeholder="Escriba letras o números">
+                            </td>
+                            <td>
+                                <input readonly="" name="precio_producto[]" id="precio_producto{nro}" type="text" class="form-control " value="{preciopro}" placeholder="Escriba letras o números">
+                            </td>
+                            <td>
+                                <input readonly="" name="cantidad_producto[]" id="cantidad_producto{nro}" type="text" class="form-control cantidad" value="{cantidadpro}" placeholder="Escriba letras o números">
+                            </td>
+                            <td>
+                                <input readonly="" name="total_producto[]" id="total_producto{nro}" type="text" class="form-control total" value="{total_pro}" placeholder="Escriba letras o números">
+                                <input name="idproducto[]" id="idproducto{nro}" type="hidden" value="{idproducto}">
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="quitar({nro})" data-toggle="tooltip" data-placement="top" title="¡Haga click para quitar este documento!"><i class="fa fa-minus"></i></button>
+                            </td>
                         </tr>
+                        <!--LISTADO_PRODUCTOS-->
                         <tfoot>
                             <th colspan="2">Total: (Iva+Sub-Total)</th>
-                            <th><input readOnly type="text" class="form-control" name="iva" id="iva" value="" placeholder="0.00" /></th>
-                            <th><input readOnly type="text" class="form-control" name="total_total" id="total_total" value="" placeholder="0.00" /></th>
+                            <th><input readOnly type="text" class="form-control" name="iva" id="iva" value="{ivafac}" placeholder="0.00" /></th>
+                            <th><input readOnly type="text" class="form-control" name="total_total" id="total_total" value="{totalfac}" placeholder="0.00" /></th>
                             <th></th>
                         </tfoot>
                         <tfoot>
@@ -126,7 +144,7 @@
                             <select name="chofer" id="chofer" class="form-control chosen-select"  data-placeholder="Seleccione un chofer...">
                                 <option value=""></option>
                                 <!--LISTADO_CHOFER-->
-                                <option value="{idchofer}">{aliascho} - {nombrecho} {apellidocho} {cedula_rifcho}</option>
+                                <option value="{idchofer}" {selected}>{aliascho} - {nombrecho} {apellidocho} {cedula_rifcho}</option>
                                 <!--LISTADO_CHOFER-->
                             </select>
                         </div>
@@ -144,7 +162,7 @@
                             <select name="vehiculo" id="vehiculo" class="form-control chosen-select" data-placeholder="Seleccione un vehiculo...">
                                 <option value=""></option>
                                 <!--LISTADO_VEHICULO-->
-                                <option value="{idvehiculo}">{aliasveh} - {placaveh} {anoveh} {colorveh} {descripcionmod}</option>
+                                <option value="{idvehiculo}" {selected}>{aliasveh} - {placaveh} {anoveh} {colorveh} {descripcionmod}</option>
                                 <!--LISTADO_VEHICULO-->
                             </select>
                         </div>
@@ -159,6 +177,7 @@
                             </div><!-- /addon-group -->
                             <select name="accesorio" id="accesorio" class="form-control">
                                 <option value="">Seleccione una carga...</option>
+                                <option value="{idaccesorio}" selected>{placaacc} {coloracc} {capacidadacc} {unidadmedidaacc} </option>
                             </select>
                         </div>
                     </div>
@@ -172,8 +191,11 @@
                             <span class="input-group-addon"> <i class="fa fa-tags"></i></span>
                             <select name="precintos[]" id="precintos" multiple class="form-control chosen-select"  data-placeholder="Seleccione uno o mas precintos..." >
                                 <!--LISTADO_PRECINTOS-->
-                                <option value="{idprecinto}">{idcodigopre}</option>
+                                <option value="{idprecinto}" {selected}>{idcodigopre}</option>
                                 <!--LISTADO_PRECINTOS-->
+                                <!--LISTADO_PRECINTOS_SELECT-->
+                                <option value="{idprecinto}" selected>{idcodigopre}</option>
+                                <!--LISTADO_PRECINTOS_SELECT-->
                             </select>
                             <span class="input-group-btn">
 
@@ -187,7 +209,7 @@
                 <div class="form-group col-sm-12 col-xs-12">
                     <label for="buscar_cliente">Notas: <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Escriba alguna nota o observación acerca de la factura"><i class="fa fa-question"></i></span></label>
                     <div class="controls">
-                        <textarea name="observacion" id="observacion" class="form-control"></textarea>
+                        <textarea name="observacion" id="observacion" class="form-control">{observacionfac}</textarea>
                     </div>
                 </div>
             </div>
@@ -328,7 +350,7 @@
             $.ajax({   
                 type: "POST",
                 url:url,
-                data:{operacion:'consultar_accesorio', idvehiculo: $(this).val()},
+                data:{operacion:'consultar_accesorio_factura', idvehiculo: $(this).val(), idfactura: $("#idfactura").val()},
                 success: function(datos){
                     $('#accesorio').html(datos);
                 }
@@ -552,4 +574,6 @@ function number_format(number, decimals, dec_point, thousands_sep) {
                }
           });
   }
+
+  totales();
 </script>
