@@ -209,7 +209,7 @@
 				{
 					for($i=0;$i<count($this->lnIdDocumento);$i++)
 					{
-						$sql="INSERT INTO tchofer_documento(tchofer_idchofer, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc)VALUES ((SELECT idchofer FROM tchofer WHERE cedula_rifcho='$this->lnCedulaRif'),".$this->lnIdDocumento[$i].", '".$this->fecha_bd($this->ldFechaEmision[$i])."', '".$this->fecha_bd($this->ldFechaVencimiento[$i])."', '".$this->lcDirectorio[$i]."', '1')";
+						$sql="INSERT INTO tchofer_documento(tchofer_idchofer, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc)VALUES ('$this->lnIdChofer',".$this->lnIdDocumento[$i].", '".$this->fecha_bd($this->ldFechaEmision[$i])."', '".$this->fecha_bd($this->ldFechaVencimiento[$i])."', '".$this->lcDirectorio[$i]."', '1')";
 						if(!$lnHecho=$this->ejecutar($sql))
 						{
 							$this->rollback();

@@ -3,9 +3,11 @@
 	require_once("../clases/clase_producto.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
+    require_once('../libreria/UUID.php');
 	$lobjProducto=new clsProducto;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;
+	$lobjUUID=new UUID;
 
 	$lobjProducto->set_Producto($_POST['idproducto']);
 	$lobjProducto->set_Codigo($_POST['idcodigo']);
@@ -18,20 +20,52 @@
 	$lobjProducto->set_Observacion($_POST['observacionpro']);
 	$lobjProducto->set_Estatus($_POST['estatuspro']);
 
+	$lobjProducto->set_Documento($_POST['iddocumento']);
+	$lobjProducto->set_FechaEmision($_POST['fechaemisiondoc']);
+	$lobjProducto->set_FechaVencimiento($_POST['fechavencimientodoc']);
+	$lobjProducto->set_Directorio($_POST['directoriodoc']);
+
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
 	$operacion=$_POST['operacion'];
+
+	$iddocumento=$_POST['iddocumento'];
+	$directoriodoc=$_FILES['directoriodoc'];
+	$directoriodoc_post=$_POST['directorio_o'];
+	$destino = '../media/img/documentos_producto'; 
+	$copiado=true;
 
 	switch ($operacion) 
 	{
 		case 'registrar_producto':
 			$_SESSION['mensaje']='al registrar un producto';
-
-			if($lobjProducto->registrar_producto())
+			for($i=0;$i<count($iddocumento);$i++)
 			{
-				$_SESSION['resultado']='Éxito';
-				$_SESSION['resultado_color']='success';
-				$_SESSION['icono_mensaje']='check-circle';
+				$nombre_archiv=$directoriodoc['name'][$i];
+				$type= explode(".", $nombre_archiv);
+				$extension = end($type);
+
+				$directoriodoc_post[$i]=$_POST['descripcioncortapro']."_".$iddocumento[$i]."_".$lobjUUID->v4().".".$extension;
+ 				if(!$copiado=copy($directoriodoc['tmp_name'][$i], $destino.'/'.$directoriodoc_post[$i]))
+ 					break;
+
+ 			}
+ 			if($copiado)
+ 			{
+				$lobjProducto->set_Directorio($directoriodoc_post);
+
+				if($lobjProducto->registrar_producto())
+				{
+					$_SESSION['resultado']='Éxito';
+					$_SESSION['resultado_color']='success';
+					$_SESSION['icono_mensaje']='check-circle';
+				}
+				else
+				{
+					$_SESSION['resultado']='Error';
+					$_SESSION['resultado_color']='danger';
+					$_SESSION['icono_mensaje']='times-circle';	
+				}
 			}
 			else
 			{
@@ -43,15 +77,39 @@
 		break;
 		case 'editar_producto':
 			$_SESSION['mensaje']='al editar el producto';
-			if($lobjProducto->editar_producto())
+			for($i=0;$i<count($iddocumento);$i++)
 			{
-				$_SESSION['resultado']='Éxito';
-				$_SESSION['resultado_color']='success';
-				$_SESSION['icono_mensaje']='check-circle';
-				
+				$nombre_archiv=$directoriodoc['name'][$i];
+				$type= explode(".", $nombre_archiv);
+				$extension = end($type);
+ 
+				if($directoriodoc['tmp_name'][$i])
+				{
+					$directoriodoc_post[$i]=$_POST['descripcioncortapro']."_".$iddocumento[$i]."_".$lobjUUID->v4().".".$extension;
+	 				if(!$copiado=copy($directoriodoc['tmp_name'][$i], $destino.'/'.$directoriodoc_post[$i]))
+	 					break;
+ 				}
+
+ 			}
+ 			if($copiado)
+ 			{
+ 				$lobjProducto->set_Directorio($directoriodoc_post);
+				if($lobjProducto->editar_producto())
+				{
+					$_SESSION['resultado']='Éxito';
+					$_SESSION['resultado_color']='success';
+					$_SESSION['icono_mensaje']='check-circle';
+					
+				}
+				else
+				{	
+					$_SESSION['resultado']='Error';
+					$_SESSION['resultado_color']='danger';
+					$_SESSION['icono_mensaje']='times-circle';
+				}
 			}
 			else
-			{	
+			{
 				$_SESSION['resultado']='Error';
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';
