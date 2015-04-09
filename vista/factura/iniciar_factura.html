@@ -57,7 +57,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function($){
-        $("#buscar_cliente").keypress(function(){
+        $("#buscar_cliente").keyup(function(){
         $('.sugerencias').fadeIn('slow').html('Cargando...');              
             var url="../controlador/control_cliente.php";
               	$.ajax({   

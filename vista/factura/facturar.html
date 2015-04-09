@@ -261,7 +261,7 @@
 
         inicializar_chocen();
 
-        $("#buscar_producto").keypress(function(){          
+        $("#buscar_producto").keyup(function(){          
         $('.sugerencias').fadeIn('slow').html('Cargando...');              
             var url="../controlador/control_producto.php";
                 $.ajax({   
