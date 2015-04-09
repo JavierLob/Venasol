@@ -55,7 +55,7 @@
 				$resp[] = $lobjFactura->asignar_precinto($precinto);
 			}
 
-			foreach ($resp as$value) {
+			foreach ($resp as $value) {
 				if(!$value)
 					$errores = false;
 			}
@@ -64,6 +64,69 @@
 			{
 				$lobjFactura->commit();
 				$mensaje = array('mensaje'=>'1', 'nro_factura'=>$idfactura['nro_factura']);
+				print(json_encode($mensaje));
+			}
+			else
+			{
+				$lobjFactura->rollback();
+				$mensaje = array('mensaje'=>'0');
+				print(json_encode($mensaje));
+			}
+		break;
+		case 'modificar_factura':
+			$idfactura 	= $_POST['idfactura'];
+			$id_cliente 	= $_POST['idcliente'];
+			$total_total 	= $_POST['total_total'];
+			$iva 			= $_POST['iva'];
+			$id_chofer 		= $_POST['chofer'];
+			$id_vehiculo 	= $_POST['vehiculo'];
+			$id_accesorio 	= $_POST['accesorio'];
+			$precintos 		= $_POST['precintos'];
+			$productos 		= $_POST['idproducto'];
+			$precio_productos 		= $_POST['precio_producto'];
+			$cantidad_productos 	= $_POST['cantidad_producto'];
+			$total_productos		= $_POST['total_producto'];
+			$observacion			= $_POST['observacion'];
+
+			$errores = true;
+			$lobjFactura->set_Factura($idfactura);
+
+			$lobjFactura->begin();
+
+			$resp[] = $lobjFactura->desasignar_precinto();
+			$resp[] = $lobjFactura->limpiar_detalle_factura();
+
+			$lobjFactura->set_Vehiculo($id_vehiculo);
+			$lobjFactura->set_Accesorio($id_accesorio);
+			$lobjFactura->set_Cliente($id_cliente);
+			$lobjFactura->set_Chofer($id_chofer);
+			$lobjFactura->set_Iva($iva);
+			$lobjFactura->set_Total($total_total);
+			$lobjFactura->set_Observacion($observacion);
+			$lobjFactura->set_Estatus();
+
+			$resp[] = $lobjFactura->modificar_factura();
+			$cont = 0;
+			foreach ($productos as $id_producto) {
+				$cantidad = $cantidad_productos[$cont];
+				$precio = $precio_productos[$cont];
+				$resp[] = $lobjFactura->registrar_detalle_factura($id_producto, $cantidad, $precio);
+				$cont++;
+			}
+
+			foreach ($precintos as $precinto) {
+				$resp[] = $lobjFactura->asignar_precinto($precinto);
+			}
+
+			foreach ($resp as $value) {
+				if(!$value)
+					$errores = false;
+			}
+
+			if($errores)
+			{
+				$lobjFactura->commit();
+				$mensaje = array('mensaje'=>'1', 'nro_factura'=>$idfactura);
 				print(json_encode($mensaje));
 			}
 			else

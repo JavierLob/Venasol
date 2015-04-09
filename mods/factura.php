@@ -147,12 +147,12 @@ switch ($vista) {
                 header('location: ./?modulo=factura/iniciar');
             }
         break;
-	    default:
+        case 'listar':
             $lafacturas = $lobjFactura->consultar_facturas();
-		    
-            $HTML = $ObjSistema->get_cuerpo('factura,iniciar factura','#,?modulo=factura/inicio','factura','factura');
+            
+            $HTML = $ObjSistema->get_cuerpo('factura,listado de facturas','?modulo=factura/inicio,?modulo=factura/listar','factura','factura');
             $ObjSistema->set_cuerpo($HTML);
-            $diccionario =array('cuerpo' => file_exists("factura/iniciar_factura.html") ? file_get_contents("factura/iniciar_factura.html") : '');
+            $diccionario =array('cuerpo' => file_exists("factura/listar_factura.html") ? file_get_contents("factura/listar_factura.html") : '');
             $HTML = $ObjSistema->render($diccionario);
 
              $ObjSistema->set_cuerpo($HTML);
@@ -160,7 +160,14 @@ switch ($vista) {
                     $HTML = $ObjSistema->render_regex('LISTADO_FACTURAS', $lafacturas);
                 else
                     $HTML = $ObjSistema->reemplazar_vacio('LISTADO_FACTURAS', '');
-             $ObjSistema->set_cuerpo($HTML);
+        break;
+	    default:
+            $lafacturas = $lobjFactura->consultar_facturas();
+		    
+            $HTML = $ObjSistema->get_cuerpo('factura,iniciar factura','#,?modulo=factura/inicio','factura','factura');
+            $ObjSistema->set_cuerpo($HTML);
+            $diccionario =array('cuerpo' => file_exists("factura/iniciar_factura.html") ? file_get_contents("factura/iniciar_factura.html") : '');
+            $HTML = $ObjSistema->render($diccionario);
 		break;
 }
 

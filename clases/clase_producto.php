@@ -91,7 +91,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-			$sql="SELECT * FROM tproducto WHERE idcodigopro LIKE '%$criterio%' OR UPPER(descripcioncortapro) LIKE UPPER('%$descripcioncortapro%') OR UPPER(descripcionlargapro) LIKE UPPER('%$descripcionlargapro%');";
+			$sql="SELECT * FROM tproducto WHERE idcodigopro LIKE '%$criterio%' OR UPPER(descripcioncortapro) LIKE UPPER('%$criterio%') OR UPPER(descripcionlargapro) LIKE UPPER('%$criterio%');";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{

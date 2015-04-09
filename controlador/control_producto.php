@@ -99,7 +99,7 @@
 			}
 			else
 			{
-				print('<a class="suggest-element">No se han encontrado clientes con esa descripción...</a>');
+				print('<a class="suggest-element">No se han encontrado productos con esa descripción...</a>');
 			}
 		break;
 		default:

@@ -107,6 +107,7 @@
 		break;
 		case 'buscar_cliente':
 			$criterio_busqueda = htmlentities($_POST['criterio']);
+			echo $criterio_busqueda;
 			if($listado_clientes=$lobjCliente->consultar_clientes_like($criterio_busqueda))
 			{
 				print($listado_clientes);

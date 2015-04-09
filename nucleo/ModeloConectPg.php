@@ -2,7 +2,7 @@
 	abstract class clsModelo_pg{ 									//Declarar clase Abstracta Modelo
 	private  $db_host 	= 'localhost';									//Nombre del Host
 	private  $db_usuario 	= 'postgres';										//Nombre del Usuario
-	private  $db_password = 'amilcar';											//Password de la BD.
+	private  $db_password = '123456';											//Password de la BD.
 	private  $db_num_db	 ='';
 	protected $db_nombre= 'bd_venasol';				//Nombre de la Base de Datos.
 	protected $query;													//Variable del Query
@@ -41,7 +41,7 @@
 *-----------------------------------*/
   
 	protected function ejecutar($lcSql){
-		$result=pg_query($this->arCon,$lcSql) OR die ('Ejecucion Invalida');
+		$result=pg_query($this->arCon,$lcSql) OR die ('Ejecucion Invalida'.$lcSql);
 		if (pg_affected_rows($result)==0)
 		    return false;
 		 return true;

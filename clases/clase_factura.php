@@ -63,7 +63,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-			$sql="SELECT * FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;;";
+			$sql="SELECT *,TO_CHAR(fechafac, 'dd/mm/YYYY - HH12:MM AM') as fechafac FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;;";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
@@ -166,11 +166,29 @@
 			return $lnHecho;
 		}
 
+		function modificar_factura()
+		{
+			$sql="UPDATE tfactura
+					   SET tvehiculo_idvehiculo='$this->lnVehiculo', taccesorio_idaccesorio='$this->lnAccesorio', 
+					       tchofer_idchofer='$this->lnChofer', ivafac='$this->lnIva', totalfac='$this->lnTotal', 
+					       observacionfac='$this->lcObservacion', estatusfac='$this->lcEstatus'
+					 WHERE idfactura = '$this->lnIdFactura';";
+			$lnHecho=$this->ejecutar($sql);
+			return $lnHecho;
+		}
+
 		function registrar_detalle_factura($id_producto, $cantidad, $precio)
 		{
 			$sql="INSERT INTO tfactura_producto(
 				            tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro)
 				    VALUES ('$this->lnIdFactura', '$id_producto', '$cantidad', '$precio');";
+			$lnHecho=$this->ejecutar($sql);
+			return $lnHecho;
+		}
+
+		function limpiar_detalle_factura()
+		{
+			$sql="DELETE FROM tfactura_producto WHERE tfactura_idfactura='$this->lnIdFactura';";
 			$lnHecho=$this->ejecutar($sql);
 			return $lnHecho;
 		}
@@ -203,6 +221,15 @@
 			return $lnHecho;
 		}
 
+		function desasignar_precinto()
+		{
+			$sql="UPDATE tprecinto
+				   SET tfactura_idfactura=NULL,
+				       estatuspre='1'
+				 WHERE tfactura_idfactura = '$this->lnIdFactura';";
+			$lnHecho=$this->ejecutar($sql);	
+			return $lnHecho;
+		}
 
 		function editar_factura()
 		{
