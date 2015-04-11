@@ -36,12 +36,20 @@ switch ($vista) {
         case 'consultar_precinto':
         $lobjPrecinto->set_Precinto($id);
         $laprecinto= $lobjPrecinto->consultar_precinto();
+        $laprecintos= $lobjPrecinto->consultar_precintos();
 
         $HTML = $ObjSistema->get_cuerpo('precinto,Precintos,Consultar precinto','#,?modulo=precinto/precinto,#','precinto','precinto');
 
         $ObjSistema->set_cuerpo($HTML);
         $diccionario =array('cuerpo' => file_exists("precinto/consultar_precinto.html") ? file_get_contents("precinto/consultar_precinto.html") : '');
         $HTML = $ObjSistema->render($diccionario);        
+        $ObjSistema->set_cuerpo($HTML);
+
+        if($laprecintos)
+                $HTML = $ObjSistema->render_regex('LISTADO_CODIGO_PRECINTO', $laprecintos);
+        else
+                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_CODIGO_PRECINTO', '');
+
         $ObjSistema->set_cuerpo($HTML);
         
         $HTML = $ObjSistema->render($laprecinto);   

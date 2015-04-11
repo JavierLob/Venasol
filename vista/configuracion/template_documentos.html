@@ -13,16 +13,17 @@
                 </div>
             </div>
             <form action="../controlador/control_documento.php" method="POST" name="form_documento">
-                <a class="btn btn-success " data-step="1" data-intro='Este botón lo lleva al formulario de registro' data-position="right" id="btn_registrar" href="?modulo=chofer/registrar_documento"><i class="fa fa-plus icon-white"></i> Registrar documento</a>
+                <a class="btn btn-success " data-step="1" data-intro='Este botón lo lleva al formulario de registro' data-position="right" id="btn_registrar" href="?modulo=configuracion/registrar_documento"><i class="fa fa-plus icon-white"></i> Registrar documento</a>
                 <table class="table table-hover" id="filtro">
                     <thead>
-                        <th>Nº</th><th>Descripción</th><th>Duración</th><th>Estatus</th><th class="{operaciones}">Acción</th>
+                        <th>Nº</th><th>Descripción</th><th>Tipo</th><th>Duración</th><th>Estatus</th><th class="{operaciones}">Acción</th>
                     </thead>
                     <tbody>
                         <!--LISTADO_DOCUMENTOS-->
                         <tr>
                             <td>{iddocumento}</td>
                             <td>{descripciondoc}</td>
+                            <td>{tipodoc}</td>
                             <td>{duraciondoc}</td>
                             <td><label class="label label-{estatus_color}">{estatusdoc}</label></td>
                             <td class="{operaciones}">

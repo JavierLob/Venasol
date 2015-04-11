@@ -35,7 +35,7 @@
 	$iddocumento=$_POST['iddocumento'];
 	$directoriodoc=$_FILES['directoriodoc'];
 	$directoriodoc_post=$_POST['directorio_o'];
-	$destino = '../media/img/documentos'; 
+	$destino = '../media/img/documentos_chofer'; 
 	$copiado=true;
 
 	switch ($operacion) 

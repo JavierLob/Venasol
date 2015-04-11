@@ -170,14 +170,18 @@
                     <div class="controls">
                         <div class="input-group">
                             <span class="input-group-addon"> <i class="fa fa-tags"></i></span>
-                            <select name="precintos[]" id="precintos" multiple class="form-control chosen-select"  data-placeholder="Seleccione uno o mas precintos..." >
-                                <!--LISTADO_PRECINTOS-->
-                                <option value="{idprecinto}">{idcodigopre}</option>
-                                <!--LISTADO_PRECINTOS-->
+                            <select name="precintos[]" id="cam_precintos" multiple class="form-control chosen-select"  data-placeholder="Seleccione uno o mas precintos..." >
+                                <!--LISTADO_GRUPO_PRECINTOS-->
+                                <optgroup label="{grupopre}" class="text-danger">
+                                    <!--LISTADO_PRECINTOS_{i}-->
+                                    <option value="{idprecinto}">{idcodigopre}</option>
+                                    <!--LISTADO_PRECINTOS_{i}-->
+                                </optgroup>
+                                <!--LISTADO_GRUPO_PRECINTOS-->
                             </select>
                             <span class="input-group-btn">
 
-                                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" href="#myModalregistrarPrecintos"><i class="fa fa-plus"></i></span>
+                            <button type="button" class="btn btn-success btn-xs" data-toggle="modal" href="#myModalregistrarPrecintos"><i class="fa fa-plus"></i></button>
                             </span><!-- /addon-group -->
                         </div>
                     </div>
@@ -192,8 +196,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <button id="facturar" type="button" data-step="9" data-intro='Para finalizar haga click en guardar para facturar.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Facturar</button>
+                <div class="col-lg-offset-5 col-lg-12">
+                    <button id="facturar" type="button" data-step="9" data-intro='Para finalizar haga click en Facturar para facturar.' data-position="top" class="btn btn-success"><i class="fa fa-file-text-o"></i> Facturar</button>
                     <a href="?modulo=factura/factura" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                 </div>
             </div>
@@ -546,8 +550,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
               url:url,
               data:{operacion:'consultar_precinto'},
               success: function(datos){
-                  $('#precintos').html(datos);  
-                $(".chosen-select").val('').trigger("chosen:updated");
+                  $('#cam_precintos').html(datos);  
+                $("#cam_precintos").trigger("chosen:updated");
 
                }
           });

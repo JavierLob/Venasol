@@ -91,30 +91,30 @@ switch ($vista) {
                         $lobjrol->set_Rol($larols[$i]['idrol']);
                         $lamodulos = $lobjrol->consultar_modulos();
 
+                        if($lamodulos)
+                            $HTML = $ObjSistema->render_regex('LISTADO_MODULOS_'.$i, $lamodulos);
+                            else
+                            $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MODULOS_'.$i, '');
                         if(!$lamodulos)
                         {
-                                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MODULOS_'.$i, '');
-                                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_SERVICIOS_'.$i, '');                     
+                            $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MODULOS_'.$i, '');
+                            $HTML = $ObjSistema->reemplazar_vacio('LISTADO_SERVICIOS_'.$i, '');                     
 
                         }
                         for($j=0;$j<count($lamodulos);$j++)
                         {
-                                if($lamodulos)
-                                $HTML = $ObjSistema->render_regex('LISTADO_MODULOS_'.$i, $lamodulos);
-                                else
-                                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MODULOS_'.$i, '');
-                                
-                                $ObjSistema->set_cuerpo($HTML);
+                                                              
+                            $ObjSistema->set_cuerpo($HTML);
 
-                                $lobjrol->set_Modulo($lamodulos[$j]['idmodulo']);
-                                $laservicios = $lobjrol->consultar_servicios();
+                            $lobjrol->set_Modulo($lamodulos[$j]['idmodulo']);
+                            $laservicios = $lobjrol->consultar_servicios();
 
-                                if($laservicios)
-                                $HTML = $ObjSistema->render_regex('LISTADO_SERVICIOS_'.$j, $laservicios);
-                                else
-                                    $HTML = $ObjSistema->reemplazar_vacio('LISTADO_SERVICIOS_'.$j, '<strong>Sin servicios asignados</strong>');
+                            if($laservicios)
+                            $HTML = $ObjSistema->render_regex('LISTADO_SERVICIOS_'.$j, $laservicios);
+                            else
+                                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_SERVICIOS_'.$j, '<strong>Sin servicios asignados</strong>');
 
-                                $ObjSistema->set_cuerpo($HTML);
+                            $ObjSistema->set_cuerpo($HTML);
 
                         }
 
@@ -143,13 +143,15 @@ switch ($vista) {
         $HTML = $ObjSistema->render($diccionario);        
         $ObjSistema->set_cuerpo($HTML);
         
-        $HTML = $ObjSistema->render($laservicio);   
-        $ObjSistema->set_cuerpo($HTML);
+        
              
         if($lamodulos)
             $HTML = $ObjSistema->render_regex('LISTADO_MODULOS', $lamodulos);
         else
             $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MODULOS', '');
+        $ObjSistema->set_cuerpo($HTML);
+
+        $HTML = $ObjSistema->render($laservicio);   
         $ObjSistema->set_cuerpo($HTML);
 
         break;
