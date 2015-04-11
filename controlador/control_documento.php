@@ -11,11 +11,9 @@
 	$lobjDocumento->set_Descripcion($_POST['descripciondoc']);
 	$lobjDocumento->set_Vence($_POST['vencedoc']);
 	$lobjDocumento->set_Duracion($_POST['duraciondoc']);
-	$lobjDocumento->set_Tipo($_POST['tipodoc']);
 	$lobjDocumento->set_Observacion($_POST['observaciondoc']);
 	$lobjDocumento->set_Estatus($_POST['estatusdoc']);
 	$lobjDocumento->set_Chofer($_POST['idchofer']);
-	$lobjDocumento->set_Producto($_POST['idproducto']);
 
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
@@ -38,10 +36,10 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';	
 			}
-			header('location:../vista/?modulo=configuracion/documento');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
 		case 'consultar_documento':
-			if($ladocumentos=$lobjDocumento->consultar_documentos_tipo($_POST['tipodoc']))
+			if($ladocumentos=$lobjDocumento->consultar_documentos())
 			{
 				$option='<option value=""></option>';
 				for($i=0;$i<count($ladocumentos);$i++)
@@ -70,7 +68,7 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
-			header('location:../vista/?modulo=configuracion/documento');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
 		case 'eliminar_documento':
 			$_SESSION['mensaje']='al desactivar el documento';
@@ -86,7 +84,7 @@
 				$_SESSION['resultado_color']='danger';
 				$_SESSION['icono_mensaje']='times-circle';
 			}
-			header('location:../vista/?modulo=configuracion/documento');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
 		case 'restaurar_documento':
 			$_SESSION['mensaje']='al restaurar el documento';
@@ -103,10 +101,10 @@
 				$_SESSION['icono_mensaje']='times-circle';
 			}
 
-			header('location:../vista/?modulo=configuracion/documento');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
 		default:
-			header('location:../vista/?modulo=configuracion/documento');
+			header('location:../vista/?modulo=chofer/documento');
 		break;
 	}
 

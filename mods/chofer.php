@@ -26,7 +26,7 @@ switch ($vista) {
         $HTML = $ObjSistema->render($opciones);
         break;
         case 'registrar_chofer':
-        $ladocumentos = $lobjDocumento->consultar_documentos_tipo('Chofer');
+        $ladocumentos = $lobjDocumento->consultar_documentos();
 
         $HTML = $ObjSistema->get_cuerpo('chofer,Choferes,Registrar chofer','#,?modulo=chofer/chofer,#','chofer','chofer');
 
@@ -70,7 +70,7 @@ switch ($vista) {
         for($i=0;$i<count($ladocumentos_chofer);$i++)
         {
                 $lobjDocumento->set_Documento($ladocumentos_chofer[$i]['iddocumento']);
-                $ladocumentos = $lobjDocumento->consultar_documentos_tipo('Chofer');
+                $ladocumentos = $lobjDocumento->consultar_documentos();
                 if($ladocumentos)
                         $HTML = $ObjSistema->render_regex('LISTADO_DOCUMENTOS'.$i, $ladocumentos);
                 else

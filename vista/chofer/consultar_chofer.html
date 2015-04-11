@@ -128,7 +128,7 @@
                                 <td class="col-lg-4 col-sm-4 col-xs-4">
                                     <div class="input-group">                                    
                                         <span class="input-group-addon">                                    
-                                        <img class="img ver-imagen" data-toggle="modal" href="#myModalImagen"  data-titulo="{nombrecho} {apellidocho} - {descripciondoc}" src="../media/img/documentos_chofer/{directoriodoc}">
+                                        <img class="img ver-imagen" data-toggle="modal" href="#myModalImagen"  data-titulo="{nombrecho} {apellidocho} - {descripciondoc}" src="../media/img/documentos/{directoriodoc}">
                                         </span>
                                         <input type="hidden" name="directorio_o[]" id="cam_directorio_o{i}" value="{directoriodoc}">
                                         <input type="file" class="form-control" name="directoriodoc[]" id="cam_directoriodoc{i}">
@@ -208,7 +208,7 @@ function agregar_documento()
       $.ajax({   
           type: "POST",
           url:url,
-          data:{tipodoc:'Chofer',operacion:'consultar_documento'},
+          data:{operacion:'consultar_documento'},
           success: function(datos){
               select.innerHTML=datos;   
            }

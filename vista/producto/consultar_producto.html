@@ -12,7 +12,7 @@
                     </ul>
                 </div>
             </div>
-            <form action="../controlador/control_producto.php" method="POST" name="form_producto" enctype="multipart/form-data">
+            <form action="../controlador/control_producto.php" method="POST" name="form_producto">
                 <input type="hidden" value="editar_producto" name="operacion" id="cam_operacion"/>
                 <input type="hidden" value="{idproducto}" name="idproducto" id="cam_idproducto"/>
                 <div class="row">
@@ -78,59 +78,6 @@
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación sobre el producto."><i class="fa fa-question"></i></span></label>
                         <textarea name="observacionpro" data-step="8" data-intro='Observación sobre el producto a registrar' data-position="top" id="cam_observacionpro" cols="30" rows="3" class="form-control">{observacionpro}</textarea>
                     </div>
-                </div>
-                <div class="row table-responsive">
-                    <h4><i class="fa fa-file-text-o"></i> Documentos</h4>
-
-                    <table class="table table-hover col-lg-12">
-                        <thead>
-                            <th class="col-lg-3 col-sm-3 col-xs-3">Documento</th>
-                            <th class="col-lg-2 col-sm-2 col-xs-2">Fecha Emisión</th>
-                            <th class="col-lg-2 col-sm-2 col-xs-2">Fecha Vencimiento</th>
-                            <th class="col-lg-1 col-sm-1 col-xs-1">Ver</th>
-                            <th class="col-lg-3 col-sm-3 col-xs-3">Imagen</th>
-                            <th class="col-lg-1 col-sm-1 col-xs-1"><button class="btn btn-success" type="button" data-step="14" data-intro='Agregar un documento' data-position="bottom" onclick="agregar_documento()"><i class="fa fa-plus"></i></button></th>
-                        </thead>
-                        <tbody id="filas">
-                            <!--LISTADO_DOCUMENTOS_PRODUCTO-->
-                            <tr>
-                                <td class="col-lg-3 col-sm-3 col-xs-3">
-                                    <select class="form-control" onchange="validar_vence(this)" name="iddocumento[]" id="cam_iddocumento0">
-                                        <option value=""></option>
-                                        <!--LISTADO_DOCUMENTOS{i}-->
-                                            <option value="{iddocumento}" data-value="{vencedoc}" {selected}>{descripciondoc}</option>
-                                        <!--LISTADO_DOCUMENTOS{i}-->
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-sm-2 col-xs-2">
-                                    <div class="input-group">
-                                        <input type="date" class="form-control" name="fechaemisiondoc[]" value="{fechaemisiondoc}" id="cam_fechaemisiondoc0">
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </td>
-                                <td class="col-lg-2 col-sm-2 col-xs-2">
-                                    <div class="input-group" id="fechavencimientodoc0">                                    
-                                        <input type="date" class="form-control" value="{fechavencimientodoc}" name="fechavencimientodoc[]" id="cam_fechavencimientodoc0">
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                    <p style="display:none" id="mensaje_fechavencimientodoc0">Este documento no vence.</p>
-                                </td>
-                                <td class="col-lg-1 col-sm-1 col-xs-1">
-                                    <img class="img ver-imagen {imagen_hide}" data-toggle="modal" href="#myModalImagen"  data-titulo="{descripcionlargapro} - {descripciondoc}" src="../media/img/documentos_producto/{directoriodoc}">
-                                    <a class="btn btn-success {descarga_hide}" href="../libreria/descargar_archivo.php?archivo={directoriodoc}" target="_blank"><i class="fa fa-download"></i></a>
-                                </td>
-                                <td class="col-lg-3 col-sm-3 col-xs-3">
-                                    <input type="hidden" name="directorio_o[]" id="cam_directorio_o{i}" value="{directoriodoc}">
-                                    <input type="file" class="form-control" name="directoriodoc[]" id="cam_directoriodoc{i}">
-                                </td>
-                                <td class="col-lg-1 col-sm-1 col-xs-1">
-                                    <button class="btn btn-danger" type="button" data-step="4" data-intro='Quitar un documento' data-position="bottom" onclick="quitar_documento(this)"><i class="fa fa-minus"></i></button>
-                                </td>
-                            </tr>
-                            <!--LISTADO_DOCUMENTOS_PRODUCTO-->
-                        </tbody>
-                    </table>
-                    <input type="hidden" name="contador" id="cam_contador" value="0" />                    
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-2 col-lg-10">
@@ -232,79 +179,4 @@
                }
           });
   }
-
-  function validar_vence(e)
-{
-    i=e.selectedIndex;
-    vence=e.options[i].getAttribute('data-value');
-    j=e.id.substring(e.id.length-1,e.id.length);
-    if(vence=='1')
-    {
-        $("#fechavencimientodoc"+j).animate({ height: 'show', opacity: 'show' }, 'slow');
-        $("#mensaje_fechavencimientodoc"+j).animate({ height: 'hide', opacity: 'hide' }, 'fast');
-
-    }
-    if(vence=='0')
-    {
-        $("#fechavencimientodoc"+j).animate({ height: 'hide', opacity: 'hide' }, 'fast');
-        $("#mensaje_fechavencimientodoc"+j).animate({ height: 'show', opacity: 'show' }, 'slow');
-        $("#cam_fechavencimientodoc"+j).val('');
-    }
-
-   
-
-}
-
-function agregar_documento()
-{
-    cam_contador=document.getElementById("cam_contador");
-    contador=cam_contador.value;
-    contador++;
-      var url="../controlador/control_documento.php";
-
-      var filas = document.getElementById('filas');
-      var tr= document.createElement('tr');
-      var col1= document.createElement('td');
-      var select= document.createElement('select');
-      select.setAttribute('class','form-control');
-      select.setAttribute('name','iddocumento[]');
-      select.setAttribute('id','cam_iddocumento'+contador);
-      var col2= document.createElement('td');
-      var col3= document.createElement('td');
-      var col4= document.createElement('td');
-      var col5= document.createElement('td');
-      var col6= document.createElement('td');
-      $.ajax({   
-          type: "POST",
-          url:url,
-          data:{tipodoc:'Producto',operacion:'consultar_documento'},
-          success: function(datos){
-              select.innerHTML=datos;   
-           }
-      });
-      col2.innerHTML='<div class="input-group"><input type="date" class="form-control" name="fechaemisiondoc[]" id="cam_fechaemisiondoc'+contador+'"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>';
-      col3.innerHTML='<div class="input-group" id="'+contador+'"><input type="date" class="form-control" name="fechavencimientodoc[]" id="cam_fechaemisiondoc'+contador+'"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div><p style="display:none" id="mensaje_fechavencimientodoc'+contador+'">Este documento no vence.</p>';
-      col4.innerHTML='';
-      col5.innerHTML='<input type="file" class="form-control directoriodoc" name="directoriodoc[]" id="cam_directoriodoc'+contador+'">';
-      col6.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_documento(this)"><i class="fa fa-minus"></i></button>';
-
-      col1.appendChild(select);
-      tr.appendChild(col1);
-      tr.appendChild(col2);
-      tr.appendChild(col3);
-      tr.appendChild(col4);
-      tr.appendChild(col5);
-      tr.appendChild(col6);
-      filas.appendChild(tr);
-      cam_contador.value=contador;
-
-}
-function quitar_documento(e)
-{
-    var filas = document.getElementById("filas");          
-    var td = e.parentNode;
-    var tr = td.parentNode;
-    filas.removeChild(tr);
-}
-
 </script>

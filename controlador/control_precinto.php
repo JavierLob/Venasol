@@ -12,7 +12,6 @@
 	$lobjPrecinto->set_Factura($_POST['tfactura_idfactura']);
 	$lobjPrecinto->set_Observacion($_POST['observacionpre']);
 	$lobjPrecinto->set_Estatus($_POST['estatuspre']);
-	$lobjPrecinto->set_Grupo($_POST['grupopre']);
 
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
@@ -39,16 +38,6 @@
 		break;
 		case 'registrar_precinto_ajax':
 			if($lobjPrecinto->registrar_precinto_ajax())
-			{
-				echo '1';
-			}
-			else
-			{
-				echo '0';
-			}
-		break;
-		case 'validar_repetido':
-			if($lobjPrecinto->validar_repetido())
 			{
 				echo '1';
 			}

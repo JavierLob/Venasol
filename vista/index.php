@@ -36,9 +36,6 @@ switch ($modulo) {
 	case 'factura':
 		include_once("../mods/factura.php");
 	break;
-	case 'configuracion':
-		include_once("../mods/configuracion.php");
-	break;
 	case 'logout':
 		unset($_SESSION['usuario']);
 		unset($_SESSION['nombrerol']);

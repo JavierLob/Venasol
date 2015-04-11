@@ -46,7 +46,6 @@
 				{
 					$Fila[$cont]=$laRow;
 					$Fila[$cont]['selected'] = ($laRow['idmodulo']==$idmodulo_servicio)?'selected' : '';
-					echo $Fila[$cont]['idmodulo'];
 					$cont++;
 				}
 			

@@ -200,7 +200,7 @@ function agregar_documento()
       $.ajax({   
           type: "POST",
           url:url,
-          data:{tipodoc:'Chofer',operacion:'consultar_documento'},
+          data:{operacion:'consultar_documento'},
           success: function(datos){
               select.innerHTML=datos;   
            }

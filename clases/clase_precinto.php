@@ -8,7 +8,6 @@
 		private $lnIdFactura;
 		private $lcObservacion;
 		private $lcEstatus;
-		private $lcGrupo;
 
 		function set_Precinto($pc)
 		{
@@ -20,10 +19,6 @@
 			$this->lcIdCodigo=$pc;
 		}
 
-		function set_Grupo($pc)
-		{
-			$this->lcGrupo=$pc;
-		}
 
 		function set_Factura($pc)
 		{
@@ -80,33 +75,14 @@
 			return $Fila;
 		}
 
-		function validar_repetido()
-		{
-			$this->conectar();
-			$lnHecho=false;
-				$sql="SELECT idprecinto,idcodigopre,observacionpre FROM tprecinto WHERE idcodigopre='$this->lcIdCodigo' ";
-				$pcsql=$this->filtro($sql);
-				if($laRow=$this->proximo($pcsql))
-				{
-					$lnHecho=true;
-
-				}
-			
-			$this->desconectar();
-			return $lnHecho;
-		}
-
 		function registrar_precinto()
 		{
 			$this->conectar();
 			$this->begin();
-			$grupo=1;
-			$idgrupo=$this->lcIdCodigo[0];
 			for($i=0;$i<count($this->lcIdCodigo);$i++) 
 			{
-				$idgrupo=($grupo==$this->lcGrupo[$i])?$idgrupo:$this->lcIdCodigo[$i];
-				$grupo=($grupo==$this->lcGrupo[$i])?$grupo:$this->lcGrupo[$i];
-				$sql="INSERT INTO tprecinto (idcodigopre,observacionpre, estatuspre,grupopre)VALUES('".$this->lcIdCodigo[$i]."','".$this->lcObservacion[$i]."','1','$idgrupo')";
+
+				$sql="INSERT INTO tprecinto (idcodigopre,observacionpre, estatuspre)VALUES('".$this->lcIdCodigo[$i]."','".$this->lcObservacion[$i]."','1')";
 				if(!$lnHecho=$this->ejecutar($sql))
 				{
 					$this->rollback();
@@ -152,43 +128,10 @@
 		function editar_precinto()
 		{
 			$this->conectar();
-			$sql="UPDATE tprecinto SET idcodigopre='$this->lcIdCodigo',grupopre='$this->lcGrupo',observacionpre='$this->lcObservacion' WHERE idprecinto='$this->lnIdPrecinto' ";
+			$sql="UPDATE tprecinto SET idcodigopre='$this->lcIdCodigo',observacionpre='$this->lcObservacion' WHERE idprecinto='$this->lnIdPrecinto' ";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
-		}
-
-		function consultar_grupo_precintos_activos()
-		{
-			$this->conectar();
-			$cont=0;
-				$sql="SELECT grupopre FROM tprecinto WHERE estatuspre='1' GROUP BY grupopre";
-				$pcsql=$this->filtro($sql);
-				while($laRow=$this->proximo($pcsql))
-				{
-					$Fila[$cont]=$laRow;
-					$Fila[$cont]["i"]=$cont;
-					$cont++;
-				}
-			
-			$this->desconectar();
-			return $Fila;
-		}
-
-		function consultar_grupo_precintos()
-		{
-			$this->conectar();
-			$cont=0;
-				$sql="SELECT idprecinto,idcodigopre,grupopre FROM tprecinto WHERE grupopre='$this->lcGrupo' ORDER BY idcodigopre";
-				$pcsql=$this->filtro($sql);
-				while($laRow=$this->proximo($pcsql))
-				{
-					$Fila[$cont]=$laRow;
-					$cont++;
-				}
-			
-			$this->desconectar();
-			return $Fila;
 		}
 
 		function consultar_precintos_activos()

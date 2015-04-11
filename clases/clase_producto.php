@@ -14,11 +14,6 @@
 		private $lcObservacion;
 		private $lcEstatus;
 
-		private $lnIdDocumento;
-		private $ldFechaEmision;
-		private $ldFechaVencimiento;
-		private $lcDirectorio;
-
 		function set_Producto($pc)
 		{
 			$this->lnIdProducto=$pc;
@@ -67,26 +62,6 @@
 		function set_Estatus($pc)
 		{
 			$this->lcEstatus=$pc;
-		}
-
-		function set_Documento($pc)
-		{
-			$this->lnIdDocumento=$pc;
-		}
-
-		function set_FechaEmision($pc)
-		{
-			$this->ldFechaEmision=$pc;
-		}
-
-		function set_FechaVencimiento($pc)
-		{
-			$this->ldFechaVencimiento=$pc;
-		}
-
-		function set_Directorio($pc)
-		{
-			$this->lcDirectorio=$pc;
 		}
 
 
@@ -148,24 +123,10 @@
 		function registrar_producto()
 		{
 			$this->conectar();
-			$this->begin();
 			$sql="INSERT INTO tproducto ( idcodigopro, descripcioncortapro, descripcionlargapro, 
             unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, 
             observacionpro, estatuspro)VALUES('$this->lcIdCodigo','$this->lcDescripcioncorta','$this->lcDescripcionlarga','$this->lcUnidadMedida','$this->lcPrecioUnitario','$this->lcExistencia','$this->lnIdTipoProducto','$this->lcObservacion','1')";
-				if($lnHecho=$this->ejecutar($sql))
-				{
-					for($i=0;$i<count($this->lnIdDocumento);$i++)
-					{
-						$sql="INSERT INTO tproducto_documento(tproducto_idproducto, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc)VALUES ((SELECT MAX(idproducto) FROM tproducto LIMIT 1),".$this->lnIdDocumento[$i].", '".$this->fecha_bd($this->ldFechaEmision[$i])."', '".$this->fecha_bd($this->ldFechaVencimiento[$i])."', '".$this->lcDirectorio[$i]."', '1')";
-						if(!$lnHecho=$this->ejecutar($sql))
-						{
-							$this->rollback();
-							break;
-						}
-					}
-				}
-				if($lnHecho)
-					$this->commit();
+			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
 		}
@@ -191,32 +152,8 @@
 		function editar_producto()
 		{
 			$this->conectar();
-			$this->begin();
 			$sql="UPDATE tproducto SET idcodigopro='$this->lcIdCodigo',descripcioncortapro='$this->lcDescripcioncorta',descripcionlargapro='$this->lcDescripcionlarga',unidadmedidapro='$this->lcUnidadMedida',preciounitariopro='$this->lcPrecioUnitario',existenciapro='$this->lcExistencia',ttipo_producto_idtipo_producto='$this->lnIdTipoProducto',observacionpro='$this->lcObservacion' WHERE idproducto='$this->lnIdProducto' ";
-			if($lnHecho=$this->ejecutar($sql))
-			{
-				$sql="DELETE FROM tproducto_documento WHERE tproducto_idproducto='$this->lnIdProducto' ";
-				if(!$lnHecho=$this->ejecutar($sql))
-				{
-					$this->rollback();
-							break;
-				}
-				else
-				{
-					for($i=0;$i<count($this->lnIdDocumento);$i++)
-					{
-						$sql="INSERT INTO tproducto_documento(tproducto_idproducto, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc)VALUES ('$this->lnIdProducto',".$this->lnIdDocumento[$i].", '".$this->fecha_bd($this->ldFechaEmision[$i])."', '".$this->fecha_bd($this->ldFechaVencimiento[$i])."', '".$this->lcDirectorio[$i]."', '1')";
-						if(!$lnHecho=$this->ejecutar($sql))
-						{
-							$this->rollback();
-							break;
-						}
-					}
-				}
-			}
-			if($lnHecho)
-				$this->commit();
-
+			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
 		}

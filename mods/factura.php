@@ -48,37 +48,16 @@ switch ($vista) {
                 else
                     $HTML = $ObjSistema->reemplazar_vacio('LISTADO_VEHICULO', '<option value="">No se han encontrado vehiculos...</option>');
 
-                $ObjSistema->set_cuerpo($HTML);
                 /**
                  * @see precintos
                  */
-                $lagrupo_precintos = $lobjPrecinto->consultar_grupo_precintos_activos();
 
-                if($lagrupo_precintos)
-                    $HTML = $ObjSistema->render_regex('LISTADO_GRUPO_PRECINTOS', $lagrupo_precintos);
-                else
-                    $HTML = $ObjSistema->reemplazar_vacio('LISTADO_GRUPO_PRECINTOS', '');
-
+                $laprecintos = $lobjPrecinto->consultar_precintos_activos();
                 $ObjSistema->set_cuerpo($HTML);
-
-                for($i=0;$i<count($lagrupo_precintos);$i++)
-                {
-                    $lobjPrecinto->set_Grupo($lagrupo_precintos[$i]['grupopre']);
-                    $laprecintos = $lobjPrecinto->consultar_grupo_precintos();
-                    if($laprecintos)
-                        $HTML = $ObjSistema->render_regex('LISTADO_PRECINTOS_'.$i, $laprecintos);
-                    else
-                        $HTML = $ObjSistema->reemplazar_vacio('LISTADO_PRECINTOS_'.$i, '');
-                    
-                    $ObjSistema->set_cuerpo($HTML);
-                }
-
-                /*$laprecintos = $lobjPrecinto->consultar_precintos_activos();
                 if($laprecintos)
                     $HTML = $ObjSistema->render_regex('LISTADO_PRECINTOS', $laprecintos);
                 else
                     $HTML = $ObjSistema->reemplazar_vacio('LISTADO_PRECINTOS', '<option value="">No se han encontrado precintos...</option>');
-                */
             }
             else
             {

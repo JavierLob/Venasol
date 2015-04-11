@@ -2,8 +2,6 @@
 $vista = $ObjSistema->CapturarVista();
 require_once('../clases/clase_producto.php');
 require_once('../clases/clase_tipo_producto.php');
-require_once('../clases/clase_documento.php');
-$lobjDocumento = new clsDocumento;
 $lobjProducto = new clsProducto;
 $lobjTipoProducto = new clsTipoProducto;
 
@@ -60,7 +58,6 @@ switch ($vista) {
         break;
         case 'registrar_producto':
         $latipo_productos = $lobjTipoProducto->consultar_tipo_productos();
-        $ladocumentos = $lobjDocumento->consultar_documentos_tipo('Producto');
 
         $HTML = $ObjSistema->get_cuerpo('producto,Productos,Registrar producto','#,?modulo=producto/producto,#','producto','producto');
 
@@ -74,13 +71,6 @@ switch ($vista) {
             $HTML = $ObjSistema->render_regex('LISTADO_TIPO_PRODUCTO', $latipo_productos);
         else
             $HTML = $ObjSistema->reemplazar_vacio('LISTADO_TIPO_PRODUCTO', '');
-        $ObjSistema->set_cuerpo($HTML);
-
-        if($ladocumentos)
-                $HTML = $ObjSistema->render_regex('LISTADO_DOCUMENTOS', $ladocumentos);
-        else
-                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_DOCUMENTOS', '');
-
         $ObjSistema->set_cuerpo($HTML);
       
         break;
@@ -102,11 +92,9 @@ switch ($vista) {
         break;
         case 'consultar_producto':
         $lobjProducto->set_Producto($id);
-        $lobjDocumento->set_Producto($id);
         $laproducto= $lobjProducto->consultar_producto();
         $lobjTipoProducto->set_TipoProducto($laproducto['ttipo_producto_idtipo_producto']);
         $latipo_productos = $lobjTipoProducto->consultar_tipo_productos_producto();
-        $ladocumentos_producto = $lobjDocumento->consultar_documentos_producto();
 
         $HTML = $ObjSistema->get_cuerpo('producto,Productos,Consultar producto','#,?modulo=producto/producto,#','producto','producto');
 
@@ -124,25 +112,6 @@ switch ($vista) {
             $HTML = $ObjSistema->reemplazar_vacio('LISTADO_TIPO_PRODUCTO', '');
 
         $ObjSistema->set_cuerpo($HTML);
-
-        if($ladocumentos_producto)
-                $HTML = $ObjSistema->render_regex('LISTADO_DOCUMENTOS_PRODUCTO', $ladocumentos_producto);
-        else
-                $HTML = $ObjSistema->reemplazar_vacio('LISTADO_DOCUMENTOS_PRODUCTO', '');
-
-        $ObjSistema->set_cuerpo($HTML);
-
-        for($i=0;$i<count($ladocumentos_producto);$i++)
-        {
-                $lobjDocumento->set_Documento($ladocumentos_producto[$i]['iddocumento']);
-                $ladocumentos = $lobjDocumento->consultar_documentos_tipo('Producto');
-                if($ladocumentos)
-                        $HTML = $ObjSistema->render_regex('LISTADO_DOCUMENTOS'.$i, $ladocumentos);
-                else
-                        $HTML = $ObjSistema->reemplazar_vacio('LISTADO_DOCUMENTOS'.$i, '');
-                
-                $ObjSistema->set_cuerpo($HTML);
-        }
 
         break;
 	    default:
