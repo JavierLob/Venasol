@@ -12,63 +12,79 @@
                     </ul>
                 </div>
             </div>
-            <form action="../controlador/control_accesorio.php" method="POST" name="form_accesorio">
+            <form action="../controlador/control_accesorio.php" method="POST" name="form_accesorio" id="form_accesorio">
                 <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
                 <input type="hidden" value="{idaccesorio}" name="idaccesorio" id="cam_idaccesorio"/>
                 <div class="row">
                     <div class="form-group col-sm-4 col-xs-12">
                         <label for="exampleTooltip">Placa <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Placa del accesorio"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese la placa del accesorio a {funcion}' data-position="bottom" name="placaacc" id="cam_placaacc" value="{placaacc}" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la placa del accesorio a {funcion}' data-position="bottom" name="placaacc" id="cam_placaacc" value="{placaacc}" data-rule-required="true" maxlength="9" data-msg-required="Por favor introduzca la placa del accesorio">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Año <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Año del accesorio"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el año del accesorio a {funcion}' data-position="bottom" name="anoacc" id="cam_anoacc" value="{anoacc}" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el año del accesorio a {funcion}' data-position="bottom" name="anoacc" id="cam_anoacc" value="{anoacc}" maxlength="4" data-rule-required="true" data-msg-required="Por favor introduzca el año del accesorio" >
+                        </div>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Color<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Color del accesorio"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el color del accesorio a {funcion}' data-position="bottom" name="coloracc" id="cam_coloracc" value="{coloracc}" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="3" data-intro='Ingrese el color del accesorio a {funcion}' data-position="bottom" name="coloracc" id="cam_coloracc" value="{coloracc}" maxlength="20" data-rule-required="true" data-msg-required="Por favor introduzca el color del accesorio">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Marca <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Marca del accesorio"><i class="fa fa-question"></i></span></label>
-                        <select id="idmarca" data-step="4" data-intro='Seleccione la marca del accesorio a {funcion}' data-position="bottom" name="idmarca" class="form-control">
-                            <option value="">Seleccione una marca</option>
-                            <!--LISTADO_MARCAS-->
-                                <option value="{idmarca}" {selected_marca}>{descripcionmar}</option>
-                            <!--LISTADO_MARCAS-->
-                        </select>
+                        <div class="controls">
+                            <select id="idmarca" data-step="4" data-intro='Seleccione la marca del accesorio a {funcion}' data-position="bottom" name="idmarca" class="form-control" data-rule-required="true" data-msg-required="Por favor seleccione una marca del accesorio">
+                                <option value="">Seleccione una marca</option>
+                                <!--LISTADO_MARCAS-->
+                                    <option value="{idmarca}" {selected_marca}>{descripcionmar}</option>
+                                <!--LISTADO_MARCAS-->
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Modelo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Modelo del accesorio"><i class="fa fa-question"></i></span></label>
-                        <select id="idmodelo" data-step="5" data-intro='Seleccione el modelo del accesorio a {funcion}' data-position="bottom" name="idmodelo" class="form-control">
-                            <option value="">Seleccione un modelo</option>
-                            <!--LISTADO_MODELOS-->
-                                <option value="{idmodelo}" {selected_modelo}>{descripcionmod}</option>
-                            <!--LISTADO_MODELOS-->
-                        </select>
+                        <div class="controls">
+                            <select id="idmodelo" data-step="5" data-intro='Seleccione el modelo del accesorio a {funcion}' data-position="bottom" name="idmodelo" class="form-control" data-rule-required="true" data-msg-required="Por favor seleccione un modelo del accesorio">
+                                <option value="">Seleccione un modelo</option>
+                                <!--LISTADO_MODELOS-->
+                                    <option value="{idmodelo}" {selected_modelo}>{descripcionmod}</option>
+                                <!--LISTADO_MODELOS-->
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6 col-lg-6 col-xs-12">
                         <label for="exampleTooltip">Capacidad <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Capacidad del accesorio"><i class="fa fa-question"></i></span></label>
-                            <input type="text" class="form-control" data-step="6" data-intro='Ingrese la Capacidad del accesorio a {funcion}' data-position="bottom" name="capacidadacc" id="cam_capacidadacc" value="{capacidadacc}">
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="6" data-intro='Ingrese la Capacidad del accesorio a {funcion}' data-position="bottom" name="capacidadacc" id="cam_capacidadacc" value="{capacidadacc}" maxlength="13" data-rule-required="true" data-msg-required="Por favor introduzca una capacidad" data-rule-number="true" data-msg-number="Por favor introduzca solo números con dos decimales">
+                        </div>
                     </div>
                     <div class="form-group col-sm-6 col-lg-6 col-xs-12">
                         <label for="exampleTooltip">Unidad de Medida <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Unidad de Medida del accesorio"><i class="fa fa-question"></i></span></label>
-                        <select class="form-control" data-step="7" data-intro='Ingrese la Unidad de medida del accesorio a {funcion}' data-position="bottom" name="unidadmedidaacc" id="cam_unidadmedidaacc" >
-                            <option value=""></option>
-                            <option value="lts" {selected_lts}>Litros</option>
-                            <option value="kg" {selected_kg}>Kilos</option>
-                        </select>
+                        <div class="controls">
+                            <select class="form-control" data-step="7" data-intro='Ingrese la Unidad de medida del accesorio a {funcion}' data-position="bottom" name="unidadmedidaacc" id="cam_unidadmedidaacc" data-rule-required="true" data-msg-required="Por favor seleccione una unidad de medida">
+                                <option value=""></option>
+                                <option value="lts" {selected_lts}>Litros</option>
+                                <option value="kg" {selected_kg}>Kilos</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12 col-xs-12">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación o información adicional del accesorio"><i class="fa fa-question"></i></span></label>
-                        <textarea class="form-control" data-step="8" data-intro='Ingrese la alguna información adicional del accesorio a {funcion}' data-position="bottom" name="observacionacc" id="cam_observacionacc">{observacionacc}</textarea>
+                        <div class="controls">
+                            <textarea class="form-control" data-step="8" data-intro='Ingrese la alguna información adicional del accesorio a {funcion}' data-position="bottom" name="observacionacc" id="cam_observacionacc" maxlength="255" >{observacionacc}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -94,6 +110,50 @@
                       $('#idmodelo').html(datos);   
                    }
               });
+        });
+        $.validator.addMethod(
+          "letras_latinas",
+          function(value, element) {
+            return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+        //Metodo validar Email
+        $.validator.addMethod(
+          "valida_email",
+          function(value, element) {
+            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+          },
+          "Por favor ingrese un correo electrónico valido."
+        );
+        $("#form_accesorio").validate({
+            errorElement: 'label', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: true, // do not focus the last invalid input
+            
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                $('.alert-danger').fadeIn('fast');
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+                $('.btn-success').attr('disabled',true);
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+                $('.btn-success').attr('disabled',false);
+            },
+
+            errorPlacement: function (error, element) {
+                error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            }
         });
     });
 </script>
