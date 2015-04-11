@@ -160,12 +160,15 @@
 			$this->conectar();
 			$cont=0;
 			$sql="SELECT * FROM tcliente WHERE rifcli LIKE '%$criterio%' OR UPPER(razonsocial) LIKE UPPER('%$criterio%');";
+			$Fila='';
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
 				$Fila.='<a class="suggest-element" data-value="'.$laRow['idcliente'].'" data-descripcion="'.$laRow['razonsocial'].' '.$laRow['rifcli'].'">'.$laRow['razonsocial'].' '.$laRow['rifcli'].'</a><br>';
 			}
-			
+			if(!$Fila)
+				$Fila.='<a class="suggest-element" data-value="" data-descripcion="">No se encontraron resultados...</a><br>';
+
 			$this->desconectar();
 			return $Fila;
 		}

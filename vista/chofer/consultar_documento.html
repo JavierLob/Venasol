@@ -1,0 +1,72 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3>Consultar/Editar documento</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás consultar y editar los documentos del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_documento.php" method="POST" name="form_documento">
+                <input type="hidden" value="editar_documento" name="operacion" id="cam_operacion"/>
+                <input type="hidden" value="{iddocumento}" name="iddocumento" id="cam_iddocumento"/>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-6 col-lg-6">
+                        <label for="exampleTooltip">Descripción <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Descripción del documento"><i class="fa fa-question"></i></span></label>
+                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Descripción del documento a registrar' data-position="bottom" name="descripciondoc" id="cam_descripciondoc" value="{descripciondoc}" >
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-3 col-lg-3">
+                        <label for="exampleTooltip">Vence <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Indica sí el documento vence o no."><i class="fa fa-question"></i></span></label>
+                        <div class="row">
+                            <div class="btn-group" data-step="2" data-intro='Seleccione sí el documento vence o no.' data-position="bottom" data-toggle="buttons">
+                                <label class="btn btn-success" id="vencedoc1">
+                                    <input type="radio" name="vencedoc" value="1" {checked_si}> Si
+                                </label>
+                                <label class="btn btn-danger" id="vencedoc2">
+                                    <input type="radio" name="vencedoc" value="0" {checked_no}> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-3 col-lg-3" id="duracion">
+                        <label for="exampleTooltip">Duración <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Duración del documento"><i class="fa fa-question"></i></span></label>
+                        <div class="input-group">
+                            <input type="number" min="1" max="10" sequence="1" class="form-control" data-step="3" data-intro='Ingrese la Duración del documento a registrar' data-position="bottom" name="duraciondoc" id="cam_duraciondoc" value="{duraciondoc}">
+                            <span class="input-group-addon">Años</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                     <div class="form-group col-xs-12 col-sm-12 col-lg-12">
+                        <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación del documento"><i class="fa fa-question"></i></span></label>
+                        <textarea class="form-control" data-step="4" data-intro='Puede ingresar una Observación del documento a registrar' data-position="bottom" name="observaciondoc" id="cam_observaciondoc" >{observaciondoc}</textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-offset-5 col-lg-10">
+                        <button type="submit" data-step="5" data-intro='Para finalizar haga click en guardar para registrar el documento.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=chofer/documento" data-step="6" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+
+    $('#vencedoc1').click(function(){
+        $("#duracion").animate({ height: 'show', opacity: 'show' }, 'slow');
+    });
+
+    $('#vencedoc2').click(function(){
+        $("#duracion").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+    });
+});
+</script>

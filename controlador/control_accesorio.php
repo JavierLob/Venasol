@@ -56,6 +56,26 @@
 			}
 			echo $option;
 		break;
+		case 'consultar_accesorio_factura':
+			require_once("../clases/clase_factura.php");
+			$lobjFactura = new clase_factura();
+			$lobjFactura->set_Factura($_POST['idfactura']);
+            $datos_factura = $lobjFactura->consultar_factura();
+			if($laaccesorios=$lobjAccesorio->consultar_accesorios())
+			{
+				$option='<option value="">Seleccione un accesorio</option>';
+				for($i=0;$i<count($laaccesorios);$i++)
+				{
+					$selected = ($laaccesorios[$i]['idaccesorio'] == $datos_factura['idaccesorio']) ? 'selected' : '';
+					$option.='<option value="'.$laaccesorios[$i]['idaccesorio'].'" '.$selected.'>'.$laaccesorios[$i]['placaacc'].' '.$laaccesorios[$i]['coloracc'].' '.$laaccesorios[$i]['capacidadacc'].''.$laaccesorios[$i]['unidadmedidaacc'].'</option>';
+				}	
+			}
+			else
+			{
+				$option='<option>No se han encontrado registros</option>';
+			}
+			echo $option;
+		break;
 		case 'editar_accesorio':
 			$_SESSION['mensaje']='al editar el accesorio';
 			if($lobjAccesorio->editar_accesorio())

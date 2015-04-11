@@ -41,7 +41,7 @@
 *-----------------------------------*/
   
 	protected function ejecutar($lcSql){
-		$result=pg_query($this->arCon,$lcSql) OR die ('Ejecucion Invalida');
+		$result=pg_query($this->arCon,$lcSql) OR die ('Ejecucion Invalida'.$lcSql);
 		if (pg_affected_rows($result)==0)
 		    return false;
 		 return true;
