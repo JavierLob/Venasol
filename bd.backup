@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.1.14
 -- Dumped by pg_dump version 9.1.14
--- Started on 2015-04-08 03:50:24
+-- Started on 2015-04-11 19:06:38
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -1097,7 +1097,7 @@ SELECT pg_catalog.setval('sidbitacora', 15, true);
 -- Name: sidchofer; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidchofer', 23, true);
+SELECT pg_catalog.setval('sidchofer', 27, true);
 
 
 --
@@ -1142,7 +1142,7 @@ SELECT pg_catalog.setval('siddocumento', 4, true);
 -- Name: sidfactura; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidfactura', 38, true);
+SELECT pg_catalog.setval('sidfactura', 39, true);
 
 
 --
@@ -1402,6 +1402,7 @@ INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, t
 INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac) VALUES (31, 2, 3, 4, 23, 0.00, 99900.00, '', '1', '2015-04-08 00:30:52.319');
 INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac) VALUES (37, 2, 3, 4, 23, 0.00, 99900.00, '', '1', '2015-04-08 00:40:00.649');
 INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac) VALUES (38, 2, 3, 4, 23, 0.00, 66600.00, '', '1', '2015-04-08 00:40:58.668');
+INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac) VALUES (39, 2, 3, 1, 23, 0.00, 999000.00, '', '1', '2015-04-08 03:53:57.38');
 
 
 --
@@ -1421,6 +1422,7 @@ INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantida
 INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (31, 2, 30000.00, 3.33);
 INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (37, 2, 30000.00, 3.33);
 INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (38, 2, 20000.00, 3.33);
+INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (39, 1, 300000.00, 3.33);
 
 
 --
@@ -1520,10 +1522,6 @@ INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionp
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (66, '1234573   ', NULL, '', '1', 1234573);
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (67, '1234574   ', NULL, '', '1', 1234574);
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (68, '1234575   ', NULL, '', '1', 1234575);
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (69, '123450    ', NULL, '', '1', 123450);
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (70, '123451    ', NULL, '', '1', 123450);
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (71, '123452    ', NULL, '', '1', 123450);
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (72, '123453    ', NULL, '', '1', 123450);
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (73, '123454    ', NULL, '', '1', 123454);
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (74, '123455    ', NULL, '', '1', 123455);
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (75, '1234532   ', NULL, '', '1', 1234532);
@@ -1567,6 +1565,10 @@ INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionp
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (43, '3542346   ', NULL, '', '1', 3245324);
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (44, '3452346   ', NULL, '', '1', 3245324);
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (45, '3452347   ', NULL, '', '1', 3245324);
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (69, '123450    ', 39, '', '2', 123450);
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (70, '123451    ', 39, '', '2', 123450);
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (71, '123452    ', 39, '', '2', 123450);
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (72, '123453    ', 39, '', '2', 123450);
 
 
 --
@@ -1594,7 +1596,7 @@ INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcion
 -- Data for Name: tproducto_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tproducto_documento (tproducto_idproducto, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (11, 4, '2015-01-01', '2015-12-31', 'CROPOX_4_42cd5313-a170-4959-b8c6-d337d156bfa9.pdf', '1');
+INSERT INTO tproducto_documento (tproducto_idproducto, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (11, 4, '2015-01-01', '2015-12-31', 'CROPOX_4_2c0a019f-1a23-4c51-8661-c6cab9e46507.jpg', '1');
 
 
 --
@@ -2455,7 +2457,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-04-08 03:50:25
+-- Completed on 2015-04-11 19:06:42
 
 --
 -- PostgreSQL database dump complete
