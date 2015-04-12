@@ -397,7 +397,8 @@ function agregar_documento()
       col4.innerHTML='<div class="controls"><input type="file" class="form-control" name="directoriodoc[]" id="cam_directoriodoc'+contador+'" data-rule-required="true" data-msg-required="Por favor ingrese el archivo o imagen del documento"></div>';
       col5.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_documento(this)"><i class="fa fa-minus"></i></button>';
 
-      col1.appendChild(select);
+      div.appendChild(select);
+      col1.appendChild(div);
       tr.appendChild(col1);
       tr.appendChild(col2);
       tr.appendChild(col3);
