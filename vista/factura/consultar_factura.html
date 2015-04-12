@@ -438,25 +438,35 @@ function totales()
     $("#total_total").val(number_format(total_total, 2, '.'));
 }
 
+mostrar_submit();
 function imprimir(id)
 {
     alert('printed!!!');
 }
-
+function mostrar_submit()
+{
+    var trs= parseInt($("#tabla_productos tr").length);
+    if(trs>=6)
+        $("#facturar").attr('disabled', false);
+    else
+        $("#facturar").attr('disabled', true);
+}
 function mostrar_nada()
 {
     var trs=$("#tabla_productos tr").length;
-    if(trs>=1)
+    if(trs>=6)
         $("#blanco").hide();
     else
         $("#blanco").show();
 
     totales();
+    mostrar_submit();
 }
 
 function quitar(valor){
     $("#col_"+valor).remove();
     mostrar_nada();
+    mostrar_submit();
 }
 
 function number_format(number, decimals, dec_point, thousands_sep) {

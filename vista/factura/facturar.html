@@ -123,7 +123,7 @@
                             <div class="input-group-addon">
                                 <span><i class="fa fa-qq"></i></span>
                             </div><!-- /addon-group -->
-                            <select name="chofer" id="chofer" class="form-control chosen-select"  data-placeholder="Seleccione un chofer..." data-rule-required="true" data-msg-required="Por favor seleccione un chofer para realizar la facturación">
+                            <select name="chofer" id="chofer" class="form-control chosen-select"  data-placeholder="Seleccione un chofer...">
                                 <option value=""></option>
                                 <!--LISTADO_CHOFER-->
                                 <option value="{idchofer}">{aliascho} - {nombrecho} {apellidocho} {cedula_rifcho}</option>
@@ -141,7 +141,7 @@
                             <div class="input-group-addon">
                                 <span><i class="fa fa-truck"></i></span>
                             </div><!-- /addon-group -->
-                            <select name="vehiculo" id="vehiculo" class="form-control chosen-select" data-placeholder="Seleccione un vehiculo..." data-rule-required="true" data-msg-required="Por favor seleccione un vehiculo para realizar la facturación">
+                            <select name="vehiculo" id="vehiculo" class="form-control chosen-select" data-placeholder="Seleccione un vehiculo...">
                                 <option value=""></option>
                                 <!--LISTADO_VEHICULO-->
                                 <option value="{idvehiculo}">{aliasveh} - {placaveh} {anoveh} {colorveh} {descripcionmod}</option>
@@ -157,7 +157,7 @@
                             <div class="input-group-addon">
                                 <span><i class="fa fa-briefcase"></i></span>
                             </div><!-- /addon-group -->
-                            <select name="accesorio" id="accesorio" class="form-control"  data-rule-required="true" data-msg-required="Por favor seleccione un accesorio o carga para realizar la facturación">
+                            <select name="accesorio" id="accesorio" class="form-control">
                                 <option value="">Seleccione una carga...</option>
                             </select>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="controls">
                         <div class="input-group">
                             <span class="input-group-addon"> <i class="fa fa-tags"></i></span>
-                            <select name="precintos[]" id="cam_precintos" multiple class="form-control chosen-select"  data-placeholder="Seleccione uno o mas precintos..."  data-rule-required="true" data-msg-required="Por favor seleccione uno o mas precintos para realizar la facturación">
+                            <select name="precintos[]" id="cam_precintos" multiple class="form-control chosen-select"  data-placeholder="Seleccione uno o mas precintos..." >
                                 <!--LISTADO_GRUPO_PRECINTOS-->
                                 <optgroup label="{grupopre}" class="text-danger">
                                     <!--LISTADO_PRECINTOS_{i}-->
@@ -196,7 +196,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <button id="facturar" type="submit" data-step="12" data-intro='Para finalizar haga click en guardar para facturar.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Facturar</button>
+                    <button id="facturar" type="button" data-step="12" data-intro='Para finalizar haga click en guardar para facturar.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Facturar</button>
                     <a href="?modulo=factura/factura" data-step="13" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                 </div>
             </div>
@@ -264,60 +264,6 @@
 
         inicializar_chocen();
 
-        $("#form_factura").validate({
-            errorElement: 'label', //default input error message container
-            errorClass: 'help-inline', // default input error message class
-            focusInvalid: true, // do not focus the last invalid input
-            
-            invalidHandler: function (event, validator) { //display error alert on form submit   
-                $('.alert-danger').fadeIn('fast');
-            },
-
-            highlight: function (element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-                $('#facturar').attr('disabled',true);
-            },
-
-            success: function (label) {
-                label.closest('.form-group').removeClass('has-error');
-                label.remove();
-                $('#facturar').attr('disabled',false);
-            },
-
-            errorPlacement: function (error, element) {
-                error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
-            },
-
-            submitHandler: function (form) {
-                var valores = $('#form_factura').serialize();
-                var url="../controlador/control_factura.php";
-                    $.ajax({   
-                        type: "POST",
-                        url:url,
-                        data:valores,
-                        dataType : 'json',
-                        success: function(datos){
-                            if(datos.mensaje==1){
-                                mensaje = 'Se ha facturado exitosamente. Proceda a imprimir la factura... <b>Nro. Factura:</b>'+datos.nro_factura;
-                                $("#ok_exito").html('<i class="fa fa-print"></i> Imprimir');
-                                $("#ok_exito").attr('href', ' ../reporte/factura.php?id='+datos.nro_factura);
-
-                               
-                            }
-                            else{
-                                mensaje = 'Error al facturar intente nuevamente...';
-                                $("#ok_exito").attr('data-dismiss', 'modal');
-                            }
-                            console.log(datos);
-                            $("#mensaje_exito").html(mensaje);
-                            $("#myModalExito").modal('show');
-                        }
-                    });
-                return false;
-            }
-        });
-
         $("#buscar_producto").keyup(function(){          
         $('.sugerencias').fadeIn('slow').html('Cargando...');              
             var url="../controlador/control_producto.php";
@@ -336,6 +282,44 @@
                         }) ;
                     }
                 });
+        });
+
+        $("#facturar").click(function(){  
+            var valores = $('#form_factura').serialize();
+            var chofer = $("#chofer").val();
+            var vehiculo = $("#vehiculo").val();
+            var accesorio = $("#accesorio").val();
+            var precintos = $("#cam_precintos").val();
+            if((chofer!='') && (vehiculo!='') && (accesorio !=''))
+            {
+                var url="../controlador/control_factura.php";
+                $.ajax({   
+                    type: "POST",
+                    url:url,
+                    data:valores,
+                    dataType : 'json',
+                    success: function(datos){
+                        if(datos.mensaje==1){
+                            mensaje = 'Se ha facturado exitosamente. Proceda a imprimir la factura... <b>Nro. Factura:</b>'+datos.nro_factura;
+                            $("#ok_exito").html('<i class="fa fa-print"></i> Imprimir');
+                            $("#ok_exito").attr('href', ' ../reporte/factura.php?id='+datos.nro_factura);
+                        }
+                        else{
+                            mensaje = 'Error al facturar intente nuevamente...';
+                            $("#ok_exito").attr('data-dismiss', 'modal');
+                        }
+                        console.log(datos);
+                        $("#mensaje_exito").html(mensaje);
+                        $("#myModalExito").modal('show');
+                    }
+                });
+            }
+            else
+            {
+                $("#mensaje_advertencia").html('Por favor debe ingresar todos los campos obligatorios...');
+                $("#ok_advertencia").attr('data-dismiss', 'modal');
+                $("#myModalAlert").modal('show');
+            }
         });
 
 
@@ -441,26 +425,35 @@ function totales()
     $("#iva").val(number_format(iva, 2, '.'));
     $("#total_total").val(number_format(total_total, 2, '.'));
 }
-
+mostrar_submit();
 function imprimir(id)
 {
     alert('printed!!!');
 }
-
+function mostrar_submit()
+{
+    var trs= parseInt($("#tabla_productos tr").length);
+    if(trs>=7)
+        $("#facturar").attr('disabled', false);
+    else
+        $("#facturar").attr('disabled', true);
+}
 function mostrar_nada()
 {
     var trs=$("#tabla_productos tr").length;
-    if(trs>=1)
+    if(trs>=7)
         $("#blanco").hide();
     else
         $("#blanco").show();
 
     totales();
+    mostrar_submit();
 }
 
 function quitar(valor){
     $("#col_"+valor).remove();
     mostrar_nada();
+    mostrar_submit();
 }
 
 function number_format(number, decimals, dec_point, thousands_sep) {
