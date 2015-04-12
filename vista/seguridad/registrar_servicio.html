@@ -12,45 +12,53 @@
                     </ul>
                 </div>
             </div>
-            <form action="../controlador/control_servicio.php" method="POST" name="form_servicio">
+            <form action="../controlador/control_servicio.php" method="POST" name="form_servicio" id="form_servicio">
                 <input type="hidden" value="registrar_servicio" name="operacion" id="cam_operacion"/>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Nombre <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del Servicio"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese el nomnbre del servicio a registrar' data-position="bottom" name="nombreser" id="cam_nombreser" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese el nomnbre del servicio a registrar' data-position="bottom" name="nombreser" id="cam_nombreser" data-rule-required="true" data-msg-required="Por favor ingrese el nombre del servicio" >
+                        </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Enlace <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Enlace del Servicio"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el enlace del servicio a registrar' data-position="bottom" name="enlaceser" id="cam_enlaceser" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el enlace del servicio a registrar' data-position="bottom" name="enlaceser" id="cam_enlaceser" data-rule-required="true" data-msg-required="Por favor ingrese el enlace del servicio">
+                        </div>
                     </div>
                 </div>
                 <div class="row">                
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Módulo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre del Servicio"><i class="fa fa-question"></i></span></label>
-                        <select class="form-control" data-step="3" data-intro='Seleccione el módulo al cual pertenece el servicio a registrar' data-position="bottom" name="idmodulo" id="cam_idmodulo" >
-                        <option value=""></option>
-                            <!--LISTADO_MODULOS-->
-                            <option value="{idmodulo}">{nombremod}</option>
-                            <!--LISTADO_MODULOS-->
-                        </select>
+                        <div class="controls">
+                            <select class="form-control" data-step="3" data-intro='Seleccione el módulo al cual pertenece el servicio a registrar' data-position="bottom" name="idmodulo" id="cam_idmodulo" data-rule-required="true" data-msg-required="Por favor seleccione el módulo del servicio">
+                            <option value=""></option>
+                                <!--LISTADO_MODULOS-->
+                                <option value="{idmodulo}">{nombremod}</option>
+                                <!--LISTADO_MODULOS-->
+                            </select>
+                        </div>
                     </div>
                      <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Visible <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Indica sí el servicio será visible o no en el menú."><i class="fa fa-question"></i></span></label>
                         <div class="row">
-                            <div class="btn-group" data-step="4" data-intro='Seleccione sí el servicio será visible o no en el menú.' data-position="bottom" data-toggle="buttons">
-                                <label class="btn btn-success">
-                                <input type="radio" name="visibleser" value="1" id="visileser1"> Si
-                                </label>
-                                <label class="btn btn-danger">
-                                <input type="radio" name="visibleser" value="0" id="visileser2"> No
-                                </label>
+                            <div class="controls">
+                                <div class="btn-group" data-step="4" data-intro='Seleccione sí el servicio será visible o no en el menú.' data-position="bottom" data-toggle="buttons">
+                                    <label class="btn btn-success">
+                                    <input type="radio" name="visibleser" value="1" id="visileser1"> Si
+                                    </label>
+                                    <label class="btn btn-danger">
+                                    <input type="radio" name="visibleser" value="0" id="visileser2"> No
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" data-step="5" data-intro='Para finalizar haga click en guardar para registrar el servicio.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <button type="submit" data-step="5" data-intro='Para finalizar haga click en guardar para registrar el servicio.' data-position="top" class="btn btn-success" id="btn-enviar"><i class="fa fa-check"></i> Guardar</button>
                         <a href="?modulo=seguridad/servicio" data-step="6" data-intro='Para salir haga click en regresar para registrar el servicio.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
@@ -58,3 +66,69 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+        $.validator.addMethod(
+          "letras_latinas",
+          function(value, element) {
+                return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+         $.validator.addMethod(
+          "letras_latinas_2",
+          function(value, element) {
+            if(value!='')
+                return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+            else
+                return true;
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+        //Metodo validar Email
+        $.validator.addMethod(
+          "valida_email",
+          function(value, element) {
+            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+          },
+          "Por favor ingrese un correo electrónico valido."
+        );
+        $.validator.addMethod(
+          "validar_repetido",
+          function(value, element) {
+            return validar_documento_repetido();
+          },
+          "Este documento ya ha sido seleccionado, por favor seleccione otro"
+        );
+
+        $("#form_servicio").validate({
+            errorElement: 'label', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: true,
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                $('.alert-danger').fadeIn('fast');
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+                $('#btn-enviar').attr('disabled',true);
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+                $('#btn-enviar').attr('disabled',false);
+            },
+
+            errorPlacement: function (error, element) {
+                error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+});
+</script>
