@@ -17,26 +17,32 @@
                 <div class="row">
                     <div class="form-group col-sm-6 col-lg-3">
                         <label for="exampleTooltip">Cédula/Rif <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Cédula/Rif del chofer"><i class="fa fa-question"></i></span></label>
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="inicial_rif"></span> <span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                  <li class="rif_cho" data-value="V"><a href="#">V</a></li>
-                                  <li class="rif_cho" data-value="E"><a href="#">E</a></li>
-                                  <li class="rif_cho" data-value="J"><a href="#">J</a></li>
-                                  <li class="rif_cho" data-value="N"><a href="#">N</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Cédula/Rif del chofer a registrar' data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="">
-                        </div><!-- /input-group -->
+                        <div class="controls">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="inicial_rif"></span> <span class="caret"></span></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                      <li class="rif_cho" data-value="V"><a href="#">V</a></li>
+                                      <li class="rif_cho" data-value="E"><a href="#">E</a></li>
+                                      <li class="rif_cho" data-value="J"><a href="#">J</a></li>
+                                      <li class="rif_cho" data-value="N"><a href="#">N</a></li>
+                                    </ul>
+                                </div><!-- /btn-group -->
+                                <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Cédula/Rif del chofer a registrar' data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="" data-msg-minlength="Debe ingresar menos de {0} dígitos" data-msg-maxlength="Debe ingresar al menos {0} dígitos" data-rule-required="true" data-msg-required="Por favor ingrese la cédula/Rif del chofer" maxlength="9" minlength="7">
+                            </div><!-- /input-group -->
+                        </div>
                     </div>
                     <div class="form-group col-sm-6 col-lg-3">
                         <label for="exampleTooltip">Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del chofer"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el Código del chofer a registrar' data-position="bottom" name="idcodigocho" id="cam_idcodigocho" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el Código del chofer a registrar' data-position="bottom" name="idcodigocho" id="cam_idcodigocho" >
+                        </div>
                     </div>
                     <div class="form-group col-sm-12 col-lg-6">
                         <label for="exampleTooltip">Alias <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Alias/apodo del chofer"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el alias/apodo del chofer a registrar' data-position="bottom" name="aliascho" id="cam_aliascho" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="3" data-intro='Ingrese el alias/apodo del chofer a registrar' data-position="bottom" name="aliascho" id="cam_aliascho" >
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -59,14 +65,14 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="date" class="form-control" data-step="6" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom"  name="fechanacimientocho" id="cam_fechanacimientocho" data-rule-required="true" data-rule-date="true" data-msg-required="Por favor ingrese la fecha de nacimiento del chofer" data-rule-letras_latinas="true" >
+                                <input type="date" class="form-control" data-step="6" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom"  name="fechanacimientocho" id="cam_fechanacimientocho" data-rule-required="true" data-rule-date="true" data-msg-required="Por favor ingrese la fecha de nacimiento del chofer" >
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Dirección <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Dirección del chofer"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <textarea class="form-control" data-step="7" data-intro='Ingrese la dirección del chofer a registrar' data-position="bottom" name="direccioncho" id="cam_direccioncho" data-rule-required="true" data-msg-required="Por favor ingrese la dirección del chofer" data-rule-letras_latinas="true" ></textarea>
+                            <textarea class="form-control" data-step="7" data-intro='Ingrese la dirección del chofer a registrar' data-position="bottom" name="direccioncho" id="cam_direccioncho" data-rule-required="true" data-msg-required="Por favor ingrese la dirección del chofer" data-rule-direccion="true" data-msg-minlength="Debe ingresar al menos {0} caracteres" data-msg-maxlength="Debe ingresar menos de{0} caracteres" maxlength="255" minlength="5" ></textarea>
                         </div>
                     </div>
                 </div>
@@ -76,7 +82,7 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
-                                <input type="text" class="form-control" data-step="8" data-intro='Ingrese el Nº Teléfono del chofer a registrar' data-position="bottom" name="telefonomovilcho" id="cam_telefonomovilcho" data-msg-minlength="Debe ingresar {0} caracteres" data-msg-maxlength="Debe ingresar {0} caracteres" data-rule-required="true" data-msg-required="Por favor ingrese el teléfono movil del chofer" maxlength="11" minlength="11">
+                                <input type="text" class="form-control" data-step="8" data-intro='Ingrese el Nº Teléfono del chofer a registrar' data-position="bottom" name="telefonomovilcho" id="cam_telefonomovilcho" data-rule-required="true" data-msg-required="Por favor ingrese el teléfono movil del chofer" >
                             </div>
                         </div>
                     </div>
@@ -96,14 +102,14 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                <input type="email" class="form-control" data-step="10" data-intro='Ingrese el Correo del chofer a registrar' data-position="bottom" name="correocho" id="cam_correocho" data-msg-minlength="Debe ingresar al menos {0} caracteres" data-msg-maxlength="Debe ingresar menos de {0} caracteres" data-rule-required="true" data-msg-required="Por favor ingrese el correo del chofer" maxlength="55" minlength="10">
+                                <input type="email" class="form-control" data-step="10" data-intro='Ingrese el Correo del chofer a registrar' data-position="bottom" name="correocho" id="cam_correocho" data-msg-minlength="Debe ingresar al menos {0} caracteres" data-msg-maxlength="Debe ingresar menos de {0} caracteres" data-rule-valida_email="true" maxlength="55" minlength="10">
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación del chofer"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <textarea class="form-control" data-step="11" data-intro='Puede ingresar una Observación del chofer a registrar' data-position="bottom" name="observacioncho" id="cam_observacioncho" ></textarea>
+                            <textarea class="form-control" data-step="11" data-intro='Puede ingresar una Observación del chofer a registrar' data-position="bottom" name="observacioncho" id="cam_observacioncho" data-rule-letras_latinas="true" ></textarea>
                         </div>
                     </div>
                 </div>
@@ -122,7 +128,7 @@
                             <tr>
                                 <td class="form-group col-lg-3 col-sm-3 col-xs-3">
                                     <div class="controls">
-                                        <select class="form-control" onchange="validar_vence(this)" name="iddocumento[]" id="cam_iddocumento0" data-rule-required="true" data-msg-required="Por favor seleccione un documento">
+                                        <select class="form-control" onchange="validar_vence(this)" name="iddocumento[]" id="cam_iddocumento0" data-rule-required="true" data-msg-required="Por favor seleccione un documento" data-rule-validar_repetido="true">
                                             <option value=""></option>
                                             <!--LISTADO_DOCUMENTOS-->
                                                 <option value="{iddocumento}" data-value="{vencedoc}">{descripciondoc}</option>
@@ -162,7 +168,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-5 col-lg-10">
-                        <button type="submit" data-step="12" data-intro='Para finalizar haga click en guardar para registrar el chofer.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <button type="submit" data-step="12" data-intro='Para finalizar haga click en guardar para registrar el chofer.' data-position="top" class="btn btn-success" id="btn-enviar"><i class="fa fa-check"></i> Guardar</button>
                         <a href="?modulo=chofer/chofer" data-step="13" data-intro='Para salir haga click en regresar para registrar el chofer.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>                
@@ -196,15 +202,18 @@ $(document).ready(function(){
           },
           "Por favor ingrese un correo electrónico valido."
         );
+        $.validator.addMethod(
+          "validar_repetido",
+          function(value, element) {
+            return validar_documento_repetido();
+          },
+          "Este documento ya ha sido seleccionado, por favor seleccione otro"
+        );
+
         $("#form_chofer").validate({
             errorElement: 'label', //default input error message container
             errorClass: 'help-inline', // default input error message class
-            focusInvalid: true, // do not focus the last invalid input
-             messages: {/// mesajes personalizados para cada campo
-                correocho: {
-                email: "Por favor ingrese un correo válido."
-                }
-                },
+            focusInvalid: true,
             invalidHandler: function (event, validator) { //display error alert on form submit   
                 $('.alert-danger').fadeIn('fast');
             },
@@ -212,13 +221,13 @@ $(document).ready(function(){
             highlight: function (element) { // hightlight error inputs
                 $(element)
                     .closest('.form-group').addClass('has-error'); // set error class to the control group
-                $('.btn-success').attr('disabled',true);
+                $('#btn-enviar').attr('disabled',true);
             },
 
             success: function (label) {
                 label.closest('.form-group').removeClass('has-error');
                 label.remove();
-                $('.btn-success').attr('disabled',false);
+                $('#btn-enviar').attr('disabled',false);
             },
 
             errorPlacement: function (error, element) {
@@ -231,6 +240,24 @@ $(document).ready(function(){
         });
 
 });
+function validar_documento_repetido()
+{
+    iddocumento=document.getElementsByName('iddocumento[]');
+    for(i=0;i<iddocumento.length;i++)
+    {
+        cont=0;
+        for(j=0;j<iddocumento.length;j++)
+        {
+            if(iddocumento[i].value==iddocumento[j].value)
+                cont++;
+            if(cont==2)
+                return false;
+        }
+    }
+
+    return true;
+}
+
 
 function validar_vence(e)
 {
@@ -271,6 +298,7 @@ function agregar_documento()
       select.setAttribute('name','iddocumento[]');
       select.setAttribute('id','cam_iddocumento'+contador);
       select.setAttribute('data-rule-required','true');
+      select.setAttribute('data-rule-validar_repetido','true');
       select.setAttribute('data-msg-required','Por favor seleccione un documento');
       var col2= document.createElement('td');
       var col3= document.createElement('td');
