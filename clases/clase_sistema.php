@@ -9,10 +9,11 @@
 		    $this->str = $template_html;
 		    $vista=$this->armarDiccionario($vista,$enlace);
 		    $mensaje=$this->armarMensaje();
+		    $dividir_parametros = explode(' ', $_SESSION['nombreusu']);
 			$Diccionario	=array(	'Servicio'=> array('servicio'=>$servicio,'modulo'=>$modulo),
 									'Mensaje'=>$mensaje,
 									'Menu'=>$this->get_menu(),
-									'nombreusu'=>array('nombreusu'=>$_SESSION['nombreusu'])
+									'nombreusu'=>array('nombre_corto'=> $dividir_parametros[0], 'nombre_largo'=>$_SESSION['nombreusu'])
 									);
 
         	$this->set_cuerpo($this->render($Diccionario['Servicio']));
