@@ -12,53 +12,63 @@
                     </ul>
                 </div>
             </div>
-            <form action="../controlador/control_documento.php" method="POST" name="form_documento">
+            <form action="../controlador/control_documento.php" method="POST" name="form_documento" id="form_documento">
                 <input type="hidden" value="editar_documento" name="operacion" id="cam_operacion"/>
                 <input type="hidden" value="{iddocumento}" name="iddocumento" id="cam_iddocumento"/>
                 <div class="row">
                     <div class="form-group col-xs-12 col-sm-6 col-lg-6">
                         <label for="exampleTooltip">Descripción <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Descripción del documento"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Descripción del documento a registrar' data-position="bottom" name="descripciondoc" id="cam_descripciondoc" value="{descripciondoc}" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Descripción del documento a registrar' data-position="bottom" name="descripciondoc" id="cam_descripciondoc" value="{descripciondoc}" data-rule-required="true" data-msg-required="Por favor ingrese la descripción del documento">
+                        </div>
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-lg-6">
                         <label for="exampleTooltip">Tipo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Indica sí el documento es para los choferes o productos"><i class="fa fa-question"></i></span></label>
-                        <select class="form-control" data-step="2" data-intro='Indique sí el documento a registrar es para los choferes o productos' data-position="bottom" name="tipodoc" id="cam_tipodoc">
-                            <option value=""></option>
-                            <option value="Chofer" {selected_chofer}>Chofer</option>
-                            <option value="Producto" {selected_producto}>Producto</option>
-                        </select>
+                        <div class="controls">
+                            <select class="form-control" data-step="2" data-intro='Indique sí el documento a registrar es para los choferes o productos' data-position="bottom" name="tipodoc" id="cam_tipodoc" data-rule-required="true" data-msg-required="Por favor ingrese el tipo de documento">
+                                <option value=""></option>
+                                <option value="Chofer" {selected_chofer}>Chofer</option>
+                                <option value="Producto" {selected_producto}>Producto</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-6 col-sm-3 col-lg-3">
                         <label for="exampleTooltip">Vence <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Indica sí el documento vence o no."><i class="fa fa-question"></i></span></label>
-                        <div class="row">
-                            <div class="btn-group" data-step="3" data-intro='Seleccione sí el documento vence o no.' data-position="bottom" data-toggle="buttons">
-                                <label class="btn btn-success" id="vencedoc1">
-                                    <input type="radio" name="vencedoc" value="1" {checked_si}> Si
-                                </label>
-                                <label class="btn btn-danger" id="vencedoc2">
-                                    <input type="radio" name="vencedoc" value="0" {checked_no}> No
-                                </label>
+                        <div class="controls">
+                            <div class="row">
+                                <div class="btn-group" data-step="3" data-intro='Seleccione sí el documento vence o no.' data-position="bottom" data-toggle="buttons">
+                                    <label class="btn btn-success" id="vencedoc1">
+                                        <input type="radio" name="vencedoc" value="1" {checked_si}> Si
+                                    </label>
+                                    <label class="btn btn-danger" id="vencedoc2">
+                                        <input type="radio" name="vencedoc" value="0" {checked_no} > No
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-xs-6 col-sm-3 col-lg-3" id="duracion">
                         <label for="exampleTooltip">Duración <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Duración del documento"><i class="fa fa-question"></i></span></label>
-                        <div class="input-group">
-                            <input type="number" min="1" max="10" sequence="1" class="form-control" data-step="4" data-intro='Ingrese la Duración del documento a registrar' data-position="bottom" name="duraciondoc" id="cam_duraciondoc" value="{duraciondoc}">
-                            <span class="input-group-addon">Años</span>
+                        <div class="controls">
+                            <div class="input-group">
+                                <input type="number" min="1" max="10" sequence="1" class="form-control" data-step="4" data-intro='Ingrese la Duración del documento a registrar' data-position="bottom" name="duraciondoc" id="cam_duraciondoc" value="{duraciondoc}">
+                                <span class="input-group-addon">Años</span>
+                            </div>
                         </div>
                     </div>
                      <div class="form-group col-xs-12 col-sm-6 col-lg-6">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación del documento"><i class="fa fa-question"></i></span></label>
-                        <textarea class="form-control" data-step="5" data-intro='Puede ingresar una Observación del documento a registrar' data-position="bottom" name="observaciondoc" id="cam_observaciondoc" >{observaciondoc}</textarea>
+                        <div class="controls">
+                            <textarea class="form-control" data-step="5" data-intro='Puede ingresar una Observación del documento a registrar' data-position="bottom" name="observaciondoc" id="cam_observaciondoc" >{observaciondoc}</textarea>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-offset-5 col-lg-10">
-                        <button type="submit" data-step="6" data-intro='Para finalizar haga click en guardar para registrar el documento.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <button type="submit" data-step="6" data-intro='Para finalizar haga click en guardar para registrar el documento.' data-position="top" class="btn btn-success" id="btn-enviar"><i class="fa fa-check"></i> Guardar</button>
                         <a href="?modulo=configuracion/documento" data-step="7" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
@@ -76,5 +86,60 @@ $(document).ready(function(){
     $('#vencedoc2').click(function(){
         $("#duracion").animate({ height: 'hide', opacity: 'hide' }, 'slow');
     });
+
+    $.validator.addMethod(
+          "letras_latinas",
+          function(value, element) {
+            if(value!='')
+                return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+            else
+                return true;
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+      $.validator.addMethod(
+          "direccion",
+          function(value, element) {
+            return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s,.#]+$/);
+          },
+          "Por favor ingrese solo caracteres, números, puntos, comas o numeral."
+        );
+        //Metodo validar Email
+        $.validator.addMethod(
+          "valida_email",
+          function(value, element) {
+            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+          },
+          "Por favor ingrese un correo electrónico valido."
+        );
+
+        $("#form_documento").validate({
+            errorElement: 'label', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: true,
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                $('.alert-danger').fadeIn('fast');
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+                $('#btn-enviar').attr('disabled',true);
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+                $('#btn-enviar').attr('disabled',false);
+            },
+
+            errorPlacement: function (error, element) {
+                error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
 });
 </script>

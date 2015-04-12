@@ -37,7 +37,7 @@
                                 </td>
                                 <td  class="col-lg-5">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el código del precinto a registrar' onblur="validar_repetido(this);" data-position="bottom" name="idcodigopre[]">
+                                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el código del precinto a registrar' onblur="validar_repetido(this);" data-position="bottom" name="idcodigopre[]" onkeypress="quitar_validacion(this);">
                                     </div>
                                 </td>
                                 <td  class="col-lg-5">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-4 col-lg-10">
-                        <button type="submit" data-step="6" data-intro='Para finalizar haga click en guardar para registrar el precinto.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <button type="submit" data-step="6" data-intro='Para finalizar haga click en guardar para registrar el precinto.' data-position="top" class="btn btn-success" onclick="return validar_vacio();"><i class="fa fa-check"></i> Guardar</button>
                         <a href="?modulo=precinto/precinto" data-step="7" data-intro='Para salir haga click en regresar para registrar el precinto.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
       var col2= document.createElement('td');
       var col3= document.createElement('td');                                    
       col0.innerHTML='<div class="form-group"><input type="number" class="form-control" name="grupopre[]" min="1" value="'+grupo+'" step="1"></div>';
-      col1.innerHTML='<div class="form-group"><input type="text" class="form-control" name="idcodigopre[]" onblur="validar_repetido(this);"></div>';
+      col1.innerHTML='<div class="form-group"><input type="text" class="form-control" name="idcodigopre[]" onblur="validar_repetido(this);" onkeypress="quitar_validacion(this);"></div>';
       col2.innerHTML='<div class="form-group"><input type="text" class="form-control" name="observacionpre[]"></div>';
       col3.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_precinto(this)"><i class="fa fa-minus"></i></button>';
       tr.appendChild(col0);
@@ -161,5 +161,36 @@ function quitar_precinto(e)
         $('.text-danger').remove();
         return true;
     }
+  }
+  function validar_vacio()
+  {
+    idcodigopre=document.getElementsByName('idcodigopre[]');
+    for(i=0;i<idcodigopre.length;i++)
+    {
+
+        if(idcodigopre[i].value=='')
+        {
+            vacio=true;
+            e=idcodigopre[i];
+            $(e).closest('.form-group').addClass('has-error');
+            error=document.createElement('p');
+            if($('.texto-error'+i))
+                $('.texto-error'+i).remove();
+
+            $(error).addClass('texto-error'+i);
+            error.innerHTML='Por favor ingrese un código de precinto.';
+            $(error).addClass('help-small no-left-padding text-danger').insertAfter(e.closest('.form-group'));
+        }
+    }
+    if(vacio)
+        return false;
+    else
+        return true;
+  }
+
+  function quitar_validacion(e)
+  {
+        $(e).closest('.form-group').removeClass('has-error');
+        $(e).closest('p').remove();
   }
 </script>
