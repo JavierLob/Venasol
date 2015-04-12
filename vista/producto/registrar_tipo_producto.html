@@ -12,16 +12,20 @@
                     </ul>
                 </div>
             </div>
-            <form action="../controlador/control_tipo_producto.php" method="POST" name="form_tipo_producto">
+            <form action="../controlador/control_tipo_producto.php" method="POST" name="form_tipo_producto" id="form_tipo_producto">
                 <input type="hidden" value="registrar_tipo_producto" name="operacion" id="cam_operacion"/>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Descripción <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Descripción del tipo de producto"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese la descripción del tipo de producto a registrar' data-position="bottom" name="descripciontip" id="cam_descripciontip" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese la descripción del tipo de producto a registrar' data-position="bottom" name="descripciontip" id="cam_descripciontip" data-rule-required="true" data-msg-required="Por favor ingrese la descripción del tipo de producto" data-rule-letras_latinas="true">
+                        </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación sobre el tipo de producto"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese una observación sobre el tipo de producto a registrar' data-position="bottom" name="observaciontip" id="cam_observaciontip" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese una observación sobre el tipo de producto a registrar' data-position="bottom" name="observaciontip" id="cam_observaciontip" data-rule-letras_latinas_2="true">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -34,3 +38,69 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $.validator.addMethod(
+          "letras_latinas",
+          function(value, element) {
+                return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+         $.validator.addMethod(
+          "letras_latinas_2",
+          function(value, element) {
+            if(value!='')
+                return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+            else
+                return true;
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+        //Metodo validar Email
+        $.validator.addMethod(
+          "valida_email",
+          function(value, element) {
+            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+          },
+          "Por favor ingrese un correo electrónico valido."
+        );
+        $.validator.addMethod(
+          "validar_repetido",
+          function(value, element) {
+            return validar_documento_repetido();
+          },
+          "Este documento ya ha sido seleccionado, por favor seleccione otro"
+        );
+
+        $("#form_tipo_producto").validate({
+            errorElement: 'label', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: true,
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                $('.alert-danger').fadeIn('fast');
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+                $('.btn-success').attr('disabled',true);
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+                $('.btn-success').attr('disabled',false);
+            },
+
+            errorPlacement: function (error, element) {
+                error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
