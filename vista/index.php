@@ -39,6 +39,22 @@ switch ($modulo) {
 	case 'configuracion':
 		include_once("../mods/configuracion.php");
 	break;
+	case 'consultar_perfil':
+        $lobjUsuario->set_Usuario($_SESSION['usuario']);
+        $datos_usuario = $lobjUsuario->consultar_usuario();
+        $HTML = $ObjSistema->get_cuerpo('Perfil','./,#','usuario','usuario');
+        $ObjSistema->set_cuerpo($HTML);
+        $diccionario = array('cuerpo' => file_exists("perfil/consultar_perfil.html") ? file_get_contents("perfil/consultar_perfil.html") : '',
+                            'operacion'=>'editar_perfil',
+                            'Funcion' => 'Consultar Perfil',
+                            'funcion'=> 'editar',
+                            'icono'=> 'edit'
+                            );
+
+        $HTML = $ObjSistema->render($diccionario);
+        $ObjSistema->set_cuerpo($HTML);
+        $HTML = $ObjSistema->render($datos_usuario);
+        break;
 	case 'logout':
 		unset($_SESSION['usuario']);
 		unset($_SESSION['nombrerol']);

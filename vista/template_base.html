@@ -5,7 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 		<title>VENASOL C.A.</title>
-		 
+		<meta content="Intranet de Venasol, dirigida a la facturación, gestión de clientes, productos y transporte de productos..." name="description"> 
+		<meta name="keywords" content="Empresa, Servicio de Transporte, Transporte a Nivel Nacional.">
+		<meta name="author" content="Clouds Solutions C.A.">
 		<link rel="stylesheet" type="text/css" href="../media/css/bootstrap/bootstrap.min.css"/>
 		<link rel="stylesheet" href="../libreria/datepicker/css/datepicker.css" type="text/css"/>
 		<link rel="stylesheet" type="text/css" href="../media/css/libs/font-awesome.css"/>
@@ -32,7 +34,7 @@
             });
         </script>
 	</head>
-	<body class="theme-blue fixed-header fixed-leftmenu">
+	<body class="theme-blue fixed-header fixed-leftmenu fixed-footer">
 		<div id="theme-wrapper">
 			<header class="navbar" id="header-navbar">
 				<div class="container">
@@ -57,7 +59,7 @@
 						</div>
 						<div class="nav-no-collapse pull-right" id="header-nav">
 							<ul class="nav navbar-nav pull-right">
-								<li class="mobile-search">
+								<!--<li class="mobile-search">
 									<a class="btn">
 										<i class="fa fa-search"></i>
 									</a>
@@ -123,15 +125,14 @@
 											</a>
 										</li>
 									</ul>
-								</li>								
+								</li>		-->						
 								<li class="dropdown profile-dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 										<img src="../media/img/samples/scarlet-159.png" alt=""/>
 										<span class="hidden-xs">{nombre_largo}</span> <b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a href="user-profile.html"><i class="fa fa-user"></i>Perfil</a></li>
-										<li><a href="#"><i class="fa fa-cog"></i>Configuración</a></li>
+										<li><a href="./?modulo=consultar_perfil"><i class="fa fa-user"></i>Perfil</a></li>
 										<li><a href="./?modulo=logout"><i class="fa fa-power-off"></i>Cerrar Sesión</a></li>
 									</ul>
 								</li>
@@ -154,8 +155,7 @@
 						<i class="fa fa-angle-down"></i>
 						</a>
 						<ul class="dropdown-menu">
-						<li><a href="user-profile.html"><i class="fa fa-user"></i>Perfil</a></li>
-						<li><a href="#"><i class="fa fa-cog"></i>Configuración</a></li>
+						<li><a href="./?modulo=consultar_perfil"><i class="fa fa-user"></i>Perfil</a></li>
 						<li><a href="./?modulo=logout"><i class="fa fa-power-off"></i>Cerrar Sesión</a></li>
 						</ul>
 						</span>
@@ -208,7 +208,7 @@
 				</div>
 				<footer id="footer-bar" class="row">
 				<p id="footer-copyright" class="col-xs-12">
-				Powered by PRISM Theme.
+				Powered by  <a href="https://cloudssolutions.com.ve" target="_blank"><i class="fa fa-cloud"></i> Clouds Solutions C.A.</a>.
 				</p>
 				</footer>
 				</div>

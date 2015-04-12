@@ -252,11 +252,20 @@
 			return $lnHecho;
 		}
 
+		function desactivar_clave()
+		{
+			$this->conectar();
+			$sql="UPDATE tclave SET estatuscla=0, fechafincla = NOW() WHERE tusuario_idusuario = '$this->lcUsuario';";
+			$lnHecho=$this->ejecutar($sql);	
+			$this->desconectar();	
+			return $lnHecho;
+		}
+
 		function registrar_usuario_google()
 		{
 			$this->conectar();
 			$sql=" INSERT INTO tgoogle_users (google_id, google_name, google_email, google_link, google_picture_link) 
-		VALUES ('$this->lnIdUsuarioGoogle', '$this->lcUsuario','$this->lcCorreo','$this->lcProfile','$this->lcProfileImage')";
+			VALUES ('$this->lnIdUsuarioGoogle', '$this->lcUsuario','$this->lcCorreo','$this->lcProfile','$this->lcProfileImage')";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();	
 			return $lnHecho;
@@ -266,6 +275,15 @@
 		{
 			$this->conectar();
 			$sql="UPDATE tusuario SET nombreusu=UPPER('$this->lcNombre'), emailusu=UPPER('$this->lcCorreo'),trol_idrol='$this->lnIdRol',cedula='$this->lnIdPersona' WHERE idusuario='$this->lcUsuario'";
+			$lnHecho=$this->ejecutar($sql);			
+			$this->desconectar();
+			return $lnHecho;
+		}
+
+		function editar_perfil()
+		{
+			$this->conectar();
+			$sql="UPDATE tusuario SET emailusu=UPPER('$this->lcCorreo') WHERE idusuario='$this->lcUsuario'";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;

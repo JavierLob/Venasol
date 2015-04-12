@@ -110,6 +110,34 @@ switch ($operacion) {
 
 		header('location:../vista/?modulo=seguridad/usuario');
 	break;
+	case 'editar_perfil':
+		$_SESSION['mensaje']='al editar el perfil';
+		if($lobjUsuario->editar_perfil())
+		{
+			$_SESSION['resultado']='Éxito';
+			$_SESSION['resultado_color']='success';
+			$_SESSION['icono_mensaje']='check-circle';
+		}
+		else
+		{	
+			$_SESSION['resultado']='Error';
+			$_SESSION['resultado_color']='danger';
+			$_SESSION['icono_mensaje']='times-circle';
+		}
+
+		if($_POST['password']!='')
+		{
+			$lobjUsuario->set_Clave($_POST['password']);
+			$lobjUsuario->desactivar_clave();
+			if($lobjUsuario->registrar_clave())
+			{
+				$_SESSION['resultado']='Éxito';
+				$_SESSION['resultado_color']='success';
+				$_SESSION['icono_mensaje']='check-circle';
+			}
+		}
+		header('location:../vista/?modulo=consultar_perfil');
+	break;
 	default:
 		 header("location: ../");
 		break;

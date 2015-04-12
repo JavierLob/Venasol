@@ -167,7 +167,7 @@ switch ($vista) {
             $HTML = $ObjSistema->reemplazar_vacio('LISTADO_ROL', '');
         
         break;
-         case 'consultar_usuario':
+        case 'consultar_usuario':
         $lobjUsuario->set_Usuario($id);
         $datos_usuario = $lobjUsuario->consultar_usuario();
         $HTML = $ObjSistema->get_cuerpo('seguridad,usuarios,Editar Usuarios','#,?modulo=seguridad/usuario,#','usuario','usuario');
