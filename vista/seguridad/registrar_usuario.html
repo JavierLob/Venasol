@@ -1,0 +1,121 @@
+<div class="col-lg-12">
+    <div class="main-box">    
+        <header class="main-box-header clearfix">
+            <h3><i class="fa fa-{icono}"></i> {Funcion} Usuario</h3>
+        </header>
+        <div class="main-box-body clearfix">
+            <div class="row">
+                <div class="alert alert-info">
+                    <ul>
+                        <li>En este módulo podrás {funcion} los usuarios del sistema.</li>
+                        <li>Sí necesitas ayuda para usar este módulo haz clic en el botón <button class="btn btn-warning" type="button" onclick="javascript:introJs().start();"><i class="fa fa-question-circle"></i> AYUDA</button>.</li>
+                    </ul>
+                </div>
+            </div>
+            <form action="../controlador/control_usuario.php" method="POST" name="form_usuario" id="form_usuario">
+                <input type="hidden" value="{operacion}" name="operacion" id="cam_operacion"/>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="exampleTooltip">Usuario <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Usuario con el que podrá acceder al sistema"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el usuario a {funcion}' data-position="bottom" name="idusuario" id="cam_idusuario" value="{idusuario}" data-rule-required="true" data-msg-required="Por favor introduzca la razón social del cliente" data-rule-letras_latinas="true" data-rule-minlength="6" maxlength="20" data-msg-minlength="Por favor introduzca de 6 a 20 caracteres">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-xs-12">
+                        <label for="exampleTooltip">Nombre y Apellido <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre y Apellido del usuario"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el nombre y apellido del usuario a {funcion}' data-position="bottom" name="nombreusu" id="cam_nombreusu" value="{nombreusu}" data-rule-required="true" data-msg-required="Por favor introduzca el nombre y apellido del usuario" data-rule-letras_latinas="true" maxlength="45">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="exampleTooltip">Cédula Identidad <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Cédula de Identidad"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="4" data-intro='Ingrese el número de cédula de identidad del usuario a {funcion}' data-position="bottom" name="cedula" id="cam_telefonounocli" value="{cedula}" maxlength="15" data-rule-number="true" data-rule-required="true" data-msg-number="Por favor introduzca sólo números" data-msg-required="Por favor introduzca un número de cédula">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-xs-12">
+                        <label for="exampleTooltip">Correo Electronico <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correl electronico del usuario"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el correo electronico del usuario a {funcion}' data-position="bottom" name="emailusu" id="cam_emailusu" value="{emailusu}" data-rule-required="true" data-msg-required="Por favor introduzca la razón social del cliente" data-rule-email="true" data-msg-email="Por favor introduzca una dirección de correo valida" maxlength="45">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <label for="exampleTooltip">Rol <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correl electronico del usuario"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                            <select name="trol_idrol" id="trol_idrol" class="form-control" data-rule-required="true" data-msg-required="Por favor introduzca un rol">
+                                <option value="">Seleccione un Rol</option>
+                                <!--LISTADO_ROL-->
+                                <option value="{idrol}" {selected}>{nombrerol}</option>
+                                <!--LISTADO_ROL-->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" data-step="9" data-intro='Para finalizar haga click en guardar para {funcion} el usuario.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=seguridad/usuario" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $(".rif_cli").click(function(){
+            var valor = $(this).attr("data-value");
+            $("#inicial_rif").html(valor);
+            $("#cam_rifcli").val(valor);
+        });
+        $.validator.addMethod(
+          "letras_latinas",
+          function(value, element) {
+            return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+        //Metodo validar Email
+        $.validator.addMethod(
+          "valida_email",
+          function(value, element) {
+            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+          },
+          "Por favor ingrese un correo electrónico valido."
+        );
+        $("#form_usuario").validate({
+            errorElement: 'label', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: true, // do not focus the last invalid input
+            
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                $('.alert-danger').fadeIn('fast');
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+                $('.btn-success').attr('disabled',true);
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+                $('.btn-success').attr('disabled',false);
+            },
+
+            errorPlacement: function (error, element) {
+                error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>

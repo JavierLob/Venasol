@@ -1,13 +1,34 @@
 <?php
 $vista = $ObjSistema->CapturarVista();
 require_once('../clases/clase_rol.php');
+require_once('../clases/clase_usuario.php');
 require_once('../clases/clase_modulo.php');
 require_once('../clases/clase_servicio.php');
 $lobjrol = new clsrol;
 $lobjModulo = new clsModulo;
 $lobjServicio = new clsServicio;
+$lobjUsuario = new clsUsuario;
 
 switch ($vista) {
+        case 'usuario':
+                $ObjSistema->consultar_opciones('?modulo=seguridad/consultar_usuario', $opciones['btn_consultar'], '?modulo=seguridad/registrar_usuario', $opciones['btn_registrar'], '?modulo=seguridad/eliminar_usuario', $opciones['btn_eliminar'], '?modulo=seguridad/eliminar_usuario', $opciones['btn_restaurar'],$opciones['operaciones'],$opciones['informacion']);
+                $lausuarios = $lobjUsuario->listado_usuarios();
+
+                $HTML = $ObjSistema->get_cuerpo('Seguridad,Usuario','#,?modulo=seguridad/usuario','usuario','seguridad');
+
+                $ObjSistema->set_cuerpo($HTML);
+                $diccionario =array('cuerpo' => file_exists("seguridad/template_usuarios.html") ? file_get_contents("seguridad/template_usuarios.html") : '');
+                $HTML = $ObjSistema->render($diccionario);
+                
+                $ObjSistema->set_cuerpo($HTML);
+                if($lausuarios)
+                    $HTML = $ObjSistema->render_regex('LISTADO_USUARIOS', $lausuarios);
+                else
+                    $HTML = $ObjSistema->reemplazar_vacio('LISTADO_USUARIOS', '');
+
+                $ObjSistema->set_cuerpo($HTML);
+                $HTML = $ObjSistema->render($opciones);
+        break;
         case 'rol':
                 $ObjSistema->consultar_opciones('?modulo=seguridad/consultar_rol', $opciones['btn_consultar'], '?modulo=seguridad/registrar_rol', $opciones['btn_registrar'], '?modulo=seguridad/eliminar_rol', $opciones['btn_eliminar'], '?modulo=seguridad/eliminar_rol', $opciones['btn_restaurar'],$opciones['operaciones'],$opciones['informacion']);
                 $larols = $lobjrol->consultar_roles();
@@ -120,6 +141,57 @@ switch ($vista) {
 
                 }
 
+        break;
+        case 'registrar_usuario':
+        $HTML = $ObjSistema->get_cuerpo('seguridad,usuarios,Registrar usuarios','#,?modulo=usuario/usuario,#','seguridad','usuario');
+        $ObjSistema->set_cuerpo($HTML);
+        $diccionario =array('cuerpo' => file_exists("seguridad/registrar_usuario.html") ? file_get_contents("seguridad/registrar_usuario.html") : '',
+                            'operacion'=>'registrar_usuario',
+                            'Funcion' => 'Registrar',
+                            'funcion'=> 'registrar',
+                            'icono'=> 'plus',
+                            'idusuario'=>'',
+                            'nombreusu'=>'',
+                            'emailusu'=>'',
+                            'estatususu'=>'',
+                            'cedula'=>'',
+                            );
+
+        $laRoles = $lobjrol->consultar_roles();
+        $HTML = $ObjSistema->render($diccionario);
+
+        $ObjSistema->set_cuerpo($HTML);
+        if($laRoles)
+            $HTML = $ObjSistema->render_regex('LISTADO_ROL', $laRoles);
+        else
+            $HTML = $ObjSistema->reemplazar_vacio('LISTADO_ROL', '');
+        
+        break;
+         case 'consultar_usuario':
+        $lobjUsuario->set_Usuario($id);
+        $datos_usuario = $lobjUsuario->consultar_usuario();
+        $HTML = $ObjSistema->get_cuerpo('seguridad,usuarios,Editar Usuarios','#,?modulo=seguridad/usuario,#','usuario','usuario');
+        $ObjSistema->set_cuerpo($HTML);
+        $diccionario = array('cuerpo' => file_exists("seguridad/registrar_usuario.html") ? file_get_contents("seguridad/registrar_usuario.html") : '',
+                            'operacion'=>'editar_usuario',
+                            'Funcion' => 'Consultar / Editar',
+                            'funcion'=> 'editar',
+                            'icono'=> 'edit'
+                            );
+        $laRoles = $lobjrol->consultar_roles();
+
+        $HTML = $ObjSistema->render($diccionario);
+        $ObjSistema->set_cuerpo($HTML);
+        $HTML = $ObjSistema->render($datos_usuario);
+
+        for($i=0; $i < count($laRoles); $i++)
+            $laRoles[$i]['selected'] = ($laRoles[$i]['idrol']==$datos_usuario['trol_idrol']) ? 'selected' : '';
+
+        $ObjSistema->set_cuerpo($HTML);
+        if($laRoles)
+            $HTML = $ObjSistema->render_regex('LISTADO_ROL', $laRoles);
+        else
+            $HTML = $ObjSistema->reemplazar_vacio('LISTADO_ROL', '');
         break;
         case 'registrar_rol':
         $HTML = $ObjSistema->get_cuerpo('Seguridad,Rol,Registrar rol','#,?modulo=seguridad/rol,#','rol','seguridad');

@@ -74,7 +74,9 @@
 				   WHERE tusuario.idusuario = '$this->lcUsuario' 
 				     AND tclave.tusuario_idusuario = tusuario.idusuario 
 				     AND tclave.clavecla = md5('$this->lcClave') 
-				     AND trol.idrol = tusuario.trol_idrol;";
+				     AND trol.idrol = tusuario.trol_idrol
+				     AND tusuario.estatususu='1'
+				     AND tclave.estatuscla='1';";
 			$pcsql=$this->filtro($sql);
 			if($laRow=$this->proximo($pcsql))
 			{
@@ -88,18 +90,25 @@
 		{
 			$cont=0;
 			$this->conectar();
-			$sql="SELECT tusuario.idusuario as id,nombrerol,idrol,nombreusu,TO_DAYS(fechafincla)as fechafincla,TO_DAYS(NOW())as fechaactual,estatususu,(SELECT CONCAT_WS(' / ',DATE_FORMAT(fechaacc,'%d-%m-%Y %h-%i %p'),DATE_FORMAT(fecha_salidaacc,'%d-%m-%Y %h-%i %p')) FROM tacceso WHERE id=idusuario ORDER BY idacceso DESC LIMIT 1)as ultimo_acceso,emailusu,cedula FROM tusuario,trol,tclave WHERE tusuario.idusuario=tusuario_idusuario AND idrol=trol_idrol AND estatuscla='1'";
+			$sql="SELECT tusuario.*, trol.nombrerol 
+					FROM tusuario, trol 
+				   WHERE trol.idrol = tusuario.trol_idrol;";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
-				$Fila[$cont]['idusuario']=$laRow['id'];
+				$Fila[$cont]['idusuario']=$laRow['idusuario'];
 				$Fila[$cont]['nombrerol']=$laRow['nombrerol'];
 				$Fila[$cont]['nombreusu']=$laRow['nombreusu'];
-				$Fila[$cont]['caduca_clave']=($laRow['fechafincla']-$laRow['fechaactual']>0)?$laRow['fechafincla']-$laRow['fechaactual']. ' Días':'Caducó';
-				$Fila[$cont]['ultimo_acceso']=$laRow['ultimo_acceso'];
 				$Fila[$cont]['emailusu']=$laRow['emailusu'];
 				$Fila[$cont]['cedula']=$laRow['cedula'];
 				$Fila[$cont]['estatususu']=$laRow['estatususu'];
+				$Fila[$cont]['nro']=($cont+1);
+				$Fila[$cont]['estatus_color']=($laRow['estatususu'])?'success':'danger';
+				$Fila[$cont]['estatususu'] = ($laRow['estatususu']) ? 'Activo' : 'Inactivo';
+				$Fila[$cont]['titulo'] = ($laRow['estatususu']) ? 'Desactivar' : 'Restaurar';
+				$Fila[$cont]['color_boton'] = ($laRow['estatususu']) ? 'danger' : 'warning';
+				$Fila[$cont]['funcion'] = ($laRow['estatususu']) ? 'eliminar' : 'restaurar';
+				$Fila[$cont]['icono'] = ($laRow['estatususu']) ? 'times' : 'refresh';
 				$cont++;
 			}
 			$this->desconectar();
@@ -128,13 +137,12 @@
 		function consultar_usuario()
 		{
 			$this->conectar();
-			$sql="SELECT tusuario.idusuario,nombrerol,idrol FROM tusuario,trol,tclave WHERE idusuario='$this->lcUsuario' AND idusuario=tusuario_idusuario  AND trol.idrol=trol_idrol AND estatuscla='1' ";
+			$sql="SELECT tusuario.*,nombrerol,idrol FROM tusuario,trol WHERE idusuario='$this->lcUsuario' AND idrol=trol_idrol  AND trol.idrol=trol_idrol";
 			$pcsql=$this->filtro($sql);
 			if($laRow=$this->proximo($pcsql))
 			{
-				$Fila[0]=$laRow['idusuario'];
-				$Fila[1]=$laRow['nombrerol'];
-				$Fila[2]=$laRow['idrol'];
+				$Fila=$laRow;
+				$Fila['cedula']=trim($laRow['cedula']);
 			}
 			$this->desconectar();
 			return $Fila;
@@ -225,19 +233,20 @@
 		function registrar_usuario()
 		{
 			$this->conectar();
-			$sql="INSERT INTO tusuario(idusuario, nombreusu, emailusu, estatususu, trol_idrol, cedula)
-			 VALUES ('$this->lcUsuario',UPPER('$this->lcNombre'),UPPER('$this->lcEmail'),'1','$this->lnIdRol','$this->lnIdPersona')";
+			$sql="INSERT INTO tusuario(idusuario, nombreusu, emailusu, estatususu, trol_idrol, cedula, ultima_actividadusu, intentos_fallidos)
+			 VALUES ('$this->lcUsuario',UPPER('$this->lcNombre'),UPPER('$this->lcCorreo'),'1','$this->lnIdRol','$this->lnIdPersona', NOW(), 0)";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
-			$this->insertar_clave();
+			$this->registrar_clave();
 			return $lnHecho;
 		}
 
-		function insertar_clave()
+		function registrar_clave()
 		{
 			$this->conectar();
-			$sql="INSERT INTO tclave(clavecla, fechainiciocla, fechafincla, estatuscla, tusuario_idusuario) 
-			VALUES (sha1((SELECT clavepredeterminada FROM tsistema)),now(), ADDDATE(NOW(), (SELECT tiempocaducida FROM tsistema)),'1','$this->lcUsuario');";
+			$sql="INSERT INTO tclave(
+           				clavecla, fechainiciocla, fechafincla, estatuscla, tusuario_idusuario)
+    			VALUES (md5('$this->lcClave'), NOW(), '2021-12-12', 1, '$this->lcUsuario');";
 			$lnHecho=$this->ejecutar($sql);	
 			$this->desconectar();	
 			return $lnHecho;
@@ -256,8 +265,25 @@
 		function editar_usuario()
 		{
 			$this->conectar();
-			$sql="UPDATE tusuario SET 
-				idusuario='$this->lcUsuario',emailusu=UPPER('$this->lcEmail'),trol_idrol='$this->lnIdRol',cedula='$this->lnIdPersona' WHERE idusuario='$this->lcUsuario'";
+			$sql="UPDATE tusuario SET nombreusu=UPPER('$this->lcNombre'), emailusu=UPPER('$this->lcCorreo'),trol_idrol='$this->lnIdRol',cedula='$this->lnIdPersona' WHERE idusuario='$this->lcUsuario'";
+			$lnHecho=$this->ejecutar($sql);			
+			$this->desconectar();
+			return $lnHecho;
+		}
+
+		function eliminar_usuario()
+		{
+			$this->conectar();
+			$sql="UPDATE tusuario SET estatususu='0' WHERE idusuario='$this->lcUsuario'";
+			$lnHecho=$this->ejecutar($sql);			
+			$this->desconectar();
+			return $lnHecho;
+		}
+
+		function restaurar_usuario()
+		{
+			$this->conectar();
+			$sql="UPDATE tusuario SET estatususu='1' WHERE idusuario='$this->lcUsuario'";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;

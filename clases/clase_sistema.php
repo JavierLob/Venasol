@@ -9,16 +9,16 @@
 		    $this->str = $template_html;
 		    $vista=$this->armarDiccionario($vista,$enlace);
 		    $mensaje=$this->armarMensaje();
-			$Diccionario	=array(	'Usuario'=> array('NombreApellido'=>$_SESSION['nombreusuario'].' '.$_SESSION['nombredosusuario'].' '.$_SESSION['apellidousuario']
-													),
-									'Servicio'=> array('servicio'=>$servicio,'modulo'=>$modulo),
+			$Diccionario	=array(	'Servicio'=> array('servicio'=>$servicio,'modulo'=>$modulo),
 									'Mensaje'=>$mensaje,
-									'Menu'=>$this->get_menu()
+									'Menu'=>$this->get_menu(),
+									'nombreusu'=>array('nombreusu'=>$_SESSION['nombreusu'])
 									);
 
         	$this->set_cuerpo($this->render($Diccionario['Servicio']));
         	$this->set_cuerpo($this->render($Diccionario['Mensaje']));
         	$this->set_cuerpo($this->render($Diccionario['Menu']));
+        	$this->set_cuerpo($this->render($Diccionario['nombreusu']));
         	if($vista)
         		return $this->render_regex('LISTADO_VISTA',$vista);
         	else

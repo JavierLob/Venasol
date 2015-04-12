@@ -9,6 +9,12 @@ $operacion = (isset($_POST['operacion'])) ? $_POST['operacion'] : $_GET['operaci
 $usuario = $_POST['usuario'];
 $clave = $_POST['clave'];
 
+$lobjUsuario->set_Usuario($_POST['idusuario']);
+$lobjUsuario->set_Correo($_POST['emailusu']);
+$lobjUsuario->set_Clave($_POST['cedula']);
+$lobjUsuario->set_Rol($_POST['trol_idrol']);
+$lobjUsuario->set_Nombre($_POST['nombreusu']);
+$lobjUsuario->set_Persona($_POST['cedula']);
 switch ($operacion) {
 	case 'iniciar_sesion':
 			$lobjUsuario->set_Usuario($usuario);
@@ -29,6 +35,81 @@ switch ($operacion) {
 		 		header("location: ../vista/");
 			}
 		break;
+	case 'registrar_usuario':
+		$_SESSION['mensaje']='al registrar un usuario';
+		if(!$lobjUsuario->consultar_usuario())
+		{
+			if($lobjUsuario->registrar_usuario())
+			{
+				$_SESSION['resultado']='Éxito';
+				$_SESSION['resultado_color']='success';
+				$_SESSION['icono_mensaje']='check-circle';
+			}
+			else
+			{
+				$_SESSION['resultado']='Error';
+				$_SESSION['resultado_color']='danger';
+				$_SESSION['icono_mensaje']='times-circle';	
+			}
+		}
+		else
+		{
+			$_SESSION['resultado']='Error';
+			$_SESSION['resultado_color']='danger';
+			$_SESSION['icono_mensaje']='times-circle';	
+		}
+		header('location:../vista/?modulo=seguridad/usuario');
+	break;
+	case 'editar_usuario':
+		$_SESSION['mensaje']='al editar el usuario';
+		if($lobjUsuario->editar_usuario())
+		{
+			$_SESSION['resultado']='Éxito';
+			$_SESSION['resultado_color']='success';
+			$_SESSION['icono_mensaje']='check-circle';
+			
+		}
+		else
+		{	
+			$_SESSION['resultado']='Error';
+			$_SESSION['resultado_color']='danger';
+			$_SESSION['icono_mensaje']='times-circle';
+		}
+		header('location:../vista/?modulo=seguridad/usuario');
+	break;
+	case 'eliminar_usuario':
+		$_SESSION['mensaje']='al desactivar el usuario';
+		if($lobjUsuario->eliminar_usuario())
+		{
+			$_SESSION['resultado']='Éxito';
+			$_SESSION['resultado_color']='success';
+			$_SESSION['icono_mensaje']='check-circle';
+		}
+		else
+		{	
+			$_SESSION['resultado']='Error';
+			$_SESSION['resultado_color']='danger';
+			$_SESSION['icono_mensaje']='times-circle';
+		}
+		header('location:../vista/?modulo=seguridad/usuario');
+	break;
+	case 'restaurar_usuario':
+		$_SESSION['mensaje']='al restaurar el usuario';
+		if($lobjUsuario->restaurar_usuario())
+		{
+			$_SESSION['resultado']='Éxito';
+			$_SESSION['resultado_color']='success';
+			$_SESSION['icono_mensaje']='check-circle';
+		}
+		else
+		{	
+			$_SESSION['resultado']='Error';
+			$_SESSION['resultado_color']='danger';
+			$_SESSION['icono_mensaje']='times-circle';
+		}
+
+		header('location:../vista/?modulo=seguridad/usuario');
+	break;
 	default:
 		 header("location: ../");
 		break;
