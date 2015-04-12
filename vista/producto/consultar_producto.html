@@ -12,41 +12,53 @@
                     </ul>
                 </div>
             </div>
-            <form action="../controlador/control_producto.php" method="POST" name="form_producto" enctype="multipart/form-data">
+            <form action="../controlador/control_producto.php" method="POST" name="form_producto" id="form_producto" enctype="multipart/form-data">
                 <input type="hidden" value="editar_producto" name="operacion" id="cam_operacion"/>
                 <input type="hidden" value="{idproducto}" name="idproducto" id="cam_idproducto"/>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del producto"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="1" data-intro='Ingrese el código del producto a registrar' data-position="bottom" name="idcodigo" value="{idcodigopro}" id="cam_nombreser" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="1" data-intro='Ingrese el código del producto a registrar' data-position="bottom" name="idcodigo" value="{idcodigopro}" id="cam_nombreser" >
+                        </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Nombre corto <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre corto del producto"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="2" data-intro='Ingrese el nombre corto del producto a registrar' data-position="bottom" name="descripcioncortapro" value="{descripcioncortapro}" id="cam_descripcioncortapro" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el nombre corto del producto a registrar' data-position="bottom" name="descripcioncortapro" value="{descripcioncortapro}" id="cam_descripcioncortapro" data-rule-required="true" data-msg-required="Por favor ingrese el nombre corto del producto" data-rule-letras_latinas="true">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Nombre largo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre largo del producto"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="3" data-intro='Ingrese el nombre largo del producto a registrar' data-position="bottom" name="descripcionlargapro" value="{descripcionlargapro}" id="cam_descripcionlargapro" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="3" data-intro='Ingrese el nombre largo del producto a registrar' data-position="bottom" name="descripcionlargapro" value="{descripcionlargapro}" id="cam_descripcionlargapro"  data-rule-required="true" data-msg-required="Por favor ingrese el nombre largo del producto" data-rule-letras_latinas="true">
+                        </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Unidad de medida <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Unidad de medida del producto"><i class="fa fa-question"></i></span></label>
-                        <select class="form-control" data-step="4" data-intro='Seleccione la unidad de medida del producto' data-position="bottom" name="unidadmedidapro" id="cam_unidadmedidapro" >
-                            <option value=""></option>
-                            <option value="lts" {selected_lts}>Litros</option>
-                            <option value="kg" {selected_kg}>Kilos</option>
-                        </select>
+                        <div class="controls">
+                            <select class="form-control" data-step="4" data-intro='Seleccione la unidad de medida del producto' data-position="bottom" name="unidadmedidapro" id="cam_unidadmedidapro" data-rule-required="true" data-msg-required="Por favor seleccione la unidad de medida del producto">
+                                <option value=""></option>
+                                <option value="lts" {selected_lts}>Litros</option>
+                                <option value="kg" {selected_kg}>Kilos</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Precio Unitario<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Precio del producto"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="5" data-intro='Ingrese el Precio Unitario del producto a registrar' data-position="bottom" name="preciounitariopro" value="{preciounitariopro}" id="cam_preciounitariopro" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="5" data-intro='Ingrese el Precio Unitario del producto a registrar' data-position="bottom" name="preciounitariopro" value="{preciounitariopro}" id="cam_preciounitariopro" data-rule-required="true" data-rule-number="true" data-msg-required="Por favor ingrese el precio del producto" data-msg-number="Por favor ingrese un precio válido">
+                        </div>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Existencia <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Existencia del producto"><i class="fa fa-question"></i></span></label>
-                        <input type="text" class="form-control" data-step="6" data-intro='Ingrese la existencia del producto a registrar' data-position="bottom" name="existenciapro" value="{existenciapro}" id="cam_existenciapro" >
+                        <div class="controls">
+                            <input type="text" class="form-control" data-step="6" data-intro='Ingrese la existencia del producto a registrar' data-position="bottom" name="existenciapro" value="{existenciapro}" id="cam_existenciapro" >
+                        </div>
                     </div>
                 </div>
                 <div class="row">                             
@@ -62,21 +74,25 @@
                             <strong>Éxito </strong>al registrar un Tipo de producto.
                         </div> 
                         <label for="exampleTooltip">Tipo Producto <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title=" tipo de producto al que pertenece el producto"><i class="fa fa-question"></i></span></label>
-                        <div class="input-group">
-                             <select class="form-control" data-step="7" data-intro='Seleccione el tipo de producto al que pertenece el producto a registrar' data-position="bottom" name="ttipo_producto_idtipo_producto" id="cam_ttipo_producto_idtipo_producto" >
-                            <option value=""></option>
-                                <!--LISTADO_TIPO_PRODUCTO-->
-                                <option value="{idtipo_producto}" {selected}>{descripciontip}</option>
-                                <!--LISTADO_TIPO_PRODUCTO-->
-                            </select>
-                            <span class="input-group-btn">
-                                <a class="btn btn-success bottom" data-toggle="modal" href="#myModalregistrarTipoProducto"  title="Permite registrar un tipo de producto"><i class="fa fa-plus"></i></a>                        
-                            </span>
+                        <div class="controls">
+                            <div class="input-group">
+                                 <select class="form-control" data-step="7" data-intro='Seleccione el tipo de producto al que pertenece el producto a registrar' data-position="bottom" name="ttipo_producto_idtipo_producto" id="cam_ttipo_producto_idtipo_producto" data-rule-required="true" data-msg-required="Por favor seleccione el tipo de producto">
+                                <option value=""></option>
+                                    <!--LISTADO_TIPO_PRODUCTO-->
+                                    <option value="{idtipo_producto}" {selected}>{descripciontip}</option>
+                                    <!--LISTADO_TIPO_PRODUCTO-->
+                                </select>
+                                <span class="input-group-btn">
+                                    <a class="btn btn-success bottom" data-toggle="modal" href="#myModalregistrarTipoProducto"  title="Permite registrar un tipo de producto"><i class="fa fa-plus"></i></a>                        
+                                </span>
+                            </div>                       
                         </div>                       
                     </div>
                      <div class="form-group col-xs-6">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación sobre el producto."><i class="fa fa-question"></i></span></label>
-                        <textarea name="observacionpro" data-step="8" data-intro='Observación sobre el producto a registrar' data-position="top" id="cam_observacionpro" cols="30" rows="3" class="form-control">{observacionpro}</textarea>
+                        <div class="controls">
+                            <textarea name="observacionpro" data-step="8" data-intro='Observación sobre el producto a registrar' data-position="top" id="cam_observacionpro" cols="30" rows="3" class="form-control" data-rule-letras_latinas_2="true">{observacionpro}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="row table-responsive">
@@ -94,34 +110,42 @@
                         <tbody id="filas">
                             <!--LISTADO_DOCUMENTOS_PRODUCTO-->
                             <tr>
-                                <td class="col-lg-3 col-sm-3 col-xs-3">
-                                    <select class="form-control" onchange="validar_vence(this)" name="iddocumento[]" id="cam_iddocumento0">
-                                        <option value=""></option>
-                                        <!--LISTADO_DOCUMENTOS{i}-->
-                                            <option value="{iddocumento}" data-value="{vencedoc}" {selected}>{descripciondoc}</option>
-                                        <!--LISTADO_DOCUMENTOS{i}-->
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-sm-2 col-xs-2">
-                                    <div class="input-group">
-                                        <input type="date" class="form-control" name="fechaemisiondoc[]" value="{fechaemisiondoc}" id="cam_fechaemisiondoc0">
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <td class="form-group col-lg-3 col-sm-3 col-xs-3">
+                                    <div class="controls">
+                                        <select class="form-control" onchange="validar_vence(this)" name="iddocumento[]" id="cam_iddocumento0">
+                                            <option value=""></option>
+                                            <!--LISTADO_DOCUMENTOS{i}-->
+                                                <option value="{iddocumento}" data-value="{vencedoc}" {selected}>{descripciondoc}</option>
+                                            <!--LISTADO_DOCUMENTOS{i}-->
+                                        </select>
                                     </div>
                                 </td>
-                                <td class="col-lg-2 col-sm-2 col-xs-2">
-                                    <div class="input-group" id="fechavencimientodoc0">                                    
-                                        <input type="date" class="form-control" value="{fechavencimientodoc}" name="fechavencimientodoc[]" id="cam_fechavencimientodoc0">
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <td class="form-group col-lg-2 col-sm-2 col-xs-2">
+                                    <div class="controls">
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" name="fechaemisiondoc[]" value="{fechaemisiondoc}" id="cam_fechaemisiondoc0">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
                                     </div>
-                                    <p style="display:none" id="mensaje_fechavencimientodoc0">Este documento no vence.</p>
                                 </td>
-                                <td class="col-lg-1 col-sm-1 col-xs-1">
+                                <td class="form-group col-lg-2 col-sm-2 col-xs-2">
+                                    <div class="controls">
+                                        <div class="input-group" id="fechavencimientodoc0">                                    
+                                            <input type="date" class="form-control" value="{fechavencimientodoc}" name="fechavencimientodoc[]" id="cam_fechavencimientodoc0">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <p style="display:none" id="mensaje_fechavencimientodoc0">Este documento no vence.</p>
+                                    </div>
+                                </td>
+                                <td class="form-group col-lg-1 col-sm-1 col-xs-1">
                                     <img class="img ver-imagen {imagen_hide}" data-toggle="modal" href="#myModalImagen"  data-titulo="{descripcionlargapro} - {descripciondoc}" src="../media/img/documentos_producto/{directoriodoc}">
                                     <a class="btn btn-success {descarga_hide}" href="../libreria/descargar_archivo.php?archivo={directoriodoc}" target="_blank"><i class="fa fa-download"></i></a>
                                 </td>
-                                <td class="col-lg-3 col-sm-3 col-xs-3">
-                                    <input type="hidden" name="directorio_o[]" id="cam_directorio_o{i}" value="{directoriodoc}">
-                                    <input type="file" class="form-control" name="directoriodoc[]" id="cam_directoriodoc{i}">
+                                <td class="form-group col-lg-3 col-sm-3 col-xs-3">
+                                    <div class="controls">
+                                        <input type="hidden" name="directorio_o[]" id="cam_directorio_o{i}" value="{directoriodoc}">
+                                        <input type="file" class="form-control" name="directoriodoc[]" id="cam_directoriodoc{i}">
+                                    </div>
                                 </td>
                                 <td class="col-lg-1 col-sm-1 col-xs-1">
                                     <button class="btn btn-danger" type="button" data-step="4" data-intro='Quitar un documento' data-position="bottom" onclick="quitar_documento(this)"><i class="fa fa-minus"></i></button>
@@ -134,7 +158,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" data-step="9" data-intro='Para finalizar haga click en guardar para registrar el producto.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <button type="submit" data-step="9" data-intro='Para finalizar haga click en guardar para registrar el producto.' data-position="top" class="btn btn-success" id="btn-enviar"><i class="fa fa-check"></i> Guardar</button>
                         <a href="?modulo=producto/producto" data-step="10" data-intro='Para salir haga click en regresar para registrar el producto.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
@@ -178,6 +202,70 @@
     </div> 
 </div>
 <script type="text/javascript">
+$(document).ready(function(){
+        $.validator.addMethod(
+          "letras_latinas",
+          function(value, element) {
+                return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+         $.validator.addMethod(
+          "letras_latinas_2",
+          function(value, element) {
+            if(value!='')
+                return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s]+$/);
+            else
+                return true;
+          },
+          "Por favor ingrese solo caracteres y números."
+        );
+        //Metodo validar Email
+        $.validator.addMethod(
+          "valida_email",
+          function(value, element) {
+            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+          },
+          "Por favor ingrese un correo electrónico valido."
+        );
+        $.validator.addMethod(
+          "validar_repetido",
+          function(value, element) {
+            return validar_documento_repetido();
+          },
+          "Este documento ya ha sido seleccionado, por favor seleccione otro"
+        );
+
+        $("#form_producto").validate({
+            errorElement: 'label', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: true,
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                $('.alert-danger').fadeIn('fast');
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+                $('#btn-enviar').attr('disabled',true);
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+                $('#btn-enviar').attr('disabled',false);
+            },
+
+            errorPlacement: function (error, element) {
+                error.addClass('small no-left-padding').insertAfter(element.closest('.controls'));
+            },
+
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
       function registrar_tipo_producto(){
         descripcion=document.getElementById('cam_descripciontip').value;
         observacion=document.getElementById('cam_observaciontip').value;
@@ -266,14 +354,24 @@ function agregar_documento()
       var tr= document.createElement('tr');
       var col1= document.createElement('td');
       var select= document.createElement('select');
+      var div= document.createElement('div');
+      div.setAttribute('class','controls');
       select.setAttribute('class','form-control');
       select.setAttribute('name','iddocumento[]');
       select.setAttribute('id','cam_iddocumento'+contador);
+      select.setAttribute('data-rule-required','true');
+      select.setAttribute('data-rule-validar_repetido','true');
+      select.setAttribute('data-msg-required','Por favor seleccione un documento');
+
       var col2= document.createElement('td');
       var col3= document.createElement('td');
       var col4= document.createElement('td');
       var col5= document.createElement('td');
-      var col6= document.createElement('td');
+      col1.setAttribute('class','form-group');
+      col2.setAttribute('class','form-group');
+      col3.setAttribute('class','form-group');
+      col4.setAttribute('class','form-group');
+
       $.ajax({   
           type: "POST",
           url:url,
@@ -282,13 +380,14 @@ function agregar_documento()
               select.innerHTML=datos;   
            }
       });
-      col2.innerHTML='<div class="input-group"><input type="date" class="form-control" name="fechaemisiondoc[]" id="cam_fechaemisiondoc'+contador+'"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>';
-      col3.innerHTML='<div class="input-group" id="'+contador+'"><input type="date" class="form-control" name="fechavencimientodoc[]" id="cam_fechaemisiondoc'+contador+'"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div><p style="display:none" id="mensaje_fechavencimientodoc'+contador+'">Este documento no vence.</p>';
+      col2.innerHTML='<div class="controls"><div class="input-group"><input type="date" class="form-control" name="fechaemisiondoc[]" id="cam_fechaemisiondoc'+contador+'"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div></div>';
+      col3.innerHTML='<div class="controls"><div class="input-group" id="'+contador+'"><input type="date" class="form-control" name="fechavencimientodoc[]" id="cam_fechaemisiondoc'+contador+'"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div><p style="display:none" id="mensaje_fechavencimientodoc'+contador+'">Este documento no vence.</p></div>';
       col4.innerHTML='';
-      col5.innerHTML='<input type="file" class="form-control directoriodoc" name="directoriodoc[]" id="cam_directoriodoc'+contador+'">';
+      col5.innerHTML='<div class="controls"><input type="file" class="form-control directoriodoc" name="directoriodoc[]" id="cam_directoriodoc'+contador+'"></div>';
       col6.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_documento(this)"><i class="fa fa-minus"></i></button>';
 
-      col1.appendChild(select);
+      div.appendChild(select);
+      col1.appendChild(div);
       tr.appendChild(col1);
       tr.appendChild(col2);
       tr.appendChild(col3);
