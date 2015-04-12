@@ -52,7 +52,8 @@
 			}
 
 			foreach ($precintos as $precinto) {
-				$resp[] = $lobjFactura->asignar_precinto($precinto);
+				if($precinto!='')
+					$resp[] = $lobjFactura->asignar_precinto($precinto);
 			}
 
 			foreach ($resp as $value) {
