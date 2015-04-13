@@ -49,7 +49,7 @@
                     <div class="main-box-body clearfix">
                             <table class="table table-hover table-responsive" >
                                 <thead>
-                                   <th>Nro. Factura</th><th>Razón Social</th><th>Fecha</th><th>Vehiculo</th><th>Chofer</th><th class="text-right">Monto Total</th>
+                                   <th>Nro. Factura</th><th>Razón Social</th><th>Fecha</th><th>Vehiculo</th><th>Chofer</th><th class="text-right">Monto Total</th><th>Acción</th>
                                 </thead>
                                 <tbody>
                                     <!--LISTADO_FACTURAS-->
@@ -60,6 +60,11 @@
                                         <td>{aliasveh}</td>
                                         <td>{aliascho}</td>
                                         <td class="text-right"><a href="#">{totalfac_lista} Bsf</a></td>
+                                        <td>
+                                            <a class="btn btn-primary" data-step="3" data-intro='Este botón le permitirá editar esta factura' data-position="left" title="Editar" href="./?modulo=factura/consultar_factura&id={idfactura}"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-success" data-step="3" data-intro='Este botón le permitirá imprimir esta factura' data-position="left" target="_blank" title="Impirmir" href="../reporte/factura.php?id={idfactura}"><i class="fa fa-file-text-o"></i></a>
+                                            <button type="button" class="btn btn-default" onclick="impirmir_nube('{idfactura}','../reporte/factura.php?id={idfactura}');"><i class="fa fa-cloud"></i></button>
+                                        </td>
                                     </tr>
                                     <!--LISTADO_FACTURAS-->
                                 </tbody>
@@ -101,7 +106,7 @@
                     <div class="main-box-body clearfix">
                             <table class="table table-hover table-responsive" >
                                 <thead>
-                                    <th>Razón Social</th><th>Teléfono</th><th>Correo</th><th>Estatus</th><th class="text-right">Cant. Facturado</th>
+                                    <th>Razón Social</th><th>Teléfono</th><th>Correo</th><th>Estatus</th><th class="text-right">Cant. Facturas</th>
                                 </thead>
                                 <tbody>
                                     <!--LISTADO_CLIENTES-->
