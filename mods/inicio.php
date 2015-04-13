@@ -5,7 +5,7 @@ $lobjFactura = new clsFactura;
 
 switch ($vista) {
         default:
-                $lafactura=$lobjFactura->venta_semanal();
+                $lafactura=$lobjFactura->venta_mensual();
 	        $template_html = $ObjSistema->get_cuerpo('','','','');
                 $diccionario =array('cuerpo' => file_exists("template_inicio.html") ? file_get_contents("template_inicio.html") : '');
                 $ObjSistema->set_cuerpo($template_html);

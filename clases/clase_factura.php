@@ -244,20 +244,38 @@
 			return $lnHecho;
 		}
 
-		function venta_semanal()
+		function venta_mensual()
 		{
 			$this->conectar();
-			$sql="SELECT SUM(totalfac)as totalfac,(SELECT SUM(totalfac)as totalfac FROM tfactura WHERE EXTRACT(MONTH FROM fechafac)=EXTRACT(MONTH FROM NOW() - INTERVAL '1 months'))as mes_anterior FROM tfactura WHERE TO_CHAR(fechafac,'mm')=TO_CHAR(NOW(),'mm');";
+			$sql="SELECT SUM(totalfac)as totalfac,(SELECT SUM(totalfac)as totalfac FROM tfactura WHERE EXTRACT(MONTH FROM fechafac)=EXTRACT(MONTH FROM NOW() - INTERVAL '1 months'))as mes_anterior_venta,(SELECT COUNT(*)as viaje FROM tfactura WHERE EXTRACT(MONTH FROM fechafac)=EXTRACT(MONTH FROM NOW() - INTERVAL '1 months'))as mes_anterior_viaje,(SELECT COUNT(*)as viaje FROM tfactura WHERE TO_CHAR(fechafac,'mm')=TO_CHAR(NOW(),'mm'))as viaje FROM tfactura WHERE TO_CHAR(fechafac,'mm')=TO_CHAR(NOW(),'mm');";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
 				$Fila=$laRow;
-				$Fila['porcentaje_tendencia_venta']=((($Fila['totalfac']-$Fila['mes_anterior'])/$Fila['totalfac'])*100);
+				$Fila['porcentaje_tendencia_venta']=((($Fila['totalfac']-$Fila['mes_anterior_venta'])/$Fila['totalfac'])*100);
 				$Fila['totalfac']=number_format($Fila['totalfac'],'2',',','.');
-				$Fila['mes_anterior']=number_format($Fila['mes_anterior'],'2',',','.');
+				$Fila['mes_anterior_venta']=number_format($Fila['mes_anterior_venta'],'2',',','.');
 				$Fila['porcentaje_tendencia_venta']=number_format($Fila['porcentaje_tendencia_venta'],'2',',','.');
-				$Fila['icono_tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior'])?'up':'down';				
-				$Fila['tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior'])?'Mas':'Menos';				
+				$Fila['icono_tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior_venta'])?'up':'down';		
+				$Fila['tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior_venta'])?'Mas':'Menos';
+
+				$Fila['porcentaje_tendencia_viaje']=((($Fila['viaje']-$Fila['mes_anterior_viaje'])/$Fila['viaje'])*100);
+				$Fila['icono_tendencia_viaje']=($Fila['viaje']>$Fila['mes_anterior_viaje'])?'up':'down';			
+				$Fila['tendencia_viaje']=($Fila['viaje']>$Fila['mes_anterior_viaje'])?'Mas':'Menos';			
+			}
+			$this->desconectar();
+			return $Fila;
+		}
+
+		function viaje_mensual()
+		{
+			$this->conectar();
+			$sql="";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila=$laRow;
+								
 			}
 			$this->desconectar();
 			return $Fila;
