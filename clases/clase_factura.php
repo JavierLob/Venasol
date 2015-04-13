@@ -244,6 +244,25 @@
 			return $lnHecho;
 		}
 
+		function venta_semanal()
+		{
+			$this->conectar();
+			$sql="SELECT SUM(totalfac)as totalfac,(SELECT SUM(totalfac)as totalfac FROM tfactura WHERE EXTRACT(MONTH FROM fechafac)=EXTRACT(MONTH FROM NOW() - INTERVAL '1 months'))as mes_anterior FROM tfactura WHERE TO_CHAR(fechafac,'mm')=TO_CHAR(NOW(),'mm');";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila=$laRow;
+				$Fila['porcentaje_tendencia_venta']=((($Fila['totalfac']-$Fila['mes_anterior'])/$Fila['totalfac'])*100);
+				$Fila['totalfac']=number_format($Fila['totalfac'],'2',',','.');
+				$Fila['mes_anterior']=number_format($Fila['mes_anterior'],'2',',','.');
+				$Fila['porcentaje_tendencia_venta']=number_format($Fila['porcentaje_tendencia_venta'],'2',',','.');
+				$Fila['icono_tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior'])?'up':'down';				
+				$Fila['tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior'])?'Mas':'Menos';				
+			}
+			$this->desconectar();
+			return $Fila;
+		}
+
 		function obtener_nro_factura()
 		{
 			$this->conectar();

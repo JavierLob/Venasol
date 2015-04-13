@@ -9,11 +9,7 @@ $modulo = (isset($_SESSION['usuario']) AND !empty($_SESSION['usuario'])) ? $ObjS
 $id = $ObjSistema->CapturarId();
 switch ($modulo) {
 	case 'inicio':
-		$template_html = $ObjSistema->get_cuerpo('','','','');
-		$diccionario =array('cuerpo' => file_exists("template_inicio.html") ? file_get_contents("template_inicio.html") : ''
-							);
-		$ObjSistema->set_cuerpo($template_html);
-		$HTML = $ObjSistema->render($diccionario);
+		include_once("../mods/inicio.php");
 	break;
 	case 'seguridad':
 		include_once("../mods/seguridad.php");
