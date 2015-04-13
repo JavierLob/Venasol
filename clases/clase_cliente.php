@@ -94,6 +94,30 @@
 			return $Fila;
 		}
 
+		function consultar_ultimos_clientes()
+		{
+			$this->conectar();
+			$cont=0;
+			$sql="SELECT tcliente.razonsocial, correounocli, telefonounocli,estatuscli, count(tfactura.idfactura) AS cantidad_facturado FROM tcliente, tfactura WHERE tcliente_idcliente = idcliente GROUP BY tcliente.razonsocial, tcliente.correounocli, tcliente.estatuscli, tcliente.telefonounocli ORDER BY cantidad_facturado DESC LIMIT 5;";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila[$cont]=$laRow;	
+				$Fila[$cont]['correounocli'] = ($laRow['correounocli']) ? $laRow['correounocli'] : 'No tiene correo';				
+				$Fila[$cont]['telefonounocli'] = (trim($laRow['telefonounocli'])!='') ? $laRow['telefonounocli'] : 'No tiene Telefono';				
+				$Fila[$cont]['estatus_color']=($laRow['estatuscli'])?'success':'danger';
+				$Fila[$cont]['estatuscli'] = ($laRow['estatuscli']) ? 'Activo' : 'Inactivo';
+				$Fila[$cont]['titulo'] = ($laRow['estatuscli']) ? 'Desactivar' : 'Restaurar';
+				$Fila[$cont]['color_boton'] = ($laRow['estatuscli']) ? 'danger' : 'warning';
+				$Fila[$cont]['funcion'] = ($laRow['estatuscli']) ? 'eliminar' : 'restaurar';
+				$Fila[$cont]['icono'] = ($laRow['estatuscli']) ? 'times' : 'refresh';					
+				$cont++;
+			}
+			
+			$this->desconectar();
+			return $Fila;
+		}
+
 		function consultar_cliente()
 		{
 			$this->conectar();

@@ -81,6 +81,29 @@
 			return $Fila;
 		}
 
+		function consultar_ultimas_facturas()
+		{
+			$this->conectar();
+			$cont=0;
+			$sql="SELECT *,TO_CHAR(fechafac, 'dd/mm/YYYY - HH12:MM AM') as fechafac FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo ORDER BY tfactura.fechafac DESC LIMIT 5;";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila[$cont]=$laRow;					
+				$Fila[$cont]['totalfac_lista']=number_format($laRow['totalfac'], 2, '.', ',');					
+				$Fila[$cont]['estatus_color']=($laRow['estatusfac'])?'success':'danger';
+				$Fila[$cont]['estatusfac'] = ($laRow['estatusfac']) ? 'Activo' : 'Inactivo';
+				$Fila[$cont]['titulo'] = ($laRow['estatusfac']) ? 'Desactivar' : 'Restaurar';
+				$Fila[$cont]['color_boton'] = ($laRow['estatusfac']) ? 'danger' : 'warning';
+				$Fila[$cont]['funcion'] = ($laRow['estatusfac']) ? 'eliminar' : 'restaurar';
+				$Fila[$cont]['icono'] = ($laRow['estatusfac']) ? 'times' : 'refresh';					
+				$cont++;
+			}
+			
+			$this->desconectar();
+			return $Fila;
+		}
+
 		function consultar_factura()
 		{
 			$this->conectar();

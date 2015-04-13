@@ -112,6 +112,30 @@
 			return $Fila;
 		}
 
+
+		function consultar_ultimos_productos()
+		{
+			$this->conectar();
+			$cont=0;
+				$sql="SELECT tproducto.idproducto, descripcioncortapro, estatuspro, count(tfactura_producto.tproducto_idproducto) cantidad_facturas, sum(tfactura_producto.cantidadpro) cantidad_total, unidadmedidapro  FROM tproducto, tfactura_producto WHERE tfactura_producto.tproducto_idproducto = idproducto GROUP BY idproducto, descripcioncortapro, estatuspro, unidadmedidapro ORDER BY cantidad_facturas DESC LIMIT 5;";
+				$pcsql=$this->filtro($sql);
+				while($laRow=$this->proximo($pcsql))
+				{
+					$Fila[$cont]=$laRow;					
+					$Fila[$cont]['cantidad_total']= number_format(round($laRow['cantidad_total']));					
+					$Fila[$cont]['estatus_color']=($laRow['estatuspro'])?'success':'danger';
+					$Fila[$cont]['estatuspro'] = ($laRow['estatuspro']) ? 'Activo' : 'Inactivo';
+					$Fila[$cont]['titulo'] = ($laRow['estatuspro']) ? 'Desactivar' : 'Restaurar';
+					$Fila[$cont]['color_boton'] = ($laRow['estatuspro']) ? 'danger' : 'warning';
+					$Fila[$cont]['funcion'] = ($laRow['estatuspro']) ? 'eliminar' : 'restaurar';
+					$Fila[$cont]['icono'] = ($laRow['estatuspro']) ? 'times' : 'refresh';					
+					$cont++;
+				}
+			
+			$this->desconectar();
+			return $Fila;
+		}
+
 		function consultar_productos_like($criterio = '')
 		{
 			$this->conectar();
