@@ -103,6 +103,8 @@
 					$Fila=$laRow;
 					$Fila['checked_si']=($laRow['visibleser'])?'checked':'';
 					$Fila['checked_no']=(!$laRow['visibleser'])?'checked':'';
+					$Fila['checked_si']=($laRow['visibleser'])?'active':'';
+					$Fila['checked_no']=(!$laRow['visibleser'])?'active':'';
 					
 				}
 			

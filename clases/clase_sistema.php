@@ -13,6 +13,7 @@
 			$Diccionario	=array(	'Servicio'=> array('servicio'=>$servicio,'modulo'=>$modulo),
 									'Mensaje'=>$mensaje,
 									'Menu'=>$this->get_menu(),
+									'Imagen'=>array('imagenlogo'=>$_SESSION['imagenlogo'],'imagenlogo_oscuro'=>$_SESSION['imagenlogo_oscuro'],'imagenshort_icon'=>$_SESSION['imagenshort_icon']),
 									'nombreusu'=>array('nombre_corto'=> $dividir_parametros[0], 'nombre_largo'=>$_SESSION['nombreusu'])
 									);
 
@@ -20,6 +21,7 @@
         	$this->set_cuerpo($this->render($Diccionario['Mensaje']));
         	$this->set_cuerpo($this->render($Diccionario['Menu']));
         	$this->set_cuerpo($this->render($Diccionario['nombreusu']));
+        	$this->set_cuerpo($this->render($Diccionario['Imagen']));
         	if($vista)
         		return $this->render_regex('LISTADO_VISTA',$vista);
         	else

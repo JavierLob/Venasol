@@ -38,14 +38,15 @@
 			header('location:../vista/?modulo=precinto/precinto');
 		break;
 		case 'registrar_precinto_ajax':
-			if($lobjPrecinto->registrar_precinto_ajax())
-			{
-				echo '1';
-			}
+			if($lobjPrecinto->registrar_precinto())
+				$mensaje='1';
 			else
-			{
-				echo '0';
-			}
+				$mensaje='0';
+
+			$array = array('mensaje'=>$mensaje);
+
+			print(json_encode($array));
+				
 		break;
 		case 'validar_repetido':
 			if($lobjPrecinto->validar_repetido())
@@ -58,18 +59,22 @@
 			}
 		break;
 		case 'consultar_precinto':
-			if($laprecintos=$lobjPrecinto->consultar_precintos_activos())
-			{
-				$option='<option value=""></option>';
-				for($i=0;$i<count($laprecintos);$i++)
+				if($lagrupo_precintos=$lobjPrecinto->consultar_grupo_precintos_activos())
 				{
-					$option.='<option value="'.$laprecintos[$i]['idprecinto'].'">'.$laprecintos[$i]['idcodigopre'].'</option>';
-				}	
-			}
-			else
-			{
-				$option='<option>No se han encontrado registros</option>';
-			}
+					$lobjPrecinto->set_Grupo($lagrupo_precintos[$i]['grupopre']);
+                    $laprecintos = $lobjPrecinto->consultar_grupo_precintos();
+					$option='<optgroup label="'.$lagrupo_precintos[$i]['grupopre'].'" class="text-danger">';
+					for($i=0;$i<count($laprecintos);$i++)
+					{
+						$option.='<option value="'.$laprecintos[$i]['idprecinto'].'">'.$laprecintos[$i]['idcodigopre'].'</option>';
+					}
+					$option='</optgroup>';
+
+				}
+				else
+				{
+					$option='<option>No se han encontrado registros</option>';
+				}
 			echo $option;
 		break;
 		case 'editar_precinto':

@@ -22,17 +22,34 @@
                             <input type="text" class="form-control" data-step="1" data-intro='Ingrese el nombre de la marca a {funcion}' data-position="bottom" name="descripcionmar" id="cam_descripcionmar" value="{descripcionmar}" data-rule-required="true" data-msg-required="Por favor introduzca el nombre de la marca" maxlength="255">
                         </div>
                     </div>
-                    <div class="form-group col-sm-6 col-xs-12">
+                    <div class="form-group col-xs-6">
+                        <label for="exampleTooltip">Tipo <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Indica sí la marca es para vehículo o accesorio."><i class="fa fa-question"></i></span></label>
+                        <div class="row">
+                            <div class="controls">
+                                <div class="btn-group" data-step="2" data-intro='Seleccione el tipo de marca a registrar.' data-position="bottom" data-toggle="buttons">
+                                    <label class="btn btn-success {active_veh}">
+                                    <input type="radio" name="tipomar" value="1" id="tipomar1" {checked_veh}> Vehiculo
+                                    </label>
+                                    <label class="btn btn-danger {active_acc}">
+                                    <input type="radio" name="tipomar" value="0" id="tipomar2" {checked_acc}> Accesorio
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="form-group col-sm-12 col-xs-12">
                         <label for="exampleTooltip">Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación o información adicional acerca de la marca"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <textarea class="form-control" data-step="2" data-intro='Ingrese la observación o información adicional de la marca a {funcion}' data-position="bottom" name="observacionmar" id="cam_observacionmar" maxlength="255">{observacionmar}</textarea>
+                            <textarea class="form-control" data-step="3" data-intro='Ingrese la observación o información adicional de la marca a {funcion}' data-position="bottom" name="observacionmar" id="cam_observacionmar" maxlength="255">{observacionmar}</textarea>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" data-step="3" data-intro='Para finalizar haga click en guardar para {funcion} la marca.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
-                        <a href="?modulo=vehiculo/marca" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                        <button type="submit" data-step="4" data-intro='Para finalizar haga click en guardar para {funcion} la marca.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=vehiculo/marca" data-step="5" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
             </form>

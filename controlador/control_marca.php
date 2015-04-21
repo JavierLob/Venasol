@@ -13,6 +13,7 @@
 	$lobjMarca->set_Marca($_POST['idmarca']);
 	$lobjMarca->set_Observacion($_POST['observacionmar']);
 	$lobjMarca->set_Estatus($_POST['estatusmar']);
+	$lobjMarca->set_Tipo($_POST['tipomar']);
 
 	$lobjModelo->set_Modelo($_POST['idmodelo']);
 	$lobjModelo->set_Descripcion($_POST['descripcionmod']);

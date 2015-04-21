@@ -9,6 +9,7 @@
 		private $lcDescripcionlarga;
 		private $lcUnidadMedida;
 		private $lcPrecioUnitario;
+		private $lcPrecioCompra;
 		private $lcExistencia;
 		private $lnIdTipoProducto;
 		private $lcObservacion;
@@ -47,6 +48,11 @@
 		function set_PrecioUnitario($pc)
 		{
 			$this->lcPrecioUnitario=$pc;
+		}
+
+		function set_PrecioCompra($pc)
+		{
+			$this->lcPrecioCompra=$pc;
 		}
 
 		function set_Existencia($pc)
@@ -156,7 +162,7 @@
 			$this->conectar();
 				$sql="SELECT idproducto,idcodigopro, descripcioncortapro, descripcionlargapro, 
             preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, 
-            observacionpro, estatuspro,RTRIM(unidadmedidapro,' ')as unidadmedidapro FROM tproducto,ttipo_producto WHERE idproducto='$this->lnIdProducto' AND ttipo_producto_idtipo_producto=idtipo_producto";
+            observacionpro, estatuspro,RTRIM(unidadmedidapro,' ')as unidadmedidapro,preciocomprapro FROM tproducto,ttipo_producto WHERE idproducto='$this->lnIdProducto' AND ttipo_producto_idtipo_producto=idtipo_producto";
 				$pcsql=$this->filtro($sql);
 				if($laRow=$this->proximo($pcsql))
 				{
@@ -175,7 +181,7 @@
 			$this->begin();
 			$sql="INSERT INTO tproducto ( idcodigopro, descripcioncortapro, descripcionlargapro, 
             unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, 
-            observacionpro, estatuspro)VALUES('$this->lcIdCodigo','$this->lcDescripcioncorta','$this->lcDescripcionlarga','$this->lcUnidadMedida','$this->lcPrecioUnitario','$this->lcExistencia','$this->lnIdTipoProducto','$this->lcObservacion','1')";
+            observacionpro, estatuspro,preciocomprapro)VALUES('$this->lcIdCodigo','$this->lcDescripcioncorta','$this->lcDescripcionlarga','$this->lcUnidadMedida','$this->lcPrecioUnitario','$this->lcExistencia','$this->lnIdTipoProducto','$this->lcObservacion','1','$this->lcPrecioCompra')";
 				if($lnHecho=$this->ejecutar($sql))
 				{
 					for($i=0;$i<count($this->lnIdDocumento);$i++)
@@ -216,7 +222,7 @@
 		{
 			$this->conectar();
 			$this->begin();
-			$sql="UPDATE tproducto SET idcodigopro='$this->lcIdCodigo',descripcioncortapro='$this->lcDescripcioncorta',descripcionlargapro='$this->lcDescripcionlarga',unidadmedidapro='$this->lcUnidadMedida',preciounitariopro='$this->lcPrecioUnitario',existenciapro='$this->lcExistencia',ttipo_producto_idtipo_producto='$this->lnIdTipoProducto',observacionpro='$this->lcObservacion' WHERE idproducto='$this->lnIdProducto' ";
+			$sql="UPDATE tproducto SET idcodigopro='$this->lcIdCodigo',descripcioncortapro='$this->lcDescripcioncorta',descripcionlargapro='$this->lcDescripcionlarga',unidadmedidapro='$this->lcUnidadMedida',preciounitariopro='$this->lcPrecioUnitario',existenciapro='$this->lcExistencia',ttipo_producto_idtipo_producto='$this->lnIdTipoProducto',observacionpro='$this->lcObservacion',preciocomprapro='$this->lcPrecioCompra' WHERE idproducto='$this->lnIdProducto' ";
 			if($lnHecho=$this->ejecutar($sql))
 			{
 				$sql="DELETE FROM tproducto_documento WHERE tproducto_idproducto='$this->lnIdProducto' ";

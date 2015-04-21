@@ -6,6 +6,7 @@
 		private $lnIdMarca;
 		private $lcDescripcion;
 		private $lcObservacion;
+		private $lcTipo;
 		private $lcEstatus;
 
 		function set_Descripcion($pc)
@@ -23,6 +24,11 @@
 			$this->lcObservacion=$pc;
 		}
 
+		function set_Tipo($pc)
+		{
+			$this->lcTipo=$pc;
+		}
+
 		function set_Estatus($pc)
 		{
 			$this->lcEstatus=($pc) ? $pc : '1';
@@ -38,6 +44,7 @@
 			while($laRow=$this->proximo($pcsql))
 			{
 				$Fila[$cont]=$laRow;	
+				$Fila[$cont]['tipomar']=($laRow['tipomar']=='1')?'Vehículo':'Accesorio';	
 				$Fila[$cont]['observacionmar'] = ($laRow['observacionmar']) ? $laRow['observacionmar'] : 'Ninguna observación';
 				$Fila[$cont]['estatus_color']=($laRow['estatusmar'])?'success':'danger';
 				$Fila[$cont]['estatusmar'] = ($laRow['estatusmar']) ? 'Activo' : 'Inactivo';
@@ -45,6 +52,21 @@
 				$Fila[$cont]['color_boton'] = ($laRow['estatusmar']) ? 'danger' : 'warning';
 				$Fila[$cont]['funcion'] = ($laRow['estatusmar']) ? 'eliminar' : 'restaurar';
 				$Fila[$cont]['icono'] = ($laRow['estatusmar']) ? 'times' : 'refresh';					
+				$cont++;
+			}
+			$this->desconectar();
+			return $Fila;
+		}
+
+		function consultar_marcas_tipo($tipo)
+		{
+			$this->conectar();
+			$cont=0;
+			$sql="SELECT * FROM tmarca WHERE tipomar='$tipo'";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila[$cont]=$laRow;				
 				$cont++;
 			}
 			$this->desconectar();
@@ -59,6 +81,10 @@
 			if($laRow=$this->proximo($pcsql))
 			{
 				$Fila=$laRow;
+				$Fila['checked_veh']=($laRow['tipomar']=='1')?'checked':'';
+				$Fila['active_veh']=($laRow['tipomar']=='1')?'active':'';
+				$Fila['checked_acc']=($laRow['tipomar']=='0')?'checked':'';
+				$Fila['active_acc']=($laRow['tipomar']=='0')?'active':'';
 			}
 			$this->desconectar();
 			return $Fila;
@@ -67,8 +93,8 @@
 		function registrar_marca()
 		{
 			$this->conectar();
-				$sql="INSERT INTO tmarca(descripcionmar, observacionmar, estatusmar)
-    						VALUES (UPPER('$this->lcDescripcion'), UPPER('$this->lcObservacion'), '$this->lcEstatus');";
+				$sql="INSERT INTO tmarca(descripcionmar, observacionmar, estatusmar,tipomar)
+    						VALUES (UPPER('$this->lcDescripcion'), UPPER('$this->lcObservacion'), '$this->lcEstatus', '$this->lcEstatus');";
 				$lnHecho=$this->ejecutar($sql);
 
 			$this->desconectar();
@@ -97,7 +123,7 @@
 		{
 			$this->conectar();
 			$sql="UPDATE tmarca
-				   SET descripcionmar='$this->lcDescripcion', observacionmar='$this->lcObservacion', estatusmar='$this->lcEstatus'
+				   SET descripcionmar='$this->lcDescripcion', observacionmar='$this->lcObservacion', tipomar='$this->lcTipo'
 				 WHERE idmarca='$this->lnIdMarca';";
 			echo $sql;
 			$lnHecho=$this->ejecutar($sql);			

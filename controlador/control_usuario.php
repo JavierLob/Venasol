@@ -2,6 +2,8 @@
 //ini_set('error_reporting', E_ALL);
 session_start();
 require_once('../clases/clase_usuario.php');
+require_once('../clases/clase_configuracion.php');
+$lobjConfiguracion= new clsConfiguracion;
 $lobjUsuario= new clsUsuario;
 
 $operacion = (isset($_POST['operacion'])) ? $_POST['operacion'] : $_GET['operacion'];
@@ -21,11 +23,13 @@ switch ($operacion) {
 			$lobjUsuario->set_Clave($clave);
 			if($datos_usuario = $lobjUsuario->login())
 			{
+				$laconfiguracion=$lobjConfiguracion->consultar_configuracion();
 				$_SESSION['usuario'] = $datos_usuario['idusuario'];
 				$_SESSION['nombrerol'] = $datos_usuario['nombrerol'];
 				$_SESSION['idrol'] = $datos_usuario['trol_idrol'];
 				$_SESSION['nombreusu'] = $datos_usuario['nombreusu'];
 				$_SESSION['clave'] = $clave;
+				$_SESSION=array_merge($_SESSION,$laconfiguracion);
 
 				header("location: ../vista/?modulo=inicio");
 			}

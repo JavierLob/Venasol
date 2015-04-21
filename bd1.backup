@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.1.14
 -- Dumped by pg_dump version 9.1.14
--- Started on 2015-04-20 22:40:33
+-- Started on 2015-04-20 20:21:14
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -13,7 +13,7 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 2229 (class 1262 OID 45233)
+-- TOC entry 2228 (class 1262 OID 44658)
 -- Name: bd_venasol; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -39,7 +39,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2232 (class 0 OID 0)
+-- TOC entry 2231 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -50,8 +50,8 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 161 (class 1259 OID 45234)
--- Dependencies: 6
+-- TOC entry 170 (class 1259 OID 44677)
+-- Dependencies: 5
 -- Name: sidacceso; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -66,8 +66,8 @@ CREATE SEQUENCE sidacceso
 ALTER TABLE public.sidacceso OWNER TO postgres;
 
 --
--- TOC entry 162 (class 1259 OID 45236)
--- Dependencies: 6
+-- TOC entry 161 (class 1259 OID 44659)
+-- Dependencies: 5
 -- Name: sidaccesorio; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -82,8 +82,8 @@ CREATE SEQUENCE sidaccesorio
 ALTER TABLE public.sidaccesorio OWNER TO postgres;
 
 --
--- TOC entry 163 (class 1259 OID 45238)
--- Dependencies: 6
+-- TOC entry 178 (class 1259 OID 44693)
+-- Dependencies: 5
 -- Name: sidbanco; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -98,8 +98,8 @@ CREATE SEQUENCE sidbanco
 ALTER TABLE public.sidbanco OWNER TO postgres;
 
 --
--- TOC entry 164 (class 1259 OID 45240)
--- Dependencies: 6
+-- TOC entry 169 (class 1259 OID 44675)
+-- Dependencies: 5
 -- Name: sidbitacora; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -114,8 +114,8 @@ CREATE SEQUENCE sidbitacora
 ALTER TABLE public.sidbitacora OWNER TO postgres;
 
 --
--- TOC entry 165 (class 1259 OID 45242)
--- Dependencies: 6
+-- TOC entry 182 (class 1259 OID 44701)
+-- Dependencies: 5
 -- Name: sidchofer; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -130,8 +130,8 @@ CREATE SEQUENCE sidchofer
 ALTER TABLE public.sidchofer OWNER TO postgres;
 
 --
--- TOC entry 166 (class 1259 OID 45244)
--- Dependencies: 6
+-- TOC entry 168 (class 1259 OID 44673)
+-- Dependencies: 5
 -- Name: sidclave; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -146,8 +146,8 @@ CREATE SEQUENCE sidclave
 ALTER TABLE public.sidclave OWNER TO postgres;
 
 --
--- TOC entry 167 (class 1259 OID 45246)
--- Dependencies: 6
+-- TOC entry 183 (class 1259 OID 44703)
+-- Dependencies: 5
 -- Name: sidcliente; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -162,8 +162,8 @@ CREATE SEQUENCE sidcliente
 ALTER TABLE public.sidcliente OWNER TO postgres;
 
 --
--- TOC entry 168 (class 1259 OID 45248)
--- Dependencies: 6
+-- TOC entry 164 (class 1259 OID 44665)
+-- Dependencies: 5
 -- Name: sidconfiguracion; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -178,8 +178,8 @@ CREATE SEQUENCE sidconfiguracion
 ALTER TABLE public.sidconfiguracion OWNER TO postgres;
 
 --
--- TOC entry 169 (class 1259 OID 45250)
--- Dependencies: 6
+-- TOC entry 173 (class 1259 OID 44683)
+-- Dependencies: 5
 -- Name: siddocumento; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -194,8 +194,8 @@ CREATE SEQUENCE siddocumento
 ALTER TABLE public.siddocumento OWNER TO postgres;
 
 --
--- TOC entry 170 (class 1259 OID 45252)
--- Dependencies: 6
+-- TOC entry 162 (class 1259 OID 44661)
+-- Dependencies: 5
 -- Name: sidfactura; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -210,8 +210,8 @@ CREATE SEQUENCE sidfactura
 ALTER TABLE public.sidfactura OWNER TO postgres;
 
 --
--- TOC entry 171 (class 1259 OID 45254)
--- Dependencies: 6
+-- TOC entry 176 (class 1259 OID 44689)
+-- Dependencies: 5
 -- Name: sidmantenimiento; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -226,8 +226,8 @@ CREATE SEQUENCE sidmantenimiento
 ALTER TABLE public.sidmantenimiento OWNER TO postgres;
 
 --
--- TOC entry 172 (class 1259 OID 45256)
--- Dependencies: 6
+-- TOC entry 171 (class 1259 OID 44679)
+-- Dependencies: 5
 -- Name: sidmarca; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -242,8 +242,8 @@ CREATE SEQUENCE sidmarca
 ALTER TABLE public.sidmarca OWNER TO postgres;
 
 --
--- TOC entry 173 (class 1259 OID 45258)
--- Dependencies: 6
+-- TOC entry 172 (class 1259 OID 44681)
+-- Dependencies: 5
 -- Name: sidmodelo; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -258,8 +258,8 @@ CREATE SEQUENCE sidmodelo
 ALTER TABLE public.sidmodelo OWNER TO postgres;
 
 --
--- TOC entry 174 (class 1259 OID 45260)
--- Dependencies: 6
+-- TOC entry 167 (class 1259 OID 44671)
+-- Dependencies: 5
 -- Name: sidmodulo; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -274,8 +274,8 @@ CREATE SEQUENCE sidmodulo
 ALTER TABLE public.sidmodulo OWNER TO postgres;
 
 --
--- TOC entry 175 (class 1259 OID 45262)
--- Dependencies: 6
+-- TOC entry 174 (class 1259 OID 44685)
+-- Dependencies: 5
 -- Name: sidprecinto; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -290,8 +290,8 @@ CREATE SEQUENCE sidprecinto
 ALTER TABLE public.sidprecinto OWNER TO postgres;
 
 --
--- TOC entry 176 (class 1259 OID 45264)
--- Dependencies: 6
+-- TOC entry 163 (class 1259 OID 44663)
+-- Dependencies: 5
 -- Name: sidpregunta; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -306,8 +306,8 @@ CREATE SEQUENCE sidpregunta
 ALTER TABLE public.sidpregunta OWNER TO postgres;
 
 --
--- TOC entry 177 (class 1259 OID 45266)
--- Dependencies: 6
+-- TOC entry 181 (class 1259 OID 44699)
+-- Dependencies: 5
 -- Name: sidproducto; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -322,8 +322,8 @@ CREATE SEQUENCE sidproducto
 ALTER TABLE public.sidproducto OWNER TO postgres;
 
 --
--- TOC entry 178 (class 1259 OID 45268)
--- Dependencies: 6
+-- TOC entry 179 (class 1259 OID 44695)
+-- Dependencies: 5
 -- Name: sidproveedor; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -338,8 +338,8 @@ CREATE SEQUENCE sidproveedor
 ALTER TABLE public.sidproveedor OWNER TO postgres;
 
 --
--- TOC entry 179 (class 1259 OID 45270)
--- Dependencies: 6
+-- TOC entry 166 (class 1259 OID 44669)
+-- Dependencies: 5
 -- Name: sidrol; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -354,8 +354,8 @@ CREATE SEQUENCE sidrol
 ALTER TABLE public.sidrol OWNER TO postgres;
 
 --
--- TOC entry 180 (class 1259 OID 45272)
--- Dependencies: 6
+-- TOC entry 177 (class 1259 OID 44691)
+-- Dependencies: 5
 -- Name: sidservicio; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -370,8 +370,8 @@ CREATE SEQUENCE sidservicio
 ALTER TABLE public.sidservicio OWNER TO postgres;
 
 --
--- TOC entry 181 (class 1259 OID 45274)
--- Dependencies: 6
+-- TOC entry 165 (class 1259 OID 44667)
+-- Dependencies: 5
 -- Name: sidservicio_mantenimiento; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -386,8 +386,8 @@ CREATE SEQUENCE sidservicio_mantenimiento
 ALTER TABLE public.sidservicio_mantenimiento OWNER TO postgres;
 
 --
--- TOC entry 182 (class 1259 OID 45276)
--- Dependencies: 6
+-- TOC entry 180 (class 1259 OID 44697)
+-- Dependencies: 5
 -- Name: sidtipo_producto; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -402,8 +402,8 @@ CREATE SEQUENCE sidtipo_producto
 ALTER TABLE public.sidtipo_producto OWNER TO postgres;
 
 --
--- TOC entry 183 (class 1259 OID 45278)
--- Dependencies: 6
+-- TOC entry 175 (class 1259 OID 44687)
+-- Dependencies: 5
 -- Name: sidvehiculo; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -422,8 +422,8 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 184 (class 1259 OID 45280)
--- Dependencies: 1935 1936 6
+-- TOC entry 202 (class 1259 OID 44834)
+-- Dependencies: 1954 1955 5
 -- Name: tacceso; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -442,8 +442,8 @@ CREATE TABLE tacceso (
 ALTER TABLE public.tacceso OWNER TO postgres;
 
 --
--- TOC entry 185 (class 1259 OID 45285)
--- Dependencies: 1937 6
+-- TOC entry 194 (class 1259 OID 44783)
+-- Dependencies: 1949 5
 -- Name: taccesorio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -464,8 +464,8 @@ CREATE TABLE taccesorio (
 ALTER TABLE public.taccesorio OWNER TO postgres;
 
 --
--- TOC entry 186 (class 1259 OID 45289)
--- Dependencies: 1938 6
+-- TOC entry 189 (class 1259 OID 44750)
+-- Dependencies: 1944 5
 -- Name: tbanco; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -480,8 +480,8 @@ CREATE TABLE tbanco (
 ALTER TABLE public.tbanco OWNER TO postgres;
 
 --
--- TOC entry 187 (class 1259 OID 45293)
--- Dependencies: 1939 1940 1941 1942 1943 6
+-- TOC entry 203 (class 1259 OID 44847)
+-- Dependencies: 1956 1957 1958 1959 1960 5
 -- Name: tbitacora; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -504,8 +504,8 @@ CREATE TABLE tbitacora (
 ALTER TABLE public.tbitacora OWNER TO postgres;
 
 --
--- TOC entry 188 (class 1259 OID 45304)
--- Dependencies: 1944 6
+-- TOC entry 185 (class 1259 OID 44714)
+-- Dependencies: 1940 5
 -- Name: tchofer; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -529,8 +529,8 @@ CREATE TABLE tchofer (
 ALTER TABLE public.tchofer OWNER TO postgres;
 
 --
--- TOC entry 189 (class 1259 OID 45311)
--- Dependencies: 6
+-- TOC entry 196 (class 1259 OID 44801)
+-- Dependencies: 5
 -- Name: tchofer_documento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -547,8 +547,8 @@ CREATE TABLE tchofer_documento (
 ALTER TABLE public.tchofer_documento OWNER TO postgres;
 
 --
--- TOC entry 190 (class 1259 OID 45314)
--- Dependencies: 1945 1946 6
+-- TOC entry 204 (class 1259 OID 44861)
+-- Dependencies: 1961 1962 5
 -- Name: tclave; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -565,8 +565,8 @@ CREATE TABLE tclave (
 ALTER TABLE public.tclave OWNER TO postgres;
 
 --
--- TOC entry 191 (class 1259 OID 45319)
--- Dependencies: 1947 6
+-- TOC entry 184 (class 1259 OID 44705)
+-- Dependencies: 1939 5
 -- Name: tcliente; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -591,8 +591,8 @@ CREATE TABLE tcliente (
 ALTER TABLE public.tcliente OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 45657)
--- Dependencies: 6
+-- TOC entry 217 (class 1259 OID 45186)
+-- Dependencies: 5
 -- Name: tconfiguracion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -607,8 +607,8 @@ CREATE TABLE tconfiguracion (
 ALTER TABLE public.tconfiguracion OWNER TO postgres;
 
 --
--- TOC entry 192 (class 1259 OID 45326)
--- Dependencies: 1948 6
+-- TOC entry 195 (class 1259 OID 44792)
+-- Dependencies: 1950 5
 -- Name: tdocumento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -626,13 +626,12 @@ CREATE TABLE tdocumento (
 ALTER TABLE public.tdocumento OWNER TO postgres;
 
 --
--- TOC entry 193 (class 1259 OID 45333)
--- Dependencies: 1949 6
+-- TOC entry 199 (class 1259 OID 44822)
+-- Dependencies: 5
 -- Name: tfactura; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tfactura (
-    idfactura bigint DEFAULT nextval('sidfactura'::regclass) NOT NULL,
     tvehiculo_idvehiculo bigint NOT NULL,
     taccesorio_idaccesorio bigint NOT NULL,
     tcliente_idcliente bigint NOT NULL,
@@ -642,15 +641,16 @@ CREATE TABLE tfactura (
     observacionfac character varying(255),
     estatusfac character(1) NOT NULL,
     fechafac timestamp without time zone,
-    porcentajeivafac character(2)
+    porcentajeivafac character(2),
+    idfactura character(10) NOT NULL
 );
 
 
 ALTER TABLE public.tfactura OWNER TO postgres;
 
 --
--- TOC entry 194 (class 1259 OID 45337)
--- Dependencies: 6
+-- TOC entry 200 (class 1259 OID 44828)
+-- Dependencies: 5
 -- Name: tfactura_producto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -665,8 +665,8 @@ CREATE TABLE tfactura_producto (
 ALTER TABLE public.tfactura_producto OWNER TO postgres;
 
 --
--- TOC entry 195 (class 1259 OID 45340)
--- Dependencies: 6
+-- TOC entry 214 (class 1259 OID 45084)
+-- Dependencies: 5
 -- Name: tgoogle_users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -682,8 +682,8 @@ CREATE TABLE tgoogle_users (
 ALTER TABLE public.tgoogle_users OWNER TO postgres;
 
 --
--- TOC entry 196 (class 1259 OID 45343)
--- Dependencies: 1950 6
+-- TOC entry 191 (class 1259 OID 44765)
+-- Dependencies: 1946 5
 -- Name: tmantenimiento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -702,8 +702,8 @@ CREATE TABLE tmantenimiento (
 ALTER TABLE public.tmantenimiento OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 45347)
--- Dependencies: 1951 1952 6
+-- TOC entry 198 (class 1259 OID 44813)
+-- Dependencies: 1952 1953 5
 -- Name: tmarca; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -712,15 +712,15 @@ CREATE TABLE tmarca (
     descripcionmar character varying(255) NOT NULL,
     observacionmar character varying(255),
     estatusmar character(1) NOT NULL,
-    tipomar character(1) DEFAULT 1
+    tipomar character(1) DEFAULT 0
 );
 
 
 ALTER TABLE public.tmarca OWNER TO postgres;
 
 --
--- TOC entry 198 (class 1259 OID 45354)
--- Dependencies: 1953 6
+-- TOC entry 197 (class 1259 OID 44804)
+-- Dependencies: 1951 5
 -- Name: tmodelo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -736,8 +736,8 @@ CREATE TABLE tmodelo (
 ALTER TABLE public.tmodelo OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 45361)
--- Dependencies: 1954 1955 6
+-- TOC entry 205 (class 1259 OID 44869)
+-- Dependencies: 1963 1964 5
 -- Name: tmodulo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -753,8 +753,8 @@ CREATE TABLE tmodulo (
 ALTER TABLE public.tmodulo OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 45366)
--- Dependencies: 6
+-- TOC entry 206 (class 1259 OID 44876)
+-- Dependencies: 5
 -- Name: tmodulo_trol; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -768,8 +768,8 @@ CREATE TABLE tmodulo_trol (
 ALTER TABLE public.tmodulo_trol OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 45369)
--- Dependencies: 1956 6
+-- TOC entry 193 (class 1259 OID 44777)
+-- Dependencies: 1948 5
 -- Name: tprecinto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -779,15 +779,15 @@ CREATE TABLE tprecinto (
     tfactura_idfactura bigint,
     observacionpre character varying(255),
     estatuspre character(1) NOT NULL,
-    grupopre integer
+    grupopre character(10) NOT NULL
 );
 
 
 ALTER TABLE public.tprecinto OWNER TO postgres;
 
 --
--- TOC entry 202 (class 1259 OID 45373)
--- Dependencies: 1957 6
+-- TOC entry 207 (class 1259 OID 44883)
+-- Dependencies: 1965 5
 -- Name: tpregunta; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -802,8 +802,8 @@ CREATE TABLE tpregunta (
 ALTER TABLE public.tpregunta OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 45377)
--- Dependencies: 1958 6
+-- TOC entry 186 (class 1259 OID 44723)
+-- Dependencies: 1941 5
 -- Name: tproducto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -817,15 +817,16 @@ CREATE TABLE tproducto (
     existenciapro numeric(10,2) NOT NULL,
     ttipo_producto_idtipo_producto bigint NOT NULL,
     observacionpro character varying(255),
-    estatuspro character(1) NOT NULL
+    estatuspro character(1) NOT NULL,
+    preciocomprapro numeric(10,2)
 );
 
 
 ALTER TABLE public.tproducto OWNER TO postgres;
 
 --
--- TOC entry 204 (class 1259 OID 45384)
--- Dependencies: 6
+-- TOC entry 216 (class 1259 OID 45180)
+-- Dependencies: 5
 -- Name: tproducto_documento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -842,8 +843,8 @@ CREATE TABLE tproducto_documento (
 ALTER TABLE public.tproducto_documento OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 45387)
--- Dependencies: 1959 6
+-- TOC entry 188 (class 1259 OID 44741)
+-- Dependencies: 1943 5
 -- Name: tproveedor; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -866,8 +867,8 @@ CREATE TABLE tproveedor (
 ALTER TABLE public.tproveedor OWNER TO postgres;
 
 --
--- TOC entry 206 (class 1259 OID 45394)
--- Dependencies: 1960 1961 6
+-- TOC entry 208 (class 1259 OID 44890)
+-- Dependencies: 1966 1967 5
 -- Name: trol; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -881,8 +882,8 @@ CREATE TABLE trol (
 ALTER TABLE public.trol OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 45399)
--- Dependencies: 1962 1963 1964 6
+-- TOC entry 209 (class 1259 OID 44897)
+-- Dependencies: 1968 1969 1970 5
 -- Name: tservicio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -899,8 +900,8 @@ CREATE TABLE tservicio (
 ALTER TABLE public.tservicio OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 45408)
--- Dependencies: 1965 6
+-- TOC entry 190 (class 1259 OID 44756)
+-- Dependencies: 1945 5
 -- Name: tservicio_mantenimiento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -915,8 +916,8 @@ CREATE TABLE tservicio_mantenimiento (
 ALTER TABLE public.tservicio_mantenimiento OWNER TO postgres;
 
 --
--- TOC entry 209 (class 1259 OID 45415)
--- Dependencies: 6
+-- TOC entry 201 (class 1259 OID 44831)
+-- Dependencies: 5
 -- Name: tservicio_proveedor; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -929,8 +930,8 @@ CREATE TABLE tservicio_proveedor (
 ALTER TABLE public.tservicio_proveedor OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 45418)
--- Dependencies: 6
+-- TOC entry 211 (class 1259 OID 44911)
+-- Dependencies: 5
 -- Name: tservicio_trol; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -944,8 +945,8 @@ CREATE TABLE tservicio_trol (
 ALTER TABLE public.tservicio_trol OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 45421)
--- Dependencies: 210 6
+-- TOC entry 210 (class 1259 OID 44909)
+-- Dependencies: 5 211
 -- Name: tservicio_trol_idservicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -960,8 +961,8 @@ CREATE SEQUENCE tservicio_trol_idservicio_seq
 ALTER TABLE public.tservicio_trol_idservicio_seq OWNER TO postgres;
 
 --
--- TOC entry 2233 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 2232 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: tservicio_trol_idservicio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -969,8 +970,8 @@ ALTER SEQUENCE tservicio_trol_idservicio_seq OWNED BY tservicio_trol.idservicio;
 
 
 --
--- TOC entry 212 (class 1259 OID 45423)
--- Dependencies: 1967 1968 1969 1970 1971 6
+-- TOC entry 212 (class 1259 OID 44919)
+-- Dependencies: 1972 1973 1974 1975 1976 5
 -- Name: tsistema; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -994,8 +995,8 @@ CREATE TABLE tsistema (
 ALTER TABLE public.tsistema OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 45434)
--- Dependencies: 1972 6
+-- TOC entry 187 (class 1259 OID 44732)
+-- Dependencies: 1942 5
 -- Name: ttipo_producto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1010,8 +1011,8 @@ CREATE TABLE ttipo_producto (
 ALTER TABLE public.ttipo_producto OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 45441)
--- Dependencies: 1973 1974 6
+-- TOC entry 213 (class 1259 OID 44932)
+-- Dependencies: 1977 1978 5
 -- Name: tusuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1030,8 +1031,8 @@ CREATE TABLE tusuario (
 ALTER TABLE public.tusuario OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 45449)
--- Dependencies: 1975 6
+-- TOC entry 192 (class 1259 OID 44771)
+-- Dependencies: 1947 5
 -- Name: tvehiculo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1051,8 +1052,8 @@ CREATE TABLE tvehiculo (
 ALTER TABLE public.tvehiculo OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 45453)
--- Dependencies: 6
+-- TOC entry 215 (class 1259 OID 45115)
+-- Dependencies: 5
 -- Name: tvehiculo_accesorio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1065,8 +1066,8 @@ CREATE TABLE tvehiculo_accesorio (
 ALTER TABLE public.tvehiculo_accesorio OWNER TO postgres;
 
 --
--- TOC entry 1966 (class 2604 OID 45456)
--- Dependencies: 211 210
+-- TOC entry 1971 (class 2604 OID 44914)
+-- Dependencies: 210 211 211
 -- Name: idservicio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1074,8 +1075,8 @@ ALTER TABLE ONLY tservicio_trol ALTER COLUMN idservicio SET DEFAULT nextval('tse
 
 
 --
--- TOC entry 2234 (class 0 OID 0)
--- Dependencies: 161
+-- TOC entry 2233 (class 0 OID 0)
+-- Dependencies: 170
 -- Name: sidacceso; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1083,8 +1084,8 @@ SELECT pg_catalog.setval('sidacceso', 13, true);
 
 
 --
--- TOC entry 2235 (class 0 OID 0)
--- Dependencies: 162
+-- TOC entry 2234 (class 0 OID 0)
+-- Dependencies: 161
 -- Name: sidaccesorio; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1092,8 +1093,8 @@ SELECT pg_catalog.setval('sidaccesorio', 3, true);
 
 
 --
--- TOC entry 2236 (class 0 OID 0)
--- Dependencies: 163
+-- TOC entry 2235 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: sidbanco; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1101,8 +1102,8 @@ SELECT pg_catalog.setval('sidbanco', 1, false);
 
 
 --
--- TOC entry 2237 (class 0 OID 0)
--- Dependencies: 164
+-- TOC entry 2236 (class 0 OID 0)
+-- Dependencies: 169
 -- Name: sidbitacora; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1110,8 +1111,8 @@ SELECT pg_catalog.setval('sidbitacora', 15, true);
 
 
 --
--- TOC entry 2238 (class 0 OID 0)
--- Dependencies: 165
+-- TOC entry 2237 (class 0 OID 0)
+-- Dependencies: 182
 -- Name: sidchofer; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1119,8 +1120,8 @@ SELECT pg_catalog.setval('sidchofer', 27, true);
 
 
 --
--- TOC entry 2239 (class 0 OID 0)
--- Dependencies: 166
+-- TOC entry 2238 (class 0 OID 0)
+-- Dependencies: 168
 -- Name: sidclave; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1128,8 +1129,8 @@ SELECT pg_catalog.setval('sidclave', 2, true);
 
 
 --
--- TOC entry 2240 (class 0 OID 0)
--- Dependencies: 167
+-- TOC entry 2239 (class 0 OID 0)
+-- Dependencies: 183
 -- Name: sidcliente; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1137,8 +1138,8 @@ SELECT pg_catalog.setval('sidcliente', 4, true);
 
 
 --
--- TOC entry 2241 (class 0 OID 0)
--- Dependencies: 168
+-- TOC entry 2240 (class 0 OID 0)
+-- Dependencies: 164
 -- Name: sidconfiguracion; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1146,8 +1147,8 @@ SELECT pg_catalog.setval('sidconfiguracion', 1, true);
 
 
 --
--- TOC entry 2242 (class 0 OID 0)
--- Dependencies: 169
+-- TOC entry 2241 (class 0 OID 0)
+-- Dependencies: 173
 -- Name: siddocumento; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1155,17 +1156,17 @@ SELECT pg_catalog.setval('siddocumento', 4, true);
 
 
 --
--- TOC entry 2243 (class 0 OID 0)
--- Dependencies: 170
+-- TOC entry 2242 (class 0 OID 0)
+-- Dependencies: 162
 -- Name: sidfactura; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidfactura', 45, true);
+SELECT pg_catalog.setval('sidfactura', 42, true);
 
 
 --
--- TOC entry 2244 (class 0 OID 0)
--- Dependencies: 171
+-- TOC entry 2243 (class 0 OID 0)
+-- Dependencies: 176
 -- Name: sidmantenimiento; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1173,8 +1174,8 @@ SELECT pg_catalog.setval('sidmantenimiento', 1, false);
 
 
 --
--- TOC entry 2245 (class 0 OID 0)
--- Dependencies: 172
+-- TOC entry 2244 (class 0 OID 0)
+-- Dependencies: 171
 -- Name: sidmarca; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1182,8 +1183,8 @@ SELECT pg_catalog.setval('sidmarca', 4, true);
 
 
 --
--- TOC entry 2246 (class 0 OID 0)
--- Dependencies: 173
+-- TOC entry 2245 (class 0 OID 0)
+-- Dependencies: 172
 -- Name: sidmodelo; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1191,8 +1192,8 @@ SELECT pg_catalog.setval('sidmodelo', 4, true);
 
 
 --
--- TOC entry 2247 (class 0 OID 0)
--- Dependencies: 174
+-- TOC entry 2246 (class 0 OID 0)
+-- Dependencies: 167
 -- Name: sidmodulo; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1200,17 +1201,17 @@ SELECT pg_catalog.setval('sidmodulo', 9, true);
 
 
 --
--- TOC entry 2248 (class 0 OID 0)
--- Dependencies: 175
+-- TOC entry 2247 (class 0 OID 0)
+-- Dependencies: 174
 -- Name: sidprecinto; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidprecinto', 108, true);
+SELECT pg_catalog.setval('sidprecinto', 141, true);
 
 
 --
--- TOC entry 2249 (class 0 OID 0)
--- Dependencies: 176
+-- TOC entry 2248 (class 0 OID 0)
+-- Dependencies: 163
 -- Name: sidpregunta; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1218,8 +1219,8 @@ SELECT pg_catalog.setval('sidpregunta', 1, false);
 
 
 --
--- TOC entry 2250 (class 0 OID 0)
--- Dependencies: 177
+-- TOC entry 2249 (class 0 OID 0)
+-- Dependencies: 181
 -- Name: sidproducto; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1227,8 +1228,8 @@ SELECT pg_catalog.setval('sidproducto', 11, true);
 
 
 --
--- TOC entry 2251 (class 0 OID 0)
--- Dependencies: 178
+-- TOC entry 2250 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: sidproveedor; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1236,8 +1237,8 @@ SELECT pg_catalog.setval('sidproveedor', 1, false);
 
 
 --
--- TOC entry 2252 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2251 (class 0 OID 0)
+-- Dependencies: 166
 -- Name: sidrol; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1245,8 +1246,8 @@ SELECT pg_catalog.setval('sidrol', 2, true);
 
 
 --
--- TOC entry 2253 (class 0 OID 0)
--- Dependencies: 180
+-- TOC entry 2252 (class 0 OID 0)
+-- Dependencies: 177
 -- Name: sidservicio; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1254,8 +1255,8 @@ SELECT pg_catalog.setval('sidservicio', 59, true);
 
 
 --
--- TOC entry 2254 (class 0 OID 0)
--- Dependencies: 181
+-- TOC entry 2253 (class 0 OID 0)
+-- Dependencies: 165
 -- Name: sidservicio_mantenimiento; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1263,8 +1264,8 @@ SELECT pg_catalog.setval('sidservicio_mantenimiento', 1, false);
 
 
 --
--- TOC entry 2255 (class 0 OID 0)
--- Dependencies: 182
+-- TOC entry 2254 (class 0 OID 0)
+-- Dependencies: 180
 -- Name: sidtipo_producto; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1272,8 +1273,8 @@ SELECT pg_catalog.setval('sidtipo_producto', 23, true);
 
 
 --
--- TOC entry 2256 (class 0 OID 0)
--- Dependencies: 183
+-- TOC entry 2255 (class 0 OID 0)
+-- Dependencies: 175
 -- Name: sidvehiculo; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1281,8 +1282,8 @@ SELECT pg_catalog.setval('sidvehiculo', 2, true);
 
 
 --
--- TOC entry 2191 (class 0 OID 45280)
--- Dependencies: 184 2225
+-- TOC entry 2208 (class 0 OID 44834)
+-- Dependencies: 202 2224
 -- Data for Name: tacceso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1302,8 +1303,8 @@ INSERT INTO tacceso (idacceso, idusuario, exitoacc, ipacc, estatusacc, fechaacc,
 
 
 --
--- TOC entry 2192 (class 0 OID 45285)
--- Dependencies: 185 2225
+-- TOC entry 2200 (class 0 OID 44783)
+-- Dependencies: 194 2224
 -- Data for Name: taccesorio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1313,16 +1314,16 @@ INSERT INTO taccesorio (idaccesorio, idcodigoacc, tmodelo_idmodelo, placaacc, an
 
 
 --
--- TOC entry 2193 (class 0 OID 45289)
--- Dependencies: 186 2225
+-- TOC entry 2195 (class 0 OID 44750)
+-- Dependencies: 189 2224
 -- Data for Name: tbanco; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2194 (class 0 OID 45293)
--- Dependencies: 187 2225
+-- TOC entry 2209 (class 0 OID 44847)
+-- Dependencies: 203 2224
 -- Data for Name: tbitacora; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1344,8 +1345,8 @@ INSERT INTO tbitacora (idbitacora, direccionbit, fechahorabit, valoranteriorbit,
 
 
 --
--- TOC entry 2195 (class 0 OID 45304)
--- Dependencies: 188 2225
+-- TOC entry 2191 (class 0 OID 44714)
+-- Dependencies: 185 2224
 -- Data for Name: tchofer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1357,8 +1358,8 @@ INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, ce
 
 
 --
--- TOC entry 2196 (class 0 OID 45311)
--- Dependencies: 189 2225
+-- TOC entry 2202 (class 0 OID 44801)
+-- Dependencies: 196 2224
 -- Data for Name: tchofer_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1370,8 +1371,8 @@ INSERT INTO tchofer_documento (tchofer_idchofer, tdocumento_iddocumento, fechaem
 
 
 --
--- TOC entry 2197 (class 0 OID 45314)
--- Dependencies: 190 2225
+-- TOC entry 2210 (class 0 OID 44861)
+-- Dependencies: 204 2224
 -- Data for Name: tclave; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1380,8 +1381,8 @@ INSERT INTO tclave (idclave, clavecla, fechainiciocla, fechafincla, estatuscla, 
 
 
 --
--- TOC entry 2198 (class 0 OID 45319)
--- Dependencies: 191 2225
+-- TOC entry 2190 (class 0 OID 44705)
+-- Dependencies: 184 2224
 -- Data for Name: tcliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1392,8 +1393,8 @@ INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, 
 
 
 --
--- TOC entry 2224 (class 0 OID 45657)
--- Dependencies: 217 2225
+-- TOC entry 2223 (class 0 OID 45186)
+-- Dependencies: 217 2224
 -- Data for Name: tconfiguracion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1401,8 +1402,8 @@ INSERT INTO tconfiguracion (imagenlogo, imagenreporte, imagenlogo_oscuro, imagen
 
 
 --
--- TOC entry 2199 (class 0 OID 45326)
--- Dependencies: 192 2225
+-- TOC entry 2201 (class 0 OID 44792)
+-- Dependencies: 195 2224
 -- Data for Name: tdocumento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1412,62 +1413,24 @@ INSERT INTO tdocumento (iddocumento, descripciondoc, vencedoc, duraciondoc, obse
 
 
 --
--- TOC entry 2200 (class 0 OID 45333)
--- Dependencies: 193 2225
+-- TOC entry 2205 (class 0 OID 44822)
+-- Dependencies: 199 2224
 -- Data for Name: tfactura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (4, 1, 2, 1, 2, 0.00, 66600.00, '', '1', '2015-03-30 02:38:55.673', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (7, 1, 2, 1, 2, 0.00, 99900.00, '', '1', '2015-03-30 22:13:31.268', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (8, 1, 2, 3, 1, 11988.00, 111888.00, '', '1', '2015-03-31 16:55:04.193', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (13, 2, 3, 4, 23, 0.00, 99900.00, 'ESTE PRODUCTO SE DIRIGE A LOS PATIOS DE LA ADUANA PRINCIPAL DEL ESTADO APURE, PARA SU NACIONALIZACIÓN', '1', '2015-03-31 18:19:00.015', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (14, 2, 3, 1, 23, 0.00, 66600.00, '', '1', '2015-04-08 00:16:11.508', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (22, 2, 3, 4, 23, 0.00, 99900.00, '', '1', '2015-04-08 00:25:30.013', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (30, 2, 3, 4, 23, 0.00, 0.00, '', '1', '2015-04-08 00:29:52.927', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (31, 2, 3, 4, 23, 0.00, 99900.00, '', '1', '2015-04-08 00:30:52.319', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (37, 2, 3, 4, 23, 0.00, 99900.00, '', '1', '2015-04-08 00:40:00.649', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (38, 2, 3, 4, 23, 0.00, 66600.00, '', '1', '2015-04-08 00:40:58.668', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (39, 2, 3, 1, 23, 0.00, 999000.00, '', '1', '2015-04-08 03:53:57.38', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (40, 2, 3, 1, 2, 0.00, 99900.00, '', '1', '2015-04-12 18:54:12.633', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (41, 2, 3, 1, 2, 0.00, 99900.00, '', '1', '2015-04-12 18:54:15.958', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (42, 2, 3, 1, 2, 0.00, 99900.00, '', '1', '2015-04-12 18:54:16.25', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (43, 1, 1, 4, 2, 13319.87, 124318.76, '', '1', '2015-04-20 20:36:41.518', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (44, 1, 1, 1, 2, 7992.00, 74592.00, '', '1', '2015-04-20 22:20:33.959', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (3, 1, 2, 1, 2, 11188.80, 104428.80, '', '1', '2015-03-29 21:35:15.363', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (2, 1, 2, 3, 22, 11988.00, 111888.00, 'Mercancia que va a los patios de la ADUANA PRINCIPAL DEL AMPARO DE
-APURE. EDO. APURE. PARA SU NACIONALIZACION', '1', '2015-03-29 16:38:56.731', NULL);
-INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac) VALUES (45, 1, 3, 4, 2, 11988.00, 111888.00, '', '1', '2015-04-20 22:37:20.622', NULL);
 
 
 --
--- TOC entry 2201 (class 0 OID 45337)
--- Dependencies: 194 2225
+-- TOC entry 2206 (class 0 OID 44828)
+-- Dependencies: 200 2224
 -- Data for Name: tfactura_producto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (4, 1, 20000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (7, 1, 29999.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (8, 1, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (13, 2, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (14, 11, 20000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (22, 2, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (31, 2, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (37, 2, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (38, 2, 20000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (39, 1, 300000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (40, 1, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (41, 1, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (42, 1, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (43, 1, 33333.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (44, 11, 20000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (3, 1, 28000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (2, 1, 30000.00, 3.33);
-INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (45, 11, 30000.00, 3.33);
 
 
 --
--- TOC entry 2202 (class 0 OID 45340)
--- Dependencies: 195 2225
+-- TOC entry 2220 (class 0 OID 45084)
+-- Dependencies: 214 2224
 -- Data for Name: tgoogle_users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1475,28 +1438,28 @@ INSERT INTO tgoogle_users (google_id, google_name, google_email, google_link, go
 
 
 --
--- TOC entry 2203 (class 0 OID 45343)
--- Dependencies: 196 2225
+-- TOC entry 2197 (class 0 OID 44765)
+-- Dependencies: 191 2224
 -- Data for Name: tmantenimiento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2204 (class 0 OID 45347)
--- Dependencies: 197 2225
+-- TOC entry 2204 (class 0 OID 44813)
+-- Dependencies: 198 2224
 -- Data for Name: tmarca; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tmarca (idmarca, descripcionmar, observacionmar, estatusmar, tipomar) VALUES (2, 'FABRICACION NACIONAL', '', '1', '0');
-INSERT INTO tmarca (idmarca, descripcionmar, observacionmar, estatusmar, tipomar) VALUES (4, 'CARROCERIA VENEZUELA', '', '1', '0');
 INSERT INTO tmarca (idmarca, descripcionmar, observacionmar, estatusmar, tipomar) VALUES (1, 'KENWORTH', '', '1', '1');
 INSERT INTO tmarca (idmarca, descripcionmar, observacionmar, estatusmar, tipomar) VALUES (3, 'CHEVROLET', '', '1', '1');
+INSERT INTO tmarca (idmarca, descripcionmar, observacionmar, estatusmar, tipomar) VALUES (2, 'FABRICACION NACIONAL', '', '1', '0');
+INSERT INTO tmarca (idmarca, descripcionmar, observacionmar, estatusmar, tipomar) VALUES (4, 'CARROCERIA VENEZUELA', '', '1', '0');
 
 
 --
--- TOC entry 2205 (class 0 OID 45354)
--- Dependencies: 198 2225
+-- TOC entry 2203 (class 0 OID 44804)
+-- Dependencies: 197 2224
 -- Data for Name: tmodelo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1507,8 +1470,8 @@ INSERT INTO tmodelo (idmodelo, descripcionmod, tmarca_idmarca, observacionmod, e
 
 
 --
--- TOC entry 2206 (class 0 OID 45361)
--- Dependencies: 199 2225
+-- TOC entry 2211 (class 0 OID 44869)
+-- Dependencies: 205 2224
 -- Data for Name: tmodulo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1523,8 +1486,8 @@ INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (2, 
 
 
 --
--- TOC entry 2207 (class 0 OID 45366)
--- Dependencies: 200 2225
+-- TOC entry 2212 (class 0 OID 44876)
+-- Dependencies: 206 2224
 -- Data for Name: tmodulo_trol; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1547,55 +1510,94 @@ INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (2, 2, 7);
 
 
 --
--- TOC entry 2208 (class 0 OID 45369)
--- Dependencies: 201 2225
+-- TOC entry 2199 (class 0 OID 44777)
+-- Dependencies: 193 2224
 -- Data for Name: tprecinto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (106, '12345     ', 45, '', '2', 12345);
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (107, '12346     ', 45, '', '2', 12345);
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (108, '12347     ', 45, '', '2', 12345);
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (98, '1231      ', NULL, '', '1', '1231      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (99, '1232      ', NULL, '', '1', '1231      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (100, '1233      ', NULL, '', '1', '1233      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (101, '1234      ', NULL, '', '1', '1233      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (102, '1235      ', NULL, '', '1', '1235      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (103, '1236      ', NULL, '', '1', '1235      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (104, '1237      ', NULL, '', '1', '1235      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (105, '1238      ', NULL, '', '1', '1238      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (106, '1239      ', NULL, '', '1', '1238      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (107, '1240      ', NULL, '', '1', '1240      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (108, '1241      ', NULL, '', '1', '1240      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (109, '1242      ', NULL, '', '1', '1242      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (110, '1243      ', NULL, '', '1', '1242      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (111, '1244      ', NULL, '', '1', '1244      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (112, '1245      ', NULL, '', '1', '1244      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (113, '1244      ', NULL, '', '1', '1244      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (114, '1245      ', NULL, '', '1', '1244      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (115, '12345     ', NULL, '', '1', '12345     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (116, '12346     ', NULL, '', '1', '12345     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (117, '12347     ', NULL, '', '1', '12347     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (118, '12348     ', NULL, '', '1', '12347     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (119, '12347     ', NULL, '', '1', '12347     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (120, '12348     ', NULL, '', '1', '12347     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (121, '1111      ', NULL, '', '1', '1111      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (122, '1223      ', NULL, '', '1', '1111      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (123, '532       ', NULL, '', '1', '532       ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (124, '534       ', NULL, '', '1', '532       ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (125, '2222      ', NULL, '', '1', '2222      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (126, '2234      ', NULL, '', '1', '2234      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (127, '3252345   ', NULL, '', '1', '2234      ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (128, '1234556   ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (129, '234557    ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (130, '1234556   ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (131, '234557    ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (132, '1234556   ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (133, '234557    ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (134, '1234556   ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (135, '234557    ', NULL, '', '1', '1234556   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (136, '345234    ', NULL, '', '1', '345234    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (139, '123456    ', NULL, '', '1', '123456    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (140, '1234568   ', NULL, '', '1', '1234568   ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (141, '12345689  ', NULL, '', '1', '12345689  ');
 
 
 --
--- TOC entry 2209 (class 0 OID 45373)
--- Dependencies: 202 2225
+-- TOC entry 2213 (class 0 OID 44883)
+-- Dependencies: 207 2224
 -- Data for Name: tpregunta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2210 (class 0 OID 45377)
--- Dependencies: 203 2225
+-- TOC entry 2192 (class 0 OID 44723)
+-- Dependencies: 186 2224
 -- Data for Name: tproducto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro) VALUES (1, 'PR0001    ', 'ACEITES DE CORTES', 'ACEITES DE CORTES', 'kg  ', 3.33, 30000.00, 1, '', '1');
-INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro) VALUES (2, 'PR0002    ', 'PERFOR 4', 'ADITIVO DE FLUIDOS DE PERFORACIÓN PETROLERA', 'kg  ', 3.33, 0.00, 18, '', '1');
-INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro) VALUES (11, 'PR0003    ', 'CROPOX', 'CROPOXIDOR', 'kg  ', 3.33, 0.00, 1, '', '1');
+INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro, preciocomprapro) VALUES (1, 'PR0001    ', 'ACEITES DE CORTES', 'ACEITES DE CORTES', 'kg  ', 3.33, 30000.00, 1, '', '1', NULL);
+INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro, preciocomprapro) VALUES (2, 'PR0002    ', 'PERFOR 4', 'ADITIVO DE FLUIDOS DE PERFORACIÓN PETROLERA', 'kg  ', 3.33, 0.00, 18, '', '1', NULL);
+INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro, preciocomprapro) VALUES (11, 'PR0003    ', 'CROPOX', 'CROPOXIDOR', 'kg  ', 3.33, 0.00, 1, '', '1', 2.33);
 
 
 --
--- TOC entry 2211 (class 0 OID 45384)
--- Dependencies: 204 2225
+-- TOC entry 2222 (class 0 OID 45180)
+-- Dependencies: 216 2224
 -- Data for Name: tproducto_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tproducto_documento (tproducto_idproducto, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (11, 4, '2015-01-01', '2015-12-31', 'CROPOX_4_2c0a019f-1a23-4c51-8661-c6cab9e46507.jpg', '1');
+INSERT INTO tproducto_documento (tproducto_idproducto, tdocumento_iddocumento, fechaemisiondoc, fechavencimientodoc, directoriodoc, estatusdoc) VALUES (11, 4, '2015-01-01', '2015-12-31', 'CROPOX_4_4bdaf875-69ee-4c5e-a406-95dd7f5b91b1.docx', '1');
 
 
 --
--- TOC entry 2212 (class 0 OID 45387)
--- Dependencies: 205 2225
+-- TOC entry 2194 (class 0 OID 44741)
+-- Dependencies: 188 2224
 -- Data for Name: tproveedor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2213 (class 0 OID 45394)
--- Dependencies: 206 2225
+-- TOC entry 2214 (class 0 OID 44890)
+-- Dependencies: 208 2224
 -- Data for Name: trol; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1604,8 +1606,8 @@ INSERT INTO trol (idrol, nombrerol, estatusrol) VALUES (2, 'Operador', '1');
 
 
 --
--- TOC entry 2214 (class 0 OID 45399)
--- Dependencies: 207 2225
+-- TOC entry 2215 (class 0 OID 44897)
+-- Dependencies: 209 2224
 -- Data for Name: tservicio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1670,24 +1672,24 @@ INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser,
 
 
 --
--- TOC entry 2215 (class 0 OID 45408)
--- Dependencies: 208 2225
+-- TOC entry 2196 (class 0 OID 44756)
+-- Dependencies: 190 2224
 -- Data for Name: tservicio_mantenimiento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2216 (class 0 OID 45415)
--- Dependencies: 209 2225
+-- TOC entry 2207 (class 0 OID 44831)
+-- Dependencies: 201 2224
 -- Data for Name: tservicio_proveedor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2217 (class 0 OID 45418)
--- Dependencies: 210 2225
+-- TOC entry 2217 (class 0 OID 44911)
+-- Dependencies: 211 2224
 -- Data for Name: tservicio_trol; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1799,8 +1801,8 @@ INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (50, 1, 0);
 
 
 --
--- TOC entry 2257 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 2256 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: tservicio_trol_idservicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1808,8 +1810,8 @@ SELECT pg_catalog.setval('tservicio_trol_idservicio_seq', 1, false);
 
 
 --
--- TOC entry 2219 (class 0 OID 45423)
--- Dependencies: 212 2225
+-- TOC entry 2218 (class 0 OID 44919)
+-- Dependencies: 212 2224
 -- Data for Name: tsistema; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1817,8 +1819,8 @@ INSERT INTO tsistema (idconfiguracion, introducion, mision, vision, historia, ob
 
 
 --
--- TOC entry 2220 (class 0 OID 45434)
--- Dependencies: 213 2225
+-- TOC entry 2193 (class 0 OID 44732)
+-- Dependencies: 187 2224
 -- Data for Name: ttipo_producto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1833,8 +1835,8 @@ INSERT INTO ttipo_producto (idtipo_producto, descripciontip, observaciontip, est
 
 
 --
--- TOC entry 2221 (class 0 OID 45441)
--- Dependencies: 214 2225
+-- TOC entry 2219 (class 0 OID 44932)
+-- Dependencies: 213 2224
 -- Data for Name: tusuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1843,8 +1845,8 @@ INSERT INTO tusuario (idusuario, nombreusu, emailusu, estatususu, ultima_activid
 
 
 --
--- TOC entry 2222 (class 0 OID 45449)
--- Dependencies: 215 2225
+-- TOC entry 2198 (class 0 OID 44771)
+-- Dependencies: 192 2224
 -- Data for Name: tvehiculo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1853,16 +1855,16 @@ INSERT INTO tvehiculo (idvehiculo, idcodigoveh, aliasveh, placaveh, anoveh, colo
 
 
 --
--- TOC entry 2223 (class 0 OID 45453)
--- Dependencies: 216 2225
+-- TOC entry 2221 (class 0 OID 45115)
+-- Dependencies: 215 2224
 -- Data for Name: tvehiculo_accesorio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 1980 (class 2606 OID 45458)
--- Dependencies: 185 185 2226
+-- TOC entry 2000 (class 2606 OID 44791)
+-- Dependencies: 194 194 2225
 -- Name: pk_idaccesorio; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1871,8 +1873,8 @@ ALTER TABLE ONLY taccesorio
 
 
 --
--- TOC entry 1982 (class 2606 OID 45460)
--- Dependencies: 186 186 2226
+-- TOC entry 1990 (class 2606 OID 44755)
+-- Dependencies: 189 189 2225
 -- Name: pk_idbanco; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1881,8 +1883,8 @@ ALTER TABLE ONLY tbanco
 
 
 --
--- TOC entry 1992 (class 2606 OID 45462)
--- Dependencies: 191 191 2226
+-- TOC entry 1980 (class 2606 OID 44713)
+-- Dependencies: 184 184 2225
 -- Name: pk_idcliente; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1891,8 +1893,8 @@ ALTER TABLE ONLY tcliente
 
 
 --
--- TOC entry 1994 (class 2606 OID 45464)
--- Dependencies: 192 192 2226
+-- TOC entry 2002 (class 2606 OID 44800)
+-- Dependencies: 195 195 2225
 -- Name: pk_iddocumento; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1901,18 +1903,8 @@ ALTER TABLE ONLY tdocumento
 
 
 --
--- TOC entry 1996 (class 2606 OID 45466)
--- Dependencies: 193 193 2226
--- Name: pk_idfactura; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY tfactura
-    ADD CONSTRAINT pk_idfactura PRIMARY KEY (idfactura);
-
-
---
--- TOC entry 2000 (class 2606 OID 45468)
--- Dependencies: 196 196 2226
+-- TOC entry 1994 (class 2606 OID 44770)
+-- Dependencies: 191 191 2225
 -- Name: pk_idmantenimiento; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1921,8 +1913,8 @@ ALTER TABLE ONLY tmantenimiento
 
 
 --
--- TOC entry 2002 (class 2606 OID 45470)
--- Dependencies: 197 197 2226
+-- TOC entry 2006 (class 2606 OID 44821)
+-- Dependencies: 198 198 2225
 -- Name: pk_idmarca; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1931,8 +1923,8 @@ ALTER TABLE ONLY tmarca
 
 
 --
--- TOC entry 2004 (class 2606 OID 45472)
--- Dependencies: 198 198 2226
+-- TOC entry 2004 (class 2606 OID 44812)
+-- Dependencies: 197 197 2225
 -- Name: pk_idmodelo; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1941,8 +1933,8 @@ ALTER TABLE ONLY tmodelo
 
 
 --
--- TOC entry 2017 (class 2606 OID 45474)
--- Dependencies: 203 203 2226
+-- TOC entry 1984 (class 2606 OID 44731)
+-- Dependencies: 186 186 2225
 -- Name: pk_idproducto; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1951,8 +1943,8 @@ ALTER TABLE ONLY tproducto
 
 
 --
--- TOC entry 2019 (class 2606 OID 45476)
--- Dependencies: 205 205 2226
+-- TOC entry 1988 (class 2606 OID 44749)
+-- Dependencies: 188 188 2225
 -- Name: pk_idproveedor; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1961,8 +1953,8 @@ ALTER TABLE ONLY tproveedor
 
 
 --
--- TOC entry 2026 (class 2606 OID 45478)
--- Dependencies: 208 208 2226
+-- TOC entry 1992 (class 2606 OID 44764)
+-- Dependencies: 190 190 2225
 -- Name: pk_idservicio; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1971,8 +1963,8 @@ ALTER TABLE ONLY tservicio_mantenimiento
 
 
 --
--- TOC entry 2039 (class 2606 OID 45480)
--- Dependencies: 215 215 2226
+-- TOC entry 1996 (class 2606 OID 44776)
+-- Dependencies: 192 192 2225
 -- Name: pk_idvehiculo; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1981,8 +1973,8 @@ ALTER TABLE ONLY tvehiculo
 
 
 --
--- TOC entry 1978 (class 2606 OID 45482)
--- Dependencies: 184 184 2226
+-- TOC entry 2009 (class 2606 OID 44845)
+-- Dependencies: 202 202 2225
 -- Name: tacceso_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1991,8 +1983,8 @@ ALTER TABLE ONLY tacceso
 
 
 --
--- TOC entry 1985 (class 2606 OID 45484)
--- Dependencies: 187 187 2226
+-- TOC entry 2012 (class 2606 OID 44859)
+-- Dependencies: 203 203 2225
 -- Name: tbitacora_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2001,8 +1993,8 @@ ALTER TABLE ONLY tbitacora
 
 
 --
--- TOC entry 1987 (class 2606 OID 45486)
--- Dependencies: 188 188 2226
+-- TOC entry 1982 (class 2606 OID 44722)
+-- Dependencies: 185 185 2225
 -- Name: tchofer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2011,8 +2003,8 @@ ALTER TABLE ONLY tchofer
 
 
 --
--- TOC entry 1990 (class 2606 OID 45488)
--- Dependencies: 190 190 2226
+-- TOC entry 2015 (class 2606 OID 44867)
+-- Dependencies: 204 204 2225
 -- Name: tclave_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2021,8 +2013,8 @@ ALTER TABLE ONLY tclave
 
 
 --
--- TOC entry 1998 (class 2606 OID 45490)
--- Dependencies: 195 195 2226
+-- TOC entry 2040 (class 2606 OID 45088)
+-- Dependencies: 214 214 2225
 -- Name: tgoogle_users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2031,8 +2023,8 @@ ALTER TABLE ONLY tgoogle_users
 
 
 --
--- TOC entry 2006 (class 2606 OID 45492)
--- Dependencies: 199 199 2226
+-- TOC entry 2017 (class 2606 OID 44875)
+-- Dependencies: 205 205 2225
 -- Name: tmodulo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2041,8 +2033,8 @@ ALTER TABLE ONLY tmodulo
 
 
 --
--- TOC entry 2010 (class 2606 OID 45494)
--- Dependencies: 200 200 200 2226
+-- TOC entry 2021 (class 2606 OID 44880)
+-- Dependencies: 206 206 206 2225
 -- Name: tmodulo_trol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2051,8 +2043,8 @@ ALTER TABLE ONLY tmodulo_trol
 
 
 --
--- TOC entry 2012 (class 2606 OID 45496)
--- Dependencies: 201 201 2226
+-- TOC entry 1998 (class 2606 OID 44782)
+-- Dependencies: 193 193 2225
 -- Name: tprecinto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2061,8 +2053,8 @@ ALTER TABLE ONLY tprecinto
 
 
 --
--- TOC entry 2015 (class 2606 OID 45498)
--- Dependencies: 202 202 2226
+-- TOC entry 2024 (class 2606 OID 44888)
+-- Dependencies: 207 207 2225
 -- Name: tpregunta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2071,8 +2063,8 @@ ALTER TABLE ONLY tpregunta
 
 
 --
--- TOC entry 2021 (class 2606 OID 45500)
--- Dependencies: 206 206 2226
+-- TOC entry 2026 (class 2606 OID 44896)
+-- Dependencies: 208 208 2225
 -- Name: trol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2081,8 +2073,8 @@ ALTER TABLE ONLY trol
 
 
 --
--- TOC entry 2024 (class 2606 OID 45502)
--- Dependencies: 207 207 2226
+-- TOC entry 2029 (class 2606 OID 44907)
+-- Dependencies: 209 209 2225
 -- Name: tservicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2091,8 +2083,8 @@ ALTER TABLE ONLY tservicio
 
 
 --
--- TOC entry 2030 (class 2606 OID 45504)
--- Dependencies: 210 210 210 2226
+-- TOC entry 2033 (class 2606 OID 44916)
+-- Dependencies: 211 211 211 2225
 -- Name: tservicio_trol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2101,8 +2093,8 @@ ALTER TABLE ONLY tservicio_trol
 
 
 --
--- TOC entry 2032 (class 2606 OID 45506)
--- Dependencies: 212 212 2226
+-- TOC entry 2035 (class 2606 OID 44931)
+-- Dependencies: 212 212 2225
 -- Name: tsistema_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2111,8 +2103,8 @@ ALTER TABLE ONLY tsistema
 
 
 --
--- TOC entry 2034 (class 2606 OID 45508)
--- Dependencies: 213 213 2226
+-- TOC entry 1986 (class 2606 OID 44740)
+-- Dependencies: 187 187 2225
 -- Name: ttipo_producto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2121,8 +2113,8 @@ ALTER TABLE ONLY ttipo_producto
 
 
 --
--- TOC entry 2037 (class 2606 OID 45510)
--- Dependencies: 214 214 2226
+-- TOC entry 2038 (class 2606 OID 44941)
+-- Dependencies: 213 213 2225
 -- Name: tusuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2131,8 +2123,8 @@ ALTER TABLE ONLY tusuario
 
 
 --
--- TOC entry 1976 (class 1259 OID 45511)
--- Dependencies: 184 2226
+-- TOC entry 2007 (class 1259 OID 44846)
+-- Dependencies: 202 2225
 -- Name: fk_tacceso_tusuario1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2140,8 +2132,8 @@ CREATE INDEX fk_tacceso_tusuario1_idx ON tacceso USING btree (idusuario);
 
 
 --
--- TOC entry 1983 (class 1259 OID 45512)
--- Dependencies: 187 2226
+-- TOC entry 2010 (class 1259 OID 44860)
+-- Dependencies: 203 2225
 -- Name: fk_tbitacora_tusuario1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2149,8 +2141,8 @@ CREATE INDEX fk_tbitacora_tusuario1_idx ON tbitacora USING btree (idusuario);
 
 
 --
--- TOC entry 1988 (class 1259 OID 45513)
--- Dependencies: 190 2226
+-- TOC entry 2013 (class 1259 OID 44868)
+-- Dependencies: 204 2225
 -- Name: fk_tclave_tusuario1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2158,8 +2150,8 @@ CREATE INDEX fk_tclave_tusuario1_idx ON tclave USING btree (tusuario_idusuario);
 
 
 --
--- TOC entry 2007 (class 1259 OID 45514)
--- Dependencies: 200 2226
+-- TOC entry 2018 (class 1259 OID 44882)
+-- Dependencies: 206 2225
 -- Name: fk_tmodulo_has_trol_tmodulo1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2167,8 +2159,8 @@ CREATE INDEX fk_tmodulo_has_trol_tmodulo1_idx ON tmodulo_trol USING btree (idmod
 
 
 --
--- TOC entry 2008 (class 1259 OID 45515)
--- Dependencies: 200 2226
+-- TOC entry 2019 (class 1259 OID 44881)
+-- Dependencies: 206 2225
 -- Name: fk_tmodulo_has_trol_trol1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2176,8 +2168,8 @@ CREATE INDEX fk_tmodulo_has_trol_trol1_idx ON tmodulo_trol USING btree (idrol);
 
 
 --
--- TOC entry 2013 (class 1259 OID 45516)
--- Dependencies: 202 2226
+-- TOC entry 2022 (class 1259 OID 44889)
+-- Dependencies: 207 2225
 -- Name: fk_tpregunta_tusuario1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2185,8 +2177,8 @@ CREATE INDEX fk_tpregunta_tusuario1_idx ON tpregunta USING btree (tusuario_idusu
 
 
 --
--- TOC entry 2027 (class 1259 OID 45517)
--- Dependencies: 210 2226
+-- TOC entry 2030 (class 1259 OID 44917)
+-- Dependencies: 211 2225
 -- Name: fk_tservicio_has_trol_trol1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2194,8 +2186,8 @@ CREATE INDEX fk_tservicio_has_trol_trol1_idx ON tservicio_trol USING btree (idro
 
 
 --
--- TOC entry 2028 (class 1259 OID 45518)
--- Dependencies: 210 2226
+-- TOC entry 2031 (class 1259 OID 44918)
+-- Dependencies: 211 2225
 -- Name: fk_tservicio_has_trol_tservicio1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2203,8 +2195,8 @@ CREATE INDEX fk_tservicio_has_trol_tservicio1_idx ON tservicio_trol USING btree 
 
 
 --
--- TOC entry 2022 (class 1259 OID 45519)
--- Dependencies: 207 2226
+-- TOC entry 2027 (class 1259 OID 44908)
+-- Dependencies: 209 2225
 -- Name: fk_tservicio_tmodulo1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2212,8 +2204,8 @@ CREATE INDEX fk_tservicio_tmodulo1_idx ON tservicio USING btree (idmodulo);
 
 
 --
--- TOC entry 2035 (class 1259 OID 45520)
--- Dependencies: 214 2226
+-- TOC entry 2036 (class 1259 OID 44942)
+-- Dependencies: 213 2225
 -- Name: fk_tusuario_trol1_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2221,8 +2213,8 @@ CREATE INDEX fk_tusuario_trol1_idx ON tusuario USING btree (trol_idrol);
 
 
 --
--- TOC entry 2044 (class 2606 OID 45521)
--- Dependencies: 1979 193 185 2226
+-- TOC entry 2051 (class 2606 OID 45208)
+-- Dependencies: 199 194 1999 2225
 -- Name: fk_taccesorio_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2231,8 +2223,8 @@ ALTER TABLE ONLY tfactura
 
 
 --
--- TOC entry 2059 (class 2606 OID 45526)
--- Dependencies: 205 186 1981 2226
+-- TOC entry 2042 (class 2606 OID 44953)
+-- Dependencies: 189 1989 188 2225
 -- Name: fk_tbanco_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2241,8 +2233,8 @@ ALTER TABLE ONLY tproveedor
 
 
 --
--- TOC entry 2041 (class 2606 OID 45531)
--- Dependencies: 1986 188 189 2226
+-- TOC entry 2048 (class 2606 OID 44988)
+-- Dependencies: 1981 185 196 2225
 -- Name: fk_tchofer_documento_tchofer_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2251,8 +2243,8 @@ ALTER TABLE ONLY tchofer_documento
 
 
 --
--- TOC entry 2042 (class 2606 OID 45536)
--- Dependencies: 189 192 1993 2226
+-- TOC entry 2049 (class 2606 OID 44993)
+-- Dependencies: 196 195 2001 2225
 -- Name: fk_tchofer_documento_tdocumento_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2261,8 +2253,8 @@ ALTER TABLE ONLY tchofer_documento
 
 
 --
--- TOC entry 2045 (class 2606 OID 45541)
--- Dependencies: 1986 193 188 2226
+-- TOC entry 2052 (class 2606 OID 45213)
+-- Dependencies: 1981 199 185 2225
 -- Name: fk_tchofer_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2271,8 +2263,8 @@ ALTER TABLE ONLY tfactura
 
 
 --
--- TOC entry 2043 (class 2606 OID 45546)
--- Dependencies: 214 190 2036 2226
+-- TOC entry 2058 (class 2606 OID 45038)
+-- Dependencies: 204 2037 213 2225
 -- Name: fk_tclave_tusuario1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2281,8 +2273,8 @@ ALTER TABLE ONLY tclave
 
 
 --
--- TOC entry 2046 (class 2606 OID 45551)
--- Dependencies: 1991 193 191 2226
+-- TOC entry 2053 (class 2606 OID 45218)
+-- Dependencies: 1979 184 199 2225
 -- Name: fk_tcliente_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2291,28 +2283,8 @@ ALTER TABLE ONLY tfactura
 
 
 --
--- TOC entry 2048 (class 2606 OID 45556)
--- Dependencies: 1995 194 193 2226
--- Name: fk_tfactura_producto_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY tfactura_producto
-    ADD CONSTRAINT fk_tfactura_producto_tfactura_1 FOREIGN KEY (tfactura_idfactura) REFERENCES tfactura(idfactura);
-
-
---
--- TOC entry 2056 (class 2606 OID 45561)
--- Dependencies: 193 201 1995 2226
--- Name: fk_tfactura_tprecinto_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY tprecinto
-    ADD CONSTRAINT fk_tfactura_tprecinto_1 FOREIGN KEY (tfactura_idfactura) REFERENCES tfactura(idfactura);
-
-
---
--- TOC entry 2050 (class 2606 OID 45566)
--- Dependencies: 2018 205 196 2226
+-- TOC entry 2045 (class 2606 OID 45033)
+-- Dependencies: 1987 188 191 2225
 -- Name: fk_tmantenimiento_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2321,8 +2293,8 @@ ALTER TABLE ONLY tmantenimiento
 
 
 --
--- TOC entry 2053 (class 2606 OID 45571)
--- Dependencies: 197 198 2001 2226
+-- TOC entry 2050 (class 2606 OID 45008)
+-- Dependencies: 197 2005 198 2225
 -- Name: fk_tmarca_tmodelo_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2331,8 +2303,8 @@ ALTER TABLE ONLY tmodelo
 
 
 --
--- TOC entry 2040 (class 2606 OID 45576)
--- Dependencies: 2003 185 198 2226
+-- TOC entry 2047 (class 2606 OID 44998)
+-- Dependencies: 194 197 2003 2225
 -- Name: fk_tmodelo_taccesorio_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2341,8 +2313,8 @@ ALTER TABLE ONLY taccesorio
 
 
 --
--- TOC entry 2066 (class 2606 OID 45581)
--- Dependencies: 215 2003 198 2226
+-- TOC entry 2046 (class 2606 OID 45003)
+-- Dependencies: 192 2003 197 2225
 -- Name: fk_tmodelo_tvehiculo_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2351,8 +2323,8 @@ ALTER TABLE ONLY tvehiculo
 
 
 --
--- TOC entry 2054 (class 2606 OID 45586)
--- Dependencies: 2005 200 199 2226
+-- TOC entry 2059 (class 2606 OID 45043)
+-- Dependencies: 205 2016 206 2225
 -- Name: fk_tmodulo_has_trol_tmodulo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2361,8 +2333,8 @@ ALTER TABLE ONLY tmodulo_trol
 
 
 --
--- TOC entry 2055 (class 2606 OID 45591)
--- Dependencies: 2020 206 200 2226
+-- TOC entry 2060 (class 2606 OID 45048)
+-- Dependencies: 208 2025 206 2225
 -- Name: fk_tmodulo_has_trol_trol1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2371,8 +2343,8 @@ ALTER TABLE ONLY tmodulo_trol
 
 
 --
--- TOC entry 2057 (class 2606 OID 45596)
--- Dependencies: 214 202 2036 2226
+-- TOC entry 2061 (class 2606 OID 45053)
+-- Dependencies: 213 2037 207 2225
 -- Name: fk_tpregunta_tusuario1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2381,8 +2353,8 @@ ALTER TABLE ONLY tpregunta
 
 
 --
--- TOC entry 2049 (class 2606 OID 45601)
--- Dependencies: 194 203 2016 2226
+-- TOC entry 2055 (class 2606 OID 45228)
+-- Dependencies: 1983 186 200 2225
 -- Name: fk_tproducto_tfactura_producto_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2391,8 +2363,8 @@ ALTER TABLE ONLY tfactura_producto
 
 
 --
--- TOC entry 2063 (class 2606 OID 45606)
--- Dependencies: 210 206 2020 2226
+-- TOC entry 2063 (class 2606 OID 45105)
+-- Dependencies: 211 2025 208 2225
 -- Name: fk_tservicio_has_trol_trol1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2401,8 +2373,8 @@ ALTER TABLE ONLY tservicio_trol
 
 
 --
--- TOC entry 2064 (class 2606 OID 45611)
--- Dependencies: 207 210 2023 2226
+-- TOC entry 2064 (class 2606 OID 45110)
+-- Dependencies: 2028 211 209 2225
 -- Name: fk_tservicio_has_trol_tservicio1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2411,8 +2383,8 @@ ALTER TABLE ONLY tservicio_trol
 
 
 --
--- TOC entry 2061 (class 2606 OID 45616)
--- Dependencies: 209 205 2018 2226
+-- TOC entry 2057 (class 2606 OID 44948)
+-- Dependencies: 188 1987 201 2225
 -- Name: fk_tservicio_proveedor_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2421,8 +2393,8 @@ ALTER TABLE ONLY tservicio_proveedor
 
 
 --
--- TOC entry 2051 (class 2606 OID 45621)
--- Dependencies: 196 208 2025 2226
+-- TOC entry 2044 (class 2606 OID 45028)
+-- Dependencies: 191 1991 190 2225
 -- Name: fk_tservicio_tmantenimiento_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2431,8 +2403,8 @@ ALTER TABLE ONLY tmantenimiento
 
 
 --
--- TOC entry 2060 (class 2606 OID 45626)
--- Dependencies: 2005 207 199 2226
+-- TOC entry 2062 (class 2606 OID 45058)
+-- Dependencies: 209 205 2016 2225
 -- Name: fk_tservicio_tmodulo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2441,8 +2413,8 @@ ALTER TABLE ONLY tservicio
 
 
 --
--- TOC entry 2062 (class 2606 OID 45631)
--- Dependencies: 208 209 2025 2226
+-- TOC entry 2056 (class 2606 OID 44943)
+-- Dependencies: 1991 190 201 2225
 -- Name: fk_tservicio_tservicio_proveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2451,8 +2423,8 @@ ALTER TABLE ONLY tservicio_proveedor
 
 
 --
--- TOC entry 2058 (class 2606 OID 45636)
--- Dependencies: 213 203 2033 2226
+-- TOC entry 2041 (class 2606 OID 44958)
+-- Dependencies: 1985 186 187 2225
 -- Name: fk_ttipo_producto_tproducto_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2461,8 +2433,8 @@ ALTER TABLE ONLY tproducto
 
 
 --
--- TOC entry 2065 (class 2606 OID 45641)
--- Dependencies: 206 214 2020 2226
+-- TOC entry 2065 (class 2606 OID 45073)
+-- Dependencies: 213 208 2025 2225
 -- Name: fk_tusuario_trol1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2471,8 +2443,8 @@ ALTER TABLE ONLY tusuario
 
 
 --
--- TOC entry 2047 (class 2606 OID 45646)
--- Dependencies: 215 193 2038 2226
+-- TOC entry 2054 (class 2606 OID 45223)
+-- Dependencies: 199 1995 192 2225
 -- Name: fk_tvehiculo_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2481,8 +2453,8 @@ ALTER TABLE ONLY tfactura
 
 
 --
--- TOC entry 2052 (class 2606 OID 45651)
--- Dependencies: 215 196 2038 2226
+-- TOC entry 2043 (class 2606 OID 45013)
+-- Dependencies: 191 1995 192 2225
 -- Name: fk_tvehiculo_tmantenimiento_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2491,8 +2463,8 @@ ALTER TABLE ONLY tmantenimiento
 
 
 --
--- TOC entry 2231 (class 0 OID 0)
--- Dependencies: 6
+-- TOC entry 2230 (class 0 OID 0)
+-- Dependencies: 5
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
 
@@ -2502,7 +2474,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-04-20 22:40:33
+-- Completed on 2015-04-20 20:21:18
 
 --
 -- PostgreSQL database dump complete

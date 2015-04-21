@@ -12,7 +12,7 @@
 
 		public function Header()
 		{
-			$this->Image('../media/img/logo-black.jpg',10,10,100,15);
+			$this->Image('../media/img/'.$_SESSION['imagenreporte'],10,10,100,15);
 			$this->SetFont("Arial","",8);
 			$this->Ln(16);
 

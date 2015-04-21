@@ -1,11 +1,9 @@
 <?php
 $vista = $ObjSistema->CapturarVista();
-require_once('../clases/clase_chofer.php');
-require_once('../clases/clase_producto.php');
+require_once("../clases/clase_configuracion.php");
 require_once('../clases/clase_documento.php');
-$lobjChofer = new clsChofer;
-$lobjProducto = new clsProducto;
 $lobjDocumento = new clsDocumento;
+$lobjConfiguracion = new clsConfiguracion;
 
 switch ($vista) {
         case 'documento':
@@ -26,6 +24,19 @@ switch ($vista) {
 
         $ObjSistema->set_cuerpo($HTML);
         $HTML = $ObjSistema->render($opciones);
+        break;
+        case 'configuracion':
+        $laconfiguracion=$lobjConfiguracion->consultar_configuracion();
+        $HTML = $ObjSistema->get_cuerpo('configuracion','?modulo=configuracion/configuracion','configuracion','configuracion');
+
+        $ObjSistema->set_cuerpo($HTML);
+        $diccionario =array('cuerpo' => file_exists("configuracion/configuracion.html") ? file_get_contents("configuracion/configuracion.html") : '');
+                $HTML = $ObjSistema->render($diccionario);
+        
+        $ObjSistema->set_cuerpo($HTML);
+
+        $HTML = $ObjSistema->render($laconfiguracion);   
+        $ObjSistema->set_cuerpo($HTML);
         break;
         case 'registrar_documento':
 

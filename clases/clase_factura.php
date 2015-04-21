@@ -275,14 +275,19 @@
 			while($laRow=$this->proximo($pcsql))
 			{
 				$Fila=$laRow;
-				$Fila['porcentaje_tendencia_venta']=((($Fila['totalfac']-$Fila['mes_anterior_venta'])/$Fila['totalfac'])*100);
+				$Fila['totalfac']=($Fila['totalfac'])?$laRow['totalfac']:0;
+				$Fila['viaje']=($Fila['viaje'])?$laRow['viaje']:0;
+				$Fila['porcentaje_tendencia_venta']=($Fila['totalfac']!='0')?((($Fila['totalfac']-$Fila['mes_anterior_venta'])/$Fila['totalfac'])*100):0;
+
 				$Fila['totalfac']=number_format($Fila['totalfac'],'2',',','.');
 				$Fila['mes_anterior_venta']=number_format($Fila['mes_anterior_venta'],'2',',','.');
 				$Fila['porcentaje_tendencia_venta']=number_format($Fila['porcentaje_tendencia_venta'],'2',',','.');
 				$Fila['icono_tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior_venta'])?'up':'down';		
 				$Fila['tendencia_venta']=($Fila['totalfac']<$Fila['mes_anterior_venta'])?'Mas':'Menos';
 
-				$Fila['porcentaje_tendencia_viaje']=((($Fila['viaje']-$Fila['mes_anterior_viaje'])/$Fila['viaje'])*100);
+				
+				$Fila['porcentaje_tendencia_viaje']=($Fila['viaje']!='0')?((($Fila['viaje']-$Fila['mes_anterior_viaje'])/$Fila['viaje'])*100):0;
+				
 				$Fila['icono_tendencia_viaje']=($Fila['viaje']>$Fila['mes_anterior_viaje'])?'up':'down';			
 				$Fila['tendencia_viaje']=($Fila['viaje']>$Fila['mes_anterior_viaje'])?'Mas':'Menos';			
 			}

@@ -3,87 +3,97 @@
 	require_once("../clases/clase_configuracion.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
+    require_once('../libreria/UUID.php');
 	$lobjConfiguracion=new clsConfiguracion;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;
+	$lobjUUID=new UUID;
 
-	$lobjConfiguracion->set_Idconfiguracion($_POST['idconfiguracion']);
-	$lobjConfiguracion->set_Introduccion($_POST['introducion']);
-	$lobjConfiguracion->set_Mision($_POST['mision']);
-	$lobjConfiguracion->set_Vision($_POST['vision']);
-	$lobjConfiguracion->set_Historia($_POST['historia']);
-	$lobjConfiguracion->set_Objetivos($_POST['objetivos']);
-	$lobjConfiguracion->set_Direccion($_POST['direccion']);
-	$lobjConfiguracion->set_Nropreguntas($_POST['nropreguntas']);
-	$lobjConfiguracion->set_Clavepredeterminada($_POST['clavepredeterminada']);
-	$lobjConfiguracion->set_Nrointentos($_POST['nrointentos']);
-	$lobjConfiguracion->set_Tiempocaducidad($_POST['tiempocaducida']);
-	$lobjConfiguracion->set_Tiempolapso($_POST['tiempolapso']);
-	$lobjConfiguracion->set_Tiempoconexion($_POST['tiempoconexion']);
-
+	
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
 	$operacion=$_POST['operacion'];
 
 	switch ($operacion) 
 	{
-		case 'registrar_configuracion':
-			$hecho=$lobjConfiguracion->registrar_configuracion();
-			if($hecho)
+		case 'configuracion':
+			$imagenlogo=$_FILES['imagenlogo'];
+			$imagenreporte=$_FILES['imagenreporte'];
+			$imagenlogo_oscuro=$_FILES['imagenlogo_oscuro'];
+			$imagenshort_icon=$_FILES['imagenshort_icon'];
+			$destino = '../media/img/';
+			$copiado=true;
+			$_SESSION['mensaje']='al subir archivos';
+
+
+			if($imagenlogo['tmp_name'])
 			{
-				$lobjBitacora->set_Datos($_SERVER['HTTP_REFERER'],$ldFecha,$lcReal_ip,'Registrar','Cargar datos','*','tsistema','','',$_SESSION['usuario'],$operacion); //envia los datos a la clase bitacora
-   				$lobjBitacora->registrar_bitacora();//registra los datos en la tabla tbitacora.
-				$_SESSION['msj']='Registro exitoso';
+				$type= explode(".",$imagenlogo['name']);
+				$extension = end($type);
+				$_POST['imagenlogo_o']=$type[0]."_".$lobjUUID->v4().".".$extension;
+				$copiado=copy($imagenlogo['tmp_name'], $destino.'/'.$_POST['imagenlogo_o']);
+			}
+
+			if($imagenreporte['tmp_name'])
+			{
+				$type= explode(".",$imagenreporte['name']);
+				$extension = end($type);
+				$_POST['imagenreporte_o']=$type[0]."_".$lobjUUID->v4().".".$extension;
+				$copiado=copy($imagenreporte['tmp_name'], $destino.'/'.$_POST['imagenreporte_o']);
+			}
+
+			if($imagenlogo_oscuro['tmp_name'])
+			{
+				$type= explode(".",$imagenlogo_oscuro['name']);
+				$extension = end($type);
+				$_POST['imagenlogo_oscuro_o']=$type[0]."_".$lobjUUID->v4().".".$extension;
+				$copiado=copy($imagenlogo_oscuro['tmp_name'], $destino.'/'.$_POST['imagenlogo_oscuro_o']);
+			}
+
+			if($imagenshort_icon['tmp_name'])
+			{
+				$type= explode(".",$imagenshort_icon['name']);
+				$extension = end($type);
+				$_POST['imagenshort_icon_o']=$type[0]."_".$lobjUUID->v4().".".$extension;
+				$copiado=copy($imagenshort_icon['tmp_name'], $destino.'/'.$_POST['imagenshort_icon_o']);
+			}
+ 			if($copiado)
+ 			{
+ 				$lobjConfiguracion->set_ImagenLogo($_POST['imagenlogo_o']);
+				$lobjConfiguracion->set_ImagenReporte($_POST['imagenreporte_o']);
+				$lobjConfiguracion->set_ImagenLogo_Oscuro($_POST['imagenlogo_oscuro_o']);
+				$lobjConfiguracion->set_ImagenShort_Icon($_POST['imagenshort_icon_o']);
+
+				$_SESSION['mensaje']='al guardar la configuración';
+				if($lobjConfiguracion->guardar_configuracion())
+				{
+
+					$_SESSION['imagenlogo']=$_POST['imagenlogo_o'];
+					$_SESSION['imagenreporte']=$_POST['imagenreporte_o'];
+					$_SESSION['imagenlogo_oscuro']=$_POST['imagenlogo_oscuro_o'];
+					$_SESSION['imagenshort_icon']=$_POST['imagenshort_icon_o'];
+					$_SESSION['resultado']='Éxito';
+					$_SESSION['resultado_color']='success';
+					$_SESSION['icono_mensaje']='check-circle';
+				}
+				else
+				{
+					$_SESSION['resultado']='Error';
+					$_SESSION['resultado_color']='danger';
+					$_SESSION['icono_mensaje']='times-circle';	
+				}
 			}
 			else
-			{	
-				$_SESSION['msj']='Error en el registro';
-			}
-		break;
-		case 'editar_configuracion':
-			$lobjConfiguracion->set_Idconfiguracion($_POST['idconfiguracion']);
-			$laConfiguracionAnterior=$lobjConfiguracion->consultar_configuracion_bitacora();
-
-			$laValorNuevo=$laValorAnterior=$laCampo=array();
-
-			$hecho=$lobjConfiguracion->editar_configuracion();
-			if($hecho)
 			{
-				$cont=0;
-				foreach ($laConfiguracionAnterior as $key2 => $value2) 
-				{
-					$value = $_POST[$key2];
-					if($value)
-					{
-						if($value!=$value2)
-						{
-							$laValorNuevo[] = $value;
-							$laValorAnterior[] = $value2;
-							$laCampo[] 		= $key2;
-							$cont++;
-						}
-					}
-				}
-
-				for($i=0;$i<$cont;$i++)
-				{
-					$lobjBitacora->set_Datos($_SERVER['HTTP_REFERER'],$ldFecha,$lcReal_ip,'Modificar','Error en los datos',$laCampo[$i],'tsistema',$laValorAnterior[$i],$laValorNuevo[$i],$_SESSION['usuario'],$operacion); //envia los datos a la clase bitacora
-	   				$lnHecho=$lobjBitacora->registrar_bitacora();//registra los datos en la tabla tbitacora.
-   					if($lnHecho)
-					{
-						$_SESSION['msj']='Se ha modificado exitosamente';
-					}
-				}
+				$_SESSION['resultado']='Error';
+				$_SESSION['resultado_color']='danger';
+				$_SESSION['icono_mensaje']='times-circle';	
 			}
-			else
-			{	
-				$_SESSION['msj']='No se realizarón cambios';
-			}
+			header('location:../vista/?modulo=configuracion/configuracion');
 		break;
 		default:
-			header('location: ../vista/intranet.php?vista=sistema/configurar');
+			header('location:../vista/?modulo=configuracion/configuracion');
 		break;
 	}
 
-	header('location: ../vista/intranet.php?vista=sistema/configurar');
 ?>

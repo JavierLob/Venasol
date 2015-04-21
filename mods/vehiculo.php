@@ -96,7 +96,7 @@ switch ($vista) {
                 $HTML = $ObjSistema->render($opciones);
         break;
         case 'registrar_vehiculo':
-        $lamarcas = $lobjMarca->consultar_marcas();
+        $lamarcas = $lobjMarca->consultar_marcas_tipo('1');
         $HTML = $ObjSistema->get_cuerpo('vehiculo,vehiculos,Registrar vehiculo','#,?modulo=vehiculo/vehiculo,#','vehiculo','vehiculo');
         $ObjSistema->set_cuerpo($HTML);
         $diccionario =array('cuerpo' => file_exists("vehiculo/registrar_vehiculo.html") ? file_get_contents("vehiculo/registrar_vehiculo.html") : '',
@@ -122,7 +122,7 @@ switch ($vista) {
             $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MARCAS', '');
         break;
         case 'consultar_vehiculo':
-        $lamarcas = $lobjMarca->consultar_marcas();
+        $lamarcas = $lobjMarca->consultar_marcas_tipo('1');
         $lobjVehiculo->set_Vehiculo($id);
         $datos_vehiculo = $lobjVehiculo->consultar_vehiculo();
         $HTML = $ObjSistema->get_cuerpo('vehiculo,vehiculos,Consultar/Editar vehiculo','#,?modulo=vehiculo/vehiculo,#','vehiculo','vehiculo');
@@ -182,7 +182,7 @@ switch ($vista) {
                 $HTML = $ObjSistema->render($opciones);
         break;
         case 'registrar_accesorio':
-        $lamarcas = $lobjMarca->consultar_marcas();
+        $lamarcas = $lobjMarca->consultar_marcas_tipo('0');
         $HTML = $ObjSistema->get_cuerpo('vehiculo,accesorios,Registrar accesorio','#,?modulo=vehiculo/accesorio,#','accesorio','vehiculo');
         $ObjSistema->set_cuerpo($HTML);
         $diccionario =array('cuerpo' => file_exists("vehiculo/registrar_accesorio.html") ? file_get_contents("vehiculo/registrar_accesorio.html") : '',
@@ -209,7 +209,7 @@ switch ($vista) {
             $HTML = $ObjSistema->reemplazar_vacio('LISTADO_MARCAS', '');
         break;
         case 'consultar_accesorio':
-        $lamarcas = $lobjMarca->consultar_marcas();
+        $lamarcas = $lobjMarca->consultar_marcas_tipo('0');
         $lobjAccesorio->set_Accesorio($id);
         $datos_accesorio = $lobjAccesorio->consultar_accesorio();
         $HTML = $ObjSistema->get_cuerpo('vehiculo,accesorios,Consultar/Editar accesorio','#,?modulo=vehiculo/accesorio,#','accesorio','vehiculo');

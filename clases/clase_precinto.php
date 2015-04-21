@@ -116,7 +116,6 @@
 			if($lnHecho)
 				$this->commit();
 
-			$this->desconectar();
 			return $lnHecho;
 		}
 
@@ -124,7 +123,7 @@
 		{
 			$this->conectar();
 
-			$sql="INSERT INTO tprecinto (idcodigopre,observacionpre, estatuspre)VALUES('$this->lcIdCodigo','$this->lcObservacion','1')";
+			$sql="INSERT INTO tprecinto (idcodigopre,observacionpre, estatuspre,grupopre)VALUES('$this->lcIdCodigo','$this->lcObservacion','1','$this->lcIdCodigo')";
 			$lnHecho=$this->ejecutar($sql);
 
 			$this->desconectar();

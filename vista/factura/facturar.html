@@ -230,8 +230,8 @@
                 <h4 class="modal-title">Registrar Precinto</h4>
             </div>
             <div class="modal-body">
-                <form name="form_modal_registrar__precinto" role="form">
-                    <input type="hidden" name="operacion" id="cam_idoperacion" value="registrar_precinto"/>
+                <form name="form_modal_registrar_precinto" id="form_modal_registrar_precinto" role="form">
+                    <input type="hidden" value="registrar_precinto_ajax" name="operacion" id="cam_operacion"/>
                     <div class="row">
                         <div class="alert alert-danger" style="display:none" id="mensaje_error_modal">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -243,10 +243,53 @@
                             <i class="fa fa-check fa-fw fa-lg"></i>
                             <strong>Éxito </strong>al registrar el precinto.
                         </div>
-                        <div class="form-group col-xs-6">
-                            <label for="exampleTooltip">Código<span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del precinto"><i class="fa fa-question"></i></span></label>
-                            <input type="text" class="form-control" name="idcodigopre" id="cam_idcodigopre" >
-                        </div>
+                        <table class="table table-hover col-lg-12">
+                            <thead>
+                                <th class="col-lg-2">Grupo  <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Grupo del precinto"><i class="fa fa-question"></i></span></th>
+                                <th class="col-lg-4" >
+                                    Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del precinto"><i class="fa fa-question"></i></span>
+                                </th>
+                                <th  class="col-lg-4" >
+                                    Observación <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Observación sobre el precinto"><i class="fa fa-question"></i></span>
+                                </th>
+                                <th  class="col-lg-1" >
+                                    <button class="btn btn-success" type="button" data-step="4" data-intro='Agregar un precinto' data-position="bottom" onclick="agregar_precinto()"><i class="fa fa-plus"></i></button>
+                                </th>
+                            </thead>
+                            <tbody id="filas">
+                                <tr id="fila">
+                                    <td class="col-lg-2">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" data-step="1" data-intro='El grupo del precinto a registrar'  data-position="bottom" name="grupopre[]" min="1" value="1" step="1" onlyread>
+                                        </div>
+                                    </td>
+                                    <td  class="col-lg-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el código del precinto a registrar' onblur="validar_repetido(this);" data-position="bottom" name="idcodigopre[]" onkeypress="quitar_validacion(this);">
+                                        </div>
+                                    </td>
+                                    <td  class="col-lg-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" data-step="3" data-intro='Ingrese una observación sobre el precinto a registrar' data-position="bottom" name="observacionpre[]"  >
+                                        </div>
+                                    </td>
+                                    <td  class="col-lg-1"><button class="btn btn-danger" type="button" data-step="5" data-intro='Quitar un precinto' data-position="bottom" onclick="quitar_precinto(this)"><i class="fa fa-minus"></i></button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <th class="col-lg-2">Grupo  </th>
+                                <th class="col-lg-4" >
+                                    Código 
+                                </th>
+                                <th  class="col-lg-4" >
+                                    Observación 
+                                </th>
+                                <th  class="col-lg-1" >
+                                    <button class="btn btn-success" type="button" onclick="agregar_precinto()"><i class="fa fa-plus"></i></button>
+                                </th>
+                            </tfoot>
+                        </table>
+                        <input type="hidden" name="contador" id="cam_contador" value="0" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" onclick="registrar_precinto()"><i class="fa fa-check"></i> Registrar</button>
@@ -521,16 +564,18 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
       function registrar_precinto(){
-        idcodigopre=document.getElementById('cam_idcodigopre').value;
-        if(idcodigopre)
+        var valores = $('#form_modal_registrar_precinto').serialize();
+        if(valores)
         {
           var url="../controlador/control_precinto.php";
           $.ajax({   
-              type: "POST",
-              url:url,
-              data:{idcodigopre:idcodigopre,operacion:'registrar_precinto_ajax'},
-              success: function(datos){
-                 if(datos=='1')
+                type: "POST",
+                url:url,
+                data:valores,
+                dataType : 'json',
+                success: function(datos){
+                    console.log(datos);
+                 if(datos.mensaje=="1")
                  {
                     $("#mensaje_exito_modal").animate({ height: 'show', opacity: 'show' }, 'slow');
                      consultar_precinto();
@@ -545,7 +590,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
                      setTimeout(function() {
                         $("#mensaje_error_modal").animate({ height: 'hide', opacity: 'hide' }, 'slow');
                     }, 3500); 
-                 } 
+                 }
                }
           });
         }
@@ -575,5 +620,126 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
                }
           });
+  }
+</script>
+<script>
+    function agregar_precinto()
+{
+    cam_contador=document.getElementById("cam_contador");
+    cam_grupo=document.getElementsByName("grupopre[]");
+    contador=cam_contador.value;
+    contador++;
+    for(i=0;i<cam_grupo.length;i++)
+        grupo=cam_grupo[i].value;
+
+      var filas = document.getElementById('filas');
+      var tr= document.createElement('tr');
+      var col0= document.createElement('td');
+      var col1= document.createElement('td');
+      var col2= document.createElement('td');
+      var col3= document.createElement('td');                                    
+      col0.innerHTML='<div class="form-group"><input type="number" class="form-control" name="grupopre[]" min="1" value="'+grupo+'" step="1"></div>';
+      col1.innerHTML='<div class="form-group"><input type="text" class="form-control" name="idcodigopre[]" onblur="validar_repetido(this);" onkeypress="quitar_validacion(this);"></div>';
+      col2.innerHTML='<div class="form-group"><input type="text" class="form-control" name="observacionpre[]"></div>';
+      col3.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_precinto(this)"><i class="fa fa-minus"></i></button>';
+      tr.appendChild(col0);
+      tr.appendChild(col1);
+      tr.appendChild(col2);
+      tr.appendChild(col3);
+      filas.appendChild(tr);
+      cam_contador.value=contador;
+
+}
+function quitar_precinto(e)
+{
+
+    var filas = document.getElementById("filas");          
+    var td = e.parentNode;
+    var tr = td.parentNode;
+    filas.removeChild(tr);
+}
+
+  function validar_repetido(e)
+  {
+    codigo=e.value;
+    idcodigopre=document.getElementsByName('idcodigopre[]');
+    repetido=0;
+
+    for(i=0;i<idcodigopre.length;i++)
+    {
+        if(idcodigopre[i].value!='' && idcodigopre[i].value==e.value)
+            repetido++;
+
+        if(repetido==2)
+        {
+            e.value='';
+            e.focus();
+            $(e).closest('.form-group').addClass('has-error');
+            error=document.createElement('p');
+            error.innerHTML='Este código de precinto ya está siendo ingresado, por favor ingrese otro.';
+            $(error).addClass('help-small no-left-padding text-danger').insertAfter(e.closest('.form-group'));
+        }
+    }
+
+      var url="../controlador/control_precinto.php";
+
+      $.ajax({   
+          type: "POST",
+          url:url,
+          data:{idcodigopre:codigo,operacion:'validar_repetido'},
+          success: function(datos){
+            if(datos=='1')
+            {
+                repetido=2;
+                e.value='';
+                e.focus();
+                $(e).closest('.form-group').addClass('has-error');
+                error=document.createElement('p');
+                error.innerHTML='Ya existe un precinto con este código, por favor ingrese otro.';
+                $(error).addClass('help-small no-left-padding text-danger text-ajax').insertAfter(e.closest('.form-group'));
+                 
+            }
+           }
+      });
+
+    if(repetido==2)
+        return false;
+    else
+    {
+        $(e).closest('.form-group').removeClass('has-error');
+        $('.text-danger').remove();
+        return true;
+    }
+  }
+  function validar_vacio()
+  {
+    idcodigopre=document.getElementsByName('idcodigopre[]');
+    for(i=0;i<idcodigopre.length;i++)
+    {
+
+        if(idcodigopre[i].value=='')
+        {
+            vacio=true;
+            e=idcodigopre[i];
+            $(e).closest('.form-group').addClass('has-error');
+            error=document.createElement('p');
+            if($('.texto-error'+i))
+                $('.texto-error'+i).remove();
+
+            $(error).addClass('texto-error'+i);
+            error.innerHTML='Por favor ingrese un código de precinto.';
+            $(error).addClass('help-small no-left-padding text-danger').insertAfter(e.closest('.form-group'));
+        }
+    }
+    if(vacio)
+        return false;
+    else
+        return true;
+  }
+
+  function quitar_validacion(e)
+  {
+        $(e).closest('.form-group').removeClass('has-error');
+        $(e).closest('p').remove();
   }
 </script>

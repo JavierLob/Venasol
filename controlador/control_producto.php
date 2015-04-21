@@ -15,6 +15,7 @@
 	$lobjProducto->set_Descripcionlarga($_POST['descripcionlargapro']);
 	$lobjProducto->set_UnidadMedida($_POST['unidadmedidapro']);
 	$lobjProducto->set_PrecioUnitario($_POST['preciounitariopro']);
+	$lobjProducto->set_PrecioCompra($_POST['preciocomprapro']);
 	$lobjProducto->set_Existencia($_POST['existenciapro']);
 	$lobjProducto->set_IdTipoProducto($_POST['ttipo_producto_idtipo_producto']);
 	$lobjProducto->set_Observacion($_POST['observacionpro']);
