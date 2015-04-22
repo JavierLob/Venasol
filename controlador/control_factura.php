@@ -27,6 +27,7 @@
 			$cantidad_productos 	= $_POST['cantidad_producto'];
 			$total_productos		= $_POST['total_producto'];
 			$observacion			= $_POST['observacion'];
+			$select_iva				= $_POST['select_iva'];
 
 			$errores = true;
 			$idfactura = $lobjFactura->obtener_nro_factura();
@@ -40,20 +41,25 @@
 			$lobjFactura->set_Iva($iva);
 			$lobjFactura->set_Total($total_total);
 			$lobjFactura->set_Observacion($observacion);
+			$lobjFactura->set_Porcentaje_Iva($select_iva);
 			$lobjFactura->set_Estatus();
 
 			$resp[] = $lobjFactura->registrar_factura();
 			$cont = 0;
-			foreach ($productos as $id_producto) {
-				$cantidad = $cantidad_productos[$cont];
-				$precio = $precio_productos[$cont];
-				$resp[] = $lobjFactura->registrar_detalle_factura($id_producto, $cantidad, $precio);
-				$cont++;
+			if(is_array($productos)){
+				foreach ($productos as $id_producto) {
+					$cantidad = $cantidad_productos[$cont];
+					$precio = $precio_productos[$cont];
+					$resp[] = $lobjFactura->registrar_detalle_factura($id_producto, $cantidad, $precio);
+					$cont++;
+				}
 			}
 
-			foreach ($precintos as $precinto) {
-				if($precinto!='')
-					$resp[] = $lobjFactura->asignar_precinto($precinto);
+			if(is_array($precintos)){
+				foreach ($precintos as $precinto) {
+					if($precinto!='')
+						$resp[] = $lobjFactura->asignar_precinto($precinto);
+				}
 			}
 
 			foreach ($resp as $value) {
@@ -88,6 +94,7 @@
 			$cantidad_productos 	= $_POST['cantidad_producto'];
 			$total_productos		= $_POST['total_producto'];
 			$observacion			= $_POST['observacion'];
+			$select_iva				= $_POST['select_iva'];
 
 			$errores = true;
 			$lobjFactura->set_Factura($idfactura);
@@ -104,6 +111,7 @@
 			$lobjFactura->set_Iva($iva);
 			$lobjFactura->set_Total($total_total);
 			$lobjFactura->set_Observacion($observacion);
+			$lobjFactura->set_Porcentaje_Iva($select_iva);
 			$lobjFactura->set_Estatus();
 
 			$resp[] = $lobjFactura->modificar_factura();

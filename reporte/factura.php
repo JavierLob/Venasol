@@ -33,7 +33,7 @@ $lobjPdf->SetFont("arial","",8);
 $lobjPdf->Cell(145,6,utf8_decode($laFactura['razonsocial']),0,0,"L");
 $lobjPdf->SetFont("arial","B",10);
 $lobjPdf->SetTextColor(220,50,50);
-$lobjPdf->Cell(40,6,utf8_decode($laFactura['idfactura']),"L",1,"C");
+$lobjPdf->Cell(40,6,utf8_decode($laFactura['prefijo_control'].' - '.$laFactura['numero_control']),"L",1,"C");
 $lobjPdf->SetTextColor(50,50,50);
 $lobjPdf->SetFont("arial","B",8);
 

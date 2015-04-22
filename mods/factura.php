@@ -177,6 +177,7 @@ switch ($vista) {
 
 
                 $ObjSistema->set_cuerpo($HTML);
+                $datos_factura[$datos_factura['porcentajeivafac']] = 'selected';
                 $HTML = $ObjSistema->render($datos_factura);
             }
             else

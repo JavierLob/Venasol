@@ -12,6 +12,7 @@
 		private $lnTotal;
 		private $lcObervacion;
 		private $lcEstatus;
+		private $lcPorcentajeIva;
 
 		function set_Factura($pc)
 		{
@@ -58,12 +59,16 @@
 			$this->lcEstatus=($pc) ? $pc : '1';
 		}
 
+		function set_Porcentaje_Iva($pc='')
+		{
+			$this->lcPorcentajeIva=($pc) ? $pc : '1';
+		}
 
 		function consultar_facturas()
 		{
 			$this->conectar();
 			$cont=0;
-			$sql="SELECT *,TO_CHAR(fechafac, 'dd/mm/YYYY - HH12:MM AM') as fechafac FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;;";
+			$sql="SELECT *,TO_CHAR(fechafac, 'dd/mm/YYYY - HH12:MM AM') as fechafac, trim(porcentajeivafac) porcentajeivafac FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;;";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
@@ -85,7 +90,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-			$sql="SELECT *,TO_CHAR(fechafac, 'dd/mm/YYYY - HH12:MM AM') as fechafac FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo ORDER BY tfactura.fechafac DESC LIMIT 5;";
+			$sql="SELECT *,TO_CHAR(fechafac, 'dd/mm/YYYY - HH12:MM AM') as fechafac, trim(porcentajeivafac) porcentajeivafac FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo ORDER BY tfactura.fechafac DESC LIMIT 5;";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
@@ -107,7 +112,7 @@
 		function consultar_factura()
 		{
 			$this->conectar();
-			$sql="SELECT *,TO_CHAR(fechafac, 'dd-mm-YYYY - HH12:MM') as fechafac,(SELECT descripcionmod FROM tmodelo,tvehiculo WHERE tvehiculo_idvehiculo=idvehiculo AND tmodelo_idmodelo=idmodelo) as modeloveh,(SELECT descripcionmod FROM tmodelo,taccesorio WHERE taccesorio_idaccesorio=idaccesorio AND tmodelo_idmodelo=idmodelo) as modeloacc,(SELECT descripcionmar FROM tmodelo,taccesorio,tmarca WHERE taccesorio_idaccesorio=idaccesorio AND tmodelo_idmodelo=idmodelo AND tmarca_idmarca=idmarca) as marcaacc,(SELECT descripcionmar FROM tmodelo,tvehiculo,tmarca WHERE tvehiculo_idvehiculo=idvehiculo AND tmodelo_idmodelo=idmodelo AND tmarca_idmarca=idmarca) as marcaveh FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE idfactura='$this->lnIdFactura' AND tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;";
+			$sql="SELECT *,TO_CHAR(fechafac, 'dd-mm-YYYY - HH12:MM') as fechafac, trim(porcentajeivafac) porcentajeivafac,(SELECT descripcionmod FROM tmodelo,tvehiculo WHERE tvehiculo_idvehiculo=idvehiculo AND tmodelo_idmodelo=idmodelo) as modeloveh,(SELECT descripcionmod FROM tmodelo,taccesorio WHERE taccesorio_idaccesorio=idaccesorio AND tmodelo_idmodelo=idmodelo) as modeloacc,(SELECT descripcionmar FROM tmodelo,taccesorio,tmarca WHERE taccesorio_idaccesorio=idaccesorio AND tmodelo_idmodelo=idmodelo AND tmarca_idmarca=idmarca) as marcaacc,(SELECT descripcionmar FROM tmodelo,tvehiculo,tmarca WHERE tvehiculo_idvehiculo=idvehiculo AND tmodelo_idmodelo=idmodelo AND tmarca_idmarca=idmarca) as marcaveh FROM tfactura,tchofer,taccesorio,tcliente,tvehiculo WHERE idfactura='$this->lnIdFactura' AND tchofer_idchofer=idchofer AND taccesorio_idaccesorio=idaccesorio AND tcliente_idcliente=idcliente AND tvehiculo_idvehiculo=idvehiculo;";
 			$pcsql=$this->filtro($sql);
 			while($laRow=$this->proximo($pcsql))
 			{
@@ -182,9 +187,9 @@
 		{
 			$sql="INSERT INTO tfactura(
 				            tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, 
-				            tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac)
+				            tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac, prefijo_control, numero_control)
 				    VALUES ('$this->lnVehiculo', '$this->lnAccesorio', '$this->lnCliente', 
-				            '$this->lnChofer', '$this->lnIva', '$this->lnTotal', '$this->lcObservacion', '$this->lcEstatus', NOW());";
+				            '$this->lnChofer', '$this->lnIva', '$this->lnTotal', '$this->lcObservacion', '$this->lcEstatus', NOW(), '$this->lcPorcentajeIva', '00', (SELECT lpad(trim(to_char(numero, '99999999')) ,8,'0') FROM (SELECT count(*)+ 1 numero FROM tfactura) conteo));";
 			$lnHecho=$this->ejecutar($sql);
 			return $lnHecho;
 		}
@@ -194,7 +199,7 @@
 			$sql="UPDATE tfactura
 					   SET tvehiculo_idvehiculo='$this->lnVehiculo', taccesorio_idaccesorio='$this->lnAccesorio', 
 					       tchofer_idchofer='$this->lnChofer', ivafac='$this->lnIva', totalfac='$this->lnTotal', 
-					       observacionfac='$this->lcObservacion', estatusfac='$this->lcEstatus'
+					       observacionfac='$this->lcObservacion', estatusfac='$this->lcEstatus', porcentajeivafac = '$this->lcPorcentajeIva'
 					 WHERE idfactura = '$this->lnIdFactura';";
 			$lnHecho=$this->ejecutar($sql);
 			return $lnHecho;
