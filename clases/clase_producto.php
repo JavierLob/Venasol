@@ -181,7 +181,7 @@
 			$this->begin();
 			$sql="INSERT INTO tproducto ( idcodigopro, descripcioncortapro, descripcionlargapro, 
             unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, 
-            observacionpro, estatuspro,preciocomprapro)VALUES('$this->lcIdCodigo','$this->lcDescripcioncorta','$this->lcDescripcionlarga','$this->lcUnidadMedida','$this->lcPrecioUnitario','$this->lcExistencia','$this->lnIdTipoProducto','$this->lcObservacion','1','$this->lcPrecioCompra')";
+            observacionpro, estatuspro,preciocomprapro)VALUES(UPPER('$this->lcIdCodigo'),UPPER('$this->lcDescripcioncorta'),UPPER('$this->lcDescripcionlarga'),'$this->lcUnidadMedida','$this->lcPrecioUnitario','$this->lcExistencia','$this->lnIdTipoProducto',UPPER('$this->lcObservacion'),'1','$this->lcPrecioCompra')";
 				if($lnHecho=$this->ejecutar($sql))
 				{
 					for($i=0;$i<count($this->lnIdDocumento);$i++)
@@ -222,7 +222,7 @@
 		{
 			$this->conectar();
 			$this->begin();
-			$sql="UPDATE tproducto SET idcodigopro='$this->lcIdCodigo',descripcioncortapro='$this->lcDescripcioncorta',descripcionlargapro='$this->lcDescripcionlarga',unidadmedidapro='$this->lcUnidadMedida',preciounitariopro='$this->lcPrecioUnitario',existenciapro='$this->lcExistencia',ttipo_producto_idtipo_producto='$this->lnIdTipoProducto',observacionpro='$this->lcObservacion',preciocomprapro='$this->lcPrecioCompra' WHERE idproducto='$this->lnIdProducto' ";
+			$sql="UPDATE tproducto SET idcodigopro=UPPER('$this->lcIdCodigo'),descripcioncortapro=UPPER('$this->lcDescripcioncorta'),descripcionlargapro=UPPER('$this->lcDescripcionlarga'),unidadmedidapro='$this->lcUnidadMedida',preciounitariopro='$this->lcPrecioUnitario',existenciapro='$this->lcExistencia',ttipo_producto_idtipo_producto='$this->lnIdTipoProducto',observacionpro=UPPER('$this->lcObservacion'),preciocomprapro='$this->lcPrecioCompra' WHERE idproducto='$this->lnIdProducto' ";
 			if($lnHecho=$this->ejecutar($sql))
 			{
 				$sql="DELETE FROM tproducto_documento WHERE tproducto_idproducto='$this->lnIdProducto' ";

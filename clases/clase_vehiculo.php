@@ -107,8 +107,8 @@
 				$sql="INSERT INTO tvehiculo(
 					            idcodigoveh, aliasveh, placaveh, anoveh, colorveh, 
 					            tmodelo_idmodelo, observacionveh, estatusveh)
-					    VALUES ('$this->lcCodigo', UPPER('$this->lcAlias'), upper('$this->lcPlaca'), '$this->lcAno', '$this->lcColor', '$this->lnModelo', 
-					            '$this->lcObservacion', '$this->lcEstatus');";
+					    VALUES (UPPER('$this->lcCodigo'), UPPER('$this->lcAlias'), upper('$this->lcPlaca'), '$this->lcAno', '$this->lcColor', '$this->lnModelo', 
+					            UPPER('$this->lcObservacion'), '$this->lcEstatus');";
 				$lnHecho=$this->ejecutar($sql);
 
 			$this->desconectar();
@@ -137,8 +137,8 @@
 		{
 			$this->conectar();
 			$sql="UPDATE tvehiculo
-				   SET idcodigoveh='$this->lcCodigo', aliasveh=upper('$this->lcAlias'), placaveh=upper('$this->lcPlaca'), anoveh='$this->lcAno', 
-				       colorveh='$this->lcColor', tmodelo_idmodelo='$this->lnModelo', observacionveh='$this->lcObservacion'
+				   SET idcodigoveh=UPPER('$this->lcCodigo'), aliasveh=upper('$this->lcAlias'), placaveh=upper('$this->lcPlaca'), anoveh='$this->lcAno', 
+				       colorveh='$this->lcColor', tmodelo_idmodelo='$this->lnModelo', observacionveh=UPPER('$this->lcObservacion')
 				 WHERE idvehiculo = '$this->lnIdVehiculo';";
 			echo $sql;
 			$lnHecho=$this->ejecutar($sql);			

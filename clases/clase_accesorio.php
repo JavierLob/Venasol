@@ -115,8 +115,8 @@
 				$sql="INSERT INTO taccesorio(
 					            idcodigoacc, capacidadacc,unidadmedidaacc, placaacc, anoacc, coloracc, 
 					            tmodelo_idmodelo, observacionacc, estatusacc)
-					    VALUES ('$this->lcCodigo', '$this->lcCapacidad','$this->lcUnidadMedida', '$this->lcPlaca', '$this->lcAno', '$this->lcColor', '$this->lnModelo', 
-					            '$this->lcObservacion', '$this->lcEstatus');";
+					    VALUES (UPPER('$this->lcCodigo'), '$this->lcCapacidad',UPPER('$this->lcUnidadMedida'), UPPER('$this->lcPlaca'), '$this->lcAno', UPPER('$this->lcColor'), '$this->lnModelo', 
+					            UPPER('$this->lcObservacion'), '$this->lcEstatus');";
 				$lnHecho=$this->ejecutar($sql);
 
 			$this->desconectar();
@@ -145,8 +145,8 @@
 		{
 			$this->conectar();
 			$sql="UPDATE taccesorio
-				   SET idcodigoacc='$this->lcCodigo', capacidadacc='$this->lcCapacidad', unidadmedidaacc='$this->lcUnidadMedida', placaacc='$this->lcPlaca', anoacc='$this->lcAno', 
-				       coloracc='$this->lcColor', tmodelo_idmodelo='$this->lnModelo', observacionacc='$this->lcObservacion'
+				   SET idcodigoacc=UPPER('$this->lcCodigo'), capacidadacc='$this->lcCapacidad', unidadmedidaacc=UPPER('$this->lcUnidadMedida'), placaacc=UPPER('$this->lcPlaca'), anoacc='$this->lcAno', 
+				       coloracc=UPPER('$this->lcColor'), tmodelo_idmodelo='$this->lnModelo', observacionacc=UPPER('$this->lcObservacion')
 				 WHERE idaccesorio = '$this->lnIdAccesorio';";
 			echo $sql;
 			$lnHecho=$this->ejecutar($sql);			

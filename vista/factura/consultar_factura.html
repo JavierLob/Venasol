@@ -350,6 +350,7 @@
         });
 
         $("#facturar").click(function(){          
+            $(this).attr('disabled', true);
             var valores = $('#form_factura').serialize();
             var url="../controlador/control_factura.php";
                 $.ajax({   
@@ -372,6 +373,7 @@
                         console.log(datos);
                         $("#mensaje_exito").html(mensaje);
                         $("#myModalExito").modal('show');
+                        $(this).attr('disabled', false);
                     }
                 });
         });

@@ -138,9 +138,9 @@
 					            	idcodigocli, rifcli, razonsocial, direccioncli, 
 						            correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, 
 						            telefonotrescli, observacioncli, estatuscli)
-						    VALUES ('$this->lcCodigoCliente', '$this->lcRif', UPPER('$this->lcNombre'), UPPER('$this->lcDireccion'), 
-						            '$this->lcCorreouno', '$this->lcCorreodos', '$this->lcCorreotres', '$this->lnTelefonouno', '$this->lnTelefonodos', 
-						            '$this->lnTelefonotres', '$this->lcObservacion', '$this->lcEstatus');";
+						    VALUES (UPPER('$this->lcCodigoCliente'), UPPER('$this->lcRif'), UPPER('$this->lcNombre'), UPPER('$this->lcDireccion'), 
+						            UPPER('$this->lcCorreouno'), UPPER('$this->lcCorreodos'), UPPER('$this->lcCorreotres'), '$this->lnTelefonouno', '$this->lnTelefonodos', 
+						            '$this->lnTelefonotres', UPPER('$this->lcObservacion'), '$this->lcEstatus');";
 				$lnHecho=$this->ejecutar($sql);
 
 			$this->desconectar();
@@ -169,9 +169,9 @@
 		{
 			$this->conectar();
 			$sql="UPDATE tcliente
-				   	 SET idcodigocli='$this->lcCodigoCliente', rifcli='$this->lcRif', razonsocial=UPPER('$this->lcNombre'), 
-				         direccioncli=UPPER('$this->lcDireccion'), correounocli='$this->lcCorreouno', correodoscli='$this->lcCorreodos', correotrescli='$this->lcCorreotres', 
-				         telefonounocli='$this->lnTelefonouno', telefonodoscli='$this->lnTelefonodos', telefonotrescli='$this->lnTelefonotres', observacioncli='$this->lcObservacion'
+				   	 SET idcodigocli=UPPER('$this->lcCodigoCliente'), rifcli=UPPER('$this->lcRif'), razonsocial=UPPER('$this->lcNombre'), 
+				         direccioncli=UPPER('$this->lcDireccion'), correounocli=UPPER('$this->lcCorreouno'), correodoscli=UPPER('$this->lcCorreodos'), correotrescli=UPPER('$this->lcCorreotres'), 
+				         telefonounocli='$this->lnTelefonouno', telefonodoscli='$this->lnTelefonodos', telefonotrescli='$this->lnTelefonotres', observacioncli=UPPER('$this->lcObservacion')
 					WHERE idcliente='$this->lnIdCliente';";
 			echo $sql;
 			$lnHecho=$this->ejecutar($sql);			

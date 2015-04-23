@@ -189,7 +189,7 @@
 				            tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, 
 				            tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac, prefijo_control, numero_control)
 				    VALUES ('$this->lnVehiculo', '$this->lnAccesorio', '$this->lnCliente', 
-				            '$this->lnChofer', '$this->lnIva', '$this->lnTotal', '$this->lcObservacion', '$this->lcEstatus', NOW(), '$this->lcPorcentajeIva', '00', (SELECT lpad(trim(to_char(numero, '99999999')) ,8,'0') FROM (SELECT count(*)+ 1 numero FROM tfactura) conteo));";
+				            '$this->lnChofer', '$this->lnIva', '$this->lnTotal', UPPER('$this->lcObservacion'), '$this->lcEstatus', NOW(), '$this->lcPorcentajeIva', '00', (SELECT lpad(trim(to_char(numero, '99999999')) ,8,'0') FROM (SELECT count(*)+ 1 numero FROM tfactura) conteo));";
 			$lnHecho=$this->ejecutar($sql);
 			return $lnHecho;
 		}
@@ -199,7 +199,7 @@
 			$sql="UPDATE tfactura
 					   SET tvehiculo_idvehiculo='$this->lnVehiculo', taccesorio_idaccesorio='$this->lnAccesorio', 
 					       tchofer_idchofer='$this->lnChofer', ivafac='$this->lnIva', totalfac='$this->lnTotal', 
-					       observacionfac='$this->lcObservacion', estatusfac='$this->lcEstatus', porcentajeivafac = '$this->lcPorcentajeIva'
+					       observacionfac=UPPER('$this->lcObservacion'), estatusfac='$this->lcEstatus', porcentajeivafac = '$this->lcPorcentajeIva'
 					 WHERE idfactura = '$this->lnIdFactura';";
 			$lnHecho=$this->ejecutar($sql);
 			return $lnHecho;

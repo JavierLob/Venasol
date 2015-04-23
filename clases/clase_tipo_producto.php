@@ -85,7 +85,7 @@
 		function registrar_tipo_producto()
 		{
 			$this->conectar();
-			$sql="INSERT INTO ttipo_producto (descripciontip,observaciontip,estatustip)VALUES('$this->lcDescripcion','$this->lcObservacion','1')";
+			$sql="INSERT INTO ttipo_producto (descripciontip,observaciontip,estatustip)VALUES(UPPER('$this->lcDescripcion'),UPPER('$this->lcObservacion'),'1')";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
@@ -112,7 +112,7 @@
 		function editar_tipo_producto()
 		{
 			$this->conectar();
-			$sql="UPDATE ttipo_producto SET descripciontip='$this->lcDescripcion',observaciontip='$this->lcObservacion' WHERE idtipo_producto='$this->lnIdTipoProducto' ";
+			$sql="UPDATE ttipo_producto SET descripciontip=UPPER('$this->lcDescripcion'),observaciontip=UPPER('$this->lcObservacion') WHERE idtipo_producto='$this->lnIdTipoProducto' ";
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
