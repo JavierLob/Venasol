@@ -351,11 +351,11 @@
                         else{
                             mensaje = 'Error al facturar intente nuevamente...';
                             $("#ok_exito").attr('data-dismiss', 'modal');
+                            $("#facturar").attr('disabled', false);
                         }
                         console.log(datos);
                         $("#mensaje_exito").html(mensaje);
                         $("#myModalExito").modal('show');
-                        $(this).attr('disabled', false);
                     }
                 });
             }
