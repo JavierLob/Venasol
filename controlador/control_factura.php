@@ -145,6 +145,30 @@
 				print(json_encode($mensaje));
 			}
 		break;
+		case 'consultar_factura':
+			$idfactura 	= $_POST['idfactura'];
+			$lobjFactura->set_Factura($idfactura);
+            $datos_factura = $lobjFactura->consultar_factura();
+            $datos_factura_precinto = $lobjFactura->consultar_precintos_factura();
+            $datos_factura_productos = $lobjFactura->consultar_productos_factura();
+            for($i=0;$i<count($datos_factura_productos);$i++)
+            {
+            	$datos_factura_productos['listado_producto'].='<tr>
+	            				<td>'.$datos_factura_productos[$i]['descripcioncortapro'].'</td>
+	            				<td>'.$datos_factura_productos[$i]['preciopro'].'</td>
+	            				<td>'.$datos_factura_productos[$i]['cantidadpro'].'</td>
+	            				<td>'.$datos_factura_productos[$i]['total_pro'].'</td>
+            				</tr>
+            				';
+            	$datos_factura['total_cantidad']=$datos_factura['total_cantidad']+$datos_factura_productos[$i]['cantidadpro'];
+            	$datos_factura['sub_total']=$datos_factura['sub_total']+$datos_factura_productos[$i]['total_pro'];
+
+            }
+            $datos_factura=array_merge($datos_factura,$datos_factura_precinto);
+            $datos_factura=array_merge($datos_factura,$datos_factura_productos);
+
+            echo json_encode($datos_factura);
+		break;
 		default:
 			header('location:../vista/?modulo=cliente/cliente');
 		break;

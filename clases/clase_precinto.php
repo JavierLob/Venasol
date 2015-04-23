@@ -45,7 +45,7 @@
 		{
 			$this->conectar();
 			$cont=0;
-				$sql="SELECT * FROM tprecinto";
+				$sql="SELECT *,(SELECT numero_control FROM tfactura WHERE tfactura_idfactura=idfactura)as numero_control FROM tprecinto";
 				$pcsql=$this->filtro($sql);
 				while($laRow=$this->proximo($pcsql))
 				{
@@ -56,7 +56,7 @@
 					$Fila[$cont]['color_boton'] = ($laRow['estatuspre']) ? 'danger' : 'warning';
 					$Fila[$cont]['funcion'] = ($laRow['estatuspre']) ? 'eliminar' : 'restaurar';
 					$Fila[$cont]['icono'] = ($laRow['estatuspre']) ? 'times' : 'refresh';					
-					$Fila[$cont]['tfactura_idfactura'] = ($laRow['tfactura_idfactura']) ? $laRow['tfactura_idfactura'] : 'Sin usar';					
+					$Fila[$cont]['numero_control'] = ($laRow['numero_control']) ? $laRow['numero_control'] : 'Sin usar';					
 					$cont++;
 				}
 			
@@ -67,7 +67,7 @@
 		function consultar_precinto()
 		{
 			$this->conectar();
-				$sql="SELECT idprecinto,idcodigopre, observacionpre FROM tprecinto WHERE idprecinto='$this->lnIdPrecinto' ";
+				$sql="SELECT idprecinto,idcodigopre, observacionpre,tfactura_idfactura,(SELECT numero_control FROM tfactura WHERE tfactura_idfactura=idfactura)as numero_control FROM tprecinto WHERE idprecinto='$this->lnIdPrecinto' ";
 				$pcsql=$this->filtro($sql);
 				if($laRow=$this->proximo($pcsql))
 				{
