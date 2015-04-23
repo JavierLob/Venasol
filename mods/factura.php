@@ -173,7 +173,7 @@ switch ($vista) {
                 if($laFactura_Precintos)
                     $HTML = $ObjSistema->render_regex('LISTADO_PRECINTOS_SELECT', $laFactura_Precintos);
                 else
-                    $HTML = $ObjSistema->reemplazar_vacio('LISTADO_PRECINTOS_SELECT', '<option value="">No se han encontrado precintos...</option>');
+                    $HTML = $ObjSistema->reemplazar_vacio('LISTADO_PRECINTOS_SELECT', '');
 
 
                 $ObjSistema->set_cuerpo($HTML);

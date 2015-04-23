@@ -61,14 +61,17 @@
 		case 'consultar_precinto':
 				if($lagrupo_precintos=$lobjPrecinto->consultar_grupo_precintos_activos())
 				{
-					$lobjPrecinto->set_Grupo($lagrupo_precintos[$i]['grupopre']);
-                    $laprecintos = $lobjPrecinto->consultar_grupo_precintos();
-					$option='<optgroup label="'.$lagrupo_precintos[$i]['grupopre'].'" class="text-danger">';
-					for($i=0;$i<count($laprecintos);$i++)
+					for($i=0;$i<count($lagrupo_precintos);$i++)
 					{
-						$option.='<option value="'.$laprecintos[$i]['idprecinto'].'">'.$laprecintos[$i]['idcodigopre'].'</option>';
+						$lobjPrecinto->set_Grupo($lagrupo_precintos[$i]['grupopre']);
+	                    $laprecintos = $lobjPrecinto->consultar_grupo_precintos();
+						$option.='<optgroup label="'.$lagrupo_precintos[$i]['grupopre'].'" class="text-danger">';
+						for($j=0;$j<count($laprecintos);$j++)
+						{
+							$option.='<option value="'.$laprecintos[$j]['idprecinto'].'">'.$laprecintos[$j]['idcodigopre'].'</option>';
+						}
+						$option.='</optgroup>';
 					}
-					$option='</optgroup>';
 
 				}
 				else
