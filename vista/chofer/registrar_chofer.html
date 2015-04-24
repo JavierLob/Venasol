@@ -20,15 +20,14 @@
                         <div class="controls">
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="inicial_rif"></span> <span class="caret"></span></button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="inicial_rif">{inicial_rif}</span> <span class="caret"></span></button>
                                     <ul class="dropdown-menu" role="menu">
                                       <li class="rif_cho" data-value="V"><a href="#">V</a></li>
                                       <li class="rif_cho" data-value="E"><a href="#">E</a></li>
                                       <li class="rif_cho" data-value="J"><a href="#">J</a></li>
-                                      <li class="rif_cho" data-value="N"><a href="#">N</a></li>
                                     </ul>
                                 </div><!-- /btn-group -->
-                                <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Cédula/Rif del chofer a registrar' data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="" data-msg-minlength="Debe ingresar menos de {0} dígitos" data-msg-maxlength="Debe ingresar al menos {0} dígitos" data-rule-required="true" data-msg-required="Por favor ingrese la cédula/Rif del chofer" maxlength="9" minlength="7">
+                                <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Cédula/Rif del chofer a registrar' value="{inicial_rif}-" data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="" data-msg-minlength="Debe ingresar menos de {0} dígitos" data-msg-maxlength="Debe ingresar al menos {0} dígitos" data-rule-required="true" data-msg-required="Por favor ingrese la cédula/Rif del chofer" maxlength="10" minlength="8">
                             </div><!-- /input-group -->
                         </div>
                     </div>
@@ -184,7 +183,12 @@ $(document).ready(function(){
     $(".rif_cho").click(function(){
             var valor = $(this).attr("data-value");
             $("#inicial_rif").html(valor);
-            $("#cam_cedula_rifcho").val(valor);
+
+             numero=$("#cam_cedula_rifcho").val();
+            if(numero.length>2)
+                rif=numero.substring(2,numero.length);
+
+            $("#cam_cedula_rifcho").val(valor+"-"+rif);
         });
 
      $.validator.addMethod(

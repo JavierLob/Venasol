@@ -31,7 +31,8 @@ switch ($vista) {
         $HTML = $ObjSistema->get_cuerpo('chofer,Choferes,Registrar chofer','#,?modulo=chofer/chofer,#','chofer','chofer');
 
         $ObjSistema->set_cuerpo($HTML);
-        $diccionario =array('cuerpo' => file_exists("chofer/registrar_chofer.html") ? file_get_contents("chofer/registrar_chofer.html") : '');
+        $diccionario =array('cuerpo' => file_exists("chofer/registrar_chofer.html") ? file_get_contents("chofer/registrar_chofer.html") : '',
+                            'inicial_rif'=>'V');
                 $HTML = $ObjSistema->render($diccionario);
         
         $ObjSistema->set_cuerpo($HTML);
