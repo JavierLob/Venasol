@@ -27,12 +27,14 @@ switch ($vista) {
         break;
         case 'registrar_chofer':
         $ladocumentos = $lobjDocumento->consultar_documentos_tipo('Chofer');
+        $prefijo_chofer=$ObjSistema->consultar_prefijo('chofer');
 
         $HTML = $ObjSistema->get_cuerpo('chofer,Choferes,Registrar chofer','#,?modulo=chofer/chofer,#','chofer','chofer');
 
         $ObjSistema->set_cuerpo($HTML);
         $diccionario =array('cuerpo' => file_exists("chofer/registrar_chofer.html") ? file_get_contents("chofer/registrar_chofer.html") : '',
-                            'inicial_rif'=>'V');
+                            'inicial_rif'=>'V',
+                            'prefijo_chofer'=>$prefijo_chofer);
                 $HTML = $ObjSistema->render($diccionario);
         
         $ObjSistema->set_cuerpo($HTML);

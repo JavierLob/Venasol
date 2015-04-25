@@ -16,7 +16,7 @@
                 <a class="btn btn-success " data-step="1" data-intro='Este botón lo lleva al formulario de registro' data-position="right" id="btn_registrar" href="?modulo=producto/registrar_producto"><i class="fa fa-plus icon-white"></i> Registrar producto</a>
                 <table class="table table-hover" id="filtro">
                     <thead>
-                        <th>Codigo</th><th>Nombre</th><th>Existencia</th><th>Precio</th><th>Estatus</th><th class="{operaciones}">Acción</th>
+                        <th>Codigo</th><th>Nombre</th><th>Existencia</th><th>Precio</th><th>Costo</th><th>Estatus</th><th class="{operaciones}">Acción</th>
                     </thead>
                     <tbody>
                         <!--LISTADO_PRODUCTOS-->
@@ -25,6 +25,7 @@
                             <td>{descripcioncortapro}</td>
                             <td>{existenciapro}</td>
                             <td>{preciounitariopro}</td>
+                            <td>{preciocomprapro}</td>
                             <td><label class="label label-{estatus_color}">{estatuspro}</label></td>
                             <td class="{operaciones}">
                                 <a class="btn btn-info {btn_consultar}" data-step="2" data-intro='Este botón lo lleva al formulario de consulta y edición' data-position="left" href="#" title="Consultar" onclick="buscar('{idproducto}')"><i class="fa fa-search"></i></a> 

@@ -469,7 +469,7 @@
 			              success: function(datos){
 			                if(datos.numero_control!='')
 			                {
-			                    $('#numero_control').html(datos.numero_control);  
+			                    $('#numero_control').html(datos.prefijo_control+"-"+datos.numero_control);  
 			                    $('#fechafac').html(datos.fechafac);  
 			                    $('#rifcli').html(datos.rifcli);  
 			                    $('#razonsocial').html(datos.razonsocial);  

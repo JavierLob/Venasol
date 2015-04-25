@@ -10,6 +10,12 @@
 	$lobjUUID=new UUID;
 
 	
+	$prefijo_chofer=$_POST['prefijo_chofer'];
+	$prefijo_producto=$_POST['prefijo_producto'];
+
+	$lobjConfiguracion->set_Prefijo_chofer($prefijo_chofer);
+	$lobjConfiguracion->set_Prefijo_producto($prefijo_producto);
+	
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');
 	$operacion=$_POST['operacion'];
@@ -20,7 +26,8 @@
 			$imagenlogo=$_FILES['imagenlogo'];
 			$imagenreporte=$_FILES['imagenreporte'];
 			$imagenlogo_oscuro=$_FILES['imagenlogo_oscuro'];
-			$imagenshort_icon=$_FILES['imagenshort_icon'];
+			$imagenshort_icon=$_FILES['imagenshort_icon'];				
+
 			$destino = '../media/img/';
 			$copiado=true;
 			$_SESSION['mensaje']='al subir archivos';

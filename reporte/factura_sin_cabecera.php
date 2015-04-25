@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/Caracas');
 ob_end_clean();
-require_once("../libreria/fpdf/clsFpdf.php");
+require_once("../libreria/fpdf/clsFpdf_2.php");
 require_once('../clases/clase_factura.php');
 
 $lobjPdf=new clsFpdf();
@@ -18,8 +18,6 @@ $laFactura['cedula_rifcho']=number_format(substr($laFactura['cedula_rifcho'], 1,
 
 $lobjPdf->SetTextColor(50,50,50);
 
-$lobjPdf->SetFont("arial","B",10);
-$lobjPdf->Cell(0,6,utf8_decode("FORMA LIBRE"),0,1,"R");
 
 $lobjPdf->SetFillColor(240,240,240);
 $lobjPdf->SetFont("arial","B",8);

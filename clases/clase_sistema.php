@@ -1,5 +1,6 @@
 <?php
-	class clsGlobal 
+	require_once('clase_configuracion.php');
+	class clsGlobal extends clsConfiguracion
 	{
 		private $str;
 

@@ -20,8 +20,8 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><img src="../media/img/{imagenlogo}" alt="" class="img ver-imagen" data-toggle="modal" href="#myModalImagen"  data-titulo="Imagen sistema"></span>
-                                <input type="hidden" name="imagenlogo_o" value="{imagenlogo}" id="cam_imagenlogo_o">
-                                <input type="file" class="form-control" data-step="1" data-intro='seleccione la imagen que se mostrará en el sistema' data-position="bottom" name="imagenlogo" id="cam_imagenlogo" data-rule-required="true" data-msg-required="Por favor seleccione la imagen que se mostrará en el sistema">
+                                <input type="hidden" name="imagenlogo_o" value="{imagenlogo}" id="cam_imagenlogo_o" data-rule-required="true" data-msg-required="Por favor seleccione la imagen que se mostrará en el sistema">
+                                <input type="file" class="form-control" data-step="1" data-intro='seleccione la imagen que se mostrará en el sistema' data-position="bottom" name="imagenlogo" id="cam_imagenlogo" >
                             </div>
                         </div>
                     </div>
@@ -30,8 +30,8 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><img src="../media/img/{imagenreporte}" alt="" class="img ver-imagen" data-toggle="modal" href="#myModalImagen"  data-titulo="Imagen reporte"></span>
-                                <input type="hidden" name="imagenreporte_o" value="{imagenreporte}" id="cam_imagenreporte_o">
-                                <input type="file" class="form-control" data-step="2" data-intro='Seleccione la imagen que se mostrará en los reportes del sistema' data-position="bottom" name="imagenreporte" id="cam_imagenreporte" data-rule-required="true" data-msg-required="Por favor seleccione la imagen que se mostrará en los reportes del sistema">
+                                <input type="hidden" name="imagenreporte_o" value="{imagenreporte}" id="cam_imagenreporte_o" data-rule-required="true" data-msg-required="Por favor seleccione la imagen que se mostrará en los reportes del sistema">
+                                <input type="file" class="form-control" data-step="2" data-intro='Seleccione la imagen que se mostrará en los reportes del sistema' data-position="bottom" name="imagenreporte" id="cam_imagenreporte" >
                             </div>
                         </div>
                     </div>
@@ -42,8 +42,8 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><img src="../media/img/{imagenlogo_oscuro}" alt="" class="img ver-imagen" data-toggle="modal" href="#myModalImagen"  data-titulo="Imagen sistema"></span>
-                                <input type="hidden" name="imagenlogo_oscuro_o" value="{imagenlogo_oscuro}" id="cam_imagenlogo_oscuro_o">
-                                <input type="file" class="form-control" data-step="1" data-intro='seleccione al imagen oscura que se mostrará en el sistema' data-position="bottom" name="imagenlogo_oscuro" id="cam_imagenlogo_oscuro" data-rule-required="true" data-msg-required="Por favor seleccione la imagen oscura que se mostrará en el sistema">
+                                <input type="hidden" name="imagenlogo_oscuro_o" value="{imagenlogo_oscuro}" id="cam_imagenlogo_oscuro_o" data-rule-required="true" data-msg-required="Por favor seleccione la imagen oscura que se mostrará en el sistema">
+                                <input type="file" class="form-control" data-step="3" data-intro='seleccione al imagen oscura que se mostrará en el sistema' data-position="bottom" name="imagenlogo_oscuro" id="cam_imagenlogo_oscuro" >
                             </div>
                         </div>
                     </div>
@@ -52,16 +52,30 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><img src="../media/img/{imagenshort_icon}" alt="" class="img ver-imagen" data-toggle="modal" href="#myModalImagen"  data-titulo="Imagen reporte"></span>
-                                <input type="hidden" name="imagenshort_icon_o" value="{imagenshort_icon}" id="cam_imagenshort_icon_o">
-                                <input type="file" class="form-control" data-step="2" data-intro='Seleccione la imagen miniatura que se mostrará en la pestaña del navegador' data-position="bottom" name="imagenshort_icon" id="cam_imagenshort_icon" data-rule-required="true" data-msg-required="Por favor seleccione la imagen miniatura que se mostrará en la pestaña del navegador">
+                                <input type="hidden" name="imagenshort_icon_o" value="{imagenshort_icon}" id="cam_imagenshort_icon_o" data-rule-required="true" data-msg-required="Por favor seleccione la imagen miniatura que se mostrará en la pestaña del navegador">
+                                <input type="file" class="form-control" data-step="4" data-intro='Seleccione la imagen miniatura que se mostrará en la pestaña del navegador' data-position="bottom" name="imagenshort_icon" id="cam_imagenshort_icon" >
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Prefijo código Chofer <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Prefijo para el código del chofer"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                        <input type="text" class="form-control" data-step="5" data-intro='Ingrese el prefijo para el código del chofer' data-position="bottom" name="prefijo_chofer" id="cam_prefijo_chofer" value="{prefijo_chofer}" maxlength="2" minlength="2" data-rule-required="true"  data-msg-maxlength="Por favor ingrese 2 letras"  data-msg-minlength="Por favor ingrese 2 letras"  data-msg-required="Por favor introduzca el prefijo para el código del chofer"  >
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label for="exampleTooltip">Prefijo código producto <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Prefijo para el código del producto"><i class="fa fa-question"></i></span></label>
+                        <div class="controls">
+                        <input type="text" class="form-control" data-step="6" data-intro='Ingrese el prefijo para el código del producto' data-position="bottom" name="prefijo_producto" id="cam_prefijo_producto" value="{prefijo_producto}" maxlength="2" minlength="2" data-rule-required="true"  data-msg-maxlength="Por favor ingrese 2 letras" data-msg-minlength="Por favor ingrese 2 letras"  data-msg-required="Por favor introduzca el prefijo para el código del producto"  >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-offset-5 col-lg-10">
-                        <button type="submit" data-step="3" data-intro='Para finalizar haga click en guardar para la configuración.' data-position="top" class="btn btn-success" id="btn-enviar"><i class="fa fa-check"></i> Guardar</button>
-                        <a href="?modulo=inicio" data-step="4" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                        <button type="submit" data-step="7" data-intro='Para finalizar haga click en guardar para la configuración.' data-position="top" class="btn btn-success" id="btn-enviar"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=inicio" data-step="8" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
             </form>
@@ -81,23 +95,8 @@ $(document).ready(function(){
           },
           "Por favor ingrese solo caracteres y números."
         );
-      $.validator.addMethod(
-          "direccion",
-          function(value, element) {
-            return value.match(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ.\/*-+_\s,.#]+$/);
-          },
-          "Por favor ingrese solo caracteres, números, puntos, comas o numeral."
-        );
-        //Metodo validar Email
-        $.validator.addMethod(
-          "valida_email",
-          function(value, element) {
-            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
-          },
-          "Por favor ingrese un correo electrónico valido."
-        );
 
-        $("#form_documento").validate({
+        $("#form_configuracion").validate({
             errorElement: 'label', //default input error message container
             errorClass: 'help-inline', // default input error message class
             focusInvalid: true,
@@ -126,5 +125,4 @@ $(document).ready(function(){
             }
         });
 });
-
 </script>

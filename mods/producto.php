@@ -61,11 +61,13 @@ switch ($vista) {
         case 'registrar_producto':
         $latipo_productos = $lobjTipoProducto->consultar_tipo_productos();
         $ladocumentos = $lobjDocumento->consultar_documentos_tipo('Producto');
-
+        $prefijo_producto=$ObjSistema->consultar_prefijo('producto');
+        
         $HTML = $ObjSistema->get_cuerpo('producto,Productos,Registrar producto','#,?modulo=producto/producto,#','producto','producto');
 
         $ObjSistema->set_cuerpo($HTML);
-        $diccionario =array('cuerpo' => file_exists("producto/registrar_producto.html") ? file_get_contents("producto/registrar_producto.html") : '');
+        $diccionario =array('cuerpo' => file_exists("producto/registrar_producto.html") ? file_get_contents("producto/registrar_producto.html") : '',
+                            'prefijo_producto'=>$prefijo_producto);
                 $HTML = $ObjSistema->render($diccionario);
         
         $ObjSistema->set_cuerpo($HTML);

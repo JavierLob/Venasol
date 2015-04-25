@@ -175,6 +175,12 @@
 
 			header('location:../vista/?modulo=chofer/chofer');
 		break;
+		case 'validar_codigo':
+			if($lobjChofer->validar_codigo())
+				echo '1'
+			else
+				echo '0'
+		break;
 		default:
 			header('location:../vista/?modulo=chofer/chofer');
 		break;

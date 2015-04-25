@@ -34,7 +34,10 @@
                     <div class="form-group col-sm-6 col-lg-3">
                         <label for="exampleTooltip">Código <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Código del chofer"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el Código del chofer a registrar' data-position="bottom" name="idcodigocho" id="cam_idcodigocho" >
+                            <div class="input-group">
+                            <span class="input-group-addon">{prefijo_chofer}</span>
+                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el Código del chofer a registrar' data-position="bottom" name="idcodigocho" id="cam_idcodigocho" data-rule-number="true" data-msg-number="Por favor ingrese solo números" maxlength="8" data-msg-maxlength="Por favor ingrese menos de {0} números" >
+                            </div>
                         </div>
                     </div>
                     <div class="form-group col-sm-12 col-lg-6">
@@ -207,6 +210,13 @@ $(document).ready(function(){
           "Por favor ingrese un correo electrónico valido."
         );
         $.validator.addMethod(
+          "validar_codigo",
+          function(value, element) {
+            return validar_codigo(element);
+          },
+          "Este código ya existe."
+        );
+        $.validator.addMethod(
           "validar_repetido",
           function(value, element) {
             return validar_documento_repetido();
@@ -344,6 +354,23 @@ function quitar_documento(e)
     var td = e.parentNode;
     var tr = td.parentNode;
     filas.removeChild(tr);
+}
+
+function validar(e)
+{
+    valor=$(e).val();
+    url="../controlador/control_chofer.php";
+    $.ajax({   
+          type: "POST",
+          url:url,
+          data:{idcodigocho:valor,operacion:'validar_codigo'},
+          success: function(datos){
+            if(datos=='1')
+                return true;
+            if(datos=='0')
+                return false;
+           }
+      });
 }
 
 </script>

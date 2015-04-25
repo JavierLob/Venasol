@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.1.14
 -- Dumped by pg_dump version 9.1.14
--- Started on 2015-04-22 19:47:10
+-- Started on 2015-04-25 18:47:05
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -600,7 +600,9 @@ CREATE TABLE tconfiguracion (
     imagenlogo character varying(255),
     imagenreporte character varying(255),
     imagenlogo_oscuro character varying(255),
-    imagenshort_icon character varying(255)
+    imagenshort_icon character varying(255),
+    prefijo_chofer character(2),
+    prefijo_producto character(2)
 );
 
 
@@ -811,7 +813,7 @@ ALTER TABLE public.tpregunta OWNER TO postgres;
 
 CREATE TABLE tproducto (
     idproducto bigint DEFAULT nextval('sidproducto'::regclass) NOT NULL,
-    idcodigopro character(10) NOT NULL,
+    idcodigopro character(10),
     descripcioncortapro character varying(100) NOT NULL,
     descripcionlargapro character varying(255),
     unidadmedidapro character(4) NOT NULL,
@@ -819,7 +821,8 @@ CREATE TABLE tproducto (
     existenciapro numeric(10,2) NOT NULL,
     ttipo_producto_idtipo_producto bigint NOT NULL,
     observacionpro character varying(255),
-    estatuspro character(1) NOT NULL
+    estatuspro character(1) NOT NULL,
+    preciocomprapro numeric(10,2)
 );
 
 
@@ -947,7 +950,7 @@ ALTER TABLE public.tservicio_trol OWNER TO postgres;
 
 --
 -- TOC entry 211 (class 1259 OID 45421)
--- Dependencies: 210 6
+-- Dependencies: 6 210
 -- Name: tservicio_trol_idservicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1039,7 +1042,7 @@ ALTER TABLE public.tusuario OWNER TO postgres;
 
 CREATE TABLE tvehiculo (
     idvehiculo bigint DEFAULT nextval('sidvehiculo'::regclass) NOT NULL,
-    idcodigoveh character(10) NOT NULL,
+    idcodigoveh character(10),
     aliasveh character varying(50),
     placaveh character(9) NOT NULL,
     anoveh character(4) NOT NULL,
@@ -1162,7 +1165,7 @@ SELECT pg_catalog.setval('siddocumento', 4, true);
 -- Name: sidfactura; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidfactura', 45, true);
+SELECT pg_catalog.setval('sidfactura', 46, true);
 
 
 --
@@ -1351,11 +1354,11 @@ INSERT INTO tbitacora (idbitacora, direccionbit, fechahorabit, valoranteriorbit,
 -- Data for Name: tchofer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (2, 'CH0002    ', 'CABEZON', 'JORGE', 'CASTILLO', 'V10123456 ', '1970-10-23', 'VILLA ARAURE 1, #6244', 'JORGE.CASTILLO@GMAIL.COM', '0424 324-5235', '             ', '', '1');
-INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (1, 'CH0001    ', 'LOBO', 'JAVIER', 'MARTÍN', 'V21561768 ', '1991-09-25', 'URB. HCDA. SAN JOSÉ', 'RECUPERA.JAVIER@GMAIL.COM', '0412 942-8301', '0412 942-8301', '', '1');
-INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (22, 'CH0004    ', 'JULIAN', 'AMILCAR', 'MORALES', 'V20541154 ', '1991-09-17', 'URB AGUA CLARA', 'AMILCARJMORALES@GMAIL.COM', '0424 124-1251', '0255 435-3463', '', '1');
-INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (21, 'CH0003    ', 'JANE', 'NANCY', 'LOBO', 'V10135484 ', '1970-02-25', 'URB. HCDA. SAN JOSÉ', 'LOBO2570@HOTMAIL.COM', '0426 324-2362', '0255 125-1252', 'ASDASD', '1');
-INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (23, 'CH0004    ', 'CARA DE MUÑECA', 'RAIMAN', '', 'V17169770 ', '1970-01-16', '@', '', '             ', '             ', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (1, 'CH0001    ', 'LOBO', 'JAVIER', 'MARTÍN', 'V-21561768', '1991-09-25', 'URB. HCDA. SAN JOSÉ', 'RECUPERA.JAVIER@GMAIL.COM', '0412 942-8301', '0412 942-8301', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (2, 'CH0002    ', 'CABEZON', 'JORGE', 'CASTILLO', 'V-10123456', '1970-10-23', 'VILLA ARAURE 1, #6244', 'JORGE.CASTILLO@GMAIL.COM', '0424 324-5235', '             ', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (21, 'CH0003    ', 'JANE', 'NANCY', 'LOBO', 'V-10135484', '1970-02-25', 'URB. HCDA. SAN JOSÉ', 'LOBO2570@HOTMAIL.COM', '0426 324-2362', '0255 125-1252', 'ASDASD', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (22, 'CH0004    ', 'JULIAN', 'AMILCAR', 'MORALES', 'V-20541154', '1991-09-17', 'URB AGUA CLARA', 'AMILCARJMORALES@GMAIL.COM', '0424 124-1251', '0255 435-3463', '', '1');
+INSERT INTO tchofer (idchofer, idcodigocho, aliascho, nombrecho, apellidocho, cedula_rifcho, fechanacimientocho, direccioncho, correocho, telefonomovilcho, telefonolocalcho, observacioncho, estatuscho) VALUES (23, 'CH0004    ', 'CARA DE MUÑECA', 'RAIMAN', '', 'V-17169770', '1970-01-16', '@', '', '             ', '             ', '', '1');
 
 
 --
@@ -1399,7 +1402,7 @@ INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, 
 -- Data for Name: tconfiguracion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tconfiguracion (imagenlogo, imagenreporte, imagenlogo_oscuro, imagenshort_icon) VALUES ('logo_52ae8649-4789-43cf-b239-75e699c798db.png', 'logo-black_035e9c24-6968-4c3c-94c4-4b1258d5d6a8.jpg', 'logo-black_aa4a4c01-9aac-4e07-a0a2-568ab0b4e340.png', 'favicon-venasol2_c3448d37-e7b5-44fe-864c-abe275ba96a3.png');
+INSERT INTO tconfiguracion (imagenlogo, imagenreporte, imagenlogo_oscuro, imagenshort_icon, prefijo_chofer, prefijo_producto) VALUES ('logo_52ae8649-4789-43cf-b239-75e699c798db.png', 'logo-black_035e9c24-6968-4c3c-94c4-4b1258d5d6a8.jpg', 'logo-black_aa4a4c01-9aac-4e07-a0a2-568ab0b4e340.png', 'favicon-venasol2_c3448d37-e7b5-44fe-864c-abe275ba96a3.png', 'CH', 'PR');
 
 
 --
@@ -1439,6 +1442,7 @@ INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, t
 INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac, prefijo_control, numero_control) VALUES (2, 1, 2, 3, 22, 11988.00, 111888.00, 'Mercancia que va a los patios de la ADUANA PRINCIPAL DEL AMPARO DE
 APURE. EDO. APURE. PARA SU NACIONALIZACION', '1', '2015-03-29 16:38:56.731', NULL, NULL, NULL);
 INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac, prefijo_control, numero_control) VALUES (45, 1, 3, 4, 2, 11988.00, 111888.00, '', '1', '2015-04-20 22:37:20.622', NULL, NULL, NULL);
+INSERT INTO tfactura (idfactura, tvehiculo_idvehiculo, taccesorio_idaccesorio, tcliente_idcliente, tchofer_idchofer, ivafac, totalfac, observacionfac, estatusfac, fechafac, porcentajeivafac, prefijo_control, numero_control) VALUES (46, 2, 1, 2, 1, 10655.73, 143852.40, '', '1', '2015-04-22 21:54:44.654', '0.08', '00', '00000020');
 
 
 --
@@ -1465,6 +1469,7 @@ INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantida
 INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (3, 1, 28000.00, 3.33);
 INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (2, 1, 30000.00, 3.33);
 INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (45, 11, 30000.00, 3.33);
+INSERT INTO tfactura_producto (tfactura_idfactura, tproducto_idproducto, cantidadpro, preciopro) VALUES (46, 11, 39999.00, 3.33);
 
 
 --
@@ -1554,17 +1559,17 @@ INSERT INTO tmodulo_trol (idmodulo, idrol, orden) VALUES (2, 2, 7);
 -- Data for Name: tprecinto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (115, '12345     ', NULL, '', '1', '12345     ');
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (116, '12346     ', NULL, '', '1', '12345     ');
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (117, '234135    ', NULL, '', '1', '234135    ');
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (118, '23456     ', NULL, '', '1', '234135    ');
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (119, '34563     ', NULL, '', '1', '234135    ');
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (120, '12356     ', NULL, '', '1', '12356     ');
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (121, '1234      ', NULL, '', '1', '12356     ');
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (122, '234523    ', NULL, '', '1', '234523    ');
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (123, '34566     ', NULL, '', '1', '234523    ');
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (124, '23452345  ', NULL, '', '1', '234523    ');
-INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (125, '2345      ', NULL, '', '1', '234523    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (115, '12345     ', 46, '', '2', '12345     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (116, '12346     ', 46, '', '2', '12345     ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (125, '2345      ', 46, '', '2', '234523    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (122, '234523    ', 46, '', '2', '234523    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (124, '23452345  ', 46, '', '2', '234523    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (123, '34566     ', 46, '', '2', '234523    ');
 
 
 --
@@ -1581,9 +1586,9 @@ INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionp
 -- Data for Name: tproducto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro) VALUES (1, 'PR0001    ', 'ACEITES DE CORTES', 'ACEITES DE CORTES', 'kg  ', 3.33, 30000.00, 1, '', '1');
-INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro) VALUES (2, 'PR0002    ', 'PERFOR 4', 'ADITIVO DE FLUIDOS DE PERFORACIÓN PETROLERA', 'kg  ', 3.33, 0.00, 18, '', '1');
-INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro) VALUES (11, 'PR0003    ', 'CROPOX', 'CROPOXIDOR', 'kg  ', 3.33, 0.00, 1, '', '1');
+INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro, preciocomprapro) VALUES (1, 'PR0001    ', 'ACEITES DE CORTES', 'ACEITES DE CORTES', 'kg  ', 3.33, 30000.00, 1, '', '1', NULL);
+INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro, preciocomprapro) VALUES (2, 'PR0002    ', 'PERFOR 4', 'ADITIVO DE FLUIDOS DE PERFORACIÓN PETROLERA', 'kg  ', 3.33, 0.00, 18, '', '1', NULL);
+INSERT INTO tproducto (idproducto, idcodigopro, descripcioncortapro, descripcionlargapro, unidadmedidapro, preciounitariopro, existenciapro, ttipo_producto_idtipo_producto, observacionpro, estatuspro, preciocomprapro) VALUES (11, 'PR0003    ', 'CROPOX', 'CROPOXIDOR', 'kg  ', 3.33, 0.00, 1, '', '1', 2.22);
 
 
 --
@@ -2232,7 +2237,7 @@ CREATE INDEX fk_tusuario_trol1_idx ON tusuario USING btree (trol_idrol);
 
 --
 -- TOC entry 2044 (class 2606 OID 45521)
--- Dependencies: 1979 193 185 2226
+-- Dependencies: 185 193 1979 2226
 -- Name: fk_taccesorio_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2242,7 +2247,7 @@ ALTER TABLE ONLY tfactura
 
 --
 -- TOC entry 2059 (class 2606 OID 45526)
--- Dependencies: 205 186 1981 2226
+-- Dependencies: 1981 205 186 2226
 -- Name: fk_tbanco_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2252,7 +2257,7 @@ ALTER TABLE ONLY tproveedor
 
 --
 -- TOC entry 2041 (class 2606 OID 45531)
--- Dependencies: 1986 188 189 2226
+-- Dependencies: 188 189 1986 2226
 -- Name: fk_tchofer_documento_tchofer_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2262,7 +2267,7 @@ ALTER TABLE ONLY tchofer_documento
 
 --
 -- TOC entry 2042 (class 2606 OID 45536)
--- Dependencies: 189 192 1993 2226
+-- Dependencies: 1993 192 189 2226
 -- Name: fk_tchofer_documento_tdocumento_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2272,7 +2277,7 @@ ALTER TABLE ONLY tchofer_documento
 
 --
 -- TOC entry 2045 (class 2606 OID 45541)
--- Dependencies: 1986 193 188 2226
+-- Dependencies: 1986 188 193 2226
 -- Name: fk_tchofer_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2282,7 +2287,7 @@ ALTER TABLE ONLY tfactura
 
 --
 -- TOC entry 2043 (class 2606 OID 45546)
--- Dependencies: 214 190 2036 2226
+-- Dependencies: 2036 214 190 2226
 -- Name: fk_tclave_tusuario1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2292,7 +2297,7 @@ ALTER TABLE ONLY tclave
 
 --
 -- TOC entry 2046 (class 2606 OID 45551)
--- Dependencies: 1991 193 191 2226
+-- Dependencies: 1991 191 193 2226
 -- Name: fk_tcliente_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2302,7 +2307,7 @@ ALTER TABLE ONLY tfactura
 
 --
 -- TOC entry 2048 (class 2606 OID 45556)
--- Dependencies: 1995 194 193 2226
+-- Dependencies: 1995 193 194 2226
 -- Name: fk_tfactura_producto_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2322,7 +2327,7 @@ ALTER TABLE ONLY tprecinto
 
 --
 -- TOC entry 2050 (class 2606 OID 45566)
--- Dependencies: 2018 205 196 2226
+-- Dependencies: 205 2018 196 2226
 -- Name: fk_tmantenimiento_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2332,7 +2337,7 @@ ALTER TABLE ONLY tmantenimiento
 
 --
 -- TOC entry 2053 (class 2606 OID 45571)
--- Dependencies: 197 198 2001 2226
+-- Dependencies: 198 197 2001 2226
 -- Name: fk_tmarca_tmodelo_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2342,7 +2347,7 @@ ALTER TABLE ONLY tmodelo
 
 --
 -- TOC entry 2040 (class 2606 OID 45576)
--- Dependencies: 2003 185 198 2226
+-- Dependencies: 185 198 2003 2226
 -- Name: fk_tmodelo_taccesorio_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2362,7 +2367,7 @@ ALTER TABLE ONLY tvehiculo
 
 --
 -- TOC entry 2054 (class 2606 OID 45586)
--- Dependencies: 2005 200 199 2226
+-- Dependencies: 199 2005 200 2226
 -- Name: fk_tmodulo_has_trol_tmodulo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2382,7 +2387,7 @@ ALTER TABLE ONLY tmodulo_trol
 
 --
 -- TOC entry 2057 (class 2606 OID 45596)
--- Dependencies: 214 202 2036 2226
+-- Dependencies: 202 214 2036 2226
 -- Name: fk_tpregunta_tusuario1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2392,7 +2397,7 @@ ALTER TABLE ONLY tpregunta
 
 --
 -- TOC entry 2049 (class 2606 OID 45601)
--- Dependencies: 194 203 2016 2226
+-- Dependencies: 203 194 2016 2226
 -- Name: fk_tproducto_tfactura_producto_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2402,7 +2407,7 @@ ALTER TABLE ONLY tfactura_producto
 
 --
 -- TOC entry 2063 (class 2606 OID 45606)
--- Dependencies: 210 206 2020 2226
+-- Dependencies: 2020 210 206 2226
 -- Name: fk_tservicio_has_trol_trol1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2412,7 +2417,7 @@ ALTER TABLE ONLY tservicio_trol
 
 --
 -- TOC entry 2064 (class 2606 OID 45611)
--- Dependencies: 207 210 2023 2226
+-- Dependencies: 210 2023 207 2226
 -- Name: fk_tservicio_has_trol_tservicio1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2461,8 +2466,8 @@ ALTER TABLE ONLY tservicio_proveedor
 
 
 --
--- TOC entry 2058 (class 2606 OID 45636)
--- Dependencies: 213 203 2033 2226
+-- TOC entry 2058 (class 2606 OID 53864)
+-- Dependencies: 2033 213 203 2226
 -- Name: fk_ttipo_producto_tproducto_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2512,7 +2517,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-04-22 19:47:11
+-- Completed on 2015-04-25 18:47:06
 
 --
 -- PostgreSQL database dump complete

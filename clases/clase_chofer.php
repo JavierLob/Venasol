@@ -224,5 +224,20 @@
 			$this->desconectar();
 			return $lnHecho;
 		}
+
+		function validar_codigo()
+		{
+			$this->conectar();
+			$codigo=false;
+			$sql="SELECT RTRIM(idcodigocho,' ')as idcodigocho FROM tchofer WHERE idcodigocho='CONCAT_WS((SELECT prefijo_chofer FROM tconfiguracion),$this->lcIdCodigo)'' ";
+			$pcsql=$this->filtro($sql);
+			if($laRow=$this->proximo($pcsql))
+			{
+				$codigo=true;
+			}
+			
+			$this->desconectar();
+			return $codigo;
+		}
 	}
 ?>
