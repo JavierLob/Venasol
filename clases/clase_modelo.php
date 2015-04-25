@@ -1,5 +1,4 @@
 <?php
-
 /**
  *CREATE TABLE tmodelo
  *(

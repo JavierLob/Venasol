@@ -1,5 +1,4 @@
 <?php
-
 	require_once('../nucleo/ModeloConectPg.php');
 	class clsChofer extends clsModelo_pg
 	{
