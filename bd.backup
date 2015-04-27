@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.1.14
 -- Dumped by pg_dump version 9.1.14
--- Started on 2015-04-26 22:58:56
+-- Started on 2015-04-27 00:46:26
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -580,9 +580,9 @@ CREATE TABLE tcliente (
     correounocli character varying(55),
     correodoscli character varying(55),
     correotrescli character varying(55),
-    telefonounocli character(11),
-    telefonodoscli character(11),
-    telefonotrescli character(11),
+    telefonounocli character(13),
+    telefonodoscli character(13),
+    telefonotrescli character(13),
     observacioncli character varying(255),
     estatuscli character(1) NOT NULL
 );
@@ -950,7 +950,7 @@ ALTER TABLE public.tservicio_trol OWNER TO postgres;
 
 --
 -- TOC entry 211 (class 1259 OID 45421)
--- Dependencies: 6 210
+-- Dependencies: 210 6
 -- Name: tservicio_trol_idservicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1210,7 +1210,7 @@ SELECT pg_catalog.setval('sidmodulo', 9, true);
 -- Name: sidprecinto; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('sidprecinto', 125, true);
+SELECT pg_catalog.setval('sidprecinto', 129, true);
 
 
 --
@@ -1390,10 +1390,10 @@ INSERT INTO tclave (idclave, clavecla, fechainiciocla, fechafincla, estatuscla, 
 -- Data for Name: tcliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (1, '          ', 'V21561768   ', 'JAVIER MARTÍN', NULL, 'URB. HCDA. SAN JOSÉ', 'recupera.javier@gmail.com', 'javier_666_636@hotmail.com', '', '04129428301', '           ', '           ', '', '1');
-INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (3, '          ', 'V35992070   ', 'ARMANDO MADURO F.P.', NULL, 'CASA N° 01 CALLE VIA PRINCIPAL AL LADO DEL CEMENTERIO EL AMPARO ESTADO APURE', 'armando.maduro@gmail.com', '', '', '04243512355', '           ', '           ', '', '1');
-INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (2, '          ', 'V20272772   ', 'MARIA VARGAS', NULL, 'URB. TINAJERO 2, CASA Nº 2', 'disnoa@gmail.com', '', '', '04120715582', '           ', '           ', '', '1');
-INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (4, '          ', 'J29516870-5 ', 'IMPORTADORA CAMILA C.A.', NULL, 'CALLE 9 CASA # 13-60 BARRIO SIMON BOLIVAR SAN ANTONIO DEL TACHIRA', '', '', '', '           ', '           ', '           ', 'Importante', '1');
+INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (1, '          ', 'V21561768   ', 'JAVIER MARTÍN', NULL, 'URB. HCDA. SAN JOSÉ', 'recupera.javier@gmail.com', 'javier_666_636@hotmail.com', '', '04129428301  ', '             ', '             ', '', '1');
+INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (3, '          ', 'V35992070   ', 'ARMANDO MADURO F.P.', NULL, 'CASA N° 01 CALLE VIA PRINCIPAL AL LADO DEL CEMENTERIO EL AMPARO ESTADO APURE', 'armando.maduro@gmail.com', '', '', '04243512355  ', '             ', '             ', '', '1');
+INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (2, '          ', 'V20272772   ', 'MARIA VARGAS', NULL, 'URB. TINAJERO 2, CASA Nº 2', 'disnoa@gmail.com', '', '', '04120715582  ', '             ', '             ', '', '1');
+INSERT INTO tcliente (idcliente, idcodigocli, rifcli, razonsocial, apellidocli, direccioncli, correounocli, correodoscli, correotrescli, telefonounocli, telefonodoscli, telefonotrescli, observacioncli, estatuscli) VALUES (4, '          ', 'J29516870-5 ', 'IMPORTADORA CAMILA C.A.', NULL, 'CALLE 9 CASA # 13-60 BARRIO SIMON BOLIVAR SAN ANTONIO DEL TACHIRA', '', '', '', '             ', '             ', '             ', 'Importante', '1');
 
 
 --
@@ -1572,6 +1572,10 @@ INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionp
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (117, '234135    ', 47, '', '2', '234135    ');
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (118, '23456     ', 47, '', '2', '234135    ');
 INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (119, '34563     ', 47, '', '2', '234135    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (126, '123124    ', NULL, '', '1', '123124    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (127, '124124    ', NULL, '', '1', '123124    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (128, '32456346  ', NULL, '', '1', '123124    ');
+INSERT INTO tprecinto (idprecinto, idcodigopre, tfactura_idfactura, observacionpre, estatuspre, grupopre) VALUES (129, '43563456  ', NULL, '', '1', '123124    ');
 
 
 --
@@ -2239,7 +2243,7 @@ CREATE INDEX fk_tusuario_trol1_idx ON tusuario USING btree (trol_idrol);
 
 --
 -- TOC entry 2044 (class 2606 OID 45521)
--- Dependencies: 1979 185 193 2226
+-- Dependencies: 1979 193 185 2226
 -- Name: fk_taccesorio_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2249,7 +2253,7 @@ ALTER TABLE ONLY tfactura
 
 --
 -- TOC entry 2059 (class 2606 OID 45526)
--- Dependencies: 205 1981 186 2226
+-- Dependencies: 186 1981 205 2226
 -- Name: fk_tbanco_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2259,7 +2263,7 @@ ALTER TABLE ONLY tproveedor
 
 --
 -- TOC entry 2041 (class 2606 OID 45531)
--- Dependencies: 189 1986 188 2226
+-- Dependencies: 189 188 1986 2226
 -- Name: fk_tchofer_documento_tchofer_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2269,7 +2273,7 @@ ALTER TABLE ONLY tchofer_documento
 
 --
 -- TOC entry 2042 (class 2606 OID 45536)
--- Dependencies: 1993 192 189 2226
+-- Dependencies: 1993 189 192 2226
 -- Name: fk_tchofer_documento_tdocumento_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2289,7 +2293,7 @@ ALTER TABLE ONLY tfactura
 
 --
 -- TOC entry 2043 (class 2606 OID 45546)
--- Dependencies: 2036 190 214 2226
+-- Dependencies: 190 2036 214 2226
 -- Name: fk_tclave_tusuario1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2299,7 +2303,7 @@ ALTER TABLE ONLY tclave
 
 --
 -- TOC entry 2046 (class 2606 OID 45551)
--- Dependencies: 1991 193 191 2226
+-- Dependencies: 193 191 1991 2226
 -- Name: fk_tcliente_tfactura_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2319,7 +2323,7 @@ ALTER TABLE ONLY tfactura_producto
 
 --
 -- TOC entry 2056 (class 2606 OID 45561)
--- Dependencies: 193 1995 201 2226
+-- Dependencies: 1995 193 201 2226
 -- Name: fk_tfactura_tprecinto_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2329,7 +2333,7 @@ ALTER TABLE ONLY tprecinto
 
 --
 -- TOC entry 2050 (class 2606 OID 45566)
--- Dependencies: 196 205 2018 2226
+-- Dependencies: 2018 205 196 2226
 -- Name: fk_tmantenimiento_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2339,7 +2343,7 @@ ALTER TABLE ONLY tmantenimiento
 
 --
 -- TOC entry 2053 (class 2606 OID 45571)
--- Dependencies: 197 198 2001 2226
+-- Dependencies: 2001 197 198 2226
 -- Name: fk_tmarca_tmodelo_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2349,7 +2353,7 @@ ALTER TABLE ONLY tmodelo
 
 --
 -- TOC entry 2040 (class 2606 OID 45576)
--- Dependencies: 198 2003 185 2226
+-- Dependencies: 185 198 2003 2226
 -- Name: fk_tmodelo_taccesorio_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2379,7 +2383,7 @@ ALTER TABLE ONLY tmodulo_trol
 
 --
 -- TOC entry 2055 (class 2606 OID 45591)
--- Dependencies: 200 206 2020 2226
+-- Dependencies: 206 2020 200 2226
 -- Name: fk_tmodulo_has_trol_trol1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2389,7 +2393,7 @@ ALTER TABLE ONLY tmodulo_trol
 
 --
 -- TOC entry 2057 (class 2606 OID 45596)
--- Dependencies: 214 2036 202 2226
+-- Dependencies: 202 214 2036 2226
 -- Name: fk_tpregunta_tusuario1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2409,7 +2413,7 @@ ALTER TABLE ONLY tfactura_producto
 
 --
 -- TOC entry 2063 (class 2606 OID 45606)
--- Dependencies: 2020 210 206 2226
+-- Dependencies: 2020 206 210 2226
 -- Name: fk_tservicio_has_trol_trol1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2419,7 +2423,7 @@ ALTER TABLE ONLY tservicio_trol
 
 --
 -- TOC entry 2064 (class 2606 OID 45611)
--- Dependencies: 207 2023 210 2226
+-- Dependencies: 2023 210 207 2226
 -- Name: fk_tservicio_has_trol_tservicio1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2429,7 +2433,7 @@ ALTER TABLE ONLY tservicio_trol
 
 --
 -- TOC entry 2061 (class 2606 OID 45616)
--- Dependencies: 205 209 2018 2226
+-- Dependencies: 209 205 2018 2226
 -- Name: fk_tservicio_proveedor_tproveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2439,7 +2443,7 @@ ALTER TABLE ONLY tservicio_proveedor
 
 --
 -- TOC entry 2051 (class 2606 OID 45621)
--- Dependencies: 208 196 2025 2226
+-- Dependencies: 2025 196 208 2226
 -- Name: fk_tservicio_tmantenimiento_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2449,7 +2453,7 @@ ALTER TABLE ONLY tmantenimiento
 
 --
 -- TOC entry 2060 (class 2606 OID 45626)
--- Dependencies: 207 2005 199 2226
+-- Dependencies: 2005 207 199 2226
 -- Name: fk_tservicio_tmodulo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2459,7 +2463,7 @@ ALTER TABLE ONLY tservicio
 
 --
 -- TOC entry 2062 (class 2606 OID 45631)
--- Dependencies: 208 209 2025 2226
+-- Dependencies: 2025 208 209 2226
 -- Name: fk_tservicio_tservicio_proveedor_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2469,7 +2473,7 @@ ALTER TABLE ONLY tservicio_proveedor
 
 --
 -- TOC entry 2058 (class 2606 OID 53864)
--- Dependencies: 213 203 2033 2226
+-- Dependencies: 203 2033 213 2226
 -- Name: fk_ttipo_producto_tproducto_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2479,7 +2483,7 @@ ALTER TABLE ONLY tproducto
 
 --
 -- TOC entry 2065 (class 2606 OID 45641)
--- Dependencies: 206 214 2020 2226
+-- Dependencies: 2020 214 206 2226
 -- Name: fk_tusuario_trol1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2499,7 +2503,7 @@ ALTER TABLE ONLY tfactura
 
 --
 -- TOC entry 2052 (class 2606 OID 45651)
--- Dependencies: 215 196 2038 2226
+-- Dependencies: 2038 215 196 2226
 -- Name: fk_tvehiculo_tmantenimiento_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2519,7 +2523,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-04-26 22:58:58
+-- Completed on 2015-04-27 00:46:27
 
 --
 -- PostgreSQL database dump complete

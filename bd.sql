@@ -523,9 +523,9 @@ CREATE TABLE tcliente (
     correounocli character varying(55),
     correodoscli character varying(55),
     correotrescli character varying(55),
-    telefonounocli character(11),
-    telefonodoscli character(11),
-    telefonotrescli character(11),
+    telefonounocli character(13),
+    telefonodoscli character(13),
+    telefonotrescli character(13),
     observacioncli character varying(255),
     estatuscli character(1) NOT NULL
 );

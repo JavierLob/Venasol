@@ -6,6 +6,7 @@ require_once('../clases/clase_factura.php');
 
 $lobjPdf=new clsFpdf();
 $lobjFactura=new clsFactura();
+$lobjPdf->imagen_reporte($_SESSION['imagenreporte']);
 $lobjPdf->AliasNbPages();
 $lobjPdf->AddPage("P","Letter");
 $idfactura=(isset($_GET['id']))?$_GET['id']:'2';

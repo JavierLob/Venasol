@@ -118,43 +118,7 @@
                             <th class="col-lg-1 col-sm-1 col-xs-1"><button class="btn btn-success" type="button" data-step="14" data-intro='Agregar un documento' data-position="bottom" onclick="agregar_documento()"><i class="fa fa-plus"></i></button></th>
                         </thead>
                         <tbody id="filas">
-                            <tr>
-                                <td class="form-group col-lg-3 col-sm-3 col-xs-3">
-                                    <div class="controls">
-                                        <select class="form-control" onchange="validar_vence(this)" name="iddocumento[]" id="cam_iddocumento0" data-rule-required="true" data-msg-required="Por favor seleccione un documento" data-rule-validar_repetido="true">
-                                            <option value=""></option>
-                                            <!--LISTADO_DOCUMENTOS-->
-                                                <option value="{iddocumento}" data-value="{vencedoc}">{descripciondoc}</option>
-                                            <!--LISTADO_DOCUMENTOS-->
-                                        </select>
-                                    </div>
-                                </td>
-                                <td class="form-group col-lg-2 col-sm-2 col-xs-2">
-                                    <div class="controls">
-                                        <div class="input-group">
-                                            <input type="date" class="form-control" name="fechaemisiondoc[]" id="cam_fechaemisiondoc0" data-rule-required="true" data-msg-required="Por favor ingrese la fecha de emisión del documento">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="form-group col-lg-2 col-sm-2 col-xs-2">
-                                    <div class="controls">
-                                        <div class="input-group" id="fechavencimientodoc0">                                    
-                                            <input type="date" class="form-control" name="fechavencimientodoc[]" id="cam_fechavencimientodoc0" data-rule-required="true" data-msg-required="Por favor ingrese la fecha de vencimiento del documento">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        </div>
-                                        <p style="display:none" id="mensaje_fechavencimientodoc0">Este documento no vence.</p>
-                                    </div>
-                                </td>
-                                <td class="form-group col-lg-4 col-sm-4 col-xs-4">
-                                    <div class="controls">
-                                        <input type="file" class="form-control" name="directoriodoc[]" id="cam_directoriodoc0" data-rule-required="true" data-msg-required="Por favor ingrese el archivo o imagen del documento">
-                                    </div>
-                                </td>
-                                <td class="col-lg-1 col-sm-1 col-xs-1">
-                                    <button class="btn btn-danger" type="button" data-step="4" data-intro='Quitar un documento' data-position="bottom" onclick="quitar_documento(this)"><i class="fa fa-minus"></i></button>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                     <input type="hidden" name="contador" id="cam_contador" value="0" />                    
