@@ -31,6 +31,7 @@
 
 			$errores = true;
 			$idfactura = $lobjFactura->obtener_nro_factura();
+			$lobjFactura->conectar();
 			$lobjFactura->begin();
 
 			$lobjFactura->set_Factura($idfactura['nro_factura']);
@@ -79,6 +80,7 @@
 				$mensaje = array('mensaje'=>'0');
 				print(json_encode($mensaje));
 			}
+			$lobjFactura->desconectar();
 		break;
 		case 'modificar_factura':
 			$idfactura 	= $_POST['idfactura'];
@@ -99,6 +101,7 @@
 			$errores = true;
 			$lobjFactura->set_Factura($idfactura);
 
+			$lobjFactura->conectar();
 			$lobjFactura->begin();
 
 			$resp[] = $lobjFactura->desasignar_precinto();
@@ -144,6 +147,7 @@
 				$mensaje = array('mensaje'=>'0');
 				print(json_encode($mensaje));
 			}
+				$lobjFactura->desconectar();
 		break;
 		case 'consultar_factura':
 			$idfactura 	= $_POST['idfactura'];

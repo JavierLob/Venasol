@@ -30,12 +30,12 @@
 			$this->lcImagenShort_Icon=$pc;
 		}
 
-		function set_Prefijo_chofer($pc)
+		function set_prefijo_chofer($pc)
 		{
 			$this->lcPrefijo_chofer=$pc;
 		}
 
-		function set_Prefijo_producto($pc)
+		function set_prefijo_producto($pc)
 		{
 			$this->lcPrefijo_producto=$pc;
 		}

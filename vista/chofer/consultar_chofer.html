@@ -28,7 +28,7 @@
                                       <li class="rif_cho" data-value="J"><a href="#">J</a></li>
                                     </ul>
                                 </div><!-- /btn-group -->
-                                <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Cédula/Rif del chofer a registrar' data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="{inicial_rif}{cedula_rif}" data-msg-minlength="Debe ingresar menos de {0} dígitos" data-msg-maxlength="Debe ingresar al menos {0} dígitos" data-rule-required="true" data-msg-required="Por favor ingrese la cédula/Rif del chofer" maxlength="10" minlength="8">
+                                <input type="text" class="form-control" data-step="1" data-intro='Ingrese la Cédula/Rif del chofer a registrar' data-position="bottom" name="cedula_rifcho" id="cam_cedula_rifcho" value="{inicial_rif}{cedula_rif}" data-msg-minlength="Debe ingresar menos de {0} dígitos" data-msg-maxlength="Debe ingresar al menos {0} dígitos" data-rule-required="true" data-msg-required="Por favor ingrese la cédula/Rif del chofer" maxlength="11" minlength="8">
                             </div><!-- /input-group -->
                         </div><!-- /input-group -->
                     </div>
@@ -65,7 +65,7 @@
                         <div class="controls">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="date" class="form-control" data-step="6" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom"  name="fechanacimientocho" id="cam_fechanacimientocho"  value="{fechanacimientocho}" data-rule-required="true" data-rule-date="true" data-msg-required="Por favor ingrese la fecha de nacimiento del chofer" >
+                                <input type="date" class="form-control fecha" data-step="6" data-intro='Ingrese el nombre del chofer a registrar' data-position="bottom"  name="fechanacimientocho" id="cam_fechanacimientocho"  value="{fechanacimientocho}" data-rule-required="true" data-rule-date="true" data-msg-required="Por favor ingrese la fecha de nacimiento del chofer" >
                             </div>
                         </div>
 
@@ -188,7 +188,7 @@
 </div>
 <script>
 $(document).ready(function(){
-    $('#cam_fechanacimientocho').datepicker();
+    $(".fecha").mask("99-99-9999");
     $("#cam_telefonomovilcho").mask("9999 999-9999");
     $("#cam_telefonolocalcho").mask("9999 999-9999");
     $(".rif_cho").click(function(){
@@ -243,7 +243,10 @@ $(document).ready(function(){
         $.validator.addMethod(
           "valida_email",
           function(value, element) {
-            return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+             if(value!='')
+                return value.match(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/);
+            else
+                return true;
           },
           "Por favor ingrese un correo electrónico valido."
         );
@@ -358,8 +361,8 @@ function agregar_documento()
               select.innerHTML=datos;   
            }
       });
-      col2.innerHTML='<div class="controls"><div class="input-group"><input type="date" class="form-control" name="fechaemisiondoc[]" id="cam_fechaemisiondoc'+contador+'" data-rule-required="true" data-msg-required="Por favor ingrese la fecha de emisión del documento"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div></div>';
-      col3.innerHTML='<div class="controls"><div class="input-group" id="'+contador+'"><input type="date" class="form-control" name="fechavencimientodoc[]" id="cam_fechaemisiondoc'+contador+'" data-rule-required="true" data-msg-required="Por favor ingrese la fecha de vencimiento del documento"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div><p style="display:none" id="mensaje_fechavencimientodoc'+contador+'">Este documento no vence.</p></div>';
+      col2.innerHTML='<div class="controls"><div class="input-group"><input type="date" class="form-control fecha" name="fechaemisiondoc[]" id="cam_fechaemisiondoc'+contador+'" data-rule-required="true" data-msg-required="Por favor ingrese la fecha de emisión del documento"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div></div>';
+      col3.innerHTML='<div class="controls"><div class="input-group" id="'+contador+'"><input type="date" class="form-control fecha" name="fechavencimientodoc[]" id="cam_fechaemisiondoc'+contador+'" data-rule-required="true" data-msg-required="Por favor ingrese la fecha de vencimiento del documento"><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div><p style="display:none" id="mensaje_fechavencimientodoc'+contador+'">Este documento no vence.</p></div>';
       col4.innerHTML='<div class="controls"><input type="file" class="form-control directoriodoc" name="directoriodoc[]" id="cam_directoriodoc'+contador+'" data-rule-required="true" data-msg-required="Por favor ingrese la imagen del documento"></div>';
       col5.innerHTML='<button class="btn btn-danger" type="button" onclick="quitar_documento(this)"><i class="fa fa-minus"></i></button>';
 
@@ -373,6 +376,7 @@ function agregar_documento()
       filas.appendChild(tr);
       cam_contador.value=contador;
 
+    $(".fecha").mask("99-99-9999");
 }
 function quitar_documento(e)
 {

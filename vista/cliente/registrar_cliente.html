@@ -49,13 +49,13 @@
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Nro. Teléfono <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico del cliente"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el número de telefono del cliente a {funcion}' data-position="bottom" name="telefonounocli" id="cam_telefonounocli" value="{telefonounocli}" maxlength="15" data-rule-number="true" data-rule-required="true" data-msg-number="Por favor introduzca sólo números" data-msg-required="Por favor introduzca un número teléfonico">
+                        <input type="text" class="form-control" data-step="4" data-intro='Ingrese el número de telefono del cliente a {funcion}' data-position="bottom" name="telefonounocli" id="cam_telefonounocli" value="{telefonounocli}" data-rule-number="true" data-rule-required="true" data-msg-number="Por favor introduzca sólo números" data-msg-required="Por favor introduzca un número teléfonico">
                         </div>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label for="exampleTooltip">Nro. Teléfono Alterno <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Número telefónico alterno del cliente"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                        <input type="text" class="form-control" data-step="5" data-intro='Ingrese el número de telefono alterno del cliente a {funcion}' data-position="bottom" name="telefonodoscli" id="cam_telefonodoscli" value="{telefonodoscli}" data-rule-number="true" data-msg-number="Por favor introduzca sólo números" maxlength="15">
+                        <input type="text" class="form-control" data-step="5" data-intro='Ingrese el número de telefono alterno del cliente a {funcion}' data-position="bottom" name="telefonodoscli" id="cam_telefonodoscli" value="{telefonodoscli}" data-rule-number="true" data-msg-number="Por favor introduzca sólo números" >
                         </div>
                     </div>
                 </div>
@@ -94,6 +94,8 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function($){
+        $("#cam_telefonounocli").mask("9999 999-9999");
+        $("#cam_telefonodoscli").mask("9999 999-9999");
         $(".rif_cli").click(function(){
             var valor = $(this).attr("data-value");
             $("#inicial_rif").html(valor);

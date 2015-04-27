@@ -39,7 +39,11 @@ switch ($vista) {
                             'idmarca'=>'',
                             'descripcionmar'=>'',
                             'observacionmar'=>'',
-                            'estatusmar'=>''
+                            'estatusmar'=>'',
+                            'active_veh'=>'',
+                            'active_acc'=>'',
+                            'checked_veh'=>'',
+                            'checked_acc'=>''
                             );
 
         $HTML = $ObjSistema->render($diccionario);
@@ -107,6 +111,7 @@ switch ($vista) {
                             'idvehiculo'=>'',
                             'placaveh'=>'',
                             'anoveh'=>'',
+                            'descripcionmod'=>'',
                             'colorveh'=>'',
                             'aliasveh'=>'',
                             'selected_marca'=>'',
@@ -194,6 +199,7 @@ switch ($vista) {
                             'placaacc'=>'',
                             'anoacc'=>'',
                             'coloracc'=>'',
+                            'descripcionmod'=>'',
                             'capacidadacc'=>'',
                             'unidadmedidaacc'=>'',
                             'selected_marca'=>'',

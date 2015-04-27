@@ -3,7 +3,7 @@
 	require_once("../clases/clase_configuracion.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
-    require_once('../libreria/UUID.php');
+    require_once('../libreria/uuid.php');
 	$lobjConfiguracion=new clsConfiguracion;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;
@@ -13,8 +13,8 @@
 	$prefijo_chofer=$_POST['prefijo_chofer'];
 	$prefijo_producto=$_POST['prefijo_producto'];
 
-	$lobjConfiguracion->set_Prefijo_chofer($prefijo_chofer);
-	$lobjConfiguracion->set_Prefijo_producto($prefijo_producto);
+	$lobjConfiguracion->set_prefijo_chofer($prefijo_chofer);
+	$lobjConfiguracion->set_prefijo_producto($prefijo_producto);
 	
 	$lcReal_ip=$lobjUtil->get_real_ip();
     $ldFecha=date('Y-m-d h:m');

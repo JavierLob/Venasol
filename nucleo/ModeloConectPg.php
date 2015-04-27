@@ -24,7 +24,7 @@
 * Funcion conectar (Conecta con la base de datos)
 *-----------------------------------*/
    
-	protected function conectar() {
+	public function conectar() {
 		$this->arCon = pg_connect("host=".$this->db_host." port=5432 user=".$this->db_usuario." "."password=".$this->db_password." "."dbname=".$this->db_nombre);
 	}
 		
@@ -32,7 +32,7 @@
 * Funcion Desconectar (Desconecta con la base de datos)
 *-----------------------------------*/
    
-	protected function desconectar() {
+	public function desconectar() {
 		pg_close($this->arCon);
 	}
 				
@@ -74,7 +74,6 @@
 *-----------------------------------*/
   	
 	public function begin(){
-		$this->conectar();
 		pg_query($this->arCon, "BEGIN");
 	}
 	
@@ -84,7 +83,6 @@
   		
 	public function commit(){
 		pg_query($this->arCon,"COMMIT");
-		$this->desconectar();
 	}
 		
 /*-----------------------------------
@@ -93,7 +91,6 @@
   	
 	public function rollback(){
 		pg_query($this->arCon,"ROLLBACK");
-		$this->desconectar();
 	}
 				
 /*-----------------------------------

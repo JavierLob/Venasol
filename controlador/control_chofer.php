@@ -3,7 +3,7 @@
 	require_once("../clases/clase_chofer.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
-    require_once('../libreria/UUID.php');
+    require_once('../libreria/uuid.php');
 	$lobjChofer=new clsChofer;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;
@@ -177,9 +177,9 @@
 		break;
 		case 'validar_codigo':
 			if($lobjChofer->validar_codigo())
-				echo '1'
+				echo '1';
 			else
-				echo '0'
+				echo '0';
 		break;
 		default:
 			header('location:../vista/?modulo=chofer/chofer');

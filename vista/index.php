@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once("../clases/clase_sistema.php");
-include '../libreria/google-login-api/index.php';
 
 $ObjSistema = new clsGlobal();
 
@@ -69,9 +68,7 @@ switch ($modulo) {
 		$mensaje = (isset($_SESSION["msj"]) AND !empty($_SESSION["msj"]))? $_SESSION["msj"] : ''; unset($_SESSION['msj']);
 
 		$template_html = file_get_contents('template_login.html');
-		$diccionario =array('msj' => (isset($mensaje) AND !empty($mensaje)) ? 'alert("'.$mensaje.'");' : '',
-			 				'conect_google' => $authUrl
-							);
+		$diccionario =array('msj' => (isset($mensaje) AND !empty($mensaje)) ? 'alert("'.$mensaje.'");' : '');
 		$ObjSistema->set_cuerpo($template_html);
 		$HTML = $ObjSistema->render($diccionario);
 	break;

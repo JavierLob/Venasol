@@ -3,7 +3,7 @@
 	require_once("../clases/clase_producto.php");
 	require_once("../clases/clase_bitacora.php");
     require_once('../libreria/utilidades.php');
-    require_once('../libreria/UUID.php');
+    require_once('../libreria/uuid.php');
 	$lobjProducto=new clsProducto;
 	$lobjBitacora=new clsBitacora;
 	$lobjUtil=new clsUtil;

@@ -57,7 +57,7 @@
 
 		function set_Existencia($pc)
 		{
-			$this->lcExistencia=$pc;
+			$this->lcExistencia=($pc)?$pc:0;
 		}
 
 		function set_IdTipoProducto($pc)

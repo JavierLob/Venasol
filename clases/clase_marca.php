@@ -125,7 +125,6 @@
 			$sql="UPDATE tmarca
 				   SET descripcionmar=UPPER('$this->lcDescripcion'), observacionmar=UPPER('$this->lcObservacion'), tipomar='$this->lcTipo'
 				 WHERE idmarca='$this->lnIdMarca';";
-			echo $sql;
 			$lnHecho=$this->ejecutar($sql);			
 			$this->desconectar();
 			return $lnHecho;
