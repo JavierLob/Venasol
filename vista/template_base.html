@@ -501,6 +501,14 @@
 
 			    }
 			}
+
+		function impirmir_nube(idfactura,url)
+		{
+			var gadget = new cloudprint.Gadget();
+		    gadget.setPrintDocument("url", "Factura"+idfactura,url,"utf-8");
+
+			gadget.openPrintDialog();
+		  }
 		</script>
 	</body>
 </html>

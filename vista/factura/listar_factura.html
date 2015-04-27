@@ -35,7 +35,7 @@
                             <td>
                                 <a class="btn btn-primary" data-step="3" data-intro='Este botón le permitirá editar esta factura' data-position="left" title="Editar" href="./?modulo=factura/consultar_factura&id={idfactura}"><i class="fa fa-edit"></i></a>
                                 <a class="btn btn-success" data-step="3" data-intro='Este botón le permitirá imprimir esta factura' data-position="left" target="_blank" title="Impirmir" href="../reporte/factura.php?id={idfactura}"><i class="fa fa-file-text-o"></i></a>
-                                <button type="button" class="btn btn-default" onclick="impirmir_nube('{idfactura}','../reporte/factura.php?id={idfactura}');"><i class="fa fa-cloud"></i></button>
+                                <button type="button" class="btn btn-default" onclick="impirmir_nube('{idfactura}','http://nayibequinteroyasociados.com.ve/reporte/factura.php?id={idfactura}');"><i class="fa fa-cloud"></i></button>
                             </td>
                             <!--<td class="{operaciones}">
                                 <a class="btn btn-info {btn_consultar}" data-step="2" data-intro='Este botón lo lleva al formulario de consulta y edición' data-position="left" href="#" title="Consultar" onclick="buscar('{idtipo_producto}')"><i class="fa fa-search"></i></a> 
@@ -59,12 +59,5 @@
             "iDisplayLength": 5                    
         });
     });
- function impirmir_nube(idfactura,url)
-  {
-
-    var gadget = new cloudprint.Gadget();
-    gadget.setPrintDocument("url", "Factura"+idfactura,"http://localhost:8080/venasol/reporte/factura.pdf","utf-8");
-
-    gadget.openPrintDialog();
-  }
+ 
 </script>

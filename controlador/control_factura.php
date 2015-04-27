@@ -72,14 +72,13 @@
 			{
 				$lobjFactura->commit();
 				$mensaje = array('mensaje'=>'1', 'nro_factura'=>$idfactura['nro_factura']);
-				print(json_encode($mensaje));
 			}
 			else
 			{
 				$lobjFactura->rollback();
 				$mensaje = array('mensaje'=>'0');
-				print(json_encode($mensaje));
 			}
+			print(json_encode($mensaje));
 			$lobjFactura->desconectar();
 		break;
 		case 'modificar_factura':

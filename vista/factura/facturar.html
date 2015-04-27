@@ -616,7 +616,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
               url:url,
               data:{operacion:'consultar_precinto'},
               success: function(datos){
-                  $('#precintos').html(datos);  
+                alert(datos);
                 $('#cam_precintos').html(datos);  
                 $("#cam_precintos").trigger("chosen:updated");
 

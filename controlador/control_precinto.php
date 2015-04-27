@@ -65,20 +65,19 @@
 					{
 						$lobjPrecinto->set_Grupo($lagrupo_precintos[$i]['grupopre']);
 	                    $laprecintos = $lobjPrecinto->consultar_grupo_precintos();
-						$option.='<optgroup label="'.$lagrupo_precintos[$i]['grupopre'].'" class="text-danger">';
+						echo '<optgroup label="'.$lagrupo_precintos[$i]['grupopre'].'" class="text-danger">';
 						for($j=0;$j<count($laprecintos);$j++)
 						{
-							$option.='<option value="'.$laprecintos[$j]['idprecinto'].'">'.$laprecintos[$j]['idcodigopre'].'</option>';
+							echo '<option value="'.$laprecintos[$j]['idprecinto'].'">'.$laprecintos[$j]['idcodigopre'].'</option>';
 						}
-						$option.='</optgroup>';
+						echo '</optgroup>';
 					}
 
 				}
 				else
 				{
-					$option='<option>No se han encontrado registros</option>';
+					echo '<option>No se han encontrado registros</option>';
 				}
-			echo $option;
 		break;
 		case 'editar_precinto':
 			$_SESSION['mensaje']='al editar el precinto';
