@@ -1,8 +1,10 @@
 <?php 
 session_start();
 require_once("../clases/clase_sistema.php");
+require_once("../clases/clase_usuario.php");
 
 $ObjSistema = new clsGlobal();
+$lobjUsuario = new clsUsuario();
 
 $modulo = (isset($_SESSION['usuario']) AND !empty($_SESSION['usuario'])) ? $ObjSistema->CapturarModulo() : '';
 $id = $ObjSistema->CapturarId();

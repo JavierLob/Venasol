@@ -29,6 +29,22 @@ switch ($vista) {
                 $ObjSistema->set_cuerpo($HTML);
                 $HTML = $ObjSistema->render($opciones);
         break;
+        case 'consultar_perfil':
+        $lobjUsuario->set_Usuario($_SESSION['usuario']);
+        $datos_usuario = $lobjUsuario->consultar_usuario();
+        $HTML = $ObjSistema->get_cuerpo('Perfil','./,#','usuario','usuario');
+        $ObjSistema->set_cuerpo($HTML);
+        $diccionario = array('cuerpo' => file_exists("perfil/consultar_perfil.html") ? file_get_contents("perfil/consultar_perfil.html") : '',
+                            'operacion'=>'editar_perfil',
+                            'Funcion' => 'Consultar Perfil',
+                            'funcion'=> 'editar',
+                            'icono'=> 'edit'
+                            );
+
+        $HTML = $ObjSistema->render($diccionario);
+        $ObjSistema->set_cuerpo($HTML);
+        $HTML = $ObjSistema->render($datos_usuario);
+        break;
         case 'rol':
                 $ObjSistema->consultar_opciones('?modulo=seguridad/consultar_rol', $opciones['btn_consultar'], '?modulo=seguridad/registrar_rol', $opciones['btn_registrar'], '?modulo=seguridad/eliminar_rol', $opciones['btn_eliminar'], '?modulo=seguridad/eliminar_rol', $opciones['btn_restaurar'],$opciones['operaciones'],$opciones['informacion']);
                 $larols = $lobjrol->consultar_roles();

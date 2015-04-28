@@ -28,8 +28,11 @@ switch ($operacion) {
 				$_SESSION['nombrerol'] = $datos_usuario['nombrerol'];
 				$_SESSION['idrol'] = $datos_usuario['trol_idrol'];
 				$_SESSION['nombreusu'] = $datos_usuario['nombreusu'];
+				$_SESSION['tour'] = $datos_usuario['tour'];
 				$_SESSION['clave'] = $clave;
 				$_SESSION=array_merge($_SESSION,$laconfiguracion);
+				if($datos_usuario['tour']==0)
+					$lobjUsuario->actualizar_tour();		
 
 				header("location: ../vista/?modulo=inicio");
 			}

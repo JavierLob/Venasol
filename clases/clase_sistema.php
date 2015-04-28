@@ -11,7 +11,9 @@
 		    $vista=$this->armarDiccionario($vista,$enlace);
 		    $mensaje=$this->armarMensaje();
 		    $dividir_parametros = explode(' ', $_SESSION['nombreusu']);
-			$Diccionario	=array(	'Servicio'=> array('servicio'=>$servicio,'modulo'=>$modulo),
+		    $primera_vez=($_SESSION['tour']==0)?'startIntro()':'';
+		    $_SESSION['tour']=($_SESSION['tour']==0)?1:'';
+			$Diccionario	=array(	'Servicio'=> array('servicio'=>$servicio,'modulo'=>$modulo,'primera_vez'=>$primera_vez),
 									'Mensaje'=>$mensaje,
 									'Menu'=>$this->get_menu(),
 									'Imagen'=>array('imagenlogo'=>$_SESSION['imagenlogo'],'imagenlogo_oscuro'=>$_SESSION['imagenlogo_oscuro'],'imagenshort_icon'=>$_SESSION['imagenshort_icon']),
@@ -107,6 +109,7 @@
         	$lobjrol = new clsrol;
         	$lobjrol->set_Rol($_SESSION['idrol']);
         	$modulos = $lobjrol->consultar_modulos_menu();
+        	$tours = $lobjrol->consultar_tour();
         	$activo_home = false;
         	$servicio_activo = false;
         	$activar_home = '';
@@ -119,11 +122,13 @@
         		$nombre = $modulos[$i]['nombremod'];
         		$servicios = $lobjrol->consultar_servicios_menu($modulos[$i]['idmodulo']);
         		$right = (count($servicios) > 0) ? 'fa fa-angle-right' : '';
-        		$MENU.='<a href="#" class="dropdown-toggle">
+        		$MENU.='<a href="#" class="dropdown-toggle" id="mod_'.$modulos[$i]['idmodulo'].'">
 							<i class="fa fa-'.$icono.'"></i>
 							<span>'.$nombre.'</span>
 							<i class="'.$right.' drop-icon"></i>
 						</a>';
+				
+
 				$MENU.= (count($servicios) > 0) ? '<ul class="submenu">':'';
         		for($j=0; $j < count($servicios); $j++)
         		{
@@ -138,13 +143,27 @@
 								'.$nombre_ser.'
 								</a>
 							</li>';
+					
         		}
 				$MENU.= (count($servicios) > 0) ? '</ul>':'';
         		$MENU .= '</li>';
         	}
+
+        	for($i=0;$i<count($tours);$i++)
+        	{
+        		if($tours[$i]['tourmod']!='')
+				{
+					$TOUR.=',
+		              {
+		                element: "#mod_'.$tours[$i]['idmodulo'].'",
+		                intro: "'.$tours[$i]['tourmod'].'",
+		               	position: "right"
+		              }';
+		        }
+        	}
         	if(($activo_home)||(!$servicio_activo))
         	  	$activar_home = 'class="active"';
-			return array('menu'=>$MENU, 'active_home'=>$activar_home);
+			return array('menu'=>$MENU,'tour'=>$TOUR, 'active_home'=>$activar_home);
 		}
 
 		public function set_cuerpo($str='') {

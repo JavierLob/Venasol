@@ -221,6 +221,17 @@
 			return $lnHecho;
 		}
 
+		function actualizar_tour()
+		{
+			$this->conectar();
+			$sql="UPDATE tusuario SET tour='1' WHERE idusuario='$this->lcUsuario'";
+			$lnHecho=$this->ejecutar($sql);			
+			$this->desconectar();
+			return $lnHecho;
+		}
+
+		
+
 		function actualizar_actividad($idacceso)
 		{
 			$this->conectar();

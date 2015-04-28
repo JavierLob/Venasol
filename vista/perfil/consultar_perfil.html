@@ -18,33 +18,33 @@
                     <div class="form-group col-sm-4 col-xs-12">
                         <label for="exampleTooltip">Usuario <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Usuario con el que podrá acceder al sistema"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <input readOnly type="text" class="form-control" data-step="2" data-intro='Ingrese el usuario a {funcion}' data-position="bottom" name="idusuario" id="cam_idusuario" value="{idusuario}" data-rule-required="true" data-msg-required="Por favor introduzca la razón social del cliente" data-rule-letras_latinas="true" data-rule-minlength="6" maxlength="20" data-msg-minlength="Por favor introduzca de 6 a 20 caracteres">
+                            <input readOnly type="text" class="form-control" data-step="1" data-intro='Este el usuario con el cual puede acceder al sistema' data-position="bottom" name="idusuario" id="cam_idusuario" value="{idusuario}" data-rule-required="true" data-msg-required="Por favor introduzca la razón social del cliente" data-rule-letras_latinas="true" data-rule-minlength="6" maxlength="20" data-msg-minlength="Por favor introduzca de 6 a 20 caracteres">
                         </div>
                     </div>
                     <div class="form-group col-sm-4 col-xs-12">
                         <label for="exampleTooltip">Nombre y Apellido <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Nombre y Apellido del usuario"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <input readOnly type="text" class="form-control" data-step="2" data-intro='Ingrese el nombre y apellido del usuario a {funcion}' data-position="bottom" name="nombreusu" id="cam_nombreusu" value="{nombreusu}" data-rule-required="true" data-msg-required="Por favor introduzca el nombre y apellido del usuario" data-rule-letras_latinas="true" maxlength="45">
+                            <input readOnly type="text" class="form-control" data-step="2" data-intro='Nombre y apellido del usuario' data-position="bottom" name="nombreusu" id="cam_nombreusu" value="{nombreusu}" data-rule-required="true" data-msg-required="Por favor introduzca el nombre y apellido del usuario" data-rule-letras_latinas="true" maxlength="45">
                         </div>
                     </div>
                     <div class="form-group col-sm-4 col-xs-12">
                         <label for="exampleTooltip">Cédula Identidad <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Cédula de Identidad"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <input readOnly type="text" class="form-control" data-step="4" data-intro='Ingrese el número de cédula de identidad del usuario a {funcion}' data-position="bottom" name="cedula" id="cam_telefonounocli" value="{cedula}" maxlength="15" data-rule-number="true" data-rule-required="true" data-msg-number="Por favor introduzca sólo números" data-msg-required="Por favor introduzca un número de cédula">
+                            <input readOnly type="text" class="form-control" data-step="3" data-intro='Cédula de identidad del usuario' data-position="bottom" name="cedula" id="cam_cedula" value="{cedula}" maxlength="15" data-rule-number="true" data-rule-required="true" data-msg-number="Por favor introduzca sólo números" data-msg-required="Por favor introduzca un número de cédula">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-8 col-xs-12">
-                        <label for="exampleTooltip">Correo Electronico <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correl electronico del usuario"><i class="fa fa-question"></i></span></label>
+                        <label for="exampleTooltip">Correo Electronico <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correo electrónico del usuario"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <input type="text" class="form-control" data-step="2" data-intro='Ingrese el correo electronico del usuario a {funcion}' data-position="bottom" name="emailusu" id="cam_emailusu" value="{emailusu}" data-rule-required="true" data-msg-required="Por favor introduzca la razón social del cliente" data-rule-email="true" data-msg-email="Por favor introduzca una dirección de correo valida" maxlength="45">
+                            <input type="text" class="form-control" data-step="4" data-intro='Correo electrónico del usuario' data-position="bottom" name="emailusu" id="cam_emailusu" value="{emailusu}" data-rule-required="true" data-msg-required="Por favor introduzca la razón social del cliente" data-rule-email="true" data-msg-email="Por favor introduzca una dirección de correo valida" maxlength="45">
                         </div>
                     </div>
                     <div class="form-group col-sm-4 col-xs-12">
                         <label for="exampleTooltip">Rol <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Rol del usuario"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <select disabled name="trol_idrol" id="trol_idrol" class="form-control" data-rule-required="true" data-msg-required="Por favor introduzca un rol">
+                            <select disabled name="trol_idrol" id="trol_idrol" class="form-control" data-rule-required="true" data-msg-required="Por favor introduzca un rol" data-step="5" data-intro='Este el rol asignado para el sistema' data-position="bottom">
                                 <!--LISTADO_ROL-->
                                 <option value="{idrol}" selected>{nombrerol}</option>
                                 <!--LISTADO_ROL-->
@@ -54,22 +54,22 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
-                        <label for="cam_password">Cambiar contraseña <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correl electronico del usuario"><i class="fa fa-question"></i></span></label>
+                        <label for="cam_password">Cambiar contraseña <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Ingrese una contraseña sí desea cambiar la actual"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <input type="password" class="form-control" data-step="2" data-intro='Ingrese el correo electronico del usuario a {funcion}' data-position="bottom" name="password" id="cam_password" value="" maxlength="45" data-rule-minlength="6" data-msg-minlength="Por favor debe ingresar una contraseña mayor a 6 caracteres">
+                            <input type="password" class="form-control" data-step="6" data-intro='Ingrese una contraseña sí desea cambiar la actual' data-position="top" name="password" id="cam_password" value="" maxlength="45" data-rule-minlength="6" data-msg-minlength="Por favor debe ingresar una contraseña mayor a 6 caracteres">
                         </div>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
-                        <label for="cam_password_r">Repetir contraseña <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Correl electronico del usuario"><i class="fa fa-question"></i></span></label>
+                        <label for="cam_password_r">Repetir contraseña <span class="badge badge-warning" data-toggle="tooltip" data-placement="rigth" title="Repita la contraseña que ingresó en el campo cambiar contraseña"><i class="fa fa-question"></i></span></label>
                         <div class="controls">
-                            <input type="password" class="form-control" data-step="2" data-intro='Ingrese el correo electronico del usuario a {funcion}' data-position="bottom" name="password_r" id="cam_password_r" value="" data-rule-minlength="6" data-msg-minlength="Por favor debe ingresar una contraseña mayor a 6 caracteres" data-rule-equalTo="#cam_password" data-msg-equalTo="La Contraseña no coincide" maxlength="45">
+                            <input type="password" class="form-control" data-step="7" data-intro='Repita la contraseña que ingresó en el campo cambiar contraseña' data-position="top" name="password_r" id="cam_password_r" value="" data-rule-minlength="6" data-msg-minlength="Por favor debe ingresar una contraseña mayor a 6 caracteres" data-rule-equalTo="#cam_password" data-msg-equalTo="La Contraseña no coincide" maxlength="45">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" data-step="9" data-intro='Para finalizar haga click en guardar para {funcion} el usuario.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
-                        <a href="?modulo=inicio" data-step="10" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
+                        <button type="submit" data-step="8" data-intro='Para finalizar haga click en guardar para {funcion} el usuario.' data-position="top" class="btn btn-success"><i class="fa fa-check"></i> Guardar</button>
+                        <a href="?modulo=inicio" data-step="9" data-intro='Para salir haga click en regresar.' data-position="top" class="btn btn-danger "><i class="fa fa-chevron-left"></i> Regresar</a>
                     </div>
                 </div>
             </form>

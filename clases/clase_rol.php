@@ -123,6 +123,21 @@
 			return $Fila;
 		}
 
+		function consultar_tour()
+		{
+			$this->conectar();
+			$cont=0;
+			$sql="SELECT tmodulo.* FROM tmodulo,tmodulo_trol WHERE tmodulo_trol.idrol='$this->lcIdRol' AND tmodulo_trol.idmodulo=tmodulo.idmodulo ORDER BY pasotourmod ASC";
+			$pcsql=$this->filtro($sql);
+			while($laRow=$this->proximo($pcsql))
+			{
+				$Fila[$cont]=$laRow;
+				$cont++;
+			}
+			$this->desconectar();
+			return $Fila;
+		}
+
 		function consultar_servicios_menu($IdModulo, $visible = "AND visibleser='1'")
 		{
 			$this->conectar();

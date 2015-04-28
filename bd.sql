@@ -693,7 +693,9 @@ CREATE TABLE tmodulo (
     nombremod character varying(30) NOT NULL,
     estatusmod character varying(255) DEFAULT 1 NOT NULL,
     icono character varying(65),
-    "case" character varying(100)
+    "case" character varying(100),
+    tourmod text,
+    pasotourmod integer
 );
 
 
@@ -1462,14 +1464,14 @@ INSERT INTO tmodelo (idmodelo, descripcionmod, tmarca_idmarca, observacionmod, e
 -- Data for Name: tmodulo; Type: TABLE DATA; Schema: public; Owner: nayibeya
 --
 
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (1, 'Seguridad', '1', 'lock', 'seguridad');
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (3, 'Producto', '1', 'shopping-cart', 'producto');
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (4, 'Chofer', '1', 'qq', 'chofer');
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (5, 'Precinto', '1', 'tags', 'precinto');
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (7, 'Cliente', '1', 'suitcase', 'cliente');
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (8, 'Vehiculo', '1', 'truck', 'vehiculo');
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (9, 'Factura', '1', 'file-text-o', 'factura');
-INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case") VALUES (2, 'Configuración', '1', 'cogs', 'configuracion');
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (1, 'Seguridad', '1', 'lock', 'seguridad', NULL, NULL);
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (2, 'Configuración', '1', 'cogs', 'configuracion', 'Para comenzar a utilizar el sistema, debe ingresar en configuración e ingresar las imagenes y prefijos que desea usar en el sistema y ademas debe registrar los tipos de documento que sus productos y choferes necesitarán', 1);
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (4, 'Chofer', '1', 'qq', 'chofer', 'Ahora es buen momento para comenzar a registrar a los choferes', 3);
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (3, 'Producto', '1', 'shopping-cart', 'producto', 'En este momento podemos registrar los productos a facturar en el sistema.', 4);
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (5, 'Precinto', '1', 'tags', 'precinto', 'Una vez que tengamos los precintos podemos comenzar a registrarlos.', 5);
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (7, 'Cliente', '1', 'suitcase', 'cliente', 'En este punto ya solo queda registrar los clientes para comenzar a facturar.', 6);
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (9, 'Factura', '1', 'file-text-o', 'factura', 'Una vez realizados los pasos anteriores ya estamos listos para facturar.', 7);
+INSERT INTO tmodulo (idmodulo, nombremod, estatusmod, icono, "case", tourmod, pasotourmod) VALUES (8, 'Vehiculo', '1', 'truck', 'vehiculo', 'Es necesario que se registren las marcas y modelos de los vehículos y accesorios que se encuentran en la organización, una vez registrados puede comenzar a registrar los vehículos y accesorios.', 2);
 
 
 --
@@ -1625,6 +1627,7 @@ INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser,
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (57, 'Consultar Usuario', '?modulo=seguridad/consultar_usuario', '0', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (58, 'Eliminar Usuario', '?modulo=seguridad/eliminar_usuario', '0', '1', 1);
 INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (59, 'Configuración', '?modulo=configuracion/configuracion', '1', '1', 2);
+INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser, idmodulo) VALUES (60, 'Mi perfil', '?modulo=seguridad/consultar_perfil', '1', '1', 1);
 
 
 --
@@ -1649,66 +1652,29 @@ INSERT INTO tservicio (idservicio, nombreser, enlaceser, visibleser, estatusser,
 -- Data for Name: tservicio_trol; Type: TABLE DATA; Schema: public; Owner: nayibeya
 --
 
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (55, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (58, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (56, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (57, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (11, 2, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (15, 2, 2);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (13, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (16, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (17, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (18, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (14, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (12, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (19, 2, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (22, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (21, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (20, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (23, 2, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (24, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (25, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (26, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (27, 2, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (28, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (29, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (30, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (35, 2, 3);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (31, 2, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (43, 2, 2);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (36, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (44, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (45, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (46, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (32, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (33, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (34, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (41, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (42, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (40, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (38, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (37, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (51, 2, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (52, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (53, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (54, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (47, 2, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (48, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (49, 2, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (50, 2, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (1, 1, 1);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (8, 1, 2);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (55, 1, 4);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (5, 1, 3);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (58, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (55, 1, 4);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (60, 1, 5);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (56, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (2, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (3, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (4, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (56, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (57, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (7, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (10, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (58, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (9, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (10, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (7, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (47, 1, 2);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (59, 1, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (48, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (49, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (50, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (19, 1, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (22, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (21, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (20, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (11, 1, 1);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (15, 1, 2);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (13, 1, 0);
@@ -1717,10 +1683,6 @@ INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (17, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (18, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (14, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (12, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (19, 1, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (22, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (21, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (20, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (23, 1, 1);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (24, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (25, 1, 0);
@@ -1729,6 +1691,10 @@ INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (27, 1, 1);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (28, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (29, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (30, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (51, 1, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (52, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (53, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (54, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (35, 1, 4);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (31, 1, 1);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (43, 1, 2);
@@ -1745,15 +1711,54 @@ INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (42, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (40, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (38, 1, 0);
 INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (37, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (51, 1, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (52, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (53, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (54, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (47, 1, 2);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (59, 1, 1);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (48, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (49, 1, 0);
-INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (50, 1, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (55, 2, 2);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (60, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (56, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (57, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (58, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (47, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (48, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (49, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (50, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (19, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (22, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (21, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (20, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (11, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (15, 2, 2);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (13, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (16, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (17, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (18, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (14, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (12, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (23, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (24, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (25, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (26, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (27, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (28, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (29, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (30, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (51, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (52, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (53, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (54, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (35, 2, 3);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (31, 2, 1);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (43, 2, 2);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (36, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (44, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (45, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (46, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (32, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (33, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (34, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (41, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (42, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (40, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (38, 2, 0);
+INSERT INTO tservicio_trol (idservicio, idrol, orden) VALUES (37, 2, 0);
 
 
 --
