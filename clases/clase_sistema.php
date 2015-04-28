@@ -11,8 +11,8 @@
 		    $vista=$this->armarDiccionario($vista,$enlace);
 		    $mensaje=$this->armarMensaje();
 		    $dividir_parametros = explode(' ', $_SESSION['nombreusu']);
-		    $primera_vez=($_SESSION['tour']==0)?'startIntro()':'';
-		    $_SESSION['tour']=($_SESSION['tour']==0)?1:'';
+		    $primera_vez=($_SESSION['tour']=='0')?'startIntro()':'';
+		    $_SESSION['tour']='1';
 			$Diccionario	=array(	'Servicio'=> array('servicio'=>$servicio,'modulo'=>$modulo,'primera_vez'=>$primera_vez),
 									'Mensaje'=>$mensaje,
 									'Menu'=>$this->get_menu(),
